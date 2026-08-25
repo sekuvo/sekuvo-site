@@ -1,102 +1,291 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Sekuvo — Privacy Policy / Gizlilik Politikası</title>
+<title>Sekuvo</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-  :root { color-scheme: light dark; }
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    max-width: 42rem; margin: 0 auto; padding: 2rem 1.25rem 4rem;
-    line-height: 1.6;
+  :root {
+    /* dark-first: kasa içi */
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
   }
-  h1 { font-size: 1.6rem; }
-  h2 { font-size: 1.2rem; margin-top: 2.5rem; }
-  h3 { font-size: 1rem; }
-  hr { margin: 3rem 0; border: none; border-top: 1px solid #8884; }
-  .meta { color: #888; font-size: .9rem; }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  :root[data-theme="light"] {
+    --ground: #f1eee8;
+    --surface: #faf8f4;
+    --line: #d8d2c455;
+    --ink: #221d15;
+    --muted: #6f6753;
+    --brass: #8a6d2a;
+    --brass-ink: #f8f4ec;
+    --ok: #4f7a3d;
+  }
+  :root[data-theme="dark"] {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 {
+    font-family: "Bricolage Grotesque", Georgia, serif;
+    line-height: 1.08;
+    text-wrap: balance;
+    margin: 0;
+  }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  /* üst çubuk */
+  header {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 1.6rem 0 0;
+  }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; letter-spacing: .01em; }
+  nav { display: flex; gap: 1.5rem; font-size: .92rem; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  /* kahraman */
+  .hero { padding: 6rem 0 4.5rem; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 {
+    font-size: clamp(2.6rem, 6.2vw, 4.4rem);
+    font-weight: 640;
+    font-variation-settings: "opsz" 80;
+  }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn {
+    display: inline-block; padding: .7rem 1.25rem; border-radius: 4px;
+    font-weight: 600; font-size: .95rem; text-decoration: none;
+    border: 1px solid var(--brass);
+  }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  /* manifest kanıtı */
+  .proof {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .8rem;
+    line-height: 1.75;
+    padding: 1.3rem 1.4rem;
+    overflow-x: auto;
+  }
+  .proof .cap {
+    font-family: "IBM Plex Mono", monospace; font-size: .72rem;
+    letter-spacing: .14em; text-transform: uppercase; color: var(--muted);
+    display: block; margin-bottom: .8rem;
+  }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  /* bölümler */
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  /* kripto zinciri */
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem;
+    color: var(--muted); background: var(--surface);
+    border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  /* kanallar */
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .14em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  /* indirme */
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; }
+  .dl > div { flex: 1 1 18rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+
+  /* giriş animasyonu */
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3.5rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
 </style>
-</head>
-<body>
 
-<h1>Sekuvo — Privacy Policy</h1>
-<p class="meta">App: <strong>Sekuvo</strong> (com.sekuvo.app) · Developer: Ahmet Govercile · Effective date: 2026-08-25</p>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav>
+      <a href="#security">Security</a>
+      <a href="#channels">Channels</a>
+      <a href="#download">Download</a>
+      <a href="https://afgover.github.io/vault-privacy/">Privacy</a>
+    </nav>
+  </header>
 
-<h2>Summary</h2>
-<p><strong>Sekuvo does not collect, transmit, or share any data.</strong> It is an offline password vault. The app does not request the Internet permission, so it is technically incapable of sending your data anywhere.</p>
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Offline password vault for Android</span>
+      <h1>Your secrets<br>never <em>leave.</em></h1>
+      <p class="lede">
+        Sekuvo is your secure vault: passwords, cards and notes, encrypted on
+        your phone with a key only your master password can derive. It has no
+        server, no account, no sync — and no way to phone home.
+      </p>
+      <div class="cta">
+        <a class="btn solid" href="https://github.com/afgover/Vault">Source on GitHub</a>
+        <a class="btn ghost" href="https://afgover.github.io/vault-privacy/">Privacy policy</a>
+      </div>
+      <p class="cta-note">Google Play listing is in preparation. Sekuvo is free and GPLv3 — the code is the proof.</p>
+    </div>
 
-<h2>Data storage</h2>
-<p>Everything you store in Sekuvo (titles, usernames, passwords, notes, usage history) stays on your device, encrypted with a key derived from your master password. Nothing is uploaded, synced, or backed up to any server by the app.</p>
+    <div class="proof" role="img" aria-label="The app manifest requests camera, biometrics and Bluetooth, and a search for the INTERNET permission returns no matches.">
+      <span class="cap">AndroidManifest.xml — every permission it has</span>
+<span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
+&lt;uses-permission android:name="…CAMERA" /&gt;
+&lt;uses-permission android:name="…VIBRATE" /&gt;
+&lt;uses-permission android:name="…BLUETOOTH_CONNECT" /&gt;</span>
 
-<h2>Data collection and sharing</h2>
-<ul>
-  <li>No personal data is collected.</li>
-  <li>No data is shared with third parties.</li>
-  <li>No analytics, advertising, or tracking libraries are included.</li>
-  <li>No account is required to use the app.</li>
-</ul>
+<span class="c">$ grep INTERNET AndroidManifest.xml</span>
+<span class="no">(no matches — the permission does not exist)</span>
+    </div>
+  </div>
 
-<h2>Permissions</h2>
-<ul>
-  <li><strong>Camera</strong> — used only to scan QR codes you choose to scan, for importing your own data. Frames are processed on the device and never leave it.</li>
-  <li><strong>Biometrics</strong> — used only to unlock the vault on your device, through the Android biometric system. Sekuvo never sees or stores your fingerprint or face data.</li>
-  <li><strong>Bluetooth</strong> — used only when you explicitly ask Sekuvo to type a password to a nearby computer as a Bluetooth keyboard. Only the characters you choose to send are transmitted, directly to the device you paired.</li>
-</ul>
+  <section id="security">
+    <span class="eyebrow">Security model</span>
+    <h2>Encryption you can audit, not believe.</h2>
+    <p class="kicker">
+      Every sensitive field is sealed with AES-256-GCM. The key never touches a
+      server because there is no server; it is derived on your phone, from your
+      master password, every time you unlock.
+    </p>
+    <div class="chain">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="grid" style="margin-top:2.4rem">
+      <div class="cell">
+        <h3>Locks when the screen sleeps</h3>
+        <p>The key is wiped from memory the moment the screen goes dark — folding a foldable counts. One unlock serves the app, the keyboard and autofill together.</p>
+      </div>
+      <div class="cell">
+        <h3>Backups that outlive the phone</h3>
+        <p>One encrypted <span class="mono-note">.vaultbak</span> file, stored wherever you choose. File + backup password restores everything on any device — the recovery path is tested end to end.</p>
+      </div>
+      <div class="cell">
+        <h3>No recovery backdoor</h3>
+        <p>Forget the master password and the data is gone. That is the design: a door only you can open has no spare key under the mat.</p>
+      </div>
+    </div>
+  </section>
 
-<h2>Backups and transfers</h2>
-<p>Backups and transfers happen only when you start them, produce an encrypted file or QR codes protected by a password you set, and are saved or displayed only where you direct them. The app never sends them anywhere on its own.</p>
+  <section id="channels">
+    <span class="eyebrow">Clipboard-free by design</span>
+    <h2>Three ways out, all under your finger.</h2>
+    <p class="kicker">
+      The clipboard is where secrets go to be stolen. Sekuvo types values
+      straight to their destination instead.
+    </p>
+    <div class="lanes">
+      <div class="lane">
+        <div class="n">Autofill</div>
+        <h3>Android autofill service</h3>
+        <p>Sign-in and card forms offer your entries directly. While locked, the system gets nothing — unlock first, then choose.</p>
+      </div>
+      <div class="lane">
+        <div class="n">Keyboard</div>
+        <h3>Sekuvo Keyboard</h3>
+        <p>Switch to it in any app and type a stored secret into the field — searchable, recents on top, no copy step.</p>
+      </div>
+      <div class="lane">
+        <div class="n">Bluetooth</div>
+        <h3>Types into your computer</h3>
+        <p>Your phone becomes a Bluetooth keyboard and types the secret at the computer's cursor. Nothing is installed on the computer.</p>
+      </div>
+    </div>
+  </section>
 
-<h2>Children</h2>
-<p>Sekuvo does not collect data from anyone, including children.</p>
+  <section id="download">
+    <span class="eyebrow">Get Sekuvo</span>
+    <h2>Free, open source, GPLv3.</h2>
+    <div class="dl" style="margin-top:1.6rem">
+      <div>
+        <h3 style="font-size:1.05rem; margin-bottom:.4rem">Android app</h3>
+        <p style="color:var(--muted); font-size:.93rem; margin:0">
+          The Google Play listing is in preparation. Until then you can build
+          from source — the repository README covers it in two commands.
+        </p>
+      </div>
+      <div>
+        <h3 style="font-size:1.05rem; margin-bottom:.4rem">Computer-side tools</h3>
+        <p style="color:var(--muted); font-size:.93rem; margin:0 0 .5rem">
+          The QR transfer tools are downloads, not web pages: they run entirely
+          on your machine, and this site never asks for a secret.
+        </p>
+        <p class="mono-note">github.com → Releases · verify the published SHA-256</p>
+      </div>
+    </div>
+  </section>
 
-<h2>Changes</h2>
-<p>If this policy ever changes, the new version will be published at this address with an updated effective date.</p>
-
-<h2>Contact</h2>
-<p>Questions: <a href="mailto:afgover@gmail.com">afgover@gmail.com</a></p>
-
-<hr>
-
-<h1 lang="tr">Sekuvo — Gizlilik Politikası</h1>
-<p class="meta" lang="tr">Uygulama: <strong>Sekuvo</strong> (com.sekuvo.app) · Geliştirici: Ahmet Govercile · Yürürlük tarihi: 25.08.2026</p>
-
-<div lang="tr">
-
-<h2>Özet</h2>
-<p><strong>Sekuvo hiçbir veri toplamaz, iletmez ve paylaşmaz.</strong> Çevrimdışı bir parola yöneticisidir. Uygulama İnternet izni istemez; dolayısıyla verinizi bir yere göndermesi teknik olarak mümkün değildir.</p>
-
-<h2>Verinin saklanması</h2>
-<p>Sekuvo'ya kaydettiğiniz her şey (başlıklar, kullanıcı adları, parolalar, notlar, kullanım geçmişi) cihazınızda kalır ve ana parolanızdan türetilen bir anahtarla şifrelenir. Uygulama hiçbir veriyi bir sunucuya yüklemez, eşitlemez veya yedeklemez.</p>
-
-<h2>Veri toplama ve paylaşma</h2>
-<ul>
-  <li>Hiçbir kişisel veri toplanmaz.</li>
-  <li>Üçüncü taraflarla hiçbir veri paylaşılmaz.</li>
-  <li>Analitik, reklam veya izleme kütüphanesi içermez.</li>
-  <li>Kullanmak için hesap gerekmez.</li>
-</ul>
-
-<h2>İzinler</h2>
-<ul>
-  <li><strong>Kamera</strong> — yalnızca sizin taramayı seçtiğiniz QR kodlarını okumak için, kendi verinizi içe aktarırken kullanılır. Görüntüler cihazda işlenir, cihazdan çıkmaz.</li>
-  <li><strong>Biyometri</strong> — yalnızca kasayı cihazınızda açmak için, Android'in biyometri sistemi üzerinden kullanılır. Sekuvo parmak izinizi veya yüz verinizi hiçbir zaman görmez ve saklamaz.</li>
-  <li><strong>Bluetooth</strong> — yalnızca siz açıkça istediğinizde, bir parolayı yakındaki bir bilgisayara Bluetooth klavye gibi yazmak için kullanılır. Yalnızca göndermeyi seçtiğiniz karakterler, doğrudan eşleştirdiğiniz cihaza iletilir.</li>
-</ul>
-
-<h2>Yedekler ve aktarımlar</h2>
-<p>Yedekleme ve aktarma yalnızca siz başlattığınızda gerçekleşir; belirlediğiniz bir parolayla korunan şifreli bir dosya ya da QR kodları üretir ve yalnızca sizin gösterdiğiniz yere kaydedilir veya görüntülenir. Uygulama bunları kendiliğinden hiçbir yere göndermez.</p>
-
-<h2>Çocuklar</h2>
-<p>Sekuvo, çocuklar dahil hiç kimseden veri toplamaz.</p>
-
-<h2>Değişiklikler</h2>
-<p>Bu politika değişirse, yeni sürüm güncellenmiş yürürlük tarihiyle bu adreste yayınlanır.</p>
-
-<h2>İletişim</h2>
-<p>Sorular için: <a href="mailto:afgover@gmail.com">afgover@gmail.com</a></p>
-
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo — <em>your secure vault.</em></span>
+    <span>
+      <a href="https://github.com/afgover/Vault">GitHub</a> ·
+      <a href="https://afgover.github.io/vault-privacy/">Privacy</a> ·
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
+    </span>
+  </footer>
 </div>
-
-</body>
-</html>
