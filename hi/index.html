@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="hi" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvo — आपकी सुरक्षित तिजोरी। Android के लिए पूरी तरह ऑफ़लाइन पासवर्ड तिजोरी: इंटरनेट अनुमति नहीं, AES-256, ओपन सोर्स (GPLv3)।">
+<title>Sekuvo — आपकी सुरक्षित तिजोरी</title>
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav>
+      <a href="#security">सुरक्षा</a>
+      <a href="#channels">रास्ते</a>
+      <a href="#download">डाउनलोड</a>
+      <a href="https://sekuvo.com/privacy/">निजता</a>
+    </nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/" lang="es">Español</a> ·
+    <a class="here" href="https://sekuvo.com/hi/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/" lang="ar">العربية</a></div>
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Android के लिए ऑफ़लाइन पासवर्ड तिजोरी</span>
+      <h1>आपके राज़<br>कभी <em>बाहर नहीं जाते।</em></h1>
+      <p class="lede">Sekuvo आपकी सुरक्षित तिजोरी है: पासवर्ड, कार्ड और नोट्स — आपके फ़ोन पर उस कुंजी से एन्क्रिप्टेड जो सिर्फ़ आपका मास्टर पासवर्ड बना सकता है। कोई सर्वर नहीं, कोई खाता नहीं, कोई सिंक नहीं — और कहीं ख़बर भेजने का कोई रास्ता नहीं।</p>
+      <div class="cta">
+        <a class="btn solid" href="https://github.com/afgover/Vault">GitHub पर सोर्स</a>
+        <a class="btn ghost" href="https://sekuvo.com/privacy/">निजता नीति</a>
+      </div>
+      <p class="cta-note">Google Play लिस्टिंग तैयार की जा रही है। Sekuvo मुफ़्त और GPLv3 है — कोड ही प्रमाण है।</p>
+    </div>
+
+    <div class="proof" dir="ltr" role="img" aria-label="मैनिफ़ेस्ट कैमरा, बायोमेट्रिक्स और ब्लूटूथ माँगता है, और INTERNET अनुमति की खोज पर कोई मिलान नहीं मिलता।">
+      <span class="cap">AndroidManifest.xml — इसकी सारी अनुमतियाँ</span>
+<span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
+&lt;uses-permission android:name="…CAMERA" /&gt;
+&lt;uses-permission android:name="…VIBRATE" /&gt;
+&lt;uses-permission android:name="…BLUETOOTH_CONNECT" /&gt;</span>
+
+<span class="c">$ grep INTERNET AndroidManifest.xml</span>
+<span class="no">(कोई मिलान नहीं — यह अनुमति मौजूद ही नहीं है)</span>
+    </div>
+  </div>
+
+  <section id="security">
+    <span class="eyebrow">सुरक्षा मॉडल</span>
+    <h2>ऐसा एन्क्रिप्शन जिसे मानना नहीं, जाँचना है।</h2>
+    <p class="kicker">हर संवेदनशील फ़ील्ड AES-256-GCM से सील होता है। कुंजी किसी सर्वर तक नहीं पहुँचती, क्योंकि सर्वर है ही नहीं; वह हर बार अनलॉक पर आपके फ़ोन में आपके मास्टर पासवर्ड से बनती है।</p>
+    <div class="chain" dir="ltr">मास्टर पासवर्ड ─<b>PBKDF2 · 310,000 राउंड</b>─▶ KEK ─<b>AES-GCM रैप</b>─▶ dataKey ─▶ हर एंट्री पर <b>AES-256-GCM</b></div>
+    <div class="grid"><div class="cell"><h3>स्क्रीन बुझते ही लॉक</h3><p>स्क्रीन बंद होते ही कुंजी मेमोरी से मिट जाती है — फ़ोल्डेबल को मोड़ना भी गिना जाता है। एक बार अनलॉक ऐप, कीबोर्ड और ऑटोफ़िल तीनों के लिए काम करता है।</p></div><div class="cell"><h3>फ़ोन से ज़्यादा टिकने वाला बैकअप</h3><p>एक एन्क्रिप्टेड <span class="mono-note">.vaultbak</span> फ़ाइल, जहाँ चाहें रखें। फ़ाइल और बैकअप पासवर्ड मिलकर किसी भी डिवाइस पर सब कुछ लौटा देते हैं — यह रास्ता पूरी तरह जाँचा जा चुका है।</p></div><div class="cell"><h3>कोई रिकवरी बैकडोर नहीं</h3><p>मास्टर पासवर्ड भूले तो डेटा गया। यही डिज़ाइन है: जिस दरवाज़े को सिर्फ़ आप खोलते हैं, उसकी दूसरी चाबी चौखट के नीचे नहीं रखी होती।</p></div></div>
+  </section>
+
+  <section id="channels">
+    <span class="eyebrow">डिज़ाइन से ही क्लिपबोर्ड-मुक्त</span>
+    <h2>बाहर निकलने के तीन रास्ते, तीनों उँगली के नीचे।</h2>
+    <p class="kicker">क्लिपबोर्ड वही जगह है जहाँ राज़ चोरी होते हैं। Sekuvo मान सीधे उनकी मंज़िल पर लिखता है।</p>
+    <div class="lanes"><div class="lane"><div class="n">ऑटोफ़िल</div><h3>Android ऑटोफ़िल सेवा</h3><p>साइन-इन और कार्ड फ़ॉर्म सीधे आपकी एंट्री दिखाते हैं। लॉक रहते सिस्टम को कुछ नहीं मिलता — पहले अनलॉक, फिर चुनाव।</p></div><div class="lane"><div class="n">कीबोर्ड</div><h3>Sekuvo कीबोर्ड</h3><p>किसी भी ऐप में इस पर स्विच करें और सहेजा हुआ राज़ सीधे फ़ील्ड में लिखें — खोज के साथ, हाल के ऊपर, कॉपी का कदम नहीं।</p></div><div class="lane"><div class="n">ब्लूटूथ</div><h3>आपके कंप्यूटर में टाइप करता है</h3><p>आपका फ़ोन ब्लूटूथ कीबोर्ड बन जाता है और राज़ को कर्सर की जगह पर टाइप करता है। कंप्यूटर पर कुछ भी इंस्टॉल नहीं होता।</p></div></div>
+  </section>
+
+  <section id="download">
+    <span class="eyebrow">Sekuvo पाएँ</span>
+    <h2>मुफ़्त, ओपन सोर्स, GPLv3।</h2>
+    <div class="dl">
+      <div>
+        <h3>Android ऐप</h3>
+        <p>Google Play लिस्टिंग तैयार की जा रही है। तब तक आप सोर्स से बना सकते हैं — रिपॉज़िटरी का README दो कमांड में बताता है।</p>
+      </div>
+      <div>
+        <h3>कंप्यूटर-साइड टूल</h3>
+        <p>QR ट्रांसफ़र टूल वेब पेज नहीं, डाउनलोड हैं: वे पूरी तरह आपकी मशीन पर चलते हैं, और यह साइट कभी कोई राज़ नहीं माँगती।</p>
+        <p class="mono-note" dir="ltr">github.com → Releases · प्रकाशित SHA-256 जाँचें</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo — <em>आपकी सुरक्षित तिजोरी।</em></span>
+    <span dir="ltr">
+      <a href="https://github.com/afgover/Vault">GitHub</a> ·
+      <a href="https://sekuvo.com/privacy/">निजता</a> ·
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
+    </span>
+  </footer>
+</div>
+</body>
+</html>
