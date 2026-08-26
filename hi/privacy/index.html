@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="hi" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvo निजता नीति: कोई डेटा एकत्र नहीं, कोई डेटा साझा नहीं, इंटरनेट अनुमति नहीं।">
+<title>Sekuvo — निजता नीति</title>
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/privacy/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/privacy/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/privacy/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/privacy/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/privacy/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/privacy/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Devanagari:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "IBM Plex Sans Devanagari", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 44rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.2rem; font-weight: 600; margin: 2.4rem 0 .6rem; }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul { padding-inline-start: 1.2rem; }
+  .prose li { margin-bottom: .5rem; }
+  .prose strong { color: var(--ink); }
+  .meta { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); margin-top: .8rem; }
+  .note { border: 1px solid var(--line); border-radius: 6px; padding: .9rem 1.1rem; font-size: .88rem; color: var(--muted); margin-top: 1.6rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/hi/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/privacy/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/privacy/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/privacy/" lang="es">Español</a> ·
+    <a class="here" href="https://sekuvo.com/hi/privacy/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/privacy/" lang="ar">العربية</a></div>
+
+  <div class="prose">
+    <h1>निजता नीति</h1>
+    <p class="meta">ऐप: <strong>Sekuvo</strong> (com.sekuvo.app) · डेवलपर: Ahmet Govercile · प्रभावी तिथि: 2026-08-25</p>
+    <p class="note">यह पाठ अंग्रेज़ी मूल का अनुवाद है। मतभेद की स्थिति में <a href="https://sekuvo.com/privacy/">अंग्रेज़ी संस्करण</a> मान्य होगा।</p>
+    <h2>सारांश</h2><p><strong>Sekuvo कोई डेटा एकत्र, प्रेषित या साझा नहीं करता।</strong> यह एक ऑफ़लाइन पासवर्ड तिजोरी है। ऐप इंटरनेट अनुमति माँगता ही नहीं, इसलिए आपका डेटा कहीं भेजना तकनीकी रूप से असंभव है।</p><h2>डेटा का भंडारण</h2><p>आप Sekuvo में जो कुछ रखते हैं (शीर्षक, उपयोगकर्ता नाम, पासवर्ड, नोट्स, उपयोग इतिहास) वह आपके डिवाइस पर ही रहता है, आपके मास्टर पासवर्ड से बनी कुंजी से एन्क्रिप्टेड। ऐप कुछ भी किसी सर्वर पर अपलोड, सिंक या बैकअप नहीं करता।</p><h2>डेटा संग्रह और साझाकरण</h2><ul><li>कोई व्यक्तिगत डेटा एकत्र नहीं किया जाता।</li><li>किसी तीसरे पक्ष के साथ कोई डेटा साझा नहीं किया जाता।</li><li>कोई एनालिटिक्स, विज्ञापन या ट्रैकिंग लाइब्रेरी शामिल नहीं है।</li><li>ऐप इस्तेमाल करने के लिए खाता ज़रूरी नहीं।</li></ul><h2>अनुमतियाँ</h2><ul><li><strong>कैमरा</strong> — केवल उन QR कोड को पढ़ने के लिए जिन्हें आप स्कैन करना चुनते हैं, अपना डेटा आयात करते समय। फ़्रेम डिवाइस पर ही संसाधित होते हैं और कभी बाहर नहीं जाते।</li><li><strong>बायोमेट्रिक्स</strong> — केवल आपके डिवाइस पर तिजोरी खोलने के लिए, Android की बायोमेट्रिक प्रणाली के ज़रिए। Sekuvo आपकी उँगली या चेहरे का डेटा न कभी देखता है, न संग्रहीत करता है।</li><li><strong>ब्लूटूथ</strong> — केवल तब, जब आप स्पष्ट रूप से कहें कि Sekuvo पास के कंप्यूटर में ब्लूटूथ कीबोर्ड बनकर पासवर्ड टाइप करे। केवल वही अक्षर भेजे जाते हैं जो आप चुनते हैं, सीधे उस जोड़े गए डिवाइस को।</li></ul><h2>बैकअप और स्थानांतरण</h2><p>बैकअप और स्थानांतरण तभी होते हैं जब आप उन्हें शुरू करते हैं; वे आपके तय किए पासवर्ड से सुरक्षित एन्क्रिप्टेड फ़ाइल या QR कोड बनाते हैं, और केवल वहीं सहेजे या दिखाए जाते हैं जहाँ आप कहते हैं। ऐप उन्हें अपने आप कहीं नहीं भेजता।</p><h2>बच्चे</h2><p>Sekuvo किसी से भी डेटा एकत्र नहीं करता, बच्चों से भी नहीं।</p><h2>बदलाव</h2><p>यदि यह नीति कभी बदलती है, तो नया संस्करण अद्यतन प्रभावी तिथि के साथ इसी पते पर प्रकाशित किया जाएगा।</p><h2>संपर्क</h2><p>प्रश्न: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>
+    <a class="back" href="https://sekuvo.com/hi/">← sekuvo.com पर वापस</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>

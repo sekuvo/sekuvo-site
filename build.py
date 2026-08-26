@@ -388,7 +388,7 @@ PAGE = """<!DOCTYPE html>
       <a href="#security">{nav0}</a>
       <a href="#channels">{nav1}</a>
       <a href="#download">{nav2}</a>
-      <a href="{site}/privacy/">{nav3}</a>
+      <a href="{privacy_url}">{nav3}</a>
     </nav>
   </header>
   <div class="langs">{langs}</div>
@@ -400,7 +400,7 @@ PAGE = """<!DOCTYPE html>
       <p class="lede">{lede}</p>
       <div class="cta">
         <a class="btn solid" href="{github}">{btn_src}</a>
-        <a class="btn ghost" href="{site}/privacy/">{btn_priv}</a>
+        <a class="btn ghost" href="{privacy_url}">{btn_priv}</a>
       </div>
       <p class="cta-note">{cta_note}</p>
     </div>
@@ -453,7 +453,7 @@ PAGE = """<!DOCTYPE html>
     <span dir="ltr">
       <a href="{github}">GitHub</a> ·
       <a href="mailto:contact@sekuvo.com">{contact}</a> ·
-      <a href="{site}/privacy/">{nav3}</a> ·
+      <a href="{privacy_url}">{nav3}</a> ·
       <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
     </span>
   </footer>
@@ -494,6 +494,7 @@ def build():
             lang=t["lang"], dir=t["dir"], desc=t["desc"], title=t["title"],
             alternates=alternates, font_url=font_url, style=style, langs=langs,
             site=SITE, github=GITHUB,
+            privacy_url=f"{SITE}/{t['path']}privacy/",
             nav0=t["nav"][0], nav1=t["nav"][1], nav2=t["nav"][2], nav3=t["nav"][3],
             eyebrow=t["eyebrow"], h1=t["h1"], lede=t["lede"],
             btn_src=t["btn_src"], btn_priv=t["btn_priv"], cta_note=t["cta_note"],
@@ -514,5 +515,237 @@ def build():
         print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Privacy policy, one page per language.
+#
+# English is the binding version and the translations say so: a policy is a
+# legal statement, and a translated nuance that drifts from the original would
+# be the version a reader relies on. Naming one authoritative text keeps the
+# translations useful without making them load-bearing.
+# ─────────────────────────────────────────────────────────────────────────────
+
+EFFECTIVE = "2026-08-25"
+
+P = {}
+
+P["en"] = dict(
+    title="Sekuvo — Privacy Policy",
+    desc="Sekuvo privacy policy: no data collected, no data shared, no internet permission.",
+    h1="Privacy Policy",
+    meta=f"App: <strong>Sekuvo</strong> (com.sekuvo.app) · Developer: Ahmet Govercile · Effective date: {EFFECTIVE}",
+    back="← Back to sekuvo.com",
+    authoritative=None,
+    sections=[
+        ("Summary",
+         "<p><strong>Sekuvo does not collect, transmit, or share any data.</strong> It is an offline password vault. The app does not request the Internet permission, so it is technically incapable of sending your data anywhere.</p>"),
+        ("Data storage",
+         "<p>Everything you store in Sekuvo (titles, usernames, passwords, notes, usage history) stays on your device, encrypted with a key derived from your master password. Nothing is uploaded, synced, or backed up to any server by the app.</p>"),
+        ("Data collection and sharing",
+         "<ul><li>No personal data is collected.</li><li>No data is shared with third parties.</li><li>No analytics, advertising, or tracking libraries are included.</li><li>No account is required to use the app.</li></ul>"),
+        ("Permissions",
+         "<ul><li><strong>Camera</strong> — used only to scan QR codes you choose to scan, for importing your own data. Frames are processed on the device and never leave it.</li><li><strong>Biometrics</strong> — used only to unlock the vault on your device, through the Android biometric system. Sekuvo never sees or stores your fingerprint or face data.</li><li><strong>Bluetooth</strong> — used only when you explicitly ask Sekuvo to type a password to a nearby computer as a Bluetooth keyboard. Only the characters you choose to send are transmitted, directly to the device you paired.</li></ul>"),
+        ("Backups and transfers",
+         "<p>Backups and transfers happen only when you start them, produce an encrypted file or QR codes protected by a password you set, and are saved or displayed only where you direct them. The app never sends them anywhere on its own.</p>"),
+        ("Children",
+         "<p>Sekuvo does not collect data from anyone, including children.</p>"),
+        ("Changes",
+         "<p>If this policy ever changes, the new version will be published at this address with an updated effective date.</p>"),
+        ("Contact",
+         '<p>Questions: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["tr"] = dict(
+    title="Sekuvo — Gizlilik Politikası",
+    desc="Sekuvo gizlilik politikası: veri toplanmaz, veri paylaşılmaz, internet izni yoktur.",
+    h1="Gizlilik Politikası",
+    meta=f"Uygulama: <strong>Sekuvo</strong> (com.sekuvo.app) · Geliştirici: Ahmet Govercile · Yürürlük tarihi: {EFFECTIVE}",
+    back="← sekuvo.com'a dön",
+    authoritative="Bu metin İngilizce aslından çevrilmiştir. Bir uyuşmazlık hâlinde <a href=\"https://sekuvo.com/privacy/\">İngilizce sürüm</a> geçerlidir.",
+    sections=[
+        ("Özet",
+         "<p><strong>Sekuvo hiçbir veri toplamaz, iletmez ve paylaşmaz.</strong> Çevrimdışı bir parola kasasıdır. Uygulama İnternet izni istemez; dolayısıyla verinizi bir yere göndermesi teknik olarak mümkün değildir.</p>"),
+        ("Verinin saklanması",
+         "<p>Sekuvo'ya kaydettiğiniz her şey (başlıklar, kullanıcı adları, parolalar, notlar, kullanım geçmişi) cihazınızda kalır ve ana parolanızdan türetilen bir anahtarla şifrelenir. Uygulama hiçbir veriyi bir sunucuya yüklemez, eşitlemez veya yedeklemez.</p>"),
+        ("Veri toplama ve paylaşma",
+         "<ul><li>Hiçbir kişisel veri toplanmaz.</li><li>Üçüncü taraflarla hiçbir veri paylaşılmaz.</li><li>Analitik, reklam veya izleme kütüphanesi içermez.</li><li>Kullanmak için hesap gerekmez.</li></ul>"),
+        ("İzinler",
+         "<ul><li><strong>Kamera</strong> — yalnızca sizin taramayı seçtiğiniz QR kodlarını okumak için, kendi verinizi içe aktarırken kullanılır. Görüntüler cihazda işlenir, cihazdan çıkmaz.</li><li><strong>Biyometri</strong> — yalnızca kasayı cihazınızda açmak için, Android'in biyometri sistemi üzerinden kullanılır. Sekuvo parmak izinizi veya yüz verinizi hiçbir zaman görmez ve saklamaz.</li><li><strong>Bluetooth</strong> — yalnızca siz açıkça istediğinizde, bir parolayı yakındaki bir bilgisayara Bluetooth klavye gibi yazmak için kullanılır. Yalnızca göndermeyi seçtiğiniz karakterler, doğrudan eşleştirdiğiniz cihaza iletilir.</li></ul>"),
+        ("Yedekler ve aktarımlar",
+         "<p>Yedekleme ve aktarma yalnızca siz başlattığınızda gerçekleşir; belirlediğiniz bir parolayla korunan şifreli bir dosya ya da QR kodları üretir ve yalnızca sizin gösterdiğiniz yere kaydedilir veya görüntülenir. Uygulama bunları kendiliğinden hiçbir yere göndermez.</p>"),
+        ("Çocuklar",
+         "<p>Sekuvo, çocuklar dahil hiç kimseden veri toplamaz.</p>"),
+        ("Değişiklikler",
+         "<p>Bu politika değişirse, yeni sürüm güncellenmiş yürürlük tarihiyle bu adreste yayınlanır.</p>"),
+        ("İletişim",
+         '<p>Sorular için: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["es"] = dict(
+    title="Sekuvo — Política de Privacidad",
+    desc="Política de privacidad de Sekuvo: no se recopilan datos, no se comparten datos, sin permiso de internet.",
+    h1="Política de Privacidad",
+    meta=f"Aplicación: <strong>Sekuvo</strong> (com.sekuvo.app) · Desarrollador: Ahmet Govercile · Fecha de entrada en vigor: {EFFECTIVE}",
+    back="← Volver a sekuvo.com",
+    authoritative="Este texto es una traducción del original en inglés. En caso de discrepancia, prevalece la <a href=\"https://sekuvo.com/privacy/\">versión en inglés</a>.",
+    sections=[
+        ("Resumen",
+         "<p><strong>Sekuvo no recopila, transmite ni comparte ningún dato.</strong> Es una bóveda de contraseñas sin conexión. La aplicación no solicita el permiso de Internet, por lo que es técnicamente incapaz de enviar tus datos a ninguna parte.</p>"),
+        ("Almacenamiento de datos",
+         "<p>Todo lo que guardas en Sekuvo (títulos, usuarios, contraseñas, notas, historial de uso) permanece en tu dispositivo, cifrado con una clave derivada de tu contraseña maestra. La aplicación no sube, sincroniza ni respalda nada en ningún servidor.</p>"),
+        ("Recopilación y uso compartido de datos",
+         "<ul><li>No se recopilan datos personales.</li><li>No se comparten datos con terceros.</li><li>No incluye bibliotecas de analítica, publicidad ni rastreo.</li><li>No se necesita una cuenta para usar la aplicación.</li></ul>"),
+        ("Permisos",
+         "<ul><li><strong>Cámara</strong> — se usa únicamente para leer los códigos QR que tú decides escanear, al importar tus propios datos. Las imágenes se procesan en el dispositivo y nunca salen de él.</li><li><strong>Biometría</strong> — se usa únicamente para desbloquear la bóveda en tu dispositivo, a través del sistema biométrico de Android. Sekuvo nunca ve ni almacena tu huella o tu rostro.</li><li><strong>Bluetooth</strong> — se usa únicamente cuando pides expresamente que Sekuvo escriba una contraseña en un ordenador cercano como teclado Bluetooth. Solo se transmiten los caracteres que eliges enviar, directamente al dispositivo emparejado.</li></ul>"),
+        ("Copias de seguridad y transferencias",
+         "<p>Las copias y transferencias ocurren solo cuando tú las inicias, generan un archivo cifrado o códigos QR protegidos por una contraseña que tú defines, y se guardan o muestran solo donde tú indicas. La aplicación nunca los envía a ningún sitio por su cuenta.</p>"),
+        ("Menores",
+         "<p>Sekuvo no recopila datos de nadie, incluidos los menores.</p>"),
+        ("Cambios",
+         "<p>Si esta política cambia, la nueva versión se publicará en esta dirección con una fecha de entrada en vigor actualizada.</p>"),
+        ("Contacto",
+         '<p>Consultas: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["hi"] = dict(
+    title="Sekuvo — निजता नीति",
+    desc="Sekuvo निजता नीति: कोई डेटा एकत्र नहीं, कोई डेटा साझा नहीं, इंटरनेट अनुमति नहीं।",
+    h1="निजता नीति",
+    meta=f"ऐप: <strong>Sekuvo</strong> (com.sekuvo.app) · डेवलपर: Ahmet Govercile · प्रभावी तिथि: {EFFECTIVE}",
+    back="← sekuvo.com पर वापस",
+    authoritative="यह पाठ अंग्रेज़ी मूल का अनुवाद है। मतभेद की स्थिति में <a href=\"https://sekuvo.com/privacy/\">अंग्रेज़ी संस्करण</a> मान्य होगा।",
+    sections=[
+        ("सारांश",
+         "<p><strong>Sekuvo कोई डेटा एकत्र, प्रेषित या साझा नहीं करता।</strong> यह एक ऑफ़लाइन पासवर्ड तिजोरी है। ऐप इंटरनेट अनुमति माँगता ही नहीं, इसलिए आपका डेटा कहीं भेजना तकनीकी रूप से असंभव है।</p>"),
+        ("डेटा का भंडारण",
+         "<p>आप Sekuvo में जो कुछ रखते हैं (शीर्षक, उपयोगकर्ता नाम, पासवर्ड, नोट्स, उपयोग इतिहास) वह आपके डिवाइस पर ही रहता है, आपके मास्टर पासवर्ड से बनी कुंजी से एन्क्रिप्टेड। ऐप कुछ भी किसी सर्वर पर अपलोड, सिंक या बैकअप नहीं करता।</p>"),
+        ("डेटा संग्रह और साझाकरण",
+         "<ul><li>कोई व्यक्तिगत डेटा एकत्र नहीं किया जाता।</li><li>किसी तीसरे पक्ष के साथ कोई डेटा साझा नहीं किया जाता।</li><li>कोई एनालिटिक्स, विज्ञापन या ट्रैकिंग लाइब्रेरी शामिल नहीं है।</li><li>ऐप इस्तेमाल करने के लिए खाता ज़रूरी नहीं।</li></ul>"),
+        ("अनुमतियाँ",
+         "<ul><li><strong>कैमरा</strong> — केवल उन QR कोड को पढ़ने के लिए जिन्हें आप स्कैन करना चुनते हैं, अपना डेटा आयात करते समय। फ़्रेम डिवाइस पर ही संसाधित होते हैं और कभी बाहर नहीं जाते।</li><li><strong>बायोमेट्रिक्स</strong> — केवल आपके डिवाइस पर तिजोरी खोलने के लिए, Android की बायोमेट्रिक प्रणाली के ज़रिए। Sekuvo आपकी उँगली या चेहरे का डेटा न कभी देखता है, न संग्रहीत करता है।</li><li><strong>ब्लूटूथ</strong> — केवल तब, जब आप स्पष्ट रूप से कहें कि Sekuvo पास के कंप्यूटर में ब्लूटूथ कीबोर्ड बनकर पासवर्ड टाइप करे। केवल वही अक्षर भेजे जाते हैं जो आप चुनते हैं, सीधे उस जोड़े गए डिवाइस को।</li></ul>"),
+        ("बैकअप और स्थानांतरण",
+         "<p>बैकअप और स्थानांतरण तभी होते हैं जब आप उन्हें शुरू करते हैं; वे आपके तय किए पासवर्ड से सुरक्षित एन्क्रिप्टेड फ़ाइल या QR कोड बनाते हैं, और केवल वहीं सहेजे या दिखाए जाते हैं जहाँ आप कहते हैं। ऐप उन्हें अपने आप कहीं नहीं भेजता।</p>"),
+        ("बच्चे",
+         "<p>Sekuvo किसी से भी डेटा एकत्र नहीं करता, बच्चों से भी नहीं।</p>"),
+        ("बदलाव",
+         "<p>यदि यह नीति कभी बदलती है, तो नया संस्करण अद्यतन प्रभावी तिथि के साथ इसी पते पर प्रकाशित किया जाएगा।</p>"),
+        ("संपर्क",
+         '<p>प्रश्न: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["ar"] = dict(
+    title="Sekuvo — سياسة الخصوصية",
+    desc="سياسة خصوصية Sekuvo: لا جمع للبيانات، ولا مشاركة لها، ولا إذن إنترنت.",
+    h1="سياسة الخصوصية",
+    meta=f"التطبيق: <strong>Sekuvo</strong> (com.sekuvo.app) · المطوّر: Ahmet Govercile · تاريخ السريان: {EFFECTIVE}",
+    back="← العودة إلى sekuvo.com",
+    authoritative="هذا النص ترجمة عن الأصل الإنجليزي. وعند الاختلاف تُعتمد <a href=\"https://sekuvo.com/privacy/\">النسخة الإنجليزية</a>.",
+    sections=[
+        ("الملخّص",
+         "<p><strong>لا يجمع Sekuvo أي بيانات ولا ينقلها ولا يشاركها.</strong> فهو خزنة كلمات مرور تعمل دون اتصال. ولا يطلب التطبيق إذن الإنترنت، لذا يستحيل عليه تقنيًا إرسال بياناتك إلى أي جهة.</p>"),
+        ("تخزين البيانات",
+         "<p>كل ما تحفظه في Sekuvo (العناوين وأسماء المستخدمين وكلمات المرور والملاحظات وسجل الاستخدام) يبقى على جهازك، مشفَّرًا بمفتاح مشتقّ من كلمة مرورك الرئيسية. ولا يرفع التطبيق شيئًا ولا يزامنه ولا ينسخه إلى أي خادم.</p>"),
+        ("جمع البيانات ومشاركتها",
+         "<ul><li>لا تُجمع أي بيانات شخصية.</li><li>لا تُشارك أي بيانات مع أطراف أخرى.</li><li>لا يتضمن التطبيق مكتبات تحليلات أو إعلانات أو تتبّع.</li><li>لا يلزم إنشاء حساب لاستخدامه.</li></ul>"),
+        ("الأذونات",
+         "<ul><li><strong>الكاميرا</strong> — تُستخدم فقط لقراءة رموز QR التي تختار مسحها عند استيراد بياناتك. وتُعالَج الصور على الجهاز ولا تغادره أبدًا.</li><li><strong>القياسات الحيوية</strong> — تُستخدم فقط لفتح الخزنة على جهازك عبر نظام أندرويد الحيوي. ولا يرى Sekuvo بصمتك أو وجهك ولا يخزّنهما إطلاقًا.</li><li><strong>البلوتوث</strong> — يُستخدم فقط حين تطلب صراحةً أن يكتب Sekuvo كلمة مرور في حاسوب قريب بوصفه لوحة مفاتيح بلوتوث. ولا تُرسَل إلا الأحرف التي تختارها، مباشرةً إلى الجهاز المقترن.</li></ul>"),
+        ("النسخ الاحتياطية والنقل",
+         "<p>لا تحدث النسخ ولا عمليات النقل إلا حين تبدأها أنت، وتنتج ملفًا مشفَّرًا أو رموز QR محمية بكلمة مرور تحدّدها، ولا تُحفَظ أو تُعرَض إلا حيث توجّهها. ولا يرسلها التطبيق إلى أي مكان من تلقاء نفسه.</p>"),
+        ("الأطفال",
+         "<p>لا يجمع Sekuvo بيانات من أي شخص، بمن فيهم الأطفال.</p>"),
+        ("التغييرات",
+         "<p>إذا تغيّرت هذه السياسة يومًا، ستُنشر النسخة الجديدة على هذا العنوان مع تاريخ سريان محدَّث.</p>"),
+        ("التواصل",
+         '<p>للاستفسارات: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+POLICY_PAGE = """<!DOCTYPE html>
+<html lang="{lang}" dir="{dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{desc}">
+<title>{title}</title>
+{alternates}
+<link rel="stylesheet" href="{font_url}">
+<style>{style}
+  .prose {{ max-width: 44rem; padding: 3rem 0 4rem; }}
+  .prose h1 {{ font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }}
+  .prose h2 {{ font-size: 1.2rem; font-weight: 600; margin: 2.4rem 0 .6rem; }}
+  .prose p, .prose li {{ color: var(--muted); }}
+  .prose ul {{ padding-inline-start: 1.2rem; }}
+  .prose li {{ margin-bottom: .5rem; }}
+  .prose strong {{ color: var(--ink); }}
+  .meta {{ font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); margin-top: .8rem; }}
+  .note {{ border: 1px solid var(--line); border-radius: 6px; padding: .9rem 1.1rem; font-size: .88rem; color: var(--muted); margin-top: 1.6rem; }}
+  .back {{ display: inline-block; margin-top: 2.6rem; font-size: .9rem; }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="{home_url}">sekuvo.com</a></nav>
+  </header>
+  <div class="langs">{langs}</div>
+
+  <div class="prose">
+    <h1>{h1}</h1>
+    <p class="meta">{meta}</p>
+    {note}
+    {body}
+    <a class="back" href="{home_url}">{back}</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>
+"""
+
+
+def build_policies():
+    root = pathlib.Path(__file__).parent
+    for code in ORDER:
+        t, pol = L[code], P[code]
+        font_url, display, body_face = FONTS[t["script"]]
+        style = STYLE.replace("__DISPLAY__", display).replace("__BODY__", body_face)
+
+        alternates = "\n".join(
+            f'<link rel="alternate" hreflang="{L[c]["lang"]}" href="{SITE}/{L[c]["path"]}privacy/">'
+            for c in ORDER
+        ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/privacy/">'
+
+        langs = " ·\n    ".join(
+            (f'<a class="here" href="{SITE}/{L[c]["path"]}privacy/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
+             if c == code else
+             f'<a href="{SITE}/{L[c]["path"]}privacy/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>')
+            for c in ORDER
+        )
+
+        note = f'<p class="note">{pol["authoritative"]}</p>' if pol["authoritative"] else ""
+        body = "".join(f"<h2>{h}</h2>{b}" for h, b in pol["sections"])
+
+        html = POLICY_PAGE.format(
+            lang=t["lang"], dir=t["dir"], desc=pol["desc"], title=pol["title"],
+            alternates=alternates, font_url=font_url, style=style, langs=langs,
+            home_url=f"{SITE}/{t['path']}", h1=pol["h1"], meta=pol["meta"],
+            note=note, body=body, back=pol["back"],
+        )
+
+        out = root / t["path"] / "privacy" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html, encoding="utf-8")
+        print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
+
+
 if __name__ == "__main__":
     build()
+    build_policies()
