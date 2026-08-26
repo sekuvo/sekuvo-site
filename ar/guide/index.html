@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="كيف تستخدم Sekuvo: التشغيل الأول، الملء التلقائي، لوحة المفاتيح، الكتابة في الحاسوب عبر البلوتوث، النسخ الاحتياطية والنقل.">
+<title>Sekuvo — الدليل</title>
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans Arabic", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "IBM Plex Sans Arabic", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "IBM Plex Sans Arabic", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/ar/privacy/">الخصوصية</a> <a href="https://sekuvo.com/ar/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a class="here" href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a></div>
+
+  <div class="prose">
+    <h1>الدليل</h1>
+    <p class="lede-big">كل ما يفعله Sekuvo، بالترتيب الذي ستحتاجه على الأرجح. لا شيء هنا يتطلب حسابًا ولا اتصالًا بالإنترنت.</p>
+    <nav class="toc"><ol><li><a href="#start">التشغيل الأول</a></li><li><a href="#entries">ماذا يمكنك أن تحفظ</a></li><li><a href="#channels">استخدام السرّ دون الحافظة</a></li><li><a href="#autofill">الملء التلقائي (داخل هاتفك)</a></li><li><a href="#keyboard">لوحة مفاتيح Sekuvo (داخل هاتفك)</a></li><li><a href="#bluetooth">الكتابة في حاسوب عبر البلوتوث</a></li><li><a href="#lock">كيف يعمل القفل</a></li><li><a href="#quick">الوصول السريع — مقايضة مقصودة</a></li><li><a href="#backup">النسخ الاحتياطي والاستعادة</a></li><li><a href="#transfer">جلب الأسرار من حاسوب</a></li><li><a href="#log">سجل الاستخدام</a></li><li><a href="#generator">مولّد كلمات المرور</a></li></ol></nav>
+    <h2 id="start">التشغيل الأول</h2><p>عند أول تشغيل تحدّد <strong>كلمة مرور رئيسية</strong>. كل سرّ تحفظه يُشفَّر بمفتاح مشتقّ منها، فهي الشيء الوحيد الذي لا يستطيع Sekuvo استعادته نيابةً عنك — اكتبها في مكان آمن قبل المتابعة.</p><p>ألديك نسخة احتياطية من هاتف آخر؟ اضغط <strong>«لديّ نسخة احتياطية — استعادتها»</strong> في شاشة الترحيب. ستحدّد كلمة مرور رئيسية لهذا الجهاز أولًا، ثم يفتح منتقي الملفات تلقائيًا وتعود مدخلاتك.</p><p>إن كان هاتفك يدعم البصمة أو الوجه، يعرض Sekuvo استخدامها بعد الإعداد مباشرة. وهي طبقة تيسير فقط: كلمة المرور الرئيسية تعمل دائمًا، وهي التي تبقى بعد إعادة ضبط المصنع.</p><h2 id="entries">ماذا يمكنك أن تحفظ</h2><p>أربعة أنواع من المدخلات تغطي معظم ما يُحفظ في خزنة:</p><ul><li><strong>حساب / كلمة مرور</strong> — اسم المستخدم وكلمة المرور والموقع أو التطبيق.</li><li><strong>يوميّ</strong> — الاسم والهاتف والبريد والعنوان. ما تطلبه النماذج باستمرار.</li><li><strong>بطاقة</strong> — رقم البطاقة وتاريخ الانتهاء وCVV وIBAN.</li><li><strong>ملاحظة آمنة</strong> — نص حر، مع أنواع فرعية للنصوص البرمجية والمفاتيح ورموز الاستعادة وملفات الإعداد.</li></ul><p>كما تقبل مدخلات «حساب» و«يوميّ» <strong>حقولًا مخصّصة</strong>: أي زوج «اسم + قيمة» تريده. وتُشفَّر تمامًا كالحقول المدمجة وتظهر في كل موضع تظهر فيه.</p><h2 id="channels">استخدام السرّ دون الحافظة</h2><p>الحافظة يمكن أن تقرأها تطبيقات أخرى، وفيها تُسرق الأسرار. لذلك يمنحك Sekuvo ثلاث طرق لإيصال القيمة مباشرة إلى وجهتها. ويظل النسخ متاحًا — تُمحى الحافظة تلقائيًا بعد 45 ثانية — لكن القنوات الثلاث أدناه هي سبب وجود التطبيق.</p><h2 id="autofill">الملء التلقائي (داخل هاتفك)</h2><p>يستطيع Sekuvo العمل كخدمة الملء التلقائي في أندرويد، فتعرض نماذج تسجيل الدخول والبطاقات مدخلاتك مباشرة.</p><p><strong>لتفعيله:</strong> Sekuvo → الإعدادات → <em>تفعيل الملء التلقائي</em> → اختر Sekuvo من قائمة النظام. واسم القائمة يختلف بحسب الجهاز: في Samsung وأندرويد 14+ هي <em>كلمات المرور ومفاتيح المرور والملء التلقائي ← الخدمة المفضّلة</em>، وفي أندرويد النقي <em>خدمة الملء التلقائي</em>.</p><p>بعدها، عند لمس حقل اسم مستخدم أو كلمة مرور أو بطاقة في أي تطبيق تظهر مدخلاتك المطابقة فوق لوحة المفاتيح. وإن كانت الخزنة مقفلة تأتي خطوة فتح القفل أولًا — وأثناء القفل لا يُسلَّم النظام أي شيء إطلاقًا.</p><h2 id="keyboard">لوحة مفاتيح Sekuvo (داخل هاتفك)</h2><p>تكتب إضافة لوحة المفاتيح القيم المحفوظة في أي حقل وفي أي تطبيق، دون خطوة نسخ.</p><p><strong>لتفعيلها:</strong> Sekuvo → الإعدادات → <em>تفعيل لوحة المفاتيح</em> → فعّلها من قائمة النظام، ثم اخترها من مبدّل لوحات المفاتيح متى احتجت.</p><p>تبقى المدخلات الأحدث في الأعلى، ويبحث 🔍 في العناوين وأسماء المستخدمين والمواقع. وأثناء قفل الخزنة لا تعرض لوحة المفاتيح إلا المدخلات المعلَّمة للوصول السريع — انظر أدناه.</p><h2 id="bluetooth">الكتابة في حاسوب عبر البلوتوث</h2><p>يستطيع هاتفك أن يعمل لوحةَ مفاتيح بلوتوث ويكتب السرّ عند مؤشر حاسوبك. لا يُثبَّت شيء على الحاسوب، ويعمل على Windows وmacOS وLinux، ولا تمرّ القيمة بالحافظة ولا بالشبكة. يتطلب أندرويد 9 أو أحدث.</p><h3>خطوة بخطوة</h3><ol><li>في Sekuvo، افتح المدخلة واضغط أيقونة 💻 بجوار الحقل المراد كتابته. <strong>أبقِ هذه الشاشة مفتوحة</strong> — فالهاتف لا يعلن عن نفسه كلوحة مفاتيح إلا وهي مفتوحة.</li><li>على الحاسوب، أضف الهاتف <em>جهاز بلوتوث جديدًا</em>: في Windows <em>الإعدادات ← البلوتوث والأجهزة ← إضافة جهاز ← بلوتوث</em>، وفي macOS <em>إعدادات النظام ← البلوتوث</em>.</li><li>أكّد رمز الاقتران في الطرفين.</li><li>عُد إلى الهاتف، واختر حاسوبك من القائمة وانتظر ظهور «متصل».</li><li>اختر تخطيط لوحة مفاتيح <strong>الحاسوب</strong> لا الهاتف. فالحاسوب هو من يفسّر رموز المفاتيح، والتخطيط الخاطئ يحوّل بصمت محارف مثل @ " ? إلى غيرها.</li><li>انقر في الحقل على الحاسوب حيث ستذهب القيمة.</li><li>اضغط <strong>اكتب</strong> على الهاتف. وبعد عدّ تنازلي من ثلاث ثوانٍ — وهو موجود لتتمكن من تلك النقرة — تُكتب القيمة مفتاحًا مفتاحًا.</li></ol><h3>يقول «متصل» ولا يكتب شيئًا</h3><p>السبب واحد في الغالب: اقترن الحاسوب بهاتفك <em>بوصفه هاتفًا</em> في وقت سابق، فلم يفعّل له خدمة لوحة المفاتيح (HID) قط. فينجح الاتصال وتخرج ضغطات المفاتيح ولا تصل إلى شيء.</p><ol><li>أزل الاقتران من الحاسوب (<em>إزالة الجهاز</em>).</li><li>أزله من الهاتف أيضًا (<em>نسيان</em> في إعدادات البلوتوث). كلا الطرفين مهم.</li><li>افتح شاشة 💻 في Sekuvo واتركها مفتوحة.</li><li>أعد الاقتران <strong>بدءًا من الحاسوب</strong>.</li><li>للتأكد في Windows: يجب أن يظهر الآن جهاز HID بلوتوث في <em>إدارة الأجهزة ← أجهزة واجهة المستخدم</em>.</li></ol><p>وفي macOS قد يفتح أول اتصال <strong>مساعد إعداد لوحة المفاتيح</strong> الذي يطلب ضغط مفتاح بجوار مفتاح Shift. وحتى إغلاق تلك النافذة لا يعالج macOS شيئًا — وهذا هو السبب المعتاد لحالة «متصل لكنه صامت» على الماك.</p><h3>السرعة وكيف تتحقق منها</h3><p>تُرسل المفاتيح واحدًا واحدًا، لذا يستغرق السرّ الطويل وقتًا فعليًا — ويعرض المربع الحواري تقديرًا. وتُتاح ثلاث سرعات، وكون الآمنة هي الافتراضية أمر مقصود. وقبل رفعها استخدم <strong>⏱ اختبار السرعة</strong>: يكتب عشر كتل متطابقة مفصولة بمسافات ويبلّغ بعدد المحارف في الثانية. وإن اختلفت كتلة واحدة فتلك السرعة غير آمنة على هذا الحاسوب — انزل درجة.</p><p>والاختبار وسيلة تشخيص أيضًا: إن لم يُكتب شيء فالمشكلة في الاقتران، وإن تشوّهت المحارف فهي في التخطيط، وإن انقطعت الكتابة فهي في السرعة.</p><p>وأثناء الكتابة يظهر شريط تقدّم وزر <strong>إيقاف</strong>. وإن تعطّل طابور الإرسال أعاد Sekuvo المحاولة بتراجع تدريجي، وإن لم ينجح <em>توقّف وأخبرك</em> عند أي محرف توقّف — فلا يُكتب سرّ نصفه بصمت أبدًا.</p><h2 id="lock">كيف يعمل القفل</h2><p>تُقفل الخزنة لحظة انطفاء الشاشة التي هي عليها — ويشمل ذلك طيّ الهاتف القابل للطي. وفي تلك اللحظة يُمحى المفتاح من الذاكرة؛ وقد تبقى العناوين معروضة لكن لا شيء يمكن فكّ تشفيره.</p><p>أما مغادرة التطبيق والشاشة مضاءة فلا تُقفلها. وهذا مقصود: التطبيق ولوحة المفاتيح والملء التلقائي يتشاركون جلسة واحدة، وإلا لأخرجك الانتقال إلى المتصفح للصق كلمة مرور من عملك في منتصفه.</p><h2 id="quick">الوصول السريع — مقايضة مقصودة</h2><p>المدخلات التي تعلّمها صراحةً بـ«استخدامها في لوحة المفاتيح دون كلمة مرور» تُحفظ مرة ثانية، مشفَّرةً بمفتاح جهاز منفصل، لتتمكن لوحة المفاتيح من قراءتها <em>والخزنة مقفلة</em>.</p><p>والمقايضة مذكورة بوضوح: تلك المدخلات يحميها قفل شاشة هاتفك لا كلمة مرورك الرئيسية. فلا تضع فيها كلمات المرور. والعلامة مطفأة افتراضيًا؛ والاستثناء الوحيد مدخلات <strong>يوميّ</strong> الجديدة التي تبدأ معلَّمة لأن الأسماء وأرقام الهواتف هي ما تريده في متناول اليد — ويمكنك إطفاء أي منها.</p><h2 id="backup">النسخ الاحتياطي والاستعادة</h2><p>نسخ النظام (نسخ Google، نقل الجهاز) معطَّل عمدًا، فيبقى لخروج خزنتك من الهاتف طريق واحد فقط وهو طريق اخترته أنت: <strong>الإعدادات ← إنشاء نسخة مشفَّرة</strong>.</p><p>تحدّد <em>كلمة مرور للنسخة</em> — واجعلها مختلفة عن الرئيسية، لأن كلمة مرور النسخة هي التي تُكتب على الحواسيب. والناتج ملف <code>.vaultbak</code> واحد تحفظه حيث تشاء: Drive أو بطاقة SD أو ذاكرة USB.</p><p>والملف مستقل عن الجهاز: ملحُه ومعاملات اشتقاق المفتاح في ترويسته. والملف مع كلمة مرور النسخة يستعيدان كل شيء على أي هاتف، حتى بعد إعادة ضبط المصنع. والاستعادة من <strong>الإعدادات ← الاستعادة من نسخة</strong>، أو من شاشة الترحيب في تثبيت جديد.</p><p>وتتيح الاستعادة <em>الإضافة إلى الموجود</em> أو <em>استبدال الكل</em>. وكلاهما يُتحقَّق منه قبل كتابة أي شيء — فكلمة المرور الخاطئة تسقط عند التوثيق، ولا يُحذف شيء قبل التأكد من البيانات الجديدة.</p><h2 id="transfer">جلب الأسرار من حاسوب</h2><p>كتابة مفتاح طويل يدويًا في الهاتف هي موضع الأخطاء. لذا ينقلها Sekuvo في مظروف مشفَّر، بصورتين: نص تلصقه، أو رموز QR تمسحها.</p><p><strong>على الهاتف:</strong> يقدّم زر ➕ خيارَي <em>استيراد عبر QR</em> و<em>استيراد من نص</em>. ويفتح استيراد QR الكاميرا؛ وتُفكّ الإطارات على الجهاز، وتعرض عمليات النقل متعددة الإطارات تقدّمها أثناء التجميع.</p><h3>أداة الحاسوب</h3><p>الأداة التي تبني تلك المظاريف ملف HTML واحد، وهي عمدًا <strong>ملف يُنزَّل لا موقع ويب</strong>. فموقع sekuvo.com لا يطلب منك سرًّا أبدًا؛ والصفحة التي تطلبه ستبدو تمامًا كما يبدو موقع تصيّد.</p><ol><li>افتح المشروع على GitHub وانتقل إلى <strong>Releases</strong>.</li><li>نزّل <code>aktar.html</code> من أحدث إصدار.</li><li>قارن بصمة SHA-256 بالقيمة المنشورة بجانبه: <code>shasum -a 256 aktar.html</code> على macOS أو Linux، و<code>certutil -hashfile aktar.html SHA256</code> على Windows.</li><li>افتح الملف بنقرة مزدوجة. يعمل من قرصك — ويظهر في شريط العنوان <code>file://</code> لا موقع.</li><li>الصق نصّك، وحدّد كلمة مرور للنقل، فتنتج الأداة المظروف نصًّا أو رموز QR.</li><li>على الهاتف، امسح أو الصق، وأدخل كلمة المرور نفسها، ثم اختر الإضافة أو الاستبدال.</li></ol><p>ويجري التشفير كله داخل متصفحك على جهازك. وهناك أيضًا <code>vault-clip.py</code> لسطر الأوامر، يؤدي المهمة نفسها من الحافظة أو من ملف، ويستطيع رسم رموز QR في الطرفية.</p><h2 id="log">سجل الاستخدام</h2><p>يسجّل Sekuvo أي حقل من أي مدخلة ذهب إلى أين ومتى: إلى الحافظة، أو إلى حاسوب عبر البلوتوث (باسم الجهاز الهدف)، أو كُتب في تطبيق من لوحة المفاتيح. وحين يُخترق حاسوب، يجيب هذا عن سؤال «ما الذي ذهب إليه وما الذي عليّ تغييره».</p><p>والسجل مشفَّر بالمفتاح نفسه الذي يشفّر مدخلاتك، و<strong>القيم لا تُكتب فيه أبدًا</strong> — بل نوع الحدث واسم الحقل والوجهة فقط. وحذف مدخلة يحذف سجلّها، ويمكنك مسح السجل كله من الإعدادات.</p><h2 id="generator">مولّد كلمات المرور</h2><p>يُفتح من أيقونة 🎲 في الشاشة الرئيسية، أو بجوار حقل كلمة المرور أثناء تحرير مدخلة. يستخدم مصدر عشوائية تعمّيّ، وينتج من 8 إلى 64 محرفًا، ويتيح اختيار فئات المحارف، ويستطيع استبعاد المحارف المتشابهة، ويعرض الإنتروبيا الناتجة بالبتّات.</p>
+    <a class="back" href="https://sekuvo.com/ar/">← العودة إلى sekuvo.com</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>

@@ -10,6 +10,8 @@ Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 """
 import pathlib
 
+from guide import G
+
 SITE = "https://sekuvo.com"
 GITHUB = "https://github.com/afgover/Vault"
 
@@ -388,6 +390,7 @@ PAGE = """<!DOCTYPE html>
       <a href="#security">{nav0}</a>
       <a href="#channels">{nav1}</a>
       <a href="#download">{nav2}</a>
+      <a href="{guide_url}">{guide_label}</a>
       <a href="{privacy_url}">{nav3}</a>
     </nav>
   </header>
@@ -495,6 +498,8 @@ def build():
             alternates=alternates, font_url=font_url, style=style, langs=langs,
             site=SITE, github=GITHUB,
             privacy_url=f"{SITE}/{t['path']}privacy/",
+            guide_url=f"{SITE}/{t['path']}guide/",
+            guide_label=G[code]["nav_label"],
             nav0=t["nav"][0], nav1=t["nav"][1], nav2=t["nav"][2], nav3=t["nav"][3],
             eyebrow=t["eyebrow"], h1=t["h1"], lede=t["lede"],
             btn_src=t["btn_src"], btn_priv=t["btn_priv"], cta_note=t["cta_note"],
@@ -689,7 +694,7 @@ POLICY_PAGE = """<!DOCTYPE html>
 <div class="wrap">
   <header>
     <span class="brand">Sekuvo</span>
-    <nav><a href="{home_url}">sekuvo.com</a></nav>
+    <nav><a href="{guide_url}">{guide_label}</a> <a href="{home_url}">sekuvo.com</a></nav>
   </header>
   <div class="langs">{langs}</div>
 
@@ -737,6 +742,7 @@ def build_policies():
             lang=t["lang"], dir=t["dir"], desc=pol["desc"], title=pol["title"],
             alternates=alternates, font_url=font_url, style=style, langs=langs,
             home_url=f"{SITE}/{t['path']}", h1=pol["h1"], meta=pol["meta"],
+            guide_url=f"{SITE}/{t['path']}guide/", guide_label=G[code]["nav_label"],
             note=note, body=body, back=pol["back"],
         )
 
@@ -746,6 +752,104 @@ def build_policies():
         print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Guide pages. Content lives in guide.py; this only renders it.
+# ─────────────────────────────────────────────────────────────────────────────
+
+GUIDE_PAGE = """<!DOCTYPE html>
+<html lang="{lang}" dir="{dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{desc}">
+<title>{title}</title>
+{alternates}
+<link rel="stylesheet" href="{font_url}">
+<style>{style}
+  .prose {{ max-width: 46rem; padding: 3rem 0 4rem; }}
+  .prose h1 {{ font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }}
+  .prose h2 {{ font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }}
+  .prose h2:first-of-type {{ border-top: none; padding-top: 0; }}
+  .prose h3 {{ font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }}
+  .prose p, .prose li {{ color: var(--muted); }}
+  .prose ul, .prose ol {{ padding-inline-start: 1.4rem; }}
+  .prose li {{ margin-bottom: .55rem; }}
+  .prose strong {{ color: var(--ink); }}
+  .prose code {{ font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }}
+  .lede-big {{ font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }}
+  .toc {{ background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }}
+  .toc ol {{ margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }}
+  .toc li {{ margin-bottom: .35rem; font-size: .92rem; }}
+  .back {{ display: inline-block; margin-top: 2.6rem; font-size: .9rem; }}
+  @media (max-width: 620px) {{ .toc ol {{ columns: 1; }} }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="{privacy_url}">{privacy_label}</a> <a href="{home_url}">sekuvo.com</a></nav>
+  </header>
+  <div class="langs">{langs}</div>
+
+  <div class="prose">
+    <h1>{h1}</h1>
+    <p class="lede-big">{lede}</p>
+    <nav class="toc"><ol>{toc}</ol></nav>
+    {body}
+    <a class="back" href="{home_url}">{back}</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>
+"""
+
+
+def build_guides():
+    root = pathlib.Path(__file__).parent
+    for code in ORDER:
+        t, g = L[code], G[code]
+        font_url, display, body_face = FONTS[t["script"]]
+        style = STYLE.replace("__DISPLAY__", display).replace("__BODY__", body_face)
+
+        alternates = "\n".join(
+            f'<link rel="alternate" hreflang="{L[c]["lang"]}" href="{SITE}/{L[c]["path"]}guide/">'
+            for c in ORDER
+        ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/guide/">'
+
+        langs = " ·\n    ".join(
+            (f'<a class="here" href="{SITE}/{L[c]["path"]}guide/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
+             if c == code else
+             f'<a href="{SITE}/{L[c]["path"]}guide/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>')
+            for c in ORDER
+        )
+
+        toc = "".join(f'<li><a href="#{sid}">{h2}</a></li>' for sid, h2, _ in g["sections"])
+        body = "".join(
+            f'<h2 id="{sid}">{h2}</h2>' + "".join(blocks)
+            for sid, h2, blocks in g["sections"]
+        )
+
+        html = GUIDE_PAGE.format(
+            lang=t["lang"], dir=t["dir"], desc=g["desc"], title=g["title"],
+            alternates=alternates, font_url=font_url, style=style, langs=langs,
+            home_url=f"{SITE}/{t['path']}",
+            privacy_url=f"{SITE}/{t['path']}privacy/", privacy_label=t["nav"][3],
+            h1=g["h1"], lede=g["lede"], toc=toc, body=body, back=g["back"],
+        )
+
+        out = root / t["path"] / "guide" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html, encoding="utf-8")
+        print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
+
+
 if __name__ == "__main__":
     build()
     build_policies()
+    build_guides()

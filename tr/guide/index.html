@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="tr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvo nasıl kullanılır: ilk açılış, otomatik doldurma, klavye, Bluetooth ile bilgisayara yazma, yedekleme ve aktarım.">
+<title>Sekuvo — Kılavuz</title>
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Georgia, serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/tr/privacy/">Gizlilik</a> <a href="https://sekuvo.com/tr/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a class="here" href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a></div>
+
+  <div class="prose">
+    <h1>Kılavuz</h1>
+    <p class="lede-big">Sekuvo'nun yaptığı her şey, muhtemelen ihtiyaç duyacağın sırayla. Buradaki hiçbir şey hesap ya da internet bağlantısı gerektirmez.</p>
+    <nav class="toc"><ol><li><a href="#start">İlk açılış</a></li><li><a href="#entries">Neleri saklayabilirsin</a></li><li><a href="#channels">Sırrı panoya uğratmadan kullanmak</a></li><li><a href="#autofill">Otomatik doldurma (telefonun içinde)</a></li><li><a href="#keyboard">Sekuvo Klavyesi (telefonun içinde)</a></li><li><a href="#bluetooth">Bluetooth ile bilgisayara yazma</a></li><li><a href="#lock">Kilit nasıl çalışır</a></li><li><a href="#quick">Hızlı erişim — bilinçli bir takas</a></li><li><a href="#backup">Yedekleme ve geri yükleme</a></li><li><a href="#transfer">Bilgisayardan sır getirmek</a></li><li><a href="#log">Kullanım günlüğü</a></li><li><a href="#generator">Şifre üretici</a></li></ol></nav>
+    <h2 id="start">İlk açılış</h2><p>İlk açılışta bir <strong>ana parola</strong> belirlersin. Kaydettiğin her sır ondan türetilen bir anahtarla şifrelenir; yani Sekuvo'nun senin için kurtaramayacağı tek şey odur — devam etmeden önce güvenli bir yere yaz.</p><p>Başka bir telefondan yedeğin var mı? Karşılama ekranındaki <strong>“Yedeğim var — geri yükle”</strong> bağlantısına dokun. Önce bu cihaz için yine bir ana parola belirlersin, hemen ardından dosya seçici kendiliğinden açılır ve kayıtların geri gelir.</p><p>Telefonunda parmak izi ya da yüz tanıma varsa Sekuvo kurulumdan hemen sonra bunu kullanmayı teklif eder. Bu yalnızca bir kolaylık katmanıdır: ana parola her zaman çalışır ve cihaz sıfırlansa bile ayakta kalan odur.</p><h2 id="entries">Neleri saklayabilirsin</h2><p>Dört kayıt türü, bir kasada tutulanların çoğunu karşılar:</p><ul><li><strong>Hesap / Şifre</strong> — kullanıcı adı, şifre, site ya da uygulama.</li><li><strong>Gündelik</strong> — ad soyad, telefon, e-posta, adres. Formların sürekli istediği şeyler.</li><li><strong>Kart</strong> — kart numarası, son kullanma, CVV, IBAN.</li><li><strong>Güvenli not</strong> — serbest metin; betik, anahtar, kurtarma kodu ve yapılandırma dosyası alt türleriyle.</li></ul><p>Hesap ve Gündelik kayıtları ayrıca <strong>ek alan</strong> kabul eder: istediğin kadar “alan adı + değer” çifti. Ek alanlar da yerleşik alanlarla birebir aynı şekilde şifrelenir ve onların göründüğü her yerde görünür.</p><h2 id="channels">Sırrı panoya uğratmadan kullanmak</h2><p>Pano başka uygulamalarca okunabilir ve sırların çalındığı yerdir. Sekuvo bunun yerine değeri doğrudan hedefine ulaştıran üç yol sunar. Kopyalamayı da kullanabilirsin — pano 45 saniye sonra otomatik temizlenir — ama uygulamanın var olma sebebi aşağıdaki üç kanaldır.</p><h2 id="autofill">Otomatik doldurma (telefonun içinde)</h2><p>Sekuvo, Android'in otomatik doldurma servisi olarak çalışabilir; böylece giriş ve kart formları kayıtlarını doğrudan sunar.</p><p><strong>Açmak için:</strong> Sekuvo → Ayarlar → <em>Otomatik doldurmayı etkinleştir</em> → açılan sistem listesinden Sekuvo'yu seç. Listenin adı cihaza göre değişir: Samsung ve Android 14+ cihazlarda <em>Şifreler, parolalar ve otomatik doldurma → Tercih edilen servis</em>, saf Android'de <em>Otomatik doldurma servisi</em>.</p><p>Sonrasında herhangi bir uygulamada kullanıcı adı, şifre ya da kart alanına dokunduğunda eşleşen kayıtların klavyenin üstünde çıkar. Kasa kilitliyse önce kilit açma adımı gelir — kilitliyken sisteme hiçbir değer verilmez.</p><h2 id="keyboard">Sekuvo Klavyesi (telefonun içinde)</h2><p>Klavye eklentisi, kayıtlı değerleri herhangi bir uygulamada herhangi bir alana kopyalama adımı olmadan yazar.</p><p><strong>Açmak için:</strong> Sekuvo → Ayarlar → <em>Klavyeyi etkinleştir</em> → sistem listesinden aç, sonra ihtiyaç duyduğunda klavye değiştiriciden “Sekuvo Klavyesi”ni seç.</p><p>Son kullandığın kayıtlar en üstte durur; 🔍 ile başlık, kullanıcı adı ve adres üzerinde arama yapılır (Türkçe harfler ASCII karşılıklarıyla eşleşir, “sifre” yazınca “şifre” bulunur). Kasa kilitliyken klavye yalnızca hızlı erişim işaretli kayıtları gösterir — aşağıya bak.</p><h2 id="bluetooth">Bluetooth ile bilgisayara yazma</h2><p>Telefonun Bluetooth klavye gibi davranıp bir sırrı bilgisayarındaki imlecin olduğu yere yazabilir. Bilgisayara hiçbir şey kurulmaz; Windows, macOS ve Linux'ta çalışır; değer ne panodan ne ağdan geçer. Android 9 ve üzeri gerekir.</p><h3>Adım adım</h3><ol><li>Sekuvo'da kaydı aç ve yazdırmak istediğin alanın yanındaki 💻 simgesine dokun. <strong>Bu ekranı açık tut</strong> — telefon kendini yalnızca bu ekran açıkken klavye olarak duyurur.</li><li>Bilgisayarda telefonu <em>yeni bir Bluetooth cihazı</em> olarak ekle: Windows'ta <em>Ayarlar → Bluetooth ve cihazlar → Cihaz ekle → Bluetooth</em>, macOS'ta <em>Sistem Ayarları → Bluetooth</em>.</li><li>Eşleşme kodunu iki tarafta da onayla.</li><li>Telefona dön, listeden bilgisayarını seç ve “Bağlı” yazmasını bekle.</li><li><strong>Bilgisayarın</strong> klavye düzenini seç — telefonunkini değil. Tuş kodlarını bilgisayar yorumlar; yanlış düzende @ " ? gibi karakterler sessizce başkasına dönüşür.</li><li>Bilgisayarda, değerin gideceği kutuya tıkla.</li><li>Telefonda <strong>Yaz</strong>'a bas. Üç saniyelik geri sayımdan sonra — ki o üç saniye tam da o kutuya tıklayabilmen için vardır — değer tuş tuş yazılır.</li></ol><h3>Bağlı görünüyor ama hiçbir şey yazmıyor</h3><p>Neredeyse her zaman aynı sebep: bilgisayar telefonunu daha önce bir noktada <em>telefon olarak</em> eşleştirmiş, dolayısıyla onun için klavye (HID) servisini hiç açmamış. Bağlantı kurulur, tuşlar gider, hiçbir yere varmaz.</p><ol><li>Bilgisayarda eşleşmeyi kaldır (<em>Cihazı kaldır</em>).</li><li>Telefonda da kaldır (Bluetooth ayarlarında <em>Eşleştirmeyi unut</em>). İki taraf da önemli.</li><li>Sekuvo'daki 💻 ekranını aç ve açık bırak.</li><li>Eşleştirmeyi <strong>bilgisayardan başlatarak</strong> yeniden yap.</li><li>Windows'ta doğrulaması: <em>Aygıt Yöneticisi → İnsan Arabirim Aygıtları</em> altında artık bir Bluetooth HID aygıtı görünmeli.</li></ol><p>macOS'ta ilk bağlantıda <strong>Klavye Kurulum Yardımcısı</strong> açılabilir ve shift tuşunun yanındaki tuşa basmanı ister. O pencere kapanana kadar macOS hiçbir tuşu işlemez — Mac'te “bağlı ama sessiz” durumunun olağan sebebi budur.</p><h3>Hız ve hızın denetlenmesi</h3><p>Tuşlar tek tek gönderilir, dolayısıyla uzun bir sır gerçekten zaman alır — diyalog tahmini süreyi gösterir. Üç hız sunulur ve güvenli olanın varsayılan olması bilinçlidir. Hızı artırmadan önce <strong>⏱ Hız testi</strong>'ni kullan: boşlukla ayrılmış on özdeş blok yazar ve ölçülen karakter/sn'yi bildirir. Bloklardan biri bile farklıysa o hız bu bilgisayarda güvenli değildir — bir alt kademeye in.</p><p>Hız testi aynı zamanda teşhis aracıdır: hiç yazmıyorsa sorun eşleştirmede, karakterler bozuksa düzende, yazma yarıda kesiliyorsa hızdadır.</p><p>Yazma sırasında ilerleme çubuğu ve <strong>Durdur</strong> düğmesi vardır. Gönderim kuyruğu tıkanırsa Sekuvo geri çekilerek tekrar dener; yine olmazsa <em>durur ve kaçıncı karakterde durduğunu söyler</em> — bir sır asla sessizce yarım yazılmaz.</p><h2 id="lock">Kilit nasıl çalışır</h2><p>Kasa, üzerinde bulunduğu ekran karardığı anda kilitlenir — katlanabilir bir cihazı kapatmak da buna dahildir. O anda anahtar bellekten silinir; kayıt başlıkları hâlâ listelenebilir ama hiçbir şey çözülemez.</p><p>Ekran açıkken uygulamadan çıkmak kilitlemez. Bu bilinçlidir: uygulama, klavye ve otomatik doldurma aynı oturumu paylaşır; aksi hâlde bir şifreyi yapıştırmak için tarayıcıya geçmen işin ortasında seni dışarıda bırakırdı.</p><h2 id="quick">Hızlı erişim — bilinçli bir takas</h2><p>“Klavyede parolasız kullan” diye işaretlediğin kayıtlar ikinci kez, ayrı bir cihaz anahtarıyla şifrelenip saklanır; böylece klavye onları <em>kasa kilitliyken</em> okuyabilir.</p><p>Takas açıkça yazılıdır: o kayıtları koruyan şey ana parolan değil, telefonunun ekran kilidi olur. Şifreleri buraya koyma. İşaret varsayılan olarak kapalıdır; tek istisna yeni <strong>Gündelik</strong> kayıtlarıdır — ad ve telefon numarası zaten el altında olsun istenen şeylerdir, ama istediğini tek tek kapatabilirsin.</p><h2 id="backup">Yedekleme ve geri yükleme</h2><p>Sistem yedeklemesi (Google yedekleme, cihaz aktarımı) bilinçli olarak kapalıdır; böylece kasanın telefondan çıkma yolu tektir ve senin seçtiğin yoldur: <strong>Ayarlar → Şifreli yedek oluştur</strong>.</p><p>Bir <em>yedek parolası</em> belirlersin — ana parolandan farklı olsun, çünkü bilgisayarlarda yazılan parola yedek parolasıdır. Sonuç, istediğin yere kaydedeceğin tek bir <code>.vaultbak</code> dosyasıdır: Drive, SD kart, USB bellek.</p><p>Dosya cihazdan bağımsızdır: kendi tuzu ve anahtar türetme parametreleri başlığında durur. Dosya artı yedek parolası, cihaz sıfırlanmış olsa bile her telefonda her şeyi geri getirir. Geri yükleme <strong>Ayarlar → Yedekten geri yükle</strong>'den, temiz kurulumda ise karşılama ekranından yapılır.</p><p>Geri yükleme <em>mevcuta ekle</em> ya da <em>tümünü değiştir</em> sunar. İkisi de hiçbir şey yazılmadan önce denetlenir — yanlış parola doğrulama aşamasında düşer ve yeni veri doğrulanmadan hiçbir şey silinmez.</p><h2 id="transfer">Bilgisayardan sır getirmek</h2><p>Uzun bir anahtarı telefona elle yazmak, hataların çıktığı yerdir. Sekuvo bunun yerine sırları şifreli bir zarf hâlinde taşır; iki biçimde: yapıştırdığın metin ya da taradığın QR kodları.</p><p><strong>Telefonda:</strong> ➕ düğmesi <em>QR ile içe aktar</em> ve <em>Metinden içe aktar</em> seçeneklerini sunar. QR içe aktarma kamerayı açar; kareler cihazda çözülür ve çok kareli aktarımlarda toplanma ilerlemesi gösterilir.</p><h3>Bilgisayar tarafındaki araç</h3><p>Bu zarfları üreten araç tek bir HTML dosyasıdır ve bilinçli olarak <strong>bir web sayfası değil, indirilen bir dosyadır</strong>. sekuvo.com senden asla bir sır istemez; isteyen bir sayfa, tam olarak bir kimlik avı sitesinin göründüğü gibi görünürdü.</p><ol><li>Projeyi GitHub'da aç ve <strong>Releases</strong> bölümüne git.</li><li>Son sürümden <code>aktar.html</code> dosyasını indir.</li><li>Yanında yayınlanan SHA-256 özetiyle karşılaştır: macOS ve Linux'ta <code>shasum -a 256 aktar.html</code>, Windows'ta <code>certutil -hashfile aktar.html SHA256</code>.</li><li>Dosyayı çift tıklayarak aç. Kendi diskinden çalışır — adres çubuğunda bir site değil <code>file://</code> yazar.</li><li>Metnini yapıştır, bir aktarım parolası belirle; araç zarfı metin ya da QR kodları olarak üretir.</li><li>Telefonda tara ya da yapıştır, aynı parolayı gir, ekle ya da değiştir'i seç.</li></ol><p>Şifrelemenin tamamı kendi makinende, tarayıcının içinde olur. Komut satırı için ayrıca <code>vault-clip.py</code> vardır; aynı işi panodan ya da bir dosyadan yapar ve QR kodlarını terminalde çizebilir.</p><h2 id="log">Kullanım günlüğü</h2><p>Sekuvo, hangi kaydın hangi alanının ne zaman nereye gittiğini tutar: panoya, Bluetooth ile bilgisayara (hedef cihazın adıyla) ya da klavyeden hangi uygulamaya. Bir bilgisayar ele geçtiğinde “oraya ne gitti, neyi değiştirmem gerek” sorusunun cevabı budur.</p><p>Günlük, kayıtlarınla aynı anahtarla şifrelidir ve <strong>değerlerin kendisi hiçbir koşulda yazılmaz</strong> — yalnızca olayın türü, alan adı ve hedef. Bir kaydı silmek günlüğünü de siler; tamamını Ayarlar'dan temizleyebilirsin.</p><h2 id="generator">Şifre üretici</h2><p>Ana ekrandaki 🎲 simgesinden ya da kayıt düzenlerken şifre alanının yanından açılır. Kriptografik rastgelelik kullanır, 8–64 karakter üretir, karakter sınıflarını seçtirir, birbirine benzeyen karakterleri eleyebilir ve sonucun entropisini bit olarak gösterir.</p>
+    <a class="back" href="https://sekuvo.com/tr/">← sekuvo.com'a dön</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>
