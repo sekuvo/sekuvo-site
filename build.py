@@ -378,6 +378,9 @@ PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{desc}">
 <title>{title}</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
 {alternates}
 <link rel="stylesheet" href="{font_url}">
 <style>{style}</style>
@@ -675,6 +678,9 @@ POLICY_PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{desc}">
 <title>{title}</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
 {alternates}
 <link rel="stylesheet" href="{font_url}">
 <style>{style}
@@ -763,6 +769,9 @@ GUIDE_PAGE = """<!DOCTYPE html>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="{desc}">
 <title>{title}</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
 {alternates}
 <link rel="stylesheet" href="{font_url}">
 <style>{style}
