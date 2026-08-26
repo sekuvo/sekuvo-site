@@ -73,6 +73,7 @@ L["en"] = dict(
     dl_tools_h="Computer-side tools",
     dl_tools_p="The QR transfer tools are downloads, not web pages: they run entirely on your machine, and this site never asks for a secret.",
     dl_tools_note="github.com → Releases · verify the published SHA-256",
+    contact="Contact",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>your secure vault.</em>",
 )
 
@@ -115,6 +116,7 @@ L["tr"] = dict(
     dl_tools_h="Bilgisayar tarafı araçlar",
     dl_tools_p="QR aktarım araçları web sayfası değil, indirilen dosyadır: tamamen kendi makinende çalışır ve bu site senden asla bir sır istemez.",
     dl_tools_note="github.com → Releases · yayınlanan SHA-256'yı doğrula",
+    contact="İletişim",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>güvenli kasan.</em>",
 )
 
@@ -157,6 +159,7 @@ L["es"] = dict(
     dl_tools_h="Herramientas de escritorio",
     dl_tools_p="Las herramientas de transferencia por QR son descargas, no páginas web: funcionan por completo en tu máquina, y este sitio nunca te pide un secreto.",
     dl_tools_note="github.com → Releases · verifica el SHA-256 publicado",
+    contact="Contacto",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>tu bóveda segura.</em>",
 )
 
@@ -199,6 +202,7 @@ L["hi"] = dict(
     dl_tools_h="कंप्यूटर-साइड टूल",
     dl_tools_p="QR ट्रांसफ़र टूल वेब पेज नहीं, डाउनलोड हैं: वे पूरी तरह आपकी मशीन पर चलते हैं, और यह साइट कभी कोई राज़ नहीं माँगती।",
     dl_tools_note="github.com → Releases · प्रकाशित SHA-256 जाँचें",
+    contact="संपर्क",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>आपकी सुरक्षित तिजोरी।</em>",
 )
 
@@ -240,6 +244,7 @@ L["ar"] = dict(
     dl_tools_h="أدوات الحاسوب",
     dl_tools_p="أدوات النقل عبر QR ملفات تُنزَّل لا صفحات ويب: تعمل بالكامل على جهازك، وهذا الموقع لا يطلب منك سرًّا أبدًا.",
     dl_tools_note="github.com → Releases · تحقّق من بصمة SHA-256 المنشورة",
+    contact="اتصل بنا",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>خزنتك الآمنة.</em>",
 )
 
@@ -447,6 +452,7 @@ PAGE = """<!DOCTYPE html>
     <span>{footer}</span>
     <span dir="ltr">
       <a href="{github}">GitHub</a> ·
+      <a href="mailto:contact@sekuvo.com">{contact}</a> ·
       <a href="{site}/privacy/">{nav3}</a> ·
       <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
     </span>
@@ -499,7 +505,7 @@ def build():
             dl_eyebrow=t["dl_eyebrow"], dl_h2=t["dl_h2"],
             dl_app_h=t["dl_app_h"], dl_app_p=t["dl_app_p"],
             dl_tools_h=t["dl_tools_h"], dl_tools_p=t["dl_tools_p"],
-            dl_tools_note=t["dl_tools_note"], footer=t["footer"],
+            dl_tools_note=t["dl_tools_note"], contact=t["contact"], footer=t["footer"],
         )
 
         out = root / t["path"] / "index.html" if t["path"] else root / "index.html"
