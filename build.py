@@ -10,7 +10,7 @@ Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 """
 import pathlib
 
-from guide import G
+from guide import G, SHOTS, CAPTIONS
 
 SITE = "https://sekuvo.com"
 GITHUB = "https://github.com/afgover/Vault"
@@ -781,7 +781,15 @@ GUIDE_PAGE = """<!DOCTYPE html>
   .toc ol {{ margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }}
   .toc li {{ margin-bottom: .35rem; font-size: .92rem; }}
   .back {{ display: inline-block; margin-top: 2.6rem; font-size: .9rem; }}
-  @media (max-width: 620px) {{ .toc ol {{ columns: 1; }} }}
+  .shots {{ display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }}
+  .shots figure {{ margin: 0; flex: 0 1 15rem; }}
+  .shots img {{
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }}
+  .shots figcaption {{ font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }}
+  @media (max-width: 620px) {{ .toc ol {{ columns: 1; }} .shots figure {{ flex: 1 1 100%; }} }}
 </style>
 </head>
 <body>
@@ -830,8 +838,22 @@ def build_guides():
         )
 
         toc = "".join(f'<li><a href="#{sid}">{h2}</a></li>' for sid, h2, _ in g["sections"])
+        caps = CAPTIONS[code]
+
+        def figures(sid):
+            files = SHOTS.get(sid)
+            if not files:
+                return ""
+            items = "".join(
+                f'<figure><img src="{SITE}/img/{f}" alt="{caps[f]}" '
+                f'loading="lazy" width="405" height="900">'
+                f'<figcaption>{caps[f]}</figcaption></figure>'
+                for f in files
+            )
+            return f'<div class="shots">{items}</div>'
+
         body = "".join(
-            f'<h2 id="{sid}">{h2}</h2>' + "".join(blocks)
+            f'<h2 id="{sid}">{h2}</h2>' + "".join(blocks) + figures(sid)
             for sid, h2, blocks in g["sections"]
         )
 
