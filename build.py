@@ -73,8 +73,10 @@ L["en"] = dict(
     dl_app_h="Android app",
     dl_app_p="The Google Play listing is in preparation. Until then you can build from source — the repository README covers it in two commands.",
     dl_tools_h="Computer-side tools",
-    dl_tools_p="The QR transfer tools are downloads, not web pages: they run entirely on your machine, and this site never asks for a secret.",
+    dl_tools_p="The computer-side tool is a single HTML file — <code>aktar.html</code> — and it is a download, not a web page: it runs entirely on your machine, and this site never asks you for a secret.",
     dl_tools_note="github.com → Releases · verify the published SHA-256",
+    dl_app_link="Read the guide →",
+    dl_tools_link="How to get aktar.html and use it →",
     contact="Contact",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>your secure vault.</em>",
 )
@@ -116,8 +118,10 @@ L["tr"] = dict(
     dl_app_h="Android uygulaması",
     dl_app_p="Google Play kaydı hazırlanıyor. O zamana kadar kaynaktan derleyebilirsin — depodaki README iki komutla anlatıyor.",
     dl_tools_h="Bilgisayar tarafı araçlar",
-    dl_tools_p="QR aktarım araçları web sayfası değil, indirilen dosyadır: tamamen kendi makinende çalışır ve bu site senden asla bir sır istemez.",
+    dl_tools_p="Bilgisayar tarafındaki araç tek bir HTML dosyasıdır — <code>aktar.html</code> — ve web sayfası değil, indirilen bir dosyadır: tamamen kendi makinende çalışır ve bu site senden asla bir sır istemez.",
     dl_tools_note="github.com → Releases · yayınlanan SHA-256'yı doğrula",
+    dl_app_link="Kılavuzu oku →",
+    dl_tools_link="aktar.html'i nasıl alır, nasıl kullanırsın →",
     contact="İletişim",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>güvenli kasan.</em>",
 )
@@ -159,8 +163,10 @@ L["es"] = dict(
     dl_app_h="Aplicación Android",
     dl_app_p="La ficha de Google Play está en preparación. Hasta entonces puedes compilar desde el código — el README del repositorio lo explica en dos comandos.",
     dl_tools_h="Herramientas de escritorio",
-    dl_tools_p="Las herramientas de transferencia por QR son descargas, no páginas web: funcionan por completo en tu máquina, y este sitio nunca te pide un secreto.",
+    dl_tools_p="La herramienta de escritorio es un único archivo HTML — <code>aktar.html</code> — y es una descarga, no una página web: funciona por completo en tu máquina, y este sitio nunca te pide un secreto.",
     dl_tools_note="github.com → Releases · verifica el SHA-256 publicado",
+    dl_app_link="Lee la guía →",
+    dl_tools_link="Cómo conseguir aktar.html y usarlo →",
     contact="Contacto",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>tu bóveda segura.</em>",
 )
@@ -202,8 +208,10 @@ L["hi"] = dict(
     dl_app_h="Android ऐप",
     dl_app_p="Google Play लिस्टिंग तैयार की जा रही है। तब तक आप सोर्स से बना सकते हैं — रिपॉज़िटरी का README दो कमांड में बताता है।",
     dl_tools_h="कंप्यूटर-साइड टूल",
-    dl_tools_p="QR ट्रांसफ़र टूल वेब पेज नहीं, डाउनलोड हैं: वे पूरी तरह आपकी मशीन पर चलते हैं, और यह साइट कभी कोई राज़ नहीं माँगती।",
+    dl_tools_p="कंप्यूटर-साइड टूल एक ही HTML फ़ाइल है — <code>aktar.html</code> — और यह वेब पेज नहीं, डाउनलोड है: यह पूरी तरह आपकी मशीन पर चलता है, और यह साइट कभी कोई राज़ नहीं माँगती।",
     dl_tools_note="github.com → Releases · प्रकाशित SHA-256 जाँचें",
+    dl_app_link="गाइड पढ़ें →",
+    dl_tools_link="aktar.html कैसे लें और कैसे इस्तेमाल करें →",
     contact="संपर्क",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>आपकी सुरक्षित तिजोरी।</em>",
 )
@@ -244,8 +252,10 @@ L["ar"] = dict(
     dl_app_h="تطبيق أندرويد",
     dl_app_p="صفحة Google Play قيد الإعداد. وحتى ذلك الحين يمكنك البناء من المصدر — ملف README في المستودع يشرح ذلك بأمرين.",
     dl_tools_h="أدوات الحاسوب",
-    dl_tools_p="أدوات النقل عبر QR ملفات تُنزَّل لا صفحات ويب: تعمل بالكامل على جهازك، وهذا الموقع لا يطلب منك سرًّا أبدًا.",
+    dl_tools_p="أداة الحاسوب ملف HTML واحد — <code>aktar.html</code> — وهي ملف يُنزَّل لا صفحة ويب: تعمل بالكامل على جهازك، وهذا الموقع لا يطلب منك سرًّا أبدًا.",
     dl_tools_note="github.com → Releases · تحقّق من بصمة SHA-256 المنشورة",
+    dl_app_link="اقرأ الدليل ←",
+    dl_tools_link="كيف تحصل على aktar.html وكيف تستخدمه ←",
     contact="اتصل بنا",
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>خزنتك الآمنة.</em>",
 )
@@ -445,11 +455,13 @@ PAGE = """<!DOCTYPE html>
       <div>
         <h3>{dl_app_h}</h3>
         <p>{dl_app_p}</p>
+        <p><a href="{guide_url}#start">{dl_app_link}</a></p>
       </div>
       <div>
         <h3>{dl_tools_h}</h3>
         <p>{dl_tools_p}</p>
         <p class="mono-note" dir="ltr">{dl_tools_note}</p>
+        <p><a href="{guide_url}#transfer">{dl_tools_link}</a></p>
       </div>
     </div>
   </section>
@@ -514,7 +526,9 @@ def build():
             dl_eyebrow=t["dl_eyebrow"], dl_h2=t["dl_h2"],
             dl_app_h=t["dl_app_h"], dl_app_p=t["dl_app_p"],
             dl_tools_h=t["dl_tools_h"], dl_tools_p=t["dl_tools_p"],
-            dl_tools_note=t["dl_tools_note"], contact=t["contact"], footer=t["footer"],
+            dl_tools_note=t["dl_tools_note"],
+            dl_app_link=t["dl_app_link"], dl_tools_link=t["dl_tools_link"],
+            contact=t["contact"], footer=t["footer"],
         )
 
         out = root / t["path"] / "index.html" if t["path"] else root / "index.html"
