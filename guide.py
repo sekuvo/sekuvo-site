@@ -496,6 +496,85 @@ G["zh"] = dict(
 # real device cannot be photographed, and a real vault must never be.
 # ─────────────────────────────────────────────────────────────────────────────
 
+G["fr"] = dict(
+    nav_label="Guide",
+    title="Sekuvo — Guide",
+    desc="Comment utiliser Sekuvo : premier lancement, saisie automatique, clavier, saisie sur un ordinateur par Bluetooth, sauvegardes et transferts.",
+    h1="Guide",
+    lede="Tout ce que fait Sekuvo, dans l'ordre où tu en auras probablement besoin. Rien ici ne nécessite un compte ou une connexion internet.",
+    back="← Retour à sekuvo.com",
+    sections=[
+        ("start", "Premier lancement", [
+            "<p>Au premier lancement, tu définis un <strong>mot de passe principal</strong>. Chaque secret que tu enregistres est chiffré avec une clé qui en dérive, c'est donc la seule chose que Sekuvo ne peut pas t'aider à récupérer — écris-le quelque part en lieu sûr avant d'aller plus loin.</p>",
+            "<p>Tu as déjà une sauvegarde d'un autre téléphone ? Touche <strong>« J'ai une sauvegarde — la restaurer »</strong> sur l'écran d'accueil. Tu définis quand même d'abord un mot de passe principal pour cet appareil, puis le sélecteur de fichiers s'ouvre tout seul et tes entrées reviennent.</p>",
+            "<p>Si ton téléphone dispose d'un capteur d'empreinte ou de reconnaissance faciale, Sekuvo propose de l'utiliser juste après la configuration. Ce n'est qu'une couche de confort : le mot de passe principal fonctionne toujours, et c'est lui qui survit à une réinitialisation d'usine.</p>",
+        ]),
+        ("entries", "Ce que tu peux enregistrer", [
+            "<p>Quatre types d'entrées couvrent la plupart de ce que l'on garde dans un coffre :</p>",
+            "<ul><li><strong>Compte / Mot de passe</strong> — identifiant, mot de passe, site ou application.</li><li><strong>Quotidien</strong> — nom, téléphone, e-mail, adresse. Ce que les formulaires demandent sans cesse.</li><li><strong>Carte</strong> — numéro de carte, expiration, CVV, IBAN.</li><li><strong>Note sécurisée</strong> — texte libre, avec des sous-types pour les scripts, clés, codes de récupération et fichiers de configuration.</li></ul>",
+            "<p>Les entrées Compte et Quotidien acceptent aussi des <strong>champs personnalisés</strong> : n'importe quelle paire « nom + valeur ». Les champs personnalisés sont chiffrés exactement comme les champs intégrés et apparaissent partout où les autres apparaissent.</p>",
+        ]),
+        ("channels", "Utiliser un secret sans le presse-papiers", [
+            "<p>Le presse-papiers est lisible par d'autres applications et c'est là que les secrets se font voler. Sekuvo t'offre trois façons d'acheminer une valeur directement à sa destination. Tu peux toujours copier — le presse-papiers est effacé automatiquement après 45 secondes — mais les trois canaux ci-dessous sont la raison d'être de l'application.</p>",
+        ]),
+        ("autofill", "Saisie automatique (dans ton téléphone)", [
+            "<p>Sekuvo peut agir comme service de saisie automatique d'Android, afin que les formulaires de connexion et de carte proposent directement tes entrées.</p>",
+            "<p><strong>Pour l'activer :</strong> Sekuvo → Paramètres → <em>Activer la saisie automatique</em> → choisis Sekuvo dans la liste système. Cette liste porte des noms différents selon l'appareil : sur Samsung et Android 14+, c'est <em>Mots de passe, clés d'accès et saisie automatique → Service préféré</em> ; sur Android natif, c'est <em>Service de saisie automatique</em>.</p>",
+            "<p>Ensuite, toucher un champ d'identifiant, de mot de passe ou de carte dans n'importe quelle application affiche tes entrées correspondantes au-dessus du clavier. Si le coffre est verrouillé, une étape de déverrouillage apparaît d'abord — tant qu'il est verrouillé, le système ne reçoit strictement rien.</p>",
+        ]),
+        ("keyboard", "Clavier Sekuvo (dans ton téléphone)", [
+            "<p>Le module clavier saisit les valeurs enregistrées dans n'importe quel champ, dans n'importe quelle application, sans étape de copie.</p>",
+            "<p><strong>Pour l'activer :</strong> Sekuvo → Paramètres → <em>Activer le clavier</em> → active-le dans la liste système, puis choisis « Clavier Sekuvo » dans le sélecteur de clavier quand tu en as besoin.</p>",
+            "<p>Les entrées récemment utilisées restent en haut et 🔍 recherche dans les titres, identifiants et adresses. Quand le coffre est verrouillé, le clavier n'affiche que les entrées que tu as marquées pour l'accès rapide — voir ci-dessous.</p>",
+        ]),
+        ("bluetooth", "Saisir sur un ordinateur par Bluetooth", [
+            "<p>Ton téléphone peut agir comme un clavier Bluetooth et saisir un secret à l'emplacement du curseur de ton ordinateur. Rien n'est installé sur l'ordinateur, cela fonctionne sous Windows, macOS et Linux, et la valeur ne touche jamais le presse-papiers ni un réseau. Nécessite Android 9 ou plus récent.</p>",
+            "<h3>Étape par étape</h3>",
+            "<ol><li>Dans Sekuvo, ouvre l'entrée et touche l'icône 💻 à côté du champ à saisir. <strong>Garde cet écran ouvert</strong> — ton téléphone ne s'annonce comme clavier que pendant ce temps.</li><li>Sur l'ordinateur, ajoute le téléphone comme nouvel appareil Bluetooth : <em>Paramètres → Bluetooth et appareils → Ajouter un appareil → Bluetooth</em> sous Windows, ou <em>Réglages Système → Bluetooth</em> sous macOS.</li><li>Confirme le code d'appairage des deux côtés.</li><li>De retour sur le téléphone, choisis ton ordinateur dans la liste et attends « Connecté ».</li><li>Choisis la disposition de clavier <strong>de l'ordinateur</strong> — pas celle du téléphone. L'ordinateur interprète les codes de touche, donc une mauvaise disposition transforme silencieusement des caractères comme @ \" ? en d'autres.</li><li>Clique dans le champ de l'ordinateur où la valeur doit aller.</li><li>Touche <strong>Saisir</strong> sur le téléphone. Après un compte à rebours de trois secondes — qui existe pour te laisser le temps de cliquer dans ce champ — la valeur est saisie touche par touche.</li></ol>",
+            "<h3>Connecté, mais rien ne s'affiche</h3>",
+            "<p>Presque toujours la même cause : l'ordinateur a appairé ton téléphone <em>comme un téléphone</em> à un moment antérieur, donc il n'a jamais activé pour lui le service clavier (HID). La connexion réussit et les frappes ne vont nulle part.</p>",
+            "<ol><li>Supprime l'appairage sur l'ordinateur (<em>Supprimer l'appareil</em>).</li><li>Supprime-le aussi sur le téléphone (<em>Oublier</em> dans les paramètres Bluetooth). Les deux côtés comptent.</li><li>Ouvre l'écran 💻 dans Sekuvo et laisse-le ouvert.</li><li>Réappaire, en commençant <strong>par l'ordinateur</strong>.</li><li>Pour confirmer sous Windows : le <em>Gestionnaire de périphériques → Périphériques d'interface utilisateur</em> devrait maintenant lister un appareil Bluetooth HID.</li></ol>",
+            "<p>Sur macOS, la première connexion peut ouvrir l'<strong>Assistant de configuration du clavier</strong>, qui demande d'appuyer sur une touche à côté de la touche majuscule. Tant que cette fenêtre n'est pas fermée, macOS ne traite rien — c'est la cause habituelle du « connecté mais silencieux » sur un Mac.</p>",
+            "<h3>Vitesse, et comment la vérifier</h3>",
+            "<p>Les touches sont envoyées une à la fois, donc un secret long prend réellement du temps — la boîte de dialogue affiche une estimation. Trois vitesses sont proposées, et le fait que la sûre soit celle par défaut est volontaire. Avant de l'augmenter, utilise le <strong>⏱ Test de vitesse</strong> : il saisit dix blocs identiques séparés par des espaces et rapporte les caractères par seconde mesurés. Si ne serait-ce qu'un bloc diffère, cette vitesse n'est pas sûre sur cet ordinateur — baisse d'un cran.</p>",
+            "<p>Le test de vitesse sert aussi de diagnostic : rien de saisi du tout signifie un problème d'appairage, des caractères déformés signifient la disposition, une saisie coupée signifie la vitesse.</p>",
+            "<p>Pendant la saisie, tu as une barre de progression et un bouton <strong>Arrêter</strong>. Si la file d'envoi se bloque, Sekuvo réessaie avec un délai croissant et, si cela échoue encore, <em>s'arrête et te le dit</em> en indiquant à quel caractère — un secret n'est jamais saisi à moitié en silence.</p>",
+        ]),
+        ("lock", "Fonctionnement du verrouillage", [
+            "<p>Le coffre se verrouille dès que l'écran sur lequel il se trouve s'éteint — replier un téléphone pliable compte aussi. À cet instant, la clé est effacée de la mémoire ; les titres des entrées peuvent encore être listés, mais rien ne peut être déchiffré.</p>",
+            "<p>Quitter l'application avec l'écran allumé ne la verrouille <em>pas</em>. C'est volontaire : l'application, le clavier et la saisie automatique partagent une seule session, sinon basculer vers ton navigateur pour coller un mot de passe t'enfermerait dehors en pleine tâche.</p>",
+        ]),
+        ("quick", "Accès rapide — un compromis assumé", [
+            "<p>Les entrées que tu marques explicitement comme « utiliser au clavier sans mot de passe » sont enregistrées une seconde fois, chiffrées avec une clé d'appareil distincte, afin que le clavier puisse les lire <em>pendant que le coffre est verrouillé</em>.</p>",
+            "<p>Le compromis est énoncé clairement : ces entrées sont protégées par le verrouillage d'écran de ton téléphone, pas par ton mot de passe principal. N'y mets pas de mots de passe. Le marquage est désactivé par défaut ; la seule exception concerne les nouvelles entrées <strong>Quotidien</strong>, qui démarrent marquées parce que les noms et numéros de téléphone sont exactement ce que tu veux avoir sous la main — tu peux désactiver chacune d'elles.</p>",
+        ]),
+        ("backup", "Sauvegardes et restauration", [
+            "<p>La sauvegarde système (sauvegarde Google, transfert d'appareil) est délibérément désactivée, il n'existe donc qu'une seule façon pour ton coffre de quitter le téléphone, et c'est celle que tu choisis : <strong>Paramètres → Créer une sauvegarde chiffrée</strong>.</p>",
+            "<p>Tu choisis un <em>mot de passe de sauvegarde</em> — fais-le différent de ton mot de passe principal, car c'est le mot de passe de sauvegarde qui finit par être saisi sur des ordinateurs. Le résultat est un unique fichier <code>.vaultbak</code> que tu enregistres où tu veux : Drive, une carte SD, une clé USB.</p>",
+            "<p>Le fichier est indépendant de l'appareil : son propre sel et ses paramètres de dérivation de clé vivent dans son en-tête. Le fichier plus le mot de passe de sauvegarde restaurent tout sur n'importe quel téléphone, même après une réinitialisation d'usine. Restaure depuis <strong>Paramètres → Restaurer depuis une sauvegarde</strong>, ou depuis l'écran d'accueil lors d'une installation neuve.</p>",
+            "<p>La restauration propose <em>ajouter à l'existant</em> ou <em>tout remplacer</em>. Les deux sont vérifiées avant que quoi que ce soit ne soit écrit — un mot de passe incorrect échoue dès l'étape d'authentification, et rien n'est supprimé avant que les nouvelles données ne soient confirmées.</p>",
+        ]),
+        ("transfer", "Ramener des secrets depuis un ordinateur", [
+            "<p>Saisir une longue clé à la main sur un téléphone est l'endroit où les erreurs se produisent. Sekuvo les fait plutôt voyager sous forme d'enveloppe chiffrée, sous deux formes : du texte que tu colles, ou des codes QR que tu scannes.</p>",
+            "<p><strong>Sur le téléphone :</strong> le bouton ➕ propose <em>Importer via QR</em> et <em>Importer depuis du texte</em>. L'import QR ouvre la caméra ; les images sont décodées sur l'appareil, et les transferts multi-images affichent leur progression pendant la collecte.</p>",
+            "<h3>L'outil côté ordinateur</h3>",
+            "<p>L'outil qui construit ces enveloppes est un simple fichier HTML, et c'est délibérément <strong>un téléchargement, pas un site web</strong>. sekuvo.com ne te demande jamais de secret ; une page qui le ferait ressemblerait exactement à un site de phishing.</p>",
+            "<ol><li>Ouvre le projet sur GitHub et va dans <strong>Releases</strong>.</li><li>Télécharge <code>aktar.html</code> depuis la dernière version.</li><li>Vérifie son SHA-256 par rapport à la valeur publiée à côté : <code>shasum -a 256 aktar.html</code> sous macOS ou Linux, <code>certutil -hashfile aktar.html SHA256</code> sous Windows.</li><li>Ouvre le fichier en double-cliquant dessus. Il s'exécute depuis ton disque — la barre d'adresse affiche <code>file://</code>, pas un site web.</li><li>Colle ton texte, définis un mot de passe de transfert, et l'outil produit l'enveloppe sous forme de texte ou de codes QR.</li><li>Sur le téléphone, scanne ou colle, saisis le même mot de passe, puis choisis d'ajouter ou de remplacer.</li></ol>",
+            "<p>Tout le chiffrement se produit dans ton navigateur, sur ta machine. Il existe aussi <code>vault-clip.py</code> pour la ligne de commande, qui fait la même chose depuis le presse-papiers ou un fichier et peut afficher les codes QR dans un terminal.</p>",
+            "<h3>Si tu préfères ne pas utiliser l'outil</h3>",
+            "<p>L'enveloppe est un format ouvert, pas quelque chose que seul Sekuvo peut créer : PBKDF2-HMAC-SHA256 sur 310 000 tours, AES-256-GCM, enveloppé dans un petit objet JSON. Tu peux le construire toi-même à partir d'une trentaine de lignes que tu as lues, puis coller le résultat dans <em>Importer depuis du texte</em> — l'application n'a aucun moyen de savoir quel outil l'a produit, et cela lui est égal.</p>",
+            "<p>La recette est dans le dépôt : <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (rédigée en turc).</p>",
+        ]),
+        ("log", "Journal d'utilisation", [
+            "<p>Sekuvo enregistre quel champ de quelle entrée est allé où et quand : vers le presse-papiers, vers un ordinateur par Bluetooth (avec le nom de l'appareil cible), ou saisi dans une application depuis le clavier. Quand un ordinateur est compromis, cela répond à « qu'est-ce qui y est allé, que dois-je changer ».</p>",
+            "<p>Le journal est chiffré avec la même clé que tes entrées et <strong>les valeurs n'y sont jamais écrites</strong> — seulement le type d'événement, le nom du champ et la destination. Supprimer une entrée supprime son journal, et tu peux tout effacer depuis les Paramètres.</p>",
+        ]),
+        ("generator", "Générateur de mots de passe", [
+            "<p>Accessible depuis l'icône 🎲 sur l'écran d'accueil, ou à côté du champ de mot de passe lors de la modification d'une entrée. Il utilise une source d'aléa cryptographique, produit de 8 à 64 caractères, permet de choisir les classes de caractères, peut retirer les caractères ambigus, et affiche l'entropie résultante en bits.</p>",
+        ]),
+    ],
+)
+
 SHOTS = {
     "start":     ["01-karsilama.png"],
     "entries":   ["02-liste.png", "10-ekleme-menusu.png", "03-uzun-anahtar.png"],
@@ -586,5 +665,18 @@ CAPTIONS = {
         "03-uzun-anahtar.png": "一段 386 字符的 SSH 密钥，完整保存。下方的指纹可以在不读出该值的情况下核对它。",
         "09-gunluk.png": "使用记录：什么内容在何时去了哪里 — 但从不记录值本身。",
         "05-uretici.png": "密码生成器，以比特数显示生成结果的熵值。",
+    },
+    "fr": {
+        "01-karsilama.png": "L'écran d'accueil : définis un mot de passe principal, ou restaure une sauvegarde que tu as déjà.",
+        "02-liste.png": "La liste des entrées, avec recherche et filtres par type.",
+        "10-ekleme-menusu.png": "Lors de l'ajout : quatre types d'entrées, plus les deux voies d'importation.",
+        "04-detay.png": "Une entrée. Le mot de passe reste masqué ; les icônes à côté de chaque champ le copient ou le saisissent sur un ordinateur.",
+        "07-ayarlar.png": "Paramètres — c'est ici que se règlent la saisie automatique et le clavier.",
+        "11-duzenleme.png": "Modification d'une entrée. L'interrupteur d'accès rapide est en bas, avec son coût expliqué à côté.",
+        "08-yedekleme.png": "Sauvegarde et restauration cohabitent dans les Paramètres.",
+        "06-aktarim.png": "L'assistant pour ramener des secrets depuis un ordinateur.",
+        "03-uzun-anahtar.png": "Une clé SSH de 386 caractères, entière. L'empreinte en dessous permet de vérifier une valeur sans la lire.",
+        "09-gunluk.png": "Le journal d'utilisation : quoi est allé où et quand — jamais la valeur elle-même.",
+        "05-uretici.png": "Le générateur, avec l'entropie résultante affichée en bits.",
     },
 }

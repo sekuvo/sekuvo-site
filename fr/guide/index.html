@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="fr" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Comment utiliser Sekuvo : premier lancement, saisie automatique, clavier, saisie sur un ordinateur par Bluetooth, sauvegardes et transferts.">
+<title>Sekuvo — Guide</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/guide/">
+<link rel="alternate" hreflang="fr" href="https://sekuvo.com/fr/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Georgia, serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  .shots { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }
+  .shots figure { margin: 0; flex: 0 1 15rem; }
+  .shots img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }
+  .shots figcaption { font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } .shots figure { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/fr/privacy/">Confidentialité</a> <a href="https://sekuvo.com/fr/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a> ·
+    <a href="https://sekuvo.com/zh/guide/" lang="zh">简体中文</a> ·
+    <a class="here" href="https://sekuvo.com/fr/guide/" lang="fr">Français</a></div>
+
+  <div class="prose">
+    <h1>Guide</h1>
+    <p class="lede-big">Tout ce que fait Sekuvo, dans l'ordre où tu en auras probablement besoin. Rien ici ne nécessite un compte ou une connexion internet.</p>
+    <nav class="toc"><ol><li><a href="#start">Premier lancement</a></li><li><a href="#entries">Ce que tu peux enregistrer</a></li><li><a href="#channels">Utiliser un secret sans le presse-papiers</a></li><li><a href="#autofill">Saisie automatique (dans ton téléphone)</a></li><li><a href="#keyboard">Clavier Sekuvo (dans ton téléphone)</a></li><li><a href="#bluetooth">Saisir sur un ordinateur par Bluetooth</a></li><li><a href="#lock">Fonctionnement du verrouillage</a></li><li><a href="#quick">Accès rapide — un compromis assumé</a></li><li><a href="#backup">Sauvegardes et restauration</a></li><li><a href="#transfer">Ramener des secrets depuis un ordinateur</a></li><li><a href="#log">Journal d'utilisation</a></li><li><a href="#generator">Générateur de mots de passe</a></li></ol></nav>
+    <h2 id="start">Premier lancement</h2><p>Au premier lancement, tu définis un <strong>mot de passe principal</strong>. Chaque secret que tu enregistres est chiffré avec une clé qui en dérive, c'est donc la seule chose que Sekuvo ne peut pas t'aider à récupérer — écris-le quelque part en lieu sûr avant d'aller plus loin.</p><p>Tu as déjà une sauvegarde d'un autre téléphone ? Touche <strong>« J'ai une sauvegarde — la restaurer »</strong> sur l'écran d'accueil. Tu définis quand même d'abord un mot de passe principal pour cet appareil, puis le sélecteur de fichiers s'ouvre tout seul et tes entrées reviennent.</p><p>Si ton téléphone dispose d'un capteur d'empreinte ou de reconnaissance faciale, Sekuvo propose de l'utiliser juste après la configuration. Ce n'est qu'une couche de confort : le mot de passe principal fonctionne toujours, et c'est lui qui survit à une réinitialisation d'usine.</p><div class="shots"><figure><img src="https://sekuvo.com/img/01-karsilama.png" alt="L'écran d'accueil : définis un mot de passe principal, ou restaure une sauvegarde que tu as déjà." loading="lazy" width="405" height="900"><figcaption>L'écran d'accueil : définis un mot de passe principal, ou restaure une sauvegarde que tu as déjà.</figcaption></figure></div><h2 id="entries">Ce que tu peux enregistrer</h2><p>Quatre types d'entrées couvrent la plupart de ce que l'on garde dans un coffre :</p><ul><li><strong>Compte / Mot de passe</strong> — identifiant, mot de passe, site ou application.</li><li><strong>Quotidien</strong> — nom, téléphone, e-mail, adresse. Ce que les formulaires demandent sans cesse.</li><li><strong>Carte</strong> — numéro de carte, expiration, CVV, IBAN.</li><li><strong>Note sécurisée</strong> — texte libre, avec des sous-types pour les scripts, clés, codes de récupération et fichiers de configuration.</li></ul><p>Les entrées Compte et Quotidien acceptent aussi des <strong>champs personnalisés</strong> : n'importe quelle paire « nom + valeur ». Les champs personnalisés sont chiffrés exactement comme les champs intégrés et apparaissent partout où les autres apparaissent.</p><div class="shots"><figure><img src="https://sekuvo.com/img/02-liste.png" alt="La liste des entrées, avec recherche et filtres par type." loading="lazy" width="405" height="900"><figcaption>La liste des entrées, avec recherche et filtres par type.</figcaption></figure><figure><img src="https://sekuvo.com/img/10-ekleme-menusu.png" alt="Lors de l'ajout : quatre types d'entrées, plus les deux voies d'importation." loading="lazy" width="405" height="900"><figcaption>Lors de l'ajout : quatre types d'entrées, plus les deux voies d'importation.</figcaption></figure><figure><img src="https://sekuvo.com/img/03-uzun-anahtar.png" alt="Une clé SSH de 386 caractères, entière. L'empreinte en dessous permet de vérifier une valeur sans la lire." loading="lazy" width="405" height="900"><figcaption>Une clé SSH de 386 caractères, entière. L'empreinte en dessous permet de vérifier une valeur sans la lire.</figcaption></figure></div><h2 id="channels">Utiliser un secret sans le presse-papiers</h2><p>Le presse-papiers est lisible par d'autres applications et c'est là que les secrets se font voler. Sekuvo t'offre trois façons d'acheminer une valeur directement à sa destination. Tu peux toujours copier — le presse-papiers est effacé automatiquement après 45 secondes — mais les trois canaux ci-dessous sont la raison d'être de l'application.</p><div class="shots"><figure><img src="https://sekuvo.com/img/04-detay.png" alt="Une entrée. Le mot de passe reste masqué ; les icônes à côté de chaque champ le copient ou le saisissent sur un ordinateur." loading="lazy" width="405" height="900"><figcaption>Une entrée. Le mot de passe reste masqué ; les icônes à côté de chaque champ le copient ou le saisissent sur un ordinateur.</figcaption></figure></div><h2 id="autofill">Saisie automatique (dans ton téléphone)</h2><p>Sekuvo peut agir comme service de saisie automatique d'Android, afin que les formulaires de connexion et de carte proposent directement tes entrées.</p><p><strong>Pour l'activer :</strong> Sekuvo → Paramètres → <em>Activer la saisie automatique</em> → choisis Sekuvo dans la liste système. Cette liste porte des noms différents selon l'appareil : sur Samsung et Android 14+, c'est <em>Mots de passe, clés d'accès et saisie automatique → Service préféré</em> ; sur Android natif, c'est <em>Service de saisie automatique</em>.</p><p>Ensuite, toucher un champ d'identifiant, de mot de passe ou de carte dans n'importe quelle application affiche tes entrées correspondantes au-dessus du clavier. Si le coffre est verrouillé, une étape de déverrouillage apparaît d'abord — tant qu'il est verrouillé, le système ne reçoit strictement rien.</p><div class="shots"><figure><img src="https://sekuvo.com/img/07-ayarlar.png" alt="Paramètres — c'est ici que se règlent la saisie automatique et le clavier." loading="lazy" width="405" height="900"><figcaption>Paramètres — c'est ici que se règlent la saisie automatique et le clavier.</figcaption></figure></div><h2 id="keyboard">Clavier Sekuvo (dans ton téléphone)</h2><p>Le module clavier saisit les valeurs enregistrées dans n'importe quel champ, dans n'importe quelle application, sans étape de copie.</p><p><strong>Pour l'activer :</strong> Sekuvo → Paramètres → <em>Activer le clavier</em> → active-le dans la liste système, puis choisis « Clavier Sekuvo » dans le sélecteur de clavier quand tu en as besoin.</p><p>Les entrées récemment utilisées restent en haut et 🔍 recherche dans les titres, identifiants et adresses. Quand le coffre est verrouillé, le clavier n'affiche que les entrées que tu as marquées pour l'accès rapide — voir ci-dessous.</p><h2 id="bluetooth">Saisir sur un ordinateur par Bluetooth</h2><p>Ton téléphone peut agir comme un clavier Bluetooth et saisir un secret à l'emplacement du curseur de ton ordinateur. Rien n'est installé sur l'ordinateur, cela fonctionne sous Windows, macOS et Linux, et la valeur ne touche jamais le presse-papiers ni un réseau. Nécessite Android 9 ou plus récent.</p><h3>Étape par étape</h3><ol><li>Dans Sekuvo, ouvre l'entrée et touche l'icône 💻 à côté du champ à saisir. <strong>Garde cet écran ouvert</strong> — ton téléphone ne s'annonce comme clavier que pendant ce temps.</li><li>Sur l'ordinateur, ajoute le téléphone comme nouvel appareil Bluetooth : <em>Paramètres → Bluetooth et appareils → Ajouter un appareil → Bluetooth</em> sous Windows, ou <em>Réglages Système → Bluetooth</em> sous macOS.</li><li>Confirme le code d'appairage des deux côtés.</li><li>De retour sur le téléphone, choisis ton ordinateur dans la liste et attends « Connecté ».</li><li>Choisis la disposition de clavier <strong>de l'ordinateur</strong> — pas celle du téléphone. L'ordinateur interprète les codes de touche, donc une mauvaise disposition transforme silencieusement des caractères comme @ " ? en d'autres.</li><li>Clique dans le champ de l'ordinateur où la valeur doit aller.</li><li>Touche <strong>Saisir</strong> sur le téléphone. Après un compte à rebours de trois secondes — qui existe pour te laisser le temps de cliquer dans ce champ — la valeur est saisie touche par touche.</li></ol><h3>Connecté, mais rien ne s'affiche</h3><p>Presque toujours la même cause : l'ordinateur a appairé ton téléphone <em>comme un téléphone</em> à un moment antérieur, donc il n'a jamais activé pour lui le service clavier (HID). La connexion réussit et les frappes ne vont nulle part.</p><ol><li>Supprime l'appairage sur l'ordinateur (<em>Supprimer l'appareil</em>).</li><li>Supprime-le aussi sur le téléphone (<em>Oublier</em> dans les paramètres Bluetooth). Les deux côtés comptent.</li><li>Ouvre l'écran 💻 dans Sekuvo et laisse-le ouvert.</li><li>Réappaire, en commençant <strong>par l'ordinateur</strong>.</li><li>Pour confirmer sous Windows : le <em>Gestionnaire de périphériques → Périphériques d'interface utilisateur</em> devrait maintenant lister un appareil Bluetooth HID.</li></ol><p>Sur macOS, la première connexion peut ouvrir l'<strong>Assistant de configuration du clavier</strong>, qui demande d'appuyer sur une touche à côté de la touche majuscule. Tant que cette fenêtre n'est pas fermée, macOS ne traite rien — c'est la cause habituelle du « connecté mais silencieux » sur un Mac.</p><h3>Vitesse, et comment la vérifier</h3><p>Les touches sont envoyées une à la fois, donc un secret long prend réellement du temps — la boîte de dialogue affiche une estimation. Trois vitesses sont proposées, et le fait que la sûre soit celle par défaut est volontaire. Avant de l'augmenter, utilise le <strong>⏱ Test de vitesse</strong> : il saisit dix blocs identiques séparés par des espaces et rapporte les caractères par seconde mesurés. Si ne serait-ce qu'un bloc diffère, cette vitesse n'est pas sûre sur cet ordinateur — baisse d'un cran.</p><p>Le test de vitesse sert aussi de diagnostic : rien de saisi du tout signifie un problème d'appairage, des caractères déformés signifient la disposition, une saisie coupée signifie la vitesse.</p><p>Pendant la saisie, tu as une barre de progression et un bouton <strong>Arrêter</strong>. Si la file d'envoi se bloque, Sekuvo réessaie avec un délai croissant et, si cela échoue encore, <em>s'arrête et te le dit</em> en indiquant à quel caractère — un secret n'est jamais saisi à moitié en silence.</p><h2 id="lock">Fonctionnement du verrouillage</h2><p>Le coffre se verrouille dès que l'écran sur lequel il se trouve s'éteint — replier un téléphone pliable compte aussi. À cet instant, la clé est effacée de la mémoire ; les titres des entrées peuvent encore être listés, mais rien ne peut être déchiffré.</p><p>Quitter l'application avec l'écran allumé ne la verrouille <em>pas</em>. C'est volontaire : l'application, le clavier et la saisie automatique partagent une seule session, sinon basculer vers ton navigateur pour coller un mot de passe t'enfermerait dehors en pleine tâche.</p><h2 id="quick">Accès rapide — un compromis assumé</h2><p>Les entrées que tu marques explicitement comme « utiliser au clavier sans mot de passe » sont enregistrées une seconde fois, chiffrées avec une clé d'appareil distincte, afin que le clavier puisse les lire <em>pendant que le coffre est verrouillé</em>.</p><p>Le compromis est énoncé clairement : ces entrées sont protégées par le verrouillage d'écran de ton téléphone, pas par ton mot de passe principal. N'y mets pas de mots de passe. Le marquage est désactivé par défaut ; la seule exception concerne les nouvelles entrées <strong>Quotidien</strong>, qui démarrent marquées parce que les noms et numéros de téléphone sont exactement ce que tu veux avoir sous la main — tu peux désactiver chacune d'elles.</p><div class="shots"><figure><img src="https://sekuvo.com/img/11-duzenleme.png" alt="Modification d'une entrée. L'interrupteur d'accès rapide est en bas, avec son coût expliqué à côté." loading="lazy" width="405" height="900"><figcaption>Modification d'une entrée. L'interrupteur d'accès rapide est en bas, avec son coût expliqué à côté.</figcaption></figure></div><h2 id="backup">Sauvegardes et restauration</h2><p>La sauvegarde système (sauvegarde Google, transfert d'appareil) est délibérément désactivée, il n'existe donc qu'une seule façon pour ton coffre de quitter le téléphone, et c'est celle que tu choisis : <strong>Paramètres → Créer une sauvegarde chiffrée</strong>.</p><p>Tu choisis un <em>mot de passe de sauvegarde</em> — fais-le différent de ton mot de passe principal, car c'est le mot de passe de sauvegarde qui finit par être saisi sur des ordinateurs. Le résultat est un unique fichier <code>.vaultbak</code> que tu enregistres où tu veux : Drive, une carte SD, une clé USB.</p><p>Le fichier est indépendant de l'appareil : son propre sel et ses paramètres de dérivation de clé vivent dans son en-tête. Le fichier plus le mot de passe de sauvegarde restaurent tout sur n'importe quel téléphone, même après une réinitialisation d'usine. Restaure depuis <strong>Paramètres → Restaurer depuis une sauvegarde</strong>, ou depuis l'écran d'accueil lors d'une installation neuve.</p><p>La restauration propose <em>ajouter à l'existant</em> ou <em>tout remplacer</em>. Les deux sont vérifiées avant que quoi que ce soit ne soit écrit — un mot de passe incorrect échoue dès l'étape d'authentification, et rien n'est supprimé avant que les nouvelles données ne soient confirmées.</p><div class="shots"><figure><img src="https://sekuvo.com/img/08-yedekleme.png" alt="Sauvegarde et restauration cohabitent dans les Paramètres." loading="lazy" width="405" height="900"><figcaption>Sauvegarde et restauration cohabitent dans les Paramètres.</figcaption></figure></div><h2 id="transfer">Ramener des secrets depuis un ordinateur</h2><p>Saisir une longue clé à la main sur un téléphone est l'endroit où les erreurs se produisent. Sekuvo les fait plutôt voyager sous forme d'enveloppe chiffrée, sous deux formes : du texte que tu colles, ou des codes QR que tu scannes.</p><p><strong>Sur le téléphone :</strong> le bouton ➕ propose <em>Importer via QR</em> et <em>Importer depuis du texte</em>. L'import QR ouvre la caméra ; les images sont décodées sur l'appareil, et les transferts multi-images affichent leur progression pendant la collecte.</p><h3>L'outil côté ordinateur</h3><p>L'outil qui construit ces enveloppes est un simple fichier HTML, et c'est délibérément <strong>un téléchargement, pas un site web</strong>. sekuvo.com ne te demande jamais de secret ; une page qui le ferait ressemblerait exactement à un site de phishing.</p><ol><li>Ouvre le projet sur GitHub et va dans <strong>Releases</strong>.</li><li>Télécharge <code>aktar.html</code> depuis la dernière version.</li><li>Vérifie son SHA-256 par rapport à la valeur publiée à côté : <code>shasum -a 256 aktar.html</code> sous macOS ou Linux, <code>certutil -hashfile aktar.html SHA256</code> sous Windows.</li><li>Ouvre le fichier en double-cliquant dessus. Il s'exécute depuis ton disque — la barre d'adresse affiche <code>file://</code>, pas un site web.</li><li>Colle ton texte, définis un mot de passe de transfert, et l'outil produit l'enveloppe sous forme de texte ou de codes QR.</li><li>Sur le téléphone, scanne ou colle, saisis le même mot de passe, puis choisis d'ajouter ou de remplacer.</li></ol><p>Tout le chiffrement se produit dans ton navigateur, sur ta machine. Il existe aussi <code>vault-clip.py</code> pour la ligne de commande, qui fait la même chose depuis le presse-papiers ou un fichier et peut afficher les codes QR dans un terminal.</p><h3>Si tu préfères ne pas utiliser l'outil</h3><p>L'enveloppe est un format ouvert, pas quelque chose que seul Sekuvo peut créer : PBKDF2-HMAC-SHA256 sur 310 000 tours, AES-256-GCM, enveloppé dans un petit objet JSON. Tu peux le construire toi-même à partir d'une trentaine de lignes que tu as lues, puis coller le résultat dans <em>Importer depuis du texte</em> — l'application n'a aucun moyen de savoir quel outil l'a produit, et cela lui est égal.</p><p>La recette est dans le dépôt : <a href="https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md">docs/kendi-zarfini-uret.md</a> (rédigée en turc).</p><div class="shots"><figure><img src="https://sekuvo.com/img/06-aktarim.png" alt="L'assistant pour ramener des secrets depuis un ordinateur." loading="lazy" width="405" height="900"><figcaption>L'assistant pour ramener des secrets depuis un ordinateur.</figcaption></figure></div><h2 id="log">Journal d'utilisation</h2><p>Sekuvo enregistre quel champ de quelle entrée est allé où et quand : vers le presse-papiers, vers un ordinateur par Bluetooth (avec le nom de l'appareil cible), ou saisi dans une application depuis le clavier. Quand un ordinateur est compromis, cela répond à « qu'est-ce qui y est allé, que dois-je changer ».</p><p>Le journal est chiffré avec la même clé que tes entrées et <strong>les valeurs n'y sont jamais écrites</strong> — seulement le type d'événement, le nom du champ et la destination. Supprimer une entrée supprime son journal, et tu peux tout effacer depuis les Paramètres.</p><div class="shots"><figure><img src="https://sekuvo.com/img/09-gunluk.png" alt="Le journal d'utilisation : quoi est allé où et quand — jamais la valeur elle-même." loading="lazy" width="405" height="900"><figcaption>Le journal d'utilisation : quoi est allé où et quand — jamais la valeur elle-même.</figcaption></figure></div><h2 id="generator">Générateur de mots de passe</h2><p>Accessible depuis l'icône 🎲 sur l'écran d'accueil, ou à côté du champ de mot de passe lors de la modification d'une entrée. Il utilise une source d'aléa cryptographique, produit de 8 à 64 caractères, permet de choisir les classes de caractères, peut retirer les caractères ambigus, et affiche l'entropie résultante en bits.</p><div class="shots"><figure><img src="https://sekuvo.com/img/05-uretici.png" alt="Le générateur, avec l'entropie résultante affichée en bits." loading="lazy" width="405" height="900"><figcaption>Le générateur, avec l'entropie résultante affichée en bits.</figcaption></figure></div>
+    <a class="back" href="https://sekuvo.com/fr/">← Retour à sekuvo.com</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>
