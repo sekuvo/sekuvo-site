@@ -11,6 +11,7 @@ Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 import pathlib
 
 from guide import G, SHOTS, CAPTIONS
+from aktar import AK, A, AKTAR_JS, PY_SCRIPT, CMD_UNIX, CMD_WIN, VERIFY_CMDS
 
 SITE = "https://sekuvo.com"
 GITHUB = "https://github.com/afgover/Vault"
@@ -823,16 +824,28 @@ STYLE = """
   a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
 
-  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
-  .brand { font-family: __DISPLAY__; font-weight: 700; font-size: 1.25rem; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 1rem 1.6rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: __DISPLAY__; font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+  .brand:hover { color: var(--brass); }
   nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
   nav a { color: var(--muted); text-decoration: none; }
   nav a:hover { color: var(--brass); }
 
-  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
-  .langs a { color: var(--muted); text-decoration: none; }
-  .langs a:hover { color: var(--brass); }
-  .langs .here { color: var(--brass); font-weight: 600; }
+  /* Dil seçici: sağ üstte açılır menü. JS'siz çalışsın diye <details>. */
+  .lang { position: relative; font-size: .85rem; }
+  .lang summary { list-style: none; cursor: pointer; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 5px; padding: .32rem .75rem;
+    display: flex; align-items: center; gap: .45rem; white-space: nowrap; }
+  .lang summary::-webkit-details-marker { display: none; }
+  .lang summary::after { content: "▾"; font-size: .7em; color: var(--brass); }
+  .lang summary:hover, .lang[open] summary { color: var(--brass); border-color: var(--brass); }
+  .lang .menu { position: absolute; inset-inline-end: 0; top: calc(100% + .45rem);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: .45rem 0; min-width: 11.5rem; max-height: 70vh; overflow-y: auto;
+    z-index: 20; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+  .lang .menu a { display: block; padding: .34rem 1.1rem; color: var(--muted); text-decoration: none; }
+  .lang .menu a:hover { background: var(--line); color: var(--ink); }
+  .lang .menu .here { color: var(--brass); font-weight: 600; }
 
   .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
@@ -881,6 +894,18 @@ STYLE = """
   .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
   .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
 
+  .aktar { margin-top: 2.8rem; border-top: 1px dashed var(--line); padding-top: 2.2rem; }
+  .aktar h3 { font-size: 1.05rem; margin-bottom: 1.1rem; }
+  .aksplit { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem 2.6rem; align-items: start; }
+  .steps { margin: 0; padding-inline-start: 1.3rem; color: var(--muted); font-size: .93rem; }
+  .steps li { margin-bottom: .6rem; }
+  .cmd { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1rem 1.2rem; overflow-x: auto; white-space: pre; line-height: 1.8; }
+  .cmd .c { color: var(--muted); }
+  .akembed { margin-top: 1.8rem; color: var(--muted); font-size: .93rem; max-width: 44rem; }
+  @media (max-width: 780px) { .aksplit { grid-template-columns: 1fr; } }
+
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
   footer a:hover { color: var(--brass); }
@@ -915,7 +940,7 @@ PAGE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <header>
-    <span class="brand">Sekuvo</span>
+    <a class="brand" href="{home_url}">Sekuvo</a>
     <nav>
       <a href="#security">{nav0}</a>
       <a href="#channels">{nav1}</a>
@@ -923,8 +948,8 @@ PAGE = """<!DOCTYPE html>
       <a href="{guide_url}">{guide_label}</a>
       <a href="{privacy_url}">{nav3}</a>
     </nav>
+    {langmenu}
   </header>
-  <div class="langs">{langs}</div>
 
   <div class="hero">
     <div>
@@ -981,6 +1006,18 @@ PAGE = """<!DOCTYPE html>
         <p><a href="{guide_url}#transfer">{dl_tools_link}</a></p>
       </div>
     </div>
+
+    <div class="aktar" id="aktar">
+      <h3>{ak_h}</h3>
+      <div class="aksplit">
+        <ol class="steps">{ak_steps}</ol>
+        <div>
+          <div class="cmd" dir="ltr">{verify_cmds}</div>
+          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="{github}/releases">github.com/afgover/Vault/releases</a></p>
+        </div>
+      </div>
+      <p class="akembed">{ak_embed_p} <a href="{aktar_url}">{ak_embed_link} →</a></p>
+    </div>
   </section>
 
   <footer>
@@ -998,6 +1035,31 @@ PAGE = """<!DOCTYPE html>
 """
 
 
+def esc(text):
+    """Kod bloklarını HTML'e gömerken kaçır (& < >)."""
+    return text.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def fmt_cmd(text):
+    """Komut bloğu: kaçır ve # yorum satırlarını soluk renge boya."""
+    out = []
+    for line in esc(text).split("\n"):
+        out.append(f'<span class="c">{line}</span>' if line.lstrip().startswith("#") else line)
+    return "\n".join(out)
+
+
+def lang_menu(code, suffix=""):
+    """Sağ üstteki açılır dil menüsü; suffix aynı sayfa türünde kalmayı sağlar."""
+    items = "".join(
+        (f'<a class="here" href="{SITE}/{L[c]["path"]}{suffix}" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
+         if c == code else
+         f'<a href="{SITE}/{L[c]["path"]}{suffix}" lang="{L[c]["lang"]}">{L[c]["name"]}</a>')
+        for c in ORDER
+    )
+    return (f'<details class="lang"><summary lang="{L[code]["lang"]}">{L[code]["name"]}</summary>'
+            f'<div class="menu">{items}</div></details>')
+
+
 def build():
     root = pathlib.Path(__file__).parent
     for code in ORDER:
@@ -1010,13 +1072,6 @@ def build():
             for c in ORDER
         ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/">'
 
-        langs = " ·\n    ".join(
-            f'<a class="here" href="{SITE}/{L[c]["path"]}" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
-            if c == code else
-            f'<a href="{SITE}/{L[c]["path"]}" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
-            for c in ORDER
-        )
-
         cells = "".join(
             f'<div class="cell"><h3>{h}</h3><p>{p}</p></div>' for h, p in t["cells"]
         )
@@ -1025,12 +1080,18 @@ def build():
             for n, h, p in t["lanes"]
         )
 
+        ak = AK[code]
+        ak_steps = "".join(f"<li>{s}</li>" for s in ak["ak_steps"])
+
         html = PAGE.format(
             lang=t["lang"], dir=t["dir"], desc=t["desc"], title=t["title"],
-            alternates=alternates, font_url=font_url, style=style, langs=langs,
+            alternates=alternates, font_url=font_url, style=style,
+            langmenu=lang_menu(code),
             site=SITE, github=GITHUB,
+            home_url=f"{SITE}/{t['path']}",
             privacy_url=f"{SITE}/{t['path']}privacy/",
             guide_url=f"{SITE}/{t['path']}guide/",
+            aktar_url=f"{SITE}/{t['path']}aktar/",
             guide_label=G[code]["nav_label"],
             nav0=t["nav"][0], nav1=t["nav"][1], nav2=t["nav"][2], nav3=t["nav"][3],
             eyebrow=t["eyebrow"], h1=t["h1"], lede=t["lede"],
@@ -1045,6 +1106,8 @@ def build():
             dl_tools_h=t["dl_tools_h"], dl_tools_p=t["dl_tools_p"],
             dl_tools_note=t["dl_tools_note"],
             dl_app_link=t["dl_app_link"], dl_tools_link=t["dl_tools_link"],
+            ak_h=ak["ak_h"], ak_steps=ak_steps, verify_cmds=fmt_cmd(VERIFY_CMDS),
+            ak_embed_p=ak["ak_embed_p"], ak_embed_link=ak["ak_embed_link"],
             contact=t["contact"], footer=t["footer"],
         )
 
@@ -1527,10 +1590,10 @@ POLICY_PAGE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <header>
-    <span class="brand">Sekuvo</span>
+    <a class="brand" href="{home_url}">Sekuvo</a>
     <nav><a href="{guide_url}">{guide_label}</a> <a href="{home_url}">sekuvo.com</a></nav>
+    {langmenu}
   </header>
-  <div class="langs">{langs}</div>
 
   <div class="prose">
     <h1>{h1}</h1>
@@ -1562,19 +1625,13 @@ def build_policies():
             for c in ORDER
         ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/privacy/">'
 
-        langs = " ·\n    ".join(
-            (f'<a class="here" href="{SITE}/{L[c]["path"]}privacy/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
-             if c == code else
-             f'<a href="{SITE}/{L[c]["path"]}privacy/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>')
-            for c in ORDER
-        )
-
         note = f'<p class="note">{pol["authoritative"]}</p>' if pol["authoritative"] else ""
         body = "".join(f"<h2>{h}</h2>{b}" for h, b in pol["sections"])
 
         html = POLICY_PAGE.format(
             lang=t["lang"], dir=t["dir"], desc=pol["desc"], title=pol["title"],
-            alternates=alternates, font_url=font_url, style=style, langs=langs,
+            alternates=alternates, font_url=font_url, style=style,
+            langmenu=lang_menu(code, "privacy/"),
             home_url=f"{SITE}/{t['path']}", h1=pol["h1"], meta=pol["meta"],
             guide_url=f"{SITE}/{t['path']}guide/", guide_label=G[code]["nav_label"],
             note=note, body=body, back=pol["back"],
@@ -1632,10 +1689,10 @@ GUIDE_PAGE = """<!DOCTYPE html>
 <body>
 <div class="wrap">
   <header>
-    <span class="brand">Sekuvo</span>
+    <a class="brand" href="{home_url}">Sekuvo</a>
     <nav><a href="{privacy_url}">{privacy_label}</a> <a href="{home_url}">sekuvo.com</a></nav>
+    {langmenu}
   </header>
-  <div class="langs">{langs}</div>
 
   <div class="prose">
     <h1>{h1}</h1>
@@ -1667,13 +1724,6 @@ def build_guides():
             for c in ORDER
         ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/guide/">'
 
-        langs = " ·\n    ".join(
-            (f'<a class="here" href="{SITE}/{L[c]["path"]}guide/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>'
-             if c == code else
-             f'<a href="{SITE}/{L[c]["path"]}guide/" lang="{L[c]["lang"]}">{L[c]["name"]}</a>')
-            for c in ORDER
-        )
-
         toc = "".join(f'<li><a href="#{sid}">{h2}</a></li>' for sid, h2, _ in g["sections"])
         caps = CAPTIONS[code]
 
@@ -1696,7 +1746,8 @@ def build_guides():
 
         html = GUIDE_PAGE.format(
             lang=t["lang"], dir=t["dir"], desc=g["desc"], title=g["title"],
-            alternates=alternates, font_url=font_url, style=style, langs=langs,
+            alternates=alternates, font_url=font_url, style=style,
+            langmenu=lang_menu(code, "guide/"),
             home_url=f"{SITE}/{t['path']}",
             privacy_url=f"{SITE}/{t['path']}privacy/", privacy_label=t["nav"][3],
             h1=g["h1"], lede=g["lede"], toc=toc, body=body, back=g["back"],
@@ -1708,7 +1759,134 @@ def build_guides():
         print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# Gömülü Zarf → QR sayfası. BİLEREK şifreleme yapmaz: yalnız zaten şifrelenmiş
+# bir zarfı, uygulamadaki QrTransfer ile birebir aynı kare biçiminde
+# (VLT1|i/n|P·Z|base64) QR'a çevirir. Düz metin sır bu siteye hiç girmez;
+# "site senden asla sır istemez" sözü bozulmaz. İçerik aktar.py'de.
+# ─────────────────────────────────────────────────────────────────────────────
+
+AKTAR_PAGE = """<!DOCTYPE html>
+<html lang="{lang}" dir="{dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{desc}">
+<title>{title}</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+{alternates}
+<link rel="stylesheet" href="{font_url}">
+<style>{style}
+  .prose {{ max-width: 46rem; padding: 3rem 0 4rem; }}
+  .prose h1 {{ font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }}
+  .prose h2 {{ font-size: 1.25rem; font-weight: 600; margin: 2.8rem 0 .7rem; }}
+  .prose p {{ color: var(--muted); }}
+  .lede-big {{ font-size: 1.05rem; color: var(--muted); margin: 1rem 0 1.4rem; }}
+  .note {{ border: 1px solid var(--line); border-radius: 6px; padding: .9rem 1.1rem;
+           font-size: .88rem; color: var(--muted); }}
+  pre.code {{ font-family: "IBM Plex Mono", monospace; font-size: .74rem; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1rem 1.2rem; overflow-x: auto; line-height: 1.7; margin: 1rem 0; }}
+  textarea {{ width: 100%; height: 9rem; box-sizing: border-box; margin-top: .5rem;
+    font-family: "IBM Plex Mono", monospace; font-size: .78rem; line-height: 1.5;
+    color: var(--ink); background: var(--surface); border: 1px solid var(--line);
+    border-radius: 6px; padding: .8rem 1rem; resize: vertical; }}
+  textarea:focus-visible {{ outline: 2px solid var(--brass); outline-offset: 2px; }}
+  label {{ display: block; font-size: .88rem; color: var(--muted); margin-top: 1rem; }}
+  #go {{ margin-top: 1rem; cursor: pointer; font: inherit; font-weight: 600; font-size: .95rem;
+    padding: .7rem 1.25rem; border-radius: 4px; border: 1px solid var(--brass);
+    background: var(--brass); color: var(--brass-ink); }}
+  #err {{ color: #c0564a; font-size: .9rem; margin-top: .8rem; white-space: pre-wrap; }}
+  #qr {{ margin-top: 1.4rem; text-align: center; }}
+  #qr svg {{ max-width: 100%; height: auto; border-radius: 8px; }}
+  #info {{ color: var(--muted); font-size: .85rem; margin-top: .6rem; text-align: center; }}
+  .back {{ display: inline-block; margin-top: 2.6rem; font-size: .9rem; }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="{home_url}">Sekuvo</a>
+    <nav><a href="{guide_url}">{guide_label}</a> <a href="{home_url}">sekuvo.com</a></nav>
+    {langmenu}
+  </header>
+
+  <div class="prose">
+{body}
+    <a class="back" href="{home_url}">{back}</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+<script>__QRLIB__</script>
+<script>__APPJS__</script>
+</body>
+</html>
+"""
+
+
+def build_aktar():
+    import json as _json
+    root = pathlib.Path(__file__).parent
+    qrlib = (root / "qrlib.min.js").read_text(encoding="utf-8")
+
+    for code in ORDER:
+        t, a = L[code], A[code]
+        font_url, display, body_face = FONTS[t["script"]]
+        style = STYLE.replace("__DISPLAY__", display).replace("__BODY__", body_face)
+
+        alternates = "\n".join(
+            f'<link rel="alternate" hreflang="{L[c]["lang"]}" href="{SITE}/{L[c]["path"]}aktar/">'
+            for c in ORDER
+        ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/aktar/">'
+
+        body = (
+            f'    <h1>{a["h1"]}</h1>\n'
+            f'    <p class="lede-big">{a["lede"]}</p>\n'
+            f'    <p class="note">{a["warn"]}</p>\n'
+            f'    <h2>{a["make_h"]}</h2>\n'
+            f'    <p>{a["make_p"]}</p>\n'
+            f'    <pre class="code" dir="ltr">{fmt_cmd(CMD_UNIX)}</pre>\n'
+            f'    <pre class="code" dir="ltr">{fmt_cmd(CMD_WIN)}</pre>\n'
+            f'    <pre class="code" dir="ltr">{esc(PY_SCRIPT)}</pre>\n'
+            f'    <p>{a["make_note"]}</p>\n'
+            f'    <h2>{a["paste_h"]}</h2>\n'
+            f'    <label for="env">{a["paste_label"]}</label>\n'
+            f'    <textarea id="env" dir="ltr"></textarea>\n'
+            f'    <button id="go" type="button">{a["btn"]}</button>\n'
+            f'    <div id="err" role="alert"></div>\n'
+            f'    <div id="qr" dir="ltr"></div>\n'
+            f'    <p id="info"></p>\n'
+            f'    <h2>{a["phone_h"]}</h2>\n'
+            f'    <p>{a["phone_p"]}</p>'
+        )
+
+        texts = _json.dumps({k: a[k] for k in
+                             ("err_empty", "err_invalid", "frame_single", "frame_multi")},
+                            ensure_ascii=False)
+
+        html = AKTAR_PAGE.format(
+            lang=t["lang"], dir=t["dir"], desc=a["desc"], title=a["title"],
+            alternates=alternates, font_url=font_url, style=style,
+            langmenu=lang_menu(code, "aktar/"),
+            home_url=f"{SITE}/{t['path']}",
+            guide_url=f"{SITE}/{t['path']}guide/", guide_label=G[code]["nav_label"],
+            body=body, back=G[code]["back"],
+        ).replace("__QRLIB__", qrlib).replace("__APPJS__", AKTAR_JS.replace("__TEXTS__", texts))
+
+        out = root / t["path"] / "aktar" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html, encoding="utf-8")
+        print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
+
+
 if __name__ == "__main__":
     build()
     build_policies()
     build_guides()
+    build_aktar()

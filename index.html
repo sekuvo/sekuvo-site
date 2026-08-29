@@ -70,16 +70,28 @@
   a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
   a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
 
-  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
-  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; }
+  header { display: flex; justify-content: space-between; align-items: center; gap: 1rem 1.6rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; color: var(--ink); text-decoration: none; }
+  .brand:hover { color: var(--brass); }
   nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
   nav a { color: var(--muted); text-decoration: none; }
   nav a:hover { color: var(--brass); }
 
-  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
-  .langs a { color: var(--muted); text-decoration: none; }
-  .langs a:hover { color: var(--brass); }
-  .langs .here { color: var(--brass); font-weight: 600; }
+  /* Dil seçici: sağ üstte açılır menü. JS'siz çalışsın diye <details>. */
+  .lang { position: relative; font-size: .85rem; }
+  .lang summary { list-style: none; cursor: pointer; color: var(--muted);
+    border: 1px solid var(--line); border-radius: 5px; padding: .32rem .75rem;
+    display: flex; align-items: center; gap: .45rem; white-space: nowrap; }
+  .lang summary::-webkit-details-marker { display: none; }
+  .lang summary::after { content: "▾"; font-size: .7em; color: var(--brass); }
+  .lang summary:hover, .lang[open] summary { color: var(--brass); border-color: var(--brass); }
+  .lang .menu { position: absolute; inset-inline-end: 0; top: calc(100% + .45rem);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: .45rem 0; min-width: 11.5rem; max-height: 70vh; overflow-y: auto;
+    z-index: 20; box-shadow: 0 10px 30px rgba(0,0,0,.25); }
+  .lang .menu a { display: block; padding: .34rem 1.1rem; color: var(--muted); text-decoration: none; }
+  .lang .menu a:hover { background: var(--line); color: var(--ink); }
+  .lang .menu .here { color: var(--brass); font-weight: 600; }
 
   .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
@@ -128,6 +140,18 @@
   .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
   .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
 
+  .aktar { margin-top: 2.8rem; border-top: 1px dashed var(--line); padding-top: 2.2rem; }
+  .aktar h3 { font-size: 1.05rem; margin-bottom: 1.1rem; }
+  .aksplit { display: grid; grid-template-columns: 1.15fr .85fr; gap: 2rem 2.6rem; align-items: start; }
+  .steps { margin: 0; padding-inline-start: 1.3rem; color: var(--muted); font-size: .93rem; }
+  .steps li { margin-bottom: .6rem; }
+  .cmd { font-family: "IBM Plex Mono", monospace; font-size: .78rem; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1rem 1.2rem; overflow-x: auto; white-space: pre; line-height: 1.8; }
+  .cmd .c { color: var(--muted); }
+  .akembed { margin-top: 1.8rem; color: var(--muted); font-size: .93rem; max-width: 44rem; }
+  @media (max-width: 780px) { .aksplit { grid-template-columns: 1fr; } }
+
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
   footer a:hover { color: var(--brass); }
@@ -148,7 +172,7 @@
 <body>
 <div class="wrap">
   <header>
-    <span class="brand">Sekuvo</span>
+    <a class="brand" href="https://sekuvo.com/">Sekuvo</a>
     <nav>
       <a href="#security">Security</a>
       <a href="#channels">Channels</a>
@@ -156,23 +180,8 @@
       <a href="https://sekuvo.com/guide/">Guide</a>
       <a href="https://sekuvo.com/privacy/">Privacy</a>
     </nav>
+    <details class="lang"><summary lang="en">English</summary><div class="menu"><a class="here" href="https://sekuvo.com/" lang="en">English</a><a href="https://sekuvo.com/tr/" lang="tr">Türkçe</a><a href="https://sekuvo.com/es/" lang="es">Español</a><a href="https://sekuvo.com/hi/" lang="hi">हिन्दी</a><a href="https://sekuvo.com/ar/" lang="ar">العربية</a><a href="https://sekuvo.com/zh/" lang="zh">简体中文</a><a href="https://sekuvo.com/fr/" lang="fr">Français</a><a href="https://sekuvo.com/bn/" lang="bn">বাংলা</a><a href="https://sekuvo.com/pt/" lang="pt">Português</a><a href="https://sekuvo.com/ru/" lang="ru">Русский</a><a href="https://sekuvo.com/ur/" lang="ur">اردو</a><a href="https://sekuvo.com/id/" lang="id">Bahasa Indonesia</a><a href="https://sekuvo.com/de/" lang="de">Deutsch</a><a href="https://sekuvo.com/ja/" lang="ja">日本語</a><a href="https://sekuvo.com/pcm/" lang="pcm">Naija</a><a href="https://sekuvo.com/vi/" lang="vi">Tiếng Việt</a></div></details>
   </header>
-  <div class="langs"><a class="here" href="https://sekuvo.com/" lang="en">English</a> ·
-    <a href="https://sekuvo.com/tr/" lang="tr">Türkçe</a> ·
-    <a href="https://sekuvo.com/es/" lang="es">Español</a> ·
-    <a href="https://sekuvo.com/hi/" lang="hi">हिन्दी</a> ·
-    <a href="https://sekuvo.com/ar/" lang="ar">العربية</a> ·
-    <a href="https://sekuvo.com/zh/" lang="zh">简体中文</a> ·
-    <a href="https://sekuvo.com/fr/" lang="fr">Français</a> ·
-    <a href="https://sekuvo.com/bn/" lang="bn">বাংলা</a> ·
-    <a href="https://sekuvo.com/pt/" lang="pt">Português</a> ·
-    <a href="https://sekuvo.com/ru/" lang="ru">Русский</a> ·
-    <a href="https://sekuvo.com/ur/" lang="ur">اردو</a> ·
-    <a href="https://sekuvo.com/id/" lang="id">Bahasa Indonesia</a> ·
-    <a href="https://sekuvo.com/de/" lang="de">Deutsch</a> ·
-    <a href="https://sekuvo.com/ja/" lang="ja">日本語</a> ·
-    <a href="https://sekuvo.com/pcm/" lang="pcm">Naija</a> ·
-    <a href="https://sekuvo.com/vi/" lang="vi">Tiếng Việt</a></div>
 
   <div class="hero">
     <div>
@@ -228,6 +237,22 @@
         <p class="mono-note" dir="ltr">github.com → Releases · verify the published SHA-256</p>
         <p><a href="https://sekuvo.com/guide/#transfer">How to get aktar.html and use it →</a></p>
       </div>
+    </div>
+
+    <div class="aktar" id="aktar">
+      <h3>aktar.html: download, verify, use</h3>
+      <div class="aksplit">
+        <ol class="steps"><li>Open the project's Releases page and download aktar.html.</li><li>Check its SHA-256 against the value published next to it — the commands shown here print it.</li><li>Open the file from your own disk: the address bar shows file://, not a website.</li><li>Paste your content, set a transfer password, and encrypt — the envelope comes out as QR codes or text.</li><li>On the phone: Sekuvo → + → Import via QR, scan, and enter the same password.</li></ol>
+        <div>
+          <div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+shasum -a 256 aktar.html
+
+<span class="c"># Windows (PowerShell / cmd)</span>
+certutil -hashfile aktar.html SHA256</div>
+          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="https://github.com/afgover/Vault/releases">github.com/afgover/Vault/releases</a></p>
+        </div>
+      </div>
+      <p class="akembed">Rather not run any encryption in a browser? Encrypt in your own terminal instead, and use the embedded QR page — it accepts only the encrypted envelope, never a raw secret. <a href="https://sekuvo.com/aktar/">Open the envelope → QR page →</a></p>
     </div>
   </section>
 
