@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Как пользоваться Sekuvo: первый запуск, автозаполнение, клавиатура, ввод на компьютере по Bluetooth, резервные копии и переносы.">
+<title>Sekuvo — Руководство</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/guide/">
+<link rel="alternate" hreflang="fr" href="https://sekuvo.com/fr/guide/">
+<link rel="alternate" hreflang="bn" href="https://sekuvo.com/bn/guide/">
+<link rel="alternate" hreflang="pt" href="https://sekuvo.com/pt/guide/">
+<link rel="alternate" hreflang="ru" href="https://sekuvo.com/ru/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "IBM Plex Sans", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "IBM Plex Sans", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  .shots { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }
+  .shots figure { margin: 0; flex: 0 1 15rem; }
+  .shots img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }
+  .shots figcaption { font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } .shots figure { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/ru/privacy/">Конфиденциальность</a> <a href="https://sekuvo.com/ru/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a> ·
+    <a href="https://sekuvo.com/zh/guide/" lang="zh">简体中文</a> ·
+    <a href="https://sekuvo.com/fr/guide/" lang="fr">Français</a> ·
+    <a href="https://sekuvo.com/bn/guide/" lang="bn">বাংলা</a> ·
+    <a href="https://sekuvo.com/pt/guide/" lang="pt">Português</a> ·
+    <a class="here" href="https://sekuvo.com/ru/guide/" lang="ru">Русский</a></div>
+
+  <div class="prose">
+    <h1>Руководство</h1>
+    <p class="lede-big">Всё, что делает Sekuvo, в том порядке, в котором это, скорее всего, понадобится. Ничто здесь не требует аккаунта или подключения к интернету.</p>
+    <nav class="toc"><ol><li><a href="#start">Первый запуск</a></li><li><a href="#entries">Что можно сохранять</a></li><li><a href="#channels">Использование секрета без буфера обмена</a></li><li><a href="#autofill">Автозаполнение (внутри телефона)</a></li><li><a href="#keyboard">Клавиатура Sekuvo (внутри телефона)</a></li><li><a href="#bluetooth">Ввод на компьютере по Bluetooth</a></li><li><a href="#lock">Как работает блокировка</a></li><li><a href="#quick">Быстрый доступ — осознанный компромисс</a></li><li><a href="#backup">Резервные копии и восстановление</a></li><li><a href="#transfer">Перенос секретов с компьютера</a></li><li><a href="#log">Журнал использования</a></li><li><a href="#generator">Генератор паролей</a></li></ol></nav>
+    <h2 id="start">Первый запуск</h2><p>При первом открытии вы задаёте <strong>основной пароль</strong>. Каждый секрет, который вы сохраняете, шифруется ключом, полученным из него, поэтому это единственное, что Sekuvo не сможет помочь вам восстановить — запишите его в надёжном месте, прежде чем продолжить.</p><p>Уже есть резервная копия с другого телефона? Нажмите «У меня есть резервная копия — восстановить её» на экране приветствия. Вы всё равно сначала зададите основной пароль для этого устройства, а затем выбор файла откроется сам, и ваши записи вернутся.</p><p>Если ваш телефон имеет сканер отпечатка или лица, Sekuvo предложит использовать его сразу после настройки. Это лишь слой удобства: основной пароль всегда работает, и именно он переживает сброс до заводских настроек.</p><div class="shots"><figure><img src="https://sekuvo.com/img/01-karsilama.png" alt="Экран приветствия: задайте основной пароль или восстановите уже имеющуюся резервную копию." loading="lazy" width="405" height="900"><figcaption>Экран приветствия: задайте основной пароль или восстановите уже имеющуюся резервную копию.</figcaption></figure></div><h2 id="entries">Что можно сохранять</h2><p>Четыре типа записей покрывают большую часть того, что люди хранят в хранилище:</p><ul><li><strong>Аккаунт / Пароль</strong> — имя пользователя, пароль, сайт или приложение.</li><li><strong>Повседневное</strong> — имя, телефон, эл. почта, адрес. То, что постоянно запрашивают формы.</li><li><strong>Карта</strong> — номер карты, срок действия, CVV, IBAN.</li><li><strong>Защищённая заметка</strong> — свободный текст, с подтипами для скриптов, ключей, кодов восстановления и файлов конфигурации.</li></ul><p>Записи типа «Аккаунт» и «Повседневное» также принимают <strong>пользовательские поля</strong>: любую пару «название + значение», какую захотите. Пользовательские поля шифруются точно так же, как встроенные, и появляются везде, где появляются остальные.</p><div class="shots"><figure><img src="https://sekuvo.com/img/02-liste.png" alt="Список записей с поиском и фильтрами по типу." loading="lazy" width="405" height="900"><figcaption>Список записей с поиском и фильтрами по типу.</figcaption></figure><figure><img src="https://sekuvo.com/img/10-ekleme-menusu.png" alt="При добавлении: четыре типа записей плюс два пути импорта." loading="lazy" width="405" height="900"><figcaption>При добавлении: четыре типа записей плюс два пути импорта.</figcaption></figure><figure><img src="https://sekuvo.com/img/03-uzun-anahtar.png" alt="SSH-ключ из 386 символов, целиком. Отпечаток под ним позволяет проверить значение, не читая его." loading="lazy" width="405" height="900"><figcaption>SSH-ключ из 386 символов, целиком. Отпечаток под ним позволяет проверить значение, не читая его.</figcaption></figure></div><h2 id="channels">Использование секрета без буфера обмена</h2><p>Буфер обмена могут читать другие приложения, и именно там крадут секреты. Поэтому Sekuvo предлагает три способа доставить значение прямо в место назначения. Копировать по-прежнему можно — буфер обмена автоматически очищается через 45 секунд, — но три канала ниже — вот причина существования приложения.</p><div class="shots"><figure><img src="https://sekuvo.com/img/04-detay.png" alt="Запись. Пароль остаётся скрытым; значки рядом с каждым полем копируют его или вводят на компьютере." loading="lazy" width="405" height="900"><figcaption>Запись. Пароль остаётся скрытым; значки рядом с каждым полем копируют его или вводят на компьютере.</figcaption></figure></div><h2 id="autofill">Автозаполнение (внутри телефона)</h2><p>Sekuvo может выступать службой автозаполнения Android, поэтому формы входа и карты сами предлагают ваши записи.</p><p><strong>Чтобы включить:</strong> Sekuvo → Настройки → <em>Включить автозаполнение</em> → выберите Sekuvo в системном списке. Этот список называется по-разному в зависимости от устройства: на Samsung и Android 14+ это «Пароли, ключи доступа и автозаполнение → Предпочтительная служба»; на чистом Android — «Служба автозаполнения».</p><p>После этого нажатие на поле имени пользователя, пароля или карты в любом приложении покажет соответствующие записи над клавиатурой. Если хранилище заблокировано, сначала появится шаг разблокировки — пока оно заблокировано, системе не передаётся абсолютно ничего.</p><div class="shots"><figure><img src="https://sekuvo.com/img/07-ayarlar.png" alt="Настройки — здесь включаются автозаполнение и клавиатура." loading="lazy" width="405" height="900"><figcaption>Настройки — здесь включаются автозаполнение и клавиатура.</figcaption></figure></div><h2 id="keyboard">Клавиатура Sekuvo (внутри телефона)</h2><p>Дополнение клавиатуры вводит сохранённые значения в любое поле, в любом приложении, без шага копирования.</p><p><strong>Чтобы включить:</strong> Sekuvo → Настройки → <em>Включить клавиатуру</em> → включите её в системном списке, затем выбирайте «Клавиатура Sekuvo» в переключателе клавиатур, когда потребуется.</p><p>Недавно использованные записи находятся сверху, а 🔍 ищет по названиям, именам пользователей и адресам. При заблокированном хранилище клавиатура показывает только записи, отмеченные для быстрого доступа — см. ниже.</p><h2 id="bluetooth">Ввод на компьютере по Bluetooth</h2><p>Ваш телефон может выступать Bluetooth-клавиатурой и вводить секрет в позицию курсора на компьютере. На компьютер ничего не устанавливается, работает на Windows, macOS и Linux, а значение никогда не касается буфера обмена или сети. Требуется Android 9 или новее.</p><h3>Пошагово</h3><ol><li>В Sekuvo откройте запись и нажмите значок 💻 рядом с полем, которое нужно ввести. <strong>Держите этот экран открытым</strong> — телефон объявляет себя клавиатурой только пока он открыт.</li><li>На компьютере добавьте телефон как новое устройство Bluetooth: <em>Настройки → Bluetooth и устройства → Добавить устройство → Bluetooth</em> в Windows, или <em>Системные настройки → Bluetooth</em> в macOS.</li><li>Подтвердите код сопряжения с обеих сторон.</li><li>Вернувшись на телефон, выберите свой компьютер из списка и дождитесь надписи «Подключено».</li><li>Выберите раскладку клавиатуры <strong>КОМПЬЮТЕРА</strong> — не телефона. Компьютер сам интерпретирует коды клавиш, поэтому неверная раскладка незаметно превращает такие символы, как @ " ?, в другие.</li><li>Кликните в поле на компьютере, куда должно попасть значение.</li><li>Нажмите <strong>Ввести</strong> на телефоне. После обратного отсчёта в три секунды — он даётся, чтобы вы успели кликнуть в нужное поле — значение вводится посимвольно.</li></ol><h3>Подключено, но ничего не вводится</h3><p>Почти всегда причина одна: компьютер когда-то ранее сопрягал ваш телефон <em>как обычный телефон</em>, поэтому так и не включил для него службу клавиатуры (HID). Соединение работает, а нажатия клавиш никуда не попадают.</p><ol><li>Удалите сопряжение на компьютере («Удалить устройство»).</li><li>Удалите его и на телефоне тоже («Забыть» в настройках Bluetooth). Важны обе стороны.</li><li>Откройте экран 💻 в Sekuvo и оставьте его открытым.</li><li>Сопрягите заново, начиная <strong>с компьютера</strong>.</li><li>Чтобы проверить в Windows: <em>Диспетчер устройств → Устройства HID</em> теперь должен показывать устройство Bluetooth HID.</li></ol><p>В macOS первое подключение может открыть <strong>Мастер настройки клавиатуры</strong>, который просит нажать клавишу рядом с shift. Пока это окно не закрыто, macOS ничего не обрабатывает — это частая причина «подключено, но тихо» на Mac.</p><h3>Скорость и как её проверить</h3><p>Нажатия клавиш отправляются по одному, поэтому длинный секрет действительно занимает время — диалоговое окно показывает оценку. Предлагаются три скорости, и то, что безопасная стоит по умолчанию, — намеренное решение. Прежде чем повышать скорость, используйте <strong>⏱ Тест скорости</strong>: он вводит десять одинаковых блоков, разделённых пробелами, и сообщает измеренные символы в секунду. Если хотя бы один блок отличается, эта скорость небезопасна на данном компьютере — выберите на ступень ниже.</p><p>Тест скорости служит и диагностикой: ничего не введено — проблема в сопряжении, символы перепутаны — в раскладке, ввод обрывается на середине — в скорости.</p><p>Во время ввода вы видите индикатор прогресса и кнопку <strong>Остановить</strong>. Если очередь отправки зависает, Sekuvo повторяет попытку с растущей паузой, а если это всё равно не помогает, <em>останавливается и сообщает вам</em>, на каком символе — секрет никогда не вводится наполовину молча.</p><h2 id="lock">Как работает блокировка</h2><p>Хранилище блокируется в тот момент, когда гаснет экран, на котором оно открыто — складывание складного телефона тоже считается. В этот момент ключ стирается из памяти; названия записей могут по-прежнему отображаться в списке, но ничего нельзя расшифровать.</p><p>Выход из приложения при включённом экране <em>не</em> блокирует его. Это намеренно: приложение, клавиатура и автозаполнение используют общий сеанс, иначе переключение в браузер, чтобы вставить пароль, оставило бы вас снаружи посреди задачи.</p><h2 id="quick">Быстрый доступ — осознанный компромисс</h2><p>Записи, которые вы явно отмечаете как «использовать в клавиатуре без пароля», сохраняются повторно, зашифрованные отдельным ключом устройства, чтобы клавиатура могла их прочитать <em>при заблокированном хранилище</em>.</p><p>Компромисс сформулирован прямо: такие записи защищены блокировкой экрана вашего телефона, а не основным паролем. Не держите там пароли. Отметка по умолчанию выключена; единственное исключение — новые записи типа «Повседневное», которые начинаются отмеченными, потому что имена и номера телефонов — это именно то, что вы хотите иметь под рукой; любую из них можно выключить.</p><div class="shots"><figure><img src="https://sekuvo.com/img/11-duzenleme.png" alt="Редактирование записи. Переключатель быстрого доступа внизу, его цена объяснена рядом." loading="lazy" width="405" height="900"><figcaption>Редактирование записи. Переключатель быстрого доступа внизу, его цена объяснена рядом.</figcaption></figure></div><h2 id="backup">Резервные копии и восстановление</h2><p>Системное резервное копирование (резервная копия Google, перенос устройства) намеренно отключено, поэтому существует ровно один способ, которым ваше хранилище покидает телефон, и это тот, который выбираете вы: <strong>Настройки → Создать зашифрованную копию</strong>.</p><p>Вы задаёте <em>пароль резервной копии</em> — сделайте его отличным от основного пароля, потому что именно пароль резервной копии в итоге вводится на компьютерах. В результате получается один файл <code>.vaultbak</code>, который вы сохраняете где угодно: на Диске, SD-карте, флешке.</p><p>Файл не привязан к устройству: его собственная соль и параметры получения ключа хранятся в заголовке. Файл плюс пароль резервной копии восстанавливают всё на любом телефоне, даже после сброса до заводских настроек. Восстанавливайте через <strong>Настройки → Восстановить из резервной копии</strong> или с экрана приветствия при новой установке.</p><p>Восстановление предлагает <em>добавить к существующим</em> или <em>заменить всё</em>. Оба варианта проверяются прежде, чем что-либо будет записано — неверный пароль не проходит проверку подлинности, и ничего не удаляется, пока новые данные не подтверждены.</p><div class="shots"><figure><img src="https://sekuvo.com/img/08-yedekleme.png" alt="Резервное копирование и восстановление живут рядом в Настройках." loading="lazy" width="405" height="900"><figcaption>Резервное копирование и восстановление живут рядом в Настройках.</figcaption></figure></div><h2 id="transfer">Перенос секретов с компьютера</h2><p>Ручной ввод длинного ключа на телефоне — это где случаются ошибки. Sekuvo переносит их как зашифрованный конверт, двумя способами: текстом, который вы вставляете, или QR-кодами, которые вы сканируете.</p><p><strong>На телефоне:</strong> кнопка ➕ предлагает «Импорт через QR» и «Импорт из текста». Импорт через QR открывает камеру; кадры декодируются на устройстве, а многокадровые переносы показывают прогресс по мере сбора.</p><h3>Инструмент на стороне компьютера</h3><p>Инструмент, который строит эти конверты, — это один HTML-файл, и это намеренно <strong>скачиваемый файл, а не сайт</strong>. sekuvo.com никогда не спросит у вас секрет; страница, которая делала бы это, была бы неотличима от фишингового сайта.</p><ol><li>Откройте проект на GitHub и перейдите в раздел <strong>Releases</strong>.</li><li>Скачайте <code>aktar.html</code> из последней версии.</li><li>Проверьте его SHA-256 по значению, опубликованному рядом: <code>shasum -a 256 aktar.html</code> на macOS или Linux, <code>certutil -hashfile aktar.html SHA256</code> на Windows.</li><li>Откройте файл двойным щелчком. Он работает с вашего диска — адресная строка показывает <code>file://</code>, а не сайт.</li><li>Вставьте свой текст, задайте пароль переноса, и он создаст конверт как текст или как QR-коды.</li><li>На телефоне отсканируйте или вставьте, введите тот же пароль и выберите добавить или заменить.</li></ol><p>Всё шифрование происходит внутри вашего браузера, на вашей машине. Также есть <code>vault-clip.py</code> для командной строки, который делает то же самое из буфера обмена или файла и может рисовать QR-коды прямо в терминале.</p><h3>Если вы предпочитаете не использовать инструмент</h3><p>Конверт — открытый формат, а не что-то, что может создать только Sekuvo: PBKDF2-HMAC-SHA256 с 310 000 раундами, AES-256-GCM, обёрнутый в небольшой объект JSON. Вы можете собрать его сами примерно тридцатью строками, которые уже прочитали, и вставить результат в «Импорт из текста» — приложение не может определить, какой инструмент его создал, и ему это неважно.</p><p>Рецепт находится в репозитории: <a href="https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md">docs/kendi-zarfini-uret.md</a> (написан на турецком языке).</p><div class="shots"><figure><img src="https://sekuvo.com/img/06-aktarim.png" alt="Мастер переноса секретов с компьютера." loading="lazy" width="405" height="900"><figcaption>Мастер переноса секретов с компьютера.</figcaption></figure></div><h2 id="log">Журнал использования</h2><p>Sekuvo записывает, какое поле какой записи, куда и когда было отправлено: в буфер обмена, на компьютер по Bluetooth (с именем целевого устройства) или введено в приложение через клавиатуру. Когда компьютер скомпрометирован, это отвечает на вопрос «что туда попало, что нужно поменять».</p><p>Журнал зашифрован тем же ключом, что и ваши записи, и <strong>значения в него никогда не записываются</strong> — только тип события, название поля и получатель. Удаление записи удаляет и её журнал, а очистить всё можно из Настроек.</p><div class="shots"><figure><img src="https://sekuvo.com/img/09-gunluk.png" alt="Журнал использования: что и куда ушло, когда — но никогда само значение." loading="lazy" width="405" height="900"><figcaption>Журнал использования: что и куда ушло, когда — но никогда само значение.</figcaption></figure></div><h2 id="generator">Генератор паролей</h2><p>Доступен через значок 🎲 на главном экране или рядом с полем пароля при редактировании записи. Использует криптографический источник случайности, создаёт от 8 до 64 символов, позволяет выбирать классы символов, может убирать похожие друг на друга символы и показывает результирующую энтропию в битах.</p><div class="shots"><figure><img src="https://sekuvo.com/img/05-uretici.png" alt="Генератор, с результирующей энтропией в битах." loading="lazy" width="405" height="900"><figcaption>Генератор, с результирующей энтропией в битах.</figcaption></figure></div>
+    <a class="back" href="https://sekuvo.com/ru/">← Назад на sekuvo.com</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>
