@@ -654,6 +654,85 @@ G["bn"] = dict(
     ],
 )
 
+G["pt"] = dict(
+    nav_label="Guia",
+    title="Sekuvo — Guia",
+    desc="Como usar o Sekuvo: primeira execução, preenchimento automático, o teclado, digitação em um computador via Bluetooth, backups e transferências.",
+    h1="Guia",
+    lede="Tudo o que o Sekuvo faz, na ordem em que você provavelmente vai precisar. Nada aqui exige conta ou conexão com a internet.",
+    back="← Voltar para sekuvo.com",
+    sections=[
+        ("start", "Primeira execução", [
+            "<p>Na primeira abertura, você define uma <strong>senha principal</strong>. Cada segredo que você salva é criptografado com uma chave derivada dela, então é a única coisa que o Sekuvo não pode ajudar você a recuperar — anote-a em um lugar seguro antes de continuar.</p>",
+            "<p>Já tem um backup de outro telefone? Toque em <strong>“Tenho um backup — restaurá-lo”</strong> na tela de boas-vindas. Você ainda define primeiro uma senha principal para este dispositivo, e depois o seletor de arquivos abre sozinho e seus itens voltam.</p>",
+            "<p>Se o seu telefone tem sensor de impressão digital ou de rosto, o Sekuvo oferece usá-lo logo após a configuração. Isso é apenas uma camada de conveniência: a senha principal sempre funciona, e é ela que sobrevive a uma restauração de fábrica.</p>",
+        ]),
+        ("entries", "O que você pode salvar", [
+            "<p>Quatro tipos de item cobrem a maior parte do que as pessoas guardam em um cofre:</p>",
+            "<ul><li><strong>Conta / Senha</strong> — usuário, senha, site ou aplicativo.</li><li><strong>Dia a dia</strong> — nome, telefone, e-mail, endereço. O que os formulários pedem o tempo todo.</li><li><strong>Cartão</strong> — número do cartão, validade, CVV, IBAN.</li><li><strong>Nota segura</strong> — texto livre, com subtipos para scripts, chaves, códigos de recuperação e arquivos de configuração.</li></ul>",
+            "<p>Itens de Conta e Dia a dia também aceitam <strong>campos personalizados</strong>: qualquer par “nome + valor” que você quiser. Campos personalizados são criptografados exatamente como os integrados e aparecem em todos os lugares em que os outros aparecem.</p>",
+        ]),
+        ("channels", "Usando um segredo sem a área de transferência", [
+            "<p>A área de transferência pode ser lida por outros aplicativos e é onde segredos são roubados. Por isso o Sekuvo oferece três formas de entregar um valor direto ao destino. Você ainda pode copiar — a área de transferência é limpa automaticamente após 45 segundos — mas os três canais abaixo são o motivo de o aplicativo existir.</p>",
+        ]),
+        ("autofill", "Preenchimento automático (dentro do telefone)", [
+            "<p>O Sekuvo pode atuar como o serviço de preenchimento automático do Android, então formulários de login e de cartão oferecem seus itens diretamente.</p>",
+            "<p><strong>Para ativar:</strong> Sekuvo → Configurações → <em>Ativar preenchimento automático</em> → escolha o Sekuvo na lista do sistema. Essa lista tem nomes diferentes por dispositivo: em Samsung e Android 14+ é <em>Senhas, chaves de acesso e preenchimento automático → Serviço preferido</em>; no Android puro é <em>Serviço de preenchimento automático</em>.</p>",
+            "<p>Depois disso, tocar em um campo de usuário, senha ou cartão em qualquer aplicativo mostra seus itens correspondentes acima do teclado. Se o cofre estiver bloqueado, aparece primeiro uma etapa de desbloqueio — enquanto bloqueado, o sistema não recebe absolutamente nada.</p>",
+        ]),
+        ("keyboard", "Teclado Sekuvo (dentro do telefone)", [
+            "<p>O complemento de teclado digita valores salvos em qualquer campo, em qualquer aplicativo, sem etapa de cópia.</p>",
+            "<p><strong>Para ativar:</strong> Sekuvo → Configurações → <em>Ativar o teclado</em> → ative-o na lista do sistema, depois escolha “Teclado Sekuvo” no seletor de teclado sempre que precisar.</p>",
+            "<p>Itens usados recentemente ficam no topo e o 🔍 pesquisa em títulos, usuários e endereços. Com o cofre bloqueado, o teclado mostra apenas itens que você marcou para acesso rápido — veja abaixo.</p>",
+        ]),
+        ("bluetooth", "Digitando em um computador via Bluetooth", [
+            "<p>Seu telefone pode atuar como um teclado Bluetooth e digitar um segredo no cursor do seu computador. Nada é instalado no computador, funciona em Windows, macOS e Linux, e o valor nunca toca a área de transferência ou uma rede. Requer Android 9 ou mais recente.</p>",
+            "<h3>Passo a passo</h3>",
+            "<ol><li>No Sekuvo, abra o item e toque no ícone 💻 ao lado do campo que você quer digitar. <strong>Mantenha esta tela aberta</strong> — seu telefone só se anuncia como teclado enquanto ela estiver aberta.</li><li>No computador, adicione o telefone como um novo dispositivo Bluetooth: <em>Configurações → Bluetooth e dispositivos → Adicionar dispositivo → Bluetooth</em> no Windows, ou <em>Ajustes do Sistema → Bluetooth</em> no macOS.</li><li>Confirme o código de pareamento nos dois lados.</li><li>De volta ao telefone, escolha seu computador na lista e espere aparecer “Conectado”.</li><li>Escolha o layout de teclado <strong>do computador</strong> — não o do telefone. O computador interpreta os códigos de tecla, então um layout errado transforma silenciosamente caracteres como @ \" ? em outros.</li><li>Clique no campo do computador onde o valor deve ir.</li><li>Toque em <strong>Digitar</strong> no telefone. Após uma contagem regressiva de três segundos — que existe para você conseguir clicar naquele campo — o valor é digitado tecla por tecla.</li></ol>",
+            "<h3>Conectado, mas nada é digitado</h3>",
+            "<p>Quase sempre a mesma causa: o computador pareou seu telefone <em>como um telefone</em> em algum momento anterior, então nunca ativou o serviço de teclado (HID) para ele. A conexão funciona e as teclas não vão para lugar nenhum.</p>",
+            "<ol><li>Remova o pareamento no computador (<em>Remover dispositivo</em>).</li><li>Remova-o no telefone também (<em>Esquecer</em> nas configurações de Bluetooth). Os dois lados importam.</li><li>Abra a tela 💻 no Sekuvo e deixe-a aberta.</li><li>Pareie de novo, começando <strong>pelo computador</strong>.</li><li>Para confirmar no Windows: o <em>Gerenciador de Dispositivos → Dispositivos de Interface Humana</em> deve agora listar um dispositivo Bluetooth HID.</li></ol>",
+            "<p>No macOS, a primeira conexão pode abrir o <strong>Assistente de Configuração do Teclado</strong>, que pede para você pressionar uma tecla ao lado da tecla shift. Até essa janela ser fechada, o macOS não processa nada — essa é a causa comum de “conectado mas silencioso” em um Mac.</p>",
+            "<h3>Velocidade, e como verificá-la</h3>",
+            "<p>As teclas são enviadas uma de cada vez, então um segredo longo realmente demora — a caixa de diálogo mostra uma estimativa. Três velocidades são oferecidas, e a segura ser o padrão é proposital. Antes de aumentar, use o <strong>⏱ Teste de velocidade</strong>: ele digita dez blocos idênticos separados por espaço e informa os caracteres por segundo medidos. Se ao menos um bloco for diferente, essa velocidade não é segura neste computador — baixe um degrau.</p>",
+            "<p>O teste de velocidade também serve como diagnóstico: nada digitado significa pareamento, caracteres embaralhados significam o layout, uma execução cortada significa a velocidade.</p>",
+            "<p>Durante a digitação você vê uma barra de progresso e um botão <strong>Parar</strong>. Se a fila de envio travar, o Sekuvo tenta de novo com espera crescente e, se ainda assim falhar, <em>para e avisa você</em> em qual caractere — um segredo nunca fica digitado pela metade em silêncio.</p>",
+        ]),
+        ("lock", "Como funciona o bloqueio", [
+            "<p>O cofre bloqueia no instante em que a tela em que está se apaga — inclusive fechar um telefone dobrável. Nesse instante a chave é apagada da memória; os títulos dos itens podem continuar listados, mas nada pode ser descriptografado.</p>",
+            "<p>Sair do aplicativo com a tela acesa <em>não</em> o bloqueia. Isso é proposital: o aplicativo, o teclado e o preenchimento automático compartilham uma sessão, senão trocar para o navegador para colar uma senha deixaria você trancado do lado de fora no meio da tarefa.</p>",
+        ]),
+        ("quick", "Acesso rápido — uma troca deliberada", [
+            "<p>Itens que você marca explicitamente como “usar no teclado sem senha” são salvos uma segunda vez, criptografados com uma chave de dispositivo separada, para que o teclado possa lê-los <em>com o cofre bloqueado</em>.</p>",
+            "<p>A troca é dita claramente: esses itens são protegidos pelo bloqueio de tela do seu telefone, não pela sua senha principal. Mantenha senhas fora disso. A marcação vem desativada por padrão; a única exceção são novos itens <strong>Dia a dia</strong>, que começam marcados porque nomes e números de telefone são exatamente o que você quer à mão — você pode desativar qualquer um deles.</p>",
+        ]),
+        ("backup", "Backups e restauração", [
+            "<p>O backup do sistema (backup do Google, transferência de dispositivo) é desativado deliberadamente, então existe exatamente uma forma de seu cofre sair do telefone, e é a que você escolhe: <strong>Configurações → Criar backup criptografado</strong>.</p>",
+            "<p>Você escolhe uma <em>senha de backup</em> — deixe-a diferente da sua senha principal, porque a senha de backup é a que acaba sendo digitada em computadores. O resultado é um único arquivo <code>.vaultbak</code> que você salva onde quiser: Drive, um cartão SD, um pendrive.</p>",
+            "<p>O arquivo é independente do dispositivo: seu próprio sal e parâmetros de derivação de chave vivem no cabeçalho. Arquivo mais senha de backup restauram tudo em qualquer telefone, mesmo após uma restauração de fábrica. Restaure em <strong>Configurações → Restaurar de um backup</strong>, ou pela tela de boas-vindas em uma instalação nova.</p>",
+            "<p>Restaurar oferece <em>adicionar aos existentes</em> ou <em>substituir todos</em>. Ambos são verificados antes de qualquer coisa ser escrita — uma senha errada falha na etapa de autenticação, e nada é excluído até os novos dados serem confirmados.</p>",
+        ]),
+        ("transfer", "Trazendo segredos de um computador", [
+            "<p>Digitar uma chave longa à mão em um telefone é onde erros acontecem. O Sekuvo os transporta como um envelope criptografado, de duas formas: texto que você cola, ou códigos QR que você escaneia.</p>",
+            "<p><strong>No telefone:</strong> o botão ➕ oferece <em>Importar por QR</em> e <em>Importar de texto</em>. A importação por QR abre a câmera; os quadros são decodificados no dispositivo, e transferências com vários quadros mostram o progresso enquanto são coletados.</p>",
+            "<h3>A ferramenta do lado do computador</h3>",
+            "<p>A ferramenta que constrói esses envelopes é um único arquivo HTML, e é deliberadamente <strong>um download, não um site</strong>. O sekuvo.com nunca pede um segredo a você; uma página que fizesse isso seria exatamente como um site de phishing.</p>",
+            "<ol><li>Abra o projeto no GitHub e vá em <strong>Releases</strong>.</li><li>Baixe o <code>aktar.html</code> da versão mais recente.</li><li>Confira o SHA-256 dele com o valor publicado ao lado: <code>shasum -a 256 aktar.html</code> no macOS ou Linux, <code>certutil -hashfile aktar.html SHA256</code> no Windows.</li><li>Abra o arquivo dando dois cliques nele. Ele roda a partir do seu disco — a barra de endereço mostra <code>file://</code>, não um site.</li><li>Cole seu texto, defina uma senha de transferência, e ele produz o envelope como texto ou como códigos QR.</li><li>No telefone, escaneie ou cole, digite a mesma senha e escolha adicionar ou substituir.</li></ol>",
+            "<p>Toda a criptografia acontece dentro do seu navegador, na sua máquina. Também existe o <code>vault-clip.py</code> para a linha de comando, que faz o mesmo a partir da área de transferência ou de um arquivo e pode desenhar os códigos QR em um terminal.</p>",
+            "<h3>Se você preferir não usar a ferramenta</h3>",
+            "<p>O envelope é um formato aberto, não algo que só o Sekuvo pode criar: PBKDF2-HMAC-SHA256 com 310.000 rodadas, AES-256-GCM, embrulhado em um pequeno objeto JSON. Você pode construí-lo você mesmo com cerca de trinta linhas que já leu, e colar o resultado em <em>Importar de texto</em> — o aplicativo não tem como saber qual ferramenta o produziu, e não se importa.</p>",
+            "<p>A receita está no repositório: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (escrita em turco).</p>",
+        ]),
+        ("log", "Registro de uso", [
+            "<p>O Sekuvo registra qual campo de qual item foi para onde e quando: para a área de transferência, para um computador via Bluetooth (com o nome do dispositivo de destino), ou digitado em um aplicativo pelo teclado. Quando um computador é comprometido, isso responde “o que foi parar lá, o que preciso mudar”.</p>",
+            "<p>O registro é criptografado com a mesma chave dos seus itens e <strong>os valores nunca são gravados nele</strong> — apenas o tipo de evento, o nome do campo e o destino. Excluir um item exclui seu registro, e você pode limpar tudo pelas Configurações.</p>",
+        ]),
+        ("generator", "Gerador de senhas", [
+            "<p>Acessível pelo ícone 🎲 na tela inicial, ou ao lado do campo de senha ao editar um item. Ele usa uma fonte criptográfica de aleatoriedade, produz de 8 a 64 caracteres, permite escolher classes de caracteres, pode remover caracteres parecidos entre si, e mostra a entropia resultante em bits.</p>",
+        ]),
+    ],
+)
+
 SHOTS = {
     "start":     ["01-karsilama.png"],
     "entries":   ["02-liste.png", "10-ekleme-menusu.png", "03-uzun-anahtar.png"],
@@ -770,5 +849,18 @@ CAPTIONS = {
         "03-uzun-anahtar.png": "৩৮৬ অক্ষরের একটি SSH কী, সম্পূর্ণ। নিচের ফিঙ্গারপ্রিন্ট দিয়ে মানটি না পড়েই যাচাই করা যায়।",
         "09-gunluk.png": "ব্যবহারের লগ: কী কখন কোথায় গেছে — কিন্তু মানটি কখনো নয়।",
         "05-uretici.png": "জেনারেটর, ফলাফলের এনট্রপি বিট আকারে দেখানো হয়েছে।",
+    },
+    "pt": {
+        "01-karsilama.png": "A tela de boas-vindas: defina uma senha principal, ou restaure um backup que você já tem.",
+        "02-liste.png": "A lista de itens, com pesquisa e filtros por tipo.",
+        "10-ekleme-menusu.png": "Ao adicionar: quatro tipos de item, mais os dois caminhos de importação.",
+        "04-detay.png": "Um item. A senha permanece oculta; os ícones ao lado de cada campo a copiam ou a digitam em um computador.",
+        "07-ayarlar.png": "Configurações — onde o preenchimento automático e o teclado são ativados.",
+        "11-duzenleme.png": "Editando um item. O interruptor de acesso rápido fica embaixo, com seu custo explicado ao lado.",
+        "08-yedekleme.png": "Backup e restauração convivem nas Configurações.",
+        "06-aktarim.png": "O assistente para trazer segredos de um computador.",
+        "03-uzun-anahtar.png": "Uma chave SSH de 386 caracteres, inteira. A impressão digital abaixo dela permite verificar um valor sem lê-lo.",
+        "09-gunluk.png": "O registro de uso: o que foi para onde e quando — nunca o valor em si.",
+        "05-uretici.png": "O gerador, com a entropia resultante mostrada em bits.",
     },
 }

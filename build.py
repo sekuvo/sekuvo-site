@@ -403,7 +403,52 @@ L["bn"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>আপনার নিরাপদ ভল্ট।</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn"]
+L["pt"] = dict(
+    lang="pt", dir="ltr", script="latin", path="pt/", name="Português",
+    title="Sekuvo — Seu cofre seguro",
+    desc="Sekuvo — seu cofre seguro. Um cofre de senhas totalmente offline para Android: sem permissão de internet, AES-256, código aberto (GPLv3).",
+    nav=("Segurança", "Canais", "Baixar", "Privacidade"),
+    eyebrow="Cofre de senhas offline para Android",
+    h1="Seus segredos<br>nunca <em>saem.</em>",
+    lede="O Sekuvo é o seu cofre seguro: senhas, cartões e notas, criptografados no seu telefone com uma chave que só a sua senha principal consegue derivar. Sem servidor, sem conta, sem sincronização — e nenhuma forma de avisar alguém.",
+    btn_src="Código-fonte no GitHub", btn_priv="Política de privacidade",
+    cta_note="A ficha da Google Play está em preparação. O Sekuvo é gratuito e GPLv3 — o código é a prova.",
+    proof_cap="AndroidManifest.xml — todas as permissões que ele tem",
+    proof_alt="O manifesto do aplicativo pede câmera, biometria e Bluetooth, e uma busca pela permissão INTERNET não retorna nenhum resultado.",
+    proof_no="(nenhum resultado — essa permissão não existe)",
+    sec_eyebrow="Modelo de segurança",
+    sec_h2="Criptografia para auditar, não para acreditar.",
+    sec_kicker="Todo campo sensível é selado com AES-256-GCM. A chave nunca toca um servidor porque não existe servidor; ela é derivada no seu telefone, a partir da sua senha principal, toda vez que você desbloqueia.",
+    chain=('Senha principal ─<b>PBKDF2 · 310.000 rodadas</b>─▶ KEK ─<b>envelopamento AES-GCM</b>─▶ '
+           'dataKey ─▶ <b>AES-256-GCM</b> em cada item'),
+    cells=[("Bloqueia quando a tela apaga",
+            "A chave é apagada da memória no instante em que a tela escurece — fechar um dobrável também conta. Um único desbloqueio serve o aplicativo, o teclado e o preenchimento automático juntos."),
+           ("Backups que sobrevivem ao telefone",
+            "Um único arquivo criptografado <span class=\"mono-note\">.vaultbak</span>, guardado onde você escolher. Arquivo mais senha de backup restauram tudo em qualquer dispositivo — o caminho de recuperação é testado de ponta a ponta."),
+           ("Sem porta dos fundos de recuperação",
+            "Esqueça a senha principal e os dados se vão. É assim por design: uma porta que só você pode abrir não tem uma chave reserva debaixo do tapete.")],
+    ch_eyebrow="Sem área de transferência por design",
+    ch_h2="Três saídas, todas na ponta do seu dedo.",
+    ch_kicker="A área de transferência é onde segredos são roubados. O Sekuvo digita os valores direto no destino.",
+    lanes=[("Preenchimento automático", "Serviço de preenchimento automático do Android",
+            "Formulários de login e de cartão oferecem seus itens diretamente. Enquanto bloqueado, o sistema não recebe nada — desbloqueie primeiro, depois escolha."),
+           ("Teclado", "Teclado Sekuvo",
+            "Mude para ele em qualquer aplicativo e digite um segredo salvo direto no campo — pesquisável, recentes no topo, sem etapa de cópia."),
+           ("Bluetooth", "Digita no seu computador",
+            "Seu telefone vira um teclado Bluetooth e digita o segredo no cursor do computador. Nada é instalado no computador.")],
+    dl_eyebrow="Obter o Sekuvo", dl_h2="Gratuito, código aberto, GPLv3.",
+    dl_app_h="Aplicativo Android",
+    dl_app_p="A ficha da Google Play está em preparação. Até lá, você pode compilar a partir do código-fonte — o README do repositório explica em dois comandos.",
+    dl_tools_h="Ferramentas do lado do computador",
+    dl_tools_p="A ferramenta do lado do computador é um único arquivo HTML — <code>aktar.html</code> — e é um download, não uma página web: ela roda inteiramente na sua máquina, e este site nunca pede um segredo a você.",
+    dl_tools_note="github.com → Releases · confira o SHA-256 publicado",
+    dl_app_link="Leia o guia →",
+    dl_tools_link="Como obter e usar o aktar.html →",
+    contact="Contato",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>seu cofre seguro.</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -906,6 +951,33 @@ P["bn"] = dict(
          "<p>এই নীতি কখনো পরিবর্তিত হলে, নতুন সংস্করণটি হালনাগাদ কার্যকর তারিখসহ এই ঠিকানায় প্রকাশিত হবে।</p>"),
         ("যোগাযোগ",
          '<p>প্রশ্নের জন্য: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["pt"] = dict(
+    title="Sekuvo — Política de Privacidade",
+    desc="Política de privacidade do Sekuvo: nenhum dado é coletado, nenhum dado é compartilhado, sem permissão de internet.",
+    h1="Política de Privacidade",
+    meta=f"Aplicativo: <strong>Sekuvo</strong> (com.sekuvo.app) · Desenvolvedor: Ahmet Govercile · Data de vigência: {EFFECTIVE}",
+    back="← Voltar para sekuvo.com",
+    authoritative="Este texto é uma tradução do original em inglês. Em caso de divergência, prevalece a <a href=\"https://sekuvo.com/privacy/\">versão em inglês</a>.",
+    sections=[
+        ("Resumo",
+         "<p><strong>O Sekuvo não coleta, transmite nem compartilha nenhum dado.</strong> É um cofre de senhas offline. O aplicativo não pede a permissão de Internet, então é tecnicamente incapaz de enviar seus dados para qualquer lugar.</p>"),
+        ("Armazenamento de dados",
+         "<p>Tudo o que você salva no Sekuvo (títulos, usuários, senhas, notas, histórico de uso) fica no seu dispositivo, criptografado com uma chave derivada da sua senha principal. Nada é enviado, sincronizado ou salvo em backup em nenhum servidor pelo aplicativo.</p>"),
+        ("Coleta e compartilhamento de dados",
+         "<ul><li>Nenhum dado pessoal é coletado.</li><li>Nenhum dado é compartilhado com terceiros.</li><li>Nenhuma biblioteca de análise, publicidade ou rastreamento está incluída.</li><li>Nenhuma conta é necessária para usar o aplicativo.</li></ul>"),
+        ("Permissões",
+         "<ul><li><strong>Câmera</strong> — usada apenas para escanear códigos QR que você escolhe escanear, para importar seus próprios dados. As imagens são processadas no dispositivo e nunca saem dele.</li><li><strong>Biometria</strong> — usada apenas para desbloquear o cofre no seu dispositivo, pelo sistema biométrico do Android. O Sekuvo nunca vê nem armazena sua impressão digital ou dados do rosto.</li><li><strong>Bluetooth</strong> — usado apenas quando você pede explicitamente ao Sekuvo para digitar uma senha em um computador próximo, atuando como teclado Bluetooth. Apenas os caracteres que você escolhe enviar são transmitidos, diretamente ao dispositivo pareado.</li></ul>"),
+        ("Backups e transferências",
+         "<p>Backups e transferências só acontecem quando você os inicia, produzem um arquivo criptografado ou códigos QR protegidos por uma senha que você define, e são salvos ou exibidos apenas onde você indicar. O aplicativo nunca os envia para lugar nenhum por conta própria.</p>"),
+        ("Crianças",
+         "<p>O Sekuvo não coleta dados de ninguém, incluindo crianças.</p>"),
+        ("Alterações",
+         "<p>Se esta política mudar algum dia, a nova versão será publicada neste endereço com uma data de vigência atualizada.</p>"),
+        ("Contato",
+         '<p>Dúvidas: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
