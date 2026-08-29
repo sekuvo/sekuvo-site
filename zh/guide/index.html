@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvo 使用指南：首次运行、自动填充、键盘、通过蓝牙输入到电脑、备份与传输。">
+<title>Sekuvo — 使用指南</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Noto Sans SC", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Noto Sans SC", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Noto Sans SC", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  .shots { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }
+  .shots figure { margin: 0; flex: 0 1 15rem; }
+  .shots img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }
+  .shots figcaption { font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } .shots figure { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/zh/privacy/">隐私</a> <a href="https://sekuvo.com/zh/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a> ·
+    <a class="here" href="https://sekuvo.com/zh/guide/" lang="zh">简体中文</a></div>
+
+  <div class="prose">
+    <h1>使用指南</h1>
+    <p class="lede-big">Sekuvo 的所有功能，按你可能需要的顺序排列。这里的一切都不需要账户或互联网连接。</p>
+    <nav class="toc"><ol><li><a href="#start">首次运行</a></li><li><a href="#entries">可以保存什么</a></li><li><a href="#channels">不经过剪贴板使用密文</a></li><li><a href="#autofill">自动填充（手机内）</a></li><li><a href="#keyboard">Sekuvo 键盘（手机内）</a></li><li><a href="#bluetooth">通过蓝牙输入到电脑</a></li><li><a href="#lock">锁定机制</a></li><li><a href="#quick">快速访问 — 一次明确的取舍</a></li><li><a href="#backup">备份与恢复</a></li><li><a href="#transfer">从电脑带回密文</a></li><li><a href="#log">使用记录</a></li><li><a href="#generator">密码生成器</a></li></ol></nav>
+    <h2 id="start">首次运行</h2><p>首次启动时，你会设置一个<strong>主密码</strong>。你保存的每一个密文都用由它派生的密钥加密，因此它是唯一 Sekuvo 无法帮你找回的东西 — 在继续之前，请把它记在安全的地方。</p><p>已经有另一部手机的备份了吗？在欢迎界面点击<strong>“我有备份 — 恢复它”</strong>。你仍需先为此设备设置一个主密码，之后文件选择器会自动打开，你的条目就会回来。</p><p>如果你的手机支持指纹或面部识别，Sekuvo 会在设置完成后立即提示你启用它。这只是一层便利功能：主密码始终有效，也是唯一能在恢复出厂设置后依然有效的凭据。</p><div class="shots"><figure><img src="https://sekuvo.com/img/01-karsilama.png" alt="欢迎界面：设置主密码，或恢复你已有的备份。" loading="lazy" width="405" height="900"><figcaption>欢迎界面：设置主密码，或恢复你已有的备份。</figcaption></figure></div><h2 id="entries">可以保存什么</h2><p>四种条目类型涵盖了密码库中大部分常见内容：</p><ul><li><strong>账号 / 密码</strong> — 用户名、密码、网站或应用。</li><li><strong>日常信息</strong> — 姓名、电话、邮箱、地址。表单最常要求填写的内容。</li><li><strong>银行卡</strong> — 卡号、有效期、CVV、IBAN。</li><li><strong>安全笔记</strong> — 自由文本，还分脚本、密钥、恢复代码和配置文件等子类型。</li></ul><p>账号和日常信息条目还支持<strong>自定义字段</strong>：任意“名称 + 值”组合。自定义字段的加密方式与内置字段完全相同，并出现在所有相同的位置。</p><div class="shots"><figure><img src="https://sekuvo.com/img/02-liste.png" alt="条目列表，支持搜索和按类型筛选。" loading="lazy" width="405" height="900"><figcaption>条目列表，支持搜索和按类型筛选。</figcaption></figure><figure><img src="https://sekuvo.com/img/10-ekleme-menusu.png" alt="添加内容：四种条目类型，以及两种导入方式。" loading="lazy" width="405" height="900"><figcaption>添加内容：四种条目类型，以及两种导入方式。</figcaption></figure><figure><img src="https://sekuvo.com/img/03-uzun-anahtar.png" alt="一段 386 字符的 SSH 密钥，完整保存。下方的指纹可以在不读出该值的情况下核对它。" loading="lazy" width="405" height="900"><figcaption>一段 386 字符的 SSH 密钥，完整保存。下方的指纹可以在不读出该值的情况下核对它。</figcaption></figure></div><h2 id="channels">不经过剪贴板使用密文</h2><p>剪贴板可以被其他应用读取，是密文最容易被窃取的地方。因此 Sekuvo 提供三种方式，把值直接送达目的地。你仍然可以选择复制 — 剪贴板会在 45 秒后自动清空 — 但下面这三条通道才是这款应用存在的意义。</p><div class="shots"><figure><img src="https://sekuvo.com/img/04-detay.png" alt="一个条目。密码保持遮盖状态；每个字段旁的图标可复制它或将其输入到电脑。" loading="lazy" width="405" height="900"><figcaption>一个条目。密码保持遮盖状态；每个字段旁的图标可复制它或将其输入到电脑。</figcaption></figure></div><h2 id="autofill">自动填充（手机内）</h2><p>Sekuvo 可以作为 Android 的自动填充服务，让登录和银行卡表单直接提供你的条目。</p><p><strong>开启方法：</strong>Sekuvo → 设置 → <em>启用自动填充</em> → 在系统列表中选择 Sekuvo。该列表在不同设备上名称不同：三星和 Android 14+ 上是<em>密码、通行密钥和自动填充 → 首选服务</em>；原生 Android 上是<em>自动填充服务</em>。</p><p>之后，在任意应用中点击用户名、密码或银行卡字段，就会在键盘上方显示你匹配的条目。如果密码库已锁定，会先出现解锁步骤 — 锁定期间系统完全得不到任何数据。</p><div class="shots"><figure><img src="https://sekuvo.com/img/07-ayarlar.png" alt="设置 — 在这里开启自动填充和键盘。" loading="lazy" width="405" height="900"><figcaption>设置 — 在这里开启自动填充和键盘。</figcaption></figure></div><h2 id="keyboard">Sekuvo 键盘（手机内）</h2><p>键盘附加组件可以把已保存的值直接输入到任意应用的任意字段，无需复制这一步。</p><p><strong>开启方法：</strong>Sekuvo → 设置 → <em>启用键盘</em> → 在系统列表中开启，然后在需要时于键盘切换器中选择“Sekuvo 键盘”。</p><p>最近使用的条目排在最前，🔍 可搜索标题、用户名和地址。密码库锁定时，键盘只会显示你标记为快速访问的条目 — 见下文。</p><h2 id="bluetooth">通过蓝牙输入到电脑</h2><p>你的手机可以充当蓝牙键盘，把密文输入到电脑光标所在的位置。电脑上不会安装任何东西，支持 Windows、macOS 和 Linux，且该值不会经过剪贴板或网络。需要 Android 9 或更高版本。</p><h3>操作步骤</h3><ol><li>在 Sekuvo 中打开条目，点击想要输入的字段旁的 💻 图标。<strong>保持该屏幕开启</strong> — 只有在此期间手机才会宣告自己是一个键盘。</li><li>在电脑上将手机添加为新的蓝牙设备：Windows 上是<em>设置 → 蓝牙和其他设备 → 添加设备 → 蓝牙</em>，macOS 上是<em>系统设置 → 蓝牙</em>。</li><li>在双方设备上确认配对码。</li><li>回到手机，从列表中选择你的电脑，等待显示“已连接”。</li><li>选择<strong>电脑</strong>的键盘布局 — 而不是手机的。电脑负责解释按键代码，选错布局会把 @ " ? 等字符悄悄替换成别的字符。</li><li>在电脑上点击目标值应输入到的字段。</li><li>在手机上点击<strong>输入</strong>。经过三秒倒计时（专门留给你完成点击那个字段）后，值会逐个字符地输入。</li></ol><h3>显示已连接，但什么都没输入</h3><p>几乎总是同一个原因：电脑之前把你的手机<em>当作普通手机</em>配对过，因此从未为它启用键盘（HID）服务。连接看似成功，但按键信号无处可去。</p><ol><li>在电脑上移除配对（<em>移除设备</em>）。</li><li>在手机上也移除（蓝牙设置中的<em>取消配对</em>）。两边都要处理。</li><li>在 Sekuvo 中打开 💻 屏幕并保持开启。</li><li><strong>从电脑端开始</strong>重新配对。</li><li>在 Windows 上确认：设备管理器 → 人体学输入设备中此时应出现一个蓝牙 HID 设备。</li></ol><p>在 macOS 上，首次连接可能会打开<strong>键盘设置助理</strong>，要求你按下 Shift 键旁边的某个键。在关闭该窗口之前，macOS 不会处理任何输入 — 这是 Mac 上“已连接但无反应”最常见的原因。</p><h3>速度，以及如何检查</h3><p>按键是逐个发送的，所以较长的密文确实需要时间 — 对话框会显示预计时间。系统提供三档速度，默认选用安全档是刻意的设计。在提高速度之前，请使用<strong>⏱ 速度测试</strong>：它会输入十个以空格分隔的相同字符块，并报告实测的每秒字符数。只要有一块不同，这个速度在这台电脑上就不安全 — 请降低一档。</p><p>速度测试同时也是一种诊断手段：完全没有输入说明是配对问题，字符错乱说明是布局问题，中途中断说明是速度问题。</p><p>输入过程中会显示进度条和<strong>停止</strong>按钮。如果发送队列卡住，Sekuvo 会以退避策略重试；如果仍然失败，它会<em>停止并告诉你</em>在哪个字符处中断了 — 密文绝不会被悄悄地只输入一半。</p><h2 id="lock">锁定机制</h2><p>密码库会在其所在屏幕熄灭的瞬间锁定 — 折叠屏手机合上也算。那一刻密钥会立即从内存中清除；条目标题可能仍会列出，但没有任何内容能被解密。</p><p>屏幕保持点亮时离开应用<em>不会</em>锁定密码库。这是刻意的设计：应用、键盘和自动填充共享同一个会话，否则切到浏览器去粘贴一个密码就会让你在任务进行到一半时被锁在外面。</p><h2 id="quick">快速访问 — 一次明确的取舍</h2><p>你明确标记为“在键盘中免密码使用”的条目会被再保存一份，用单独的设备密钥加密，这样键盘就能在<em>密码库锁定期间</em>读取它们。</p><p>这个取舍说得很清楚：这些条目受手机锁屏保护，而不是你的主密码。请不要把密码放进去。此标记默认关闭；唯一的例外是新建的<strong>日常信息</strong>条目，它们默认开启，因为姓名和电话号码正是你希望随手可用的内容 — 你可以逐条关闭它。</p><div class="shots"><figure><img src="https://sekuvo.com/img/11-duzenleme.png" alt="编辑一个条目。快速访问开关位于底部，其代价就写在旁边。" loading="lazy" width="405" height="900"><figcaption>编辑一个条目。快速访问开关位于底部，其代价就写在旁边。</figcaption></figure></div><h2 id="backup">备份与恢复</h2><p>系统备份（如 Google 备份、设备转移）在设计上被禁用，因此你的密码库离开手机只有一条路径，且是你自己选择的：<strong>设置 → 创建加密备份</strong>。</p><p>你会设置一个<em>备份密码</em> — 请让它与主密码不同，因为备份密码是会被输入到电脑上的那个密码。生成的结果是一个 <code>.vaultbak</code> 文件，你可以保存在任何地方：网盘、SD 卡、U 盘。</p><p>该文件与设备无关：它自己的盐值和密钥派生参数都保存在文件头中。文件加上备份密码，可以在任何手机上恢复一切，即使经过恢复出厂设置也一样。可从<strong>设置 → 从备份恢复</strong>恢复，或在全新安装时从欢迎界面恢复。</p><p>恢复时可选择<em>添加到现有</em>或<em>替换全部</em>。两种方式都会在写入任何内容之前完成校验 — 密码错误会在身份验证阶段就失败，且在新数据确认无误之前不会删除任何东西。</p><div class="shots"><figure><img src="https://sekuvo.com/img/08-yedekleme.png" alt="备份与恢复在设置中并列显示。" loading="lazy" width="405" height="900"><figcaption>备份与恢复在设置中并列显示。</figcaption></figure></div><h2 id="transfer">从电脑带回密文</h2><p>在手机上手动输入一长串密钥正是最容易出错的地方。因此 Sekuvo 改用加密信封来传递，有两种形式：你粘贴的文本，或你扫描的二维码。</p><p><strong>在手机上：</strong>➕ 按钮提供<em>通过二维码导入</em>和<em>从文本导入</em>两个选项。二维码导入会打开相机；帧的解码在设备本地完成，多帧传输时会显示收集进度。</p><h3>电脑端工具</h3><p>用来生成这些信封的工具是一个单独的 HTML 文件，而且是刻意设计为<strong>一个下载文件，而不是一个网站</strong>的。sekuvo.com 绝不会向你索要密文；一个这样做的网页看起来会和钓鱼网站一模一样。</p><ol><li>在 GitHub 上打开该项目，进入 <strong>Releases</strong>。</li><li>从最新版本中下载 <code>aktar.html</code>。</li><li>核对它的 SHA-256 与旁边公布的值是否一致：macOS 或 Linux 上用 <code>shasum -a 256 aktar.html</code>，Windows 上用 <code>certutil -hashfile aktar.html SHA256</code>。</li><li>双击打开该文件。它从你的硬盘运行 — 地址栏会显示 <code>file://</code>，而不是一个网站。</li><li>粘贴你的文本，设置一个传输密码，工具就会生成文本形式或二维码形式的信封。</li><li>在手机上扫描或粘贴，输入同一个密码，然后选择添加或替换。</li></ol><p>全部加密过程都在你的浏览器里、在你自己的电脑上完成。命令行下还有 <code>vault-clip.py</code>，可以对剪贴板或文件做同样的事，并能在终端里绘制二维码。</p><h3>如果你不想使用这个工具</h3><p>这个信封是一种开放格式，不是只有 Sekuvo 才能生成的东西：PBKDF2-HMAC-SHA256（310,000 轮）、AES-256-GCM，包裹在一个小型 JSON 对象里。你完全可以用你读过的大约三十行代码自己实现它，然后把结果粘贴到<em>从文本导入</em>中 — 应用无从得知也不关心这个信封是用哪个工具生成的。</p><p>具体做法在仓库中：<a href="https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md">docs/kendi-zarfini-uret.md</a>（以土耳其语撰写）。</p><div class="shots"><figure><img src="https://sekuvo.com/img/06-aktarim.png" alt="从电脑带回密文的向导。" loading="lazy" width="405" height="900"><figcaption>从电脑带回密文的向导。</figcaption></figure></div><h2 id="log">使用记录</h2><p>Sekuvo 会记录哪个条目的哪个字段在何时发送到了哪里：剪贴板、通过蓝牙发送到某台电脑（含目标设备名称），或从键盘输入到某个应用。当一台电脑被攻破时，这可以回答“泄露了什么、我需要修改什么”这个问题。</p><p>该记录使用与你的条目相同的密钥加密，且<strong>值本身从不会被写入其中</strong> — 只记录事件类型、字段名称和目标。删除一个条目会同时删除它的记录，你也可以在设置中清空整个记录。</p><div class="shots"><figure><img src="https://sekuvo.com/img/09-gunluk.png" alt="使用记录：什么内容在何时去了哪里 — 但从不记录值本身。" loading="lazy" width="405" height="900"><figcaption>使用记录：什么内容在何时去了哪里 — 但从不记录值本身。</figcaption></figure></div><h2 id="generator">密码生成器</h2><p>可从主屏幕的 🎲 图标打开，或在编辑条目时从密码字段旁打开。它使用加密安全的随机数来源，可生成 8–64 个字符，允许你选择字符类别，可以去除容易混淆的字符，并以比特数显示生成结果的熵值。</p><div class="shots"><figure><img src="https://sekuvo.com/img/05-uretici.png" alt="密码生成器，以比特数显示生成结果的熵值。" loading="lazy" width="405" height="900"><figcaption>密码生成器，以比特数显示生成结果的熵值。</figcaption></figure></div>
+    <a class="back" href="https://sekuvo.com/zh/">← 返回 sekuvo.com</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>

@@ -30,6 +30,10 @@ FONTS = {
                "&family=IBM+Plex+Mono:wght@400;500&display=swap",
                '"IBM Plex Sans Arabic", system-ui, sans-serif',
                '"IBM Plex Sans Arabic", system-ui, sans-serif'),
+    "cjk-sc": ("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700"
+               "&family=IBM+Plex+Mono:wght@400;500&display=swap",
+               '"Noto Sans SC", system-ui, sans-serif',
+               '"Noto Sans SC", system-ui, sans-serif'),
 }
 
 CHAIN_LATIN = ('Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ '
@@ -260,7 +264,52 @@ L["ar"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>خزنتك الآمنة.</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar"]
+L["zh"] = dict(
+    lang="zh", dir="ltr", script="cjk-sc", path="zh/", name="简体中文",
+    title="Sekuvo — 你的安全密码库",
+    desc="Sekuvo — 你的安全密码库。一款完全离线的 Android 密码库：无互联网权限，AES-256 加密，开源（GPLv3）。",
+    nav=("安全", "通道", "下载", "隐私"),
+    eyebrow="Android 离线密码库",
+    h1="你的秘密<br>从不<em>外泄。</em>",
+    lede="Sekuvo 是你的安全密码库：密码、银行卡和笔记，在你的手机上用只有主密码才能派生的密钥加密。没有服务器，没有账户，没有同步 — 也没有向外发送数据的途径。",
+    btn_src="GitHub 上的源代码", btn_priv="隐私政策",
+    cta_note="Google Play 页面正在准备中。Sekuvo 免费且遵循 GPLv3 — 代码本身就是证明。",
+    proof_cap="AndroidManifest.xml — 它拥有的全部权限",
+    proof_alt="应用清单请求了相机、生物识别和蓝牙权限，搜索 INTERNET 权限没有任何匹配结果。",
+    proof_no="（没有匹配 — 这项权限根本不存在）",
+    sec_eyebrow="安全模型",
+    sec_h2="可审计，而非只能信任的加密。",
+    sec_kicker="每个敏感字段都用 AES-256-GCM 封装。密钥永远不会接触服务器，因为根本没有服务器；每次解锁时都会在你的手机上，从主密码重新派生。",
+    chain=('主密码 ─<b>PBKDF2 · 310,000 轮</b>─▶ KEK ─<b>AES-GCM 封装</b>─▶ '
+           'dataKey ─▶ 每条记录 <b>AES-256-GCM</b>'),
+    cells=[("屏幕熄灭即锁定",
+            "屏幕一变暗，密钥就立即从内存中清除 — 折叠屏合上也算。一次解锁同时服务于应用、键盘和自动填充。"),
+           ("比手机寿命更长的备份",
+            "一个加密的 <span class=\"mono-note\">.vaultbak</span> 文件，存放在你选择的任何地方。文件加上备份密码可在任何设备上恢复一切 — 这条恢复路径经过端到端测试。"),
+           ("没有恢复后门",
+            "忘记主密码，数据就永远消失。这正是设计初衷：只有你能打开的门，不会在门垫下面藏一把备用钥匙。")],
+    ch_eyebrow="设计上就不经过剪贴板",
+    ch_h2="三条出路，都在你的指尖。",
+    ch_kicker="剪贴板正是秘密被窃取的地方。Sekuvo 把值直接写入目标位置。",
+    lanes=[("自动填充", "Android 自动填充服务",
+            "登录和银行卡表单直接提供你的条目。密码库锁定时，系统什么也得不到 — 先解锁，再选择。"),
+           ("键盘", "Sekuvo 键盘",
+            "在任意应用中切换到它，把已保存的密文直接输入到字段中 — 可搜索，最近使用的排在最前，无需复制这一步。"),
+           ("蓝牙", "输入到你的电脑",
+            "你的手机变成一个蓝牙键盘，把密文输入到电脑光标所在的位置。电脑上不会安装任何东西。")],
+    dl_eyebrow="获取 Sekuvo", dl_h2="免费、开源、GPLv3。",
+    dl_app_h="Android 应用",
+    dl_app_p="Google Play 页面正在准备中。在此之前你可以从源码构建 — 仓库的 README 用两条命令说明了方法。",
+    dl_tools_h="电脑端工具",
+    dl_tools_p="电脑端工具是一个单独的 HTML 文件 — <code>aktar.html</code> — 它是一个下载文件，而不是网页：完全在你自己的电脑上运行，本网站绝不会向你索要密文。",
+    dl_tools_note="github.com → Releases · 核对发布的 SHA-256",
+    dl_app_link="阅读指南 →",
+    dl_tools_link="如何获取并使用 aktar.html →",
+    contact="联系方式",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>你的安全密码库。</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -682,6 +731,33 @@ P["ar"] = dict(
          "<p>إذا تغيّرت هذه السياسة يومًا، ستُنشر النسخة الجديدة على هذا العنوان مع تاريخ سريان محدَّث.</p>"),
         ("التواصل",
          '<p>للاستفسارات: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["zh"] = dict(
+    title="Sekuvo — 隐私政策",
+    desc="Sekuvo 隐私政策：不收集数据，不共享数据，无互联网权限。",
+    h1="隐私政策",
+    meta=f"应用：<strong>Sekuvo</strong> (com.sekuvo.app) · 开发者：Ahmet Govercile · 生效日期：{EFFECTIVE}",
+    back="← 返回 sekuvo.com",
+    authoritative="本文本译自英文原文。如有差异，以<a href=\"https://sekuvo.com/privacy/\">英文版本</a>为准。",
+    sections=[
+        ("概要",
+         "<p><strong>Sekuvo 不收集、不传输、也不共享任何数据。</strong>它是一款离线密码库。应用不请求互联网权限，因此在技术上无法将你的数据发送到任何地方。</p>"),
+        ("数据存储",
+         "<p>你在 Sekuvo 中保存的一切（标题、用户名、密码、笔记、使用记录）都留在你的设备上，并用由主密码派生的密钥加密。应用不会将任何内容上传、同步或备份到任何服务器。</p>"),
+        ("数据收集与共享",
+         "<ul><li>不收集任何个人数据。</li><li>不与第三方共享任何数据。</li><li>不包含任何数据分析、广告或跟踪库。</li><li>使用本应用无需创建账户。</li></ul>"),
+        ("权限说明",
+         "<ul><li><strong>相机</strong> — 仅用于扫描你选择扫描的二维码，以导入你自己的数据。图像处理在设备本地完成，绝不会离开设备。</li><li><strong>生物识别</strong> — 仅通过 Android 生物识别系统用于在你的设备上解锁密码库。Sekuvo 绝不会查看或存储你的指纹或面部数据。</li><li><strong>蓝牙</strong> — 仅在你明确要求 Sekuvo 以蓝牙键盘的方式向附近电脑输入密码时使用。只会发送你选择的字符，且直接发送给你配对过的设备。</li></ul>"),
+        ("备份与传输",
+         "<p>备份和传输仅在你主动发起时才会发生，会生成一个由你设置的密码保护的加密文件或二维码，并只保存或显示在你指定的位置。应用绝不会自行将其发送到任何地方。</p>"),
+        ("儿童",
+         "<p>Sekuvo 不收集任何人（包括儿童）的数据。</p>"),
+        ("变更",
+         "<p>如果本政策发生变更，新版本将发布在此地址，并附有更新后的生效日期。</p>"),
+        ("联系方式",
+         '<p>如有疑问，请联系：<a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
