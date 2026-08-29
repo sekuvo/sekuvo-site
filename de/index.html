@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="de" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvo — dein sicherer Tresor. Ein vollständig offline arbeitender Passworttresor für Android: ohne Internetberechtigung, AES-256, quelloffen (GPLv3).">
+<title>Sekuvo — Dein sicherer Tresor</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/">
+<link rel="alternate" hreflang="fr" href="https://sekuvo.com/fr/">
+<link rel="alternate" hreflang="bn" href="https://sekuvo.com/bn/">
+<link rel="alternate" hreflang="pt" href="https://sekuvo.com/pt/">
+<link rel="alternate" hreflang="ru" href="https://sekuvo.com/ru/">
+<link rel="alternate" hreflang="ur" href="https://sekuvo.com/ur/">
+<link rel="alternate" hreflang="id" href="https://sekuvo.com/id/">
+<link rel="alternate" hreflang="de" href="https://sekuvo.com/de/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Georgia, serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav>
+      <a href="#security">Sicherheit</a>
+      <a href="#channels">Kanäle</a>
+      <a href="#download">Herunterladen</a>
+      <a href="https://sekuvo.com/de/guide/">Anleitung</a>
+      <a href="https://sekuvo.com/de/privacy/">Datenschutz</a>
+    </nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/" lang="ar">العربية</a> ·
+    <a href="https://sekuvo.com/zh/" lang="zh">简体中文</a> ·
+    <a href="https://sekuvo.com/fr/" lang="fr">Français</a> ·
+    <a href="https://sekuvo.com/bn/" lang="bn">বাংলা</a> ·
+    <a href="https://sekuvo.com/pt/" lang="pt">Português</a> ·
+    <a href="https://sekuvo.com/ru/" lang="ru">Русский</a> ·
+    <a href="https://sekuvo.com/ur/" lang="ur">اردو</a> ·
+    <a href="https://sekuvo.com/id/" lang="id">Bahasa Indonesia</a> ·
+    <a class="here" href="https://sekuvo.com/de/" lang="de">Deutsch</a></div>
+
+  <div class="hero">
+    <div>
+      <span class="eyebrow">Offline-Passworttresor für Android</span>
+      <h1>Deine Geheimnisse<br>verlassen ihn <em>nie.</em></h1>
+      <p class="lede">Sekuvo ist dein sicherer Tresor: Passwörter, Karten und Notizen, auf deinem Telefon verschlüsselt mit einem Schlüssel, den nur dein Hauptpasswort ableiten kann. Kein Server, kein Konto, keine Synchronisierung — und keine Möglichkeit, jemanden zu informieren.</p>
+      <div class="cta">
+        <a class="btn solid" href="https://github.com/afgover/Vault">Quellcode auf GitHub</a>
+        <a class="btn ghost" href="https://sekuvo.com/de/privacy/">Datenschutzerklärung</a>
+      </div>
+      <p class="cta-note">Der Google-Play-Eintrag wird vorbereitet. Sekuvo ist kostenlos und unter GPLv3 lizenziert — der Code ist der Beweis.</p>
+    </div>
+
+    <div class="proof" dir="ltr" role="img" aria-label="Das App-Manifest fragt nach Kamera, Biometrie und Bluetooth, und eine Suche nach der Berechtigung INTERNET liefert kein Ergebnis.">
+      <span class="cap">AndroidManifest.xml — alle Berechtigungen, die es besitzt</span>
+<span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
+&lt;uses-permission android:name="…CAMERA" /&gt;
+&lt;uses-permission android:name="…VIBRATE" /&gt;
+&lt;uses-permission android:name="…BLUETOOTH_CONNECT" /&gt;</span>
+
+<span class="c">$ grep INTERNET AndroidManifest.xml</span>
+<span class="no">(keine Treffer — diese Berechtigung existiert nicht)</span>
+    </div>
+  </div>
+
+  <section id="security">
+    <span class="eyebrow">Sicherheitsmodell</span>
+    <h2>Verschlüsselung, die du prüfen kannst, statt sie glauben zu müssen.</h2>
+    <p class="kicker">Jedes sensible Feld ist mit AES-256-GCM versiegelt. Der Schlüssel berührt nie einen Server, weil es keinen Server gibt; er wird auf deinem Telefon aus deinem Hauptpasswort abgeleitet, jedes Mal, wenn du entsperrst.</p>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="grid"><div class="cell"><h3>Sperrt sich, wenn der Bildschirm ausgeht</h3><p>Der Schlüssel wird in dem Moment aus dem Speicher gelöscht, in dem der Bildschirm dunkel wird — das Zusammenklappen eines faltbaren Telefons zählt auch. Ein einziges Entsperren bedient App, Tastatur und automatisches Ausfüllen gemeinsam.</p></div><div class="cell"><h3>Backups, die das Telefon überdauern</h3><p>Eine einzige verschlüsselte <span class="mono-note">.vaultbak</span>-Datei, aufbewahrt, wo du willst. Datei plus Backup-Passwort stellen alles auf jedem Gerät wieder her — der Wiederherstellungsweg ist von Anfang bis Ende getestet.</p></div><div class="cell"><h3>Keine Hintertür zur Wiederherstellung</h3><p>Vergisst du das Hauptpasswort, sind die Daten weg. Das ist Absicht: Eine Tür, die nur du öffnen kannst, versteckt keinen Ersatzschlüssel unter der Fußmatte.</p></div></div>
+  </section>
+
+  <section id="channels">
+    <span class="eyebrow">Bewusst ohne Zwischenablage</span>
+    <h2>Drei Wege, alle einen Fingertipp entfernt.</h2>
+    <p class="kicker">Die Zwischenablage ist der Ort, an dem Geheimnisse gestohlen werden. Deshalb tippt Sekuvo Werte direkt in ihr Ziel.</p>
+    <div class="lanes"><div class="lane"><div class="n">Automatisches Ausfüllen</div><h3>Der Autofill-Dienst von Android</h3><p>Login- und Kartenformulare bieten deine Einträge direkt an. Ist der Tresor gesperrt, erhält das System nichts — erst entsperren, dann auswählen.</p></div><div class="lane"><div class="n">Tastatur</div><h3>Die Sekuvo-Tastatur</h3><p>Wechsle in jeder App dorthin und tippe ein gespeichertes Geheimnis direkt in das Feld — mit Suche, zuletzt verwendeten oben, ohne Kopierschritt.</p></div><div class="lane"><div class="n">Bluetooth</div><h3>Tippt auf deinem Computer</h3><p>Dein Telefon wird zu einer Bluetooth-Tastatur und tippt das Geheimnis an der Cursorposition des Computers ein. Auf dem Computer wird nichts installiert.</p></div></div>
+  </section>
+
+  <section id="download">
+    <span class="eyebrow">Sekuvo herunterladen</span>
+    <h2>Kostenlos, quelloffen, GPLv3.</h2>
+    <div class="dl">
+      <div>
+        <h3>Android-App</h3>
+        <p>Der Google-Play-Eintrag wird vorbereitet. Bis dahin kannst du aus dem Quellcode bauen — die README des Repositorys erklärt es in zwei Befehlen.</p>
+        <p><a href="https://sekuvo.com/de/guide/#start">Anleitung lesen →</a></p>
+      </div>
+      <div>
+        <h3>Werkzeuge für die Computerseite</h3>
+        <p>Das Werkzeug für die Computerseite ist eine einzelne HTML-Datei — <code>aktar.html</code> — und ist ein Download, keine Website: Es läuft vollständig auf deinem Rechner, und diese Website fragt dich niemals nach einem Geheimnis.</p>
+        <p class="mono-note" dir="ltr">github.com → Releases · den veröffentlichten SHA-256-Wert prüfen</p>
+        <p><a href="https://sekuvo.com/de/guide/#transfer">Wie man aktar.html erhält und verwendet →</a></p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo — <em>dein sicherer Tresor.</em></span>
+    <span dir="ltr">
+      <a href="https://github.com/afgover/Vault">GitHub</a> ·
+      <a href="mailto:contact@sekuvo.com">Kontakt</a> ·
+      <a href="https://sekuvo.com/de/privacy/">Datenschutz</a> ·
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
+    </span>
+  </footer>
+</div>
+</body>
+</html>

@@ -970,6 +970,85 @@ G["id"] = dict(
     ],
 )
 
+G["de"] = dict(
+    nav_label="Anleitung",
+    title="Sekuvo — Anleitung",
+    desc="So verwendest du Sekuvo: erster Start, automatisches Ausfüllen, die Tastatur, Eingabe an einem Computer per Bluetooth, Backups und Übertragungen.",
+    h1="Anleitung",
+    lede="Alles, was Sekuvo tut, in der Reihenfolge, in der du es wahrscheinlich brauchst. Nichts davon erfordert ein Konto oder eine Internetverbindung.",
+    back="← Zurück zu sekuvo.com",
+    sections=[
+        ("start", "Erster Start", [
+            "<p>Beim ersten Öffnen legst du ein <strong>Hauptpasswort</strong> fest. Jedes Geheimnis, das du speicherst, wird mit einem daraus abgeleiteten Schlüssel verschlüsselt, daher ist es das Einzige, wobei Sekuvo dir nicht bei der Wiederherstellung helfen kann — schreibe es an einem sicheren Ort auf, bevor du fortfährst.</p>",
+            "<p>Kommst du von einem anderen Telefon? Tippe auf dem Willkommensbildschirm auf <strong>„Ich habe ein Backup — wiederherstellen“</strong>. Du legst trotzdem zuerst ein Hauptpasswort für dieses Gerät fest, dann öffnet sich die Dateiauswahl von selbst, und deine Einträge kehren zurück.</p>",
+            "<p>Wenn dein Telefon einen Fingerabdruck- oder Gesichtssensor hat, bietet Sekuvo dir direkt nach der Einrichtung dessen Verwendung an. Das ist nur eine Komfortschicht: Das Hauptpasswort funktioniert immer, und es ist auch das, was einen Zurücksetzen auf Werkseinstellungen überdauert.</p>",
+        ]),
+        ("entries", "Was du speichern kannst", [
+            "<p>Vier Eintragstypen decken das meiste ab, was Menschen in einem Tresor aufbewahren:</p>",
+            "<ul><li><strong>Konto / Passwort</strong> — Benutzername, Passwort, Website oder App.</li><li><strong>Alltag</strong> — Name, Telefon, E-Mail, Adresse. Was Formulare ständig verlangen.</li><li><strong>Karte</strong> — Kartennummer, Ablaufdatum, CVV, IBAN.</li><li><strong>Sichere Notiz</strong> — freier Text, mit Unterarten für Skripte, Schlüssel, Wiederherstellungscodes und Konfigurationsdateien.</li></ul>",
+            "<p>Konto- und Alltag-Einträge akzeptieren auch <strong>benutzerdefinierte Felder</strong>: jedes „Name + Wert“-Paar, das du möchtest. Benutzerdefinierte Felder werden genau wie die integrierten verschlüsselt und erscheinen überall dort, wo auch die anderen erscheinen.</p>",
+        ]),
+        ("channels", "Ein Geheimnis ohne Zwischenablage verwenden", [
+            "<p>Die Zwischenablage kann von anderen Apps gelesen werden, und genau dort werden Geheimnisse gestohlen. Deshalb bietet Sekuvo drei Wege, einen Wert direkt an sein Ziel zu übermitteln. Kopieren ist weiterhin möglich — die Zwischenablage wird automatisch nach 45 Sekunden geleert —, aber die drei folgenden Kanäle sind der Grund, warum es diese App gibt.</p>",
+        ]),
+        ("autofill", "Automatisches Ausfüllen (innerhalb des Telefons)", [
+            "<p>Sekuvo kann als Autofill-Dienst von Android fungieren, sodass Login- und Kartenformulare deine Einträge direkt anbieten.</p>",
+            "<p><strong>Zum Aktivieren:</strong> Sekuvo → Einstellungen → <em>Automatisches Ausfüllen aktivieren</em> → wähle Sekuvo aus der Systemliste. Diese Liste hat je nach Gerät unterschiedliche Namen: auf Samsung und Android 14+ ist es <em>Passwörter, Passkeys &amp; automatisches Ausfüllen → Bevorzugter Dienst</em>; auf reinem Android <em>Dienst für automatisches Ausfüllen</em>.</p>",
+            "<p>Danach zeigt das Berühren eines Benutzername-, Passwort- oder Kartenfelds in jeder App deine passenden Einträge über der Tastatur an. Ist der Tresor gesperrt, erscheint zuerst ein Entsperrschritt — solange er gesperrt ist, erhält das System absolut nichts.</p>",
+        ]),
+        ("keyboard", "Sekuvo-Tastatur (innerhalb des Telefons)", [
+            "<p>Die Tastaturerweiterung tippt gespeicherte Werte in jedes Feld, in jeder App, ohne Kopierschritt.</p>",
+            "<p><strong>Zum Aktivieren:</strong> Sekuvo → Einstellungen → <em>Tastatur aktivieren</em> → aktiviere sie in der Systemliste, dann wähle „Sekuvo-Tastatur“ im Tastaturwechsler, wann immer du sie brauchst.</p>",
+            "<p>Zuletzt verwendete Einträge bleiben oben, und 🔍 sucht in Titeln, Benutzernamen und Adressen. Bei gesperrtem Tresor zeigt die Tastatur nur die für den Schnellzugriff markierten Einträge — siehe unten.</p>",
+        ]),
+        ("bluetooth", "Eingabe an einem Computer per Bluetooth", [
+            "<p>Dein Telefon kann als Bluetooth-Tastatur fungieren und ein Geheimnis an der Cursorposition deines Computers eingeben. Auf dem Computer wird nichts installiert, es funktioniert unter Windows, macOS und Linux, und der Wert berührt niemals die Zwischenablage oder ein Netzwerk. Erfordert Android 9 oder neuer.</p>",
+            "<h3>Schritt für Schritt</h3>",
+            "<ol><li>Öffne in Sekuvo den Eintrag und tippe auf das 💻-Symbol neben dem Feld, das eingegeben werden soll. <strong>Halte diesen Bildschirm offen</strong> — dein Telefon meldet sich nur als Tastatur, solange er offen ist.</li><li>Füge das Telefon am Computer als <em>neues Bluetooth-Gerät</em> hinzu: unter Windows <em>Einstellungen → Bluetooth &amp; Geräte → Gerät hinzufügen → Bluetooth</em>, unter macOS <em>Systemeinstellungen → Bluetooth</em>.</li><li>Bestätige den Kopplungscode auf beiden Seiten.</li><li>Zurück am Telefon, wähle deinen Computer aus der Liste und warte, bis „Verbunden“ erscheint.</li><li>Wähle das Tastaturlayout <strong>des Computers</strong> — nicht des Telefons. Der Computer interpretiert die Tastencodes, sodass ein falsches Layout Zeichen wie @ \" ? unbemerkt in andere verwandelt.</li><li>Klicke am Computer in das Feld, in das der Wert soll.</li><li>Tippe am Telefon auf <strong>Eingeben</strong>. Nach einem dreisekündigen Countdown — der existiert, damit du in dieses Feld klicken kannst — wird der Wert Taste für Taste eingegeben.</li></ol>",
+            "<h3>Verbunden, aber nichts wird eingegeben</h3>",
+            "<p>Fast immer derselbe Grund: Der Computer hat dein Telefon zu einem früheren Zeitpunkt <em>als gewöhnliches Telefon</em> gekoppelt und daher nie den Tastaturdienst (HID) dafür aktiviert. Die Verbindung funktioniert, und die Tastenanschläge gehen nirgendwohin.</p>",
+            "<ol><li>Entferne die Kopplung am Computer (<em>Gerät entfernen</em>).</li><li>Entferne sie auch am Telefon (<em>Entkoppeln</em> in den Bluetooth-Einstellungen). Beide Seiten sind wichtig.</li><li>Öffne den 💻-Bildschirm in Sekuvo und lass ihn offen.</li><li>Koppele erneut, beginnend <strong>mit dem Computer</strong>.</li><li>Zur Bestätigung unter Windows: Der <em>Geräte-Manager → Eingabegeräte (HID)</em> sollte jetzt ein Bluetooth-HID-Gerät auflisten.</li></ol>",
+            "<p>Unter macOS kann die erste Verbindung den <strong>Tastatur-Einrichtungsassistenten</strong> öffnen, der dich bittet, eine Taste neben der Umschalttaste zu drücken. Bis dieses Fenster geschlossen ist, verarbeitet macOS nichts — das ist die häufige Ursache für „verbunden, aber still“ auf einem Mac.</p>",
+            "<h3>Geschwindigkeit, und wie du sie überprüfst</h3>",
+            "<p>Tastenanschläge werden einzeln gesendet, daher dauert ein langes Geheimnis tatsächlich eine Weile — der Dialog zeigt eine Schätzung. Es werden drei Geschwindigkeiten angeboten, und dass Sicher der Standard ist, ist Absicht. Bevor du sie erhöhst, nutze den <strong>⏱ Geschwindigkeitstest</strong>: Er tippt zehn identische, durch Leerzeichen getrennte Blöcke und meldet die gemessenen Zeichen pro Sekunde. Weicht auch nur ein Block ab, ist diese Geschwindigkeit an diesem Computer nicht sicher — gehe eine Stufe herunter.</p>",
+            "<p>Der Geschwindigkeitstest dient auch als Diagnose: Nichts eingegeben bedeutet ein Kopplungsproblem, verzerrte Zeichen bedeuten das Layout, ein abgebrochener Durchlauf bedeutet die Geschwindigkeit.</p>",
+            "<p>Während der Eingabe siehst du eine Fortschrittsanzeige und eine <strong>Stopp</strong>-Schaltfläche. Hängt sich die Sendewarteschlange auf, versucht Sekuvo es mit wachsender Wartezeit erneut, und gelingt es dennoch nicht, <em>stoppt es und teilt dir mit</em>, bei welchem Zeichen — ein Geheimnis wird nie stillschweigend nur zur Hälfte eingegeben.</p>",
+        ]),
+        ("lock", "Wie die Sperre funktioniert", [
+            "<p>Der Tresor sperrt sich in dem Moment, in dem der Bildschirm, auf dem er geöffnet ist, ausgeht — auch das Zusammenklappen eines faltbaren Telefons zählt. In diesem Moment wird der Schlüssel aus dem Speicher gelöscht; die Titel der Einträge können weiterhin in der Liste erscheinen, aber nichts kann entschlüsselt werden.</p>",
+            "<p>Die App bei eingeschaltetem Bildschirm zu verlassen sperrt sie <em>nicht</em>. Das ist Absicht: App, Tastatur und automatisches Ausfüllen teilen sich eine einzige Sitzung, sonst würde das Wechseln zum Browser, um ein Passwort einzufügen, dich mitten in der Aufgabe aussperren.</p>",
+        ]),
+        ("quick", "Schnellzugriff — ein bewusster Kompromiss", [
+            "<p>Einträge, die du ausdrücklich als „ohne Passwort in der Tastatur verwenden“ markierst, werden ein zweites Mal gespeichert, verschlüsselt mit einem separaten Geräteschlüssel, damit die Tastatur sie <em>bei gesperrtem Tresor</em> lesen kann.</p>",
+            "<p>Der Kompromiss wird klar benannt: Solche Einträge sind durch die Bildschirmsperre deines Telefons geschützt, nicht durch dein Hauptpasswort. Halte Passwörter davon fern. Die Markierung ist standardmäßig deaktiviert; die einzige Ausnahme sind neue <strong>Alltag</strong>-Einträge, die markiert beginnen, weil Namen und Telefonnummern genau das sind, was du griffbereit haben willst — du kannst jede davon deaktivieren.</p>",
+        ]),
+        ("backup", "Backups und Wiederherstellung", [
+            "<p>Die Systemsicherung (Google-Backup, Geräteübertragung) ist bewusst deaktiviert, sodass es genau einen Weg gibt, auf dem dein Tresor das Telefon verlässt, und das ist der, den du wählst: <strong>Einstellungen → Verschlüsseltes Backup erstellen</strong>.</p>",
+            "<p>Du wählst ein <em>Backup-Passwort</em> — mach es anders als dein Hauptpasswort, denn das Backup-Passwort wird letztlich an Computern eingegeben. Das Ergebnis ist eine einzelne <code>.vaultbak</code>-Datei, die du speicherst, wo du willst: Drive, eine SD-Karte, ein USB-Stick.</p>",
+            "<p>Die Datei ist geräteunabhängig: Ihr eigenes Salt und die Schlüsselableitungsparameter befinden sich in ihrem Header. Datei plus Backup-Passwort stellen alles auf jedem Telefon wieder her, selbst nach einem Zurücksetzen auf Werkseinstellungen. Stelle über <strong>Einstellungen → Aus Backup wiederherstellen</strong> wieder her, oder über den Willkommensbildschirm bei einer Neuinstallation.</p>",
+            "<p>Die Wiederherstellung bietet <em>zum Bestehenden hinzufügen</em> oder <em>alles ersetzen</em>. Beide werden überprüft, bevor irgendetwas geschrieben wird — ein falsches Passwort scheitert bereits bei der Authentifizierung, und nichts wird gelöscht, bevor die neuen Daten bestätigt sind.</p>",
+        ]),
+        ("transfer", "Geheimnisse von einem Computer holen", [
+            "<p>Einen langen Schlüssel von Hand auf einem Telefon einzutippen ist, wo Fehler passieren. Sekuvo transportiert sie stattdessen als verschlüsselten Umschlag, auf zwei Arten: Text, den du einfügst, oder QR-Codes, die du scannst.</p>",
+            "<p><strong>Am Telefon:</strong> Die ➕-Schaltfläche bietet <em>Über QR importieren</em> und <em>Aus Text importieren</em>. Der QR-Import öffnet die Kamera; die Bilder werden auf dem Gerät dekodiert, und Übertragungen mit mehreren Bildern zeigen den Fortschritt beim Sammeln.</p>",
+            "<h3>Das Werkzeug für die Computerseite</h3>",
+            "<p>Das Werkzeug, das diese Umschläge erstellt, ist eine einzelne HTML-Datei, und es ist absichtlich <strong>ein Download, keine Website</strong>. sekuvo.com fragt dich niemals nach einem Geheimnis; eine Seite, die das täte, würde genauso aussehen wie eine Phishing-Website.</p>",
+            "<ol><li>Öffne das Projekt auf GitHub und gehe zu <strong>Releases</strong>.</li><li>Lade <code>aktar.html</code> aus dem neuesten Release herunter.</li><li>Überprüfe seinen SHA-256-Wert mit dem daneben veröffentlichten Wert: <code>shasum -a 256 aktar.html</code> unter macOS oder Linux, <code>certutil -hashfile aktar.html SHA256</code> unter Windows.</li><li>Öffne die Datei per Doppelklick. Sie läuft von deiner Festplatte aus — die Adressleiste zeigt <code>file://</code>, keine Website.</li><li>Füge deinen Text ein, lege ein Übertragungspasswort fest, und das Werkzeug erzeugt den Umschlag als Text oder als QR-Codes.</li><li>Scanne oder füge am Telefon ein, gib dasselbe Passwort ein und wähle Hinzufügen oder Ersetzen.</li></ol>",
+            "<p>Die gesamte Verschlüsselung findet in deinem Browser statt, auf deinem Rechner. Es gibt außerdem <code>vault-clip.py</code> für die Kommandozeile, das dasselbe aus der Zwischenablage oder einer Datei erledigt und QR-Codes im Terminal zeichnen kann.</p>",
+            "<h3>Wenn du das Werkzeug lieber nicht verwenden möchtest</h3>",
+            "<p>Der Umschlag ist ein offenes Format, nichts, das nur Sekuvo erzeugen kann: PBKDF2-HMAC-SHA256 mit 310.000 Runden, AES-256-GCM, verpackt in ein kleines JSON-Objekt. Du kannst ihn selbst mit rund dreißig Zeilen bauen, die du bereits gelesen hast, und das Ergebnis in <em>Aus Text importieren</em> einfügen — die App hat keine Möglichkeit zu wissen, welches Werkzeug ihn erzeugt hat, und es ist ihr egal.</p>",
+            "<p>Das Rezept steht im Repository: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (auf Türkisch verfasst).</p>",
+        ]),
+        ("log", "Nutzungsprotokoll", [
+            "<p>Sekuvo protokolliert, welches Feld welches Eintrags wohin und wann gegangen ist: in die Zwischenablage, an einen Computer per Bluetooth (mit dem Namen des Zielgeräts) oder in eine App über die Tastatur eingegeben. Wird ein Computer kompromittiert, beantwortet das die Frage „Was ist dorthin gelangt, was muss ich ändern“.</p>",
+            "<p>Das Protokoll ist mit demselben Schlüssel wie deine Einträge verschlüsselt, und <strong>die Werte werden niemals darin festgehalten</strong> — nur die Art des Ereignisses, der Feldname und das Ziel. Das Löschen eines Eintrags löscht auch sein Protokoll, und du kannst alles über die Einstellungen leeren.</p>",
+        ]),
+        ("generator", "Passwort-Generator", [
+            "<p>Zugänglich über das 🎲-Symbol auf dem Startbildschirm oder neben dem Passwortfeld beim Bearbeiten eines Eintrags. Er nutzt eine kryptografische Zufallsquelle, erzeugt 8 bis 64 Zeichen, erlaubt die Wahl von Zeichenklassen, kann einander ähnliche Zeichen entfernen und zeigt die resultierende Entropie in Bit an.</p>",
+        ]),
+    ],
+)
+
 SHOTS = {
     "start":     ["01-karsilama.png"],
     "entries":   ["02-liste.png", "10-ekleme-menusu.png", "03-uzun-anahtar.png"],
@@ -1138,5 +1217,18 @@ CAPTIONS = {
         "03-uzun-anahtar.png": "Kunci SSH 386 karakter, utuh. Sidik jari di bawahnya memungkinkan verifikasi nilai tanpa membacanya.",
         "09-gunluk.png": "Log penggunaan: apa yang pergi ke mana dan kapan — tapi tidak pernah nilainya sendiri.",
         "05-uretici.png": "Generator, dengan entropi yang dihasilkan ditampilkan dalam bit.",
+    },
+    "de": {
+        "01-karsilama.png": "Der Willkommensbildschirm: ein Hauptpasswort festlegen oder ein vorhandenes Backup wiederherstellen.",
+        "02-liste.png": "Die Eintragsliste, mit Suche und Typfiltern.",
+        "10-ekleme-menusu.png": "Beim Hinzufügen: vier Eintragstypen, plus die beiden Importwege.",
+        "04-detay.png": "Ein Eintrag. Das Passwort bleibt verborgen; die Symbole neben jedem Feld kopieren es oder tippen es an einem Computer ein.",
+        "07-ayarlar.png": "Einstellungen — hier werden automatisches Ausfüllen und Tastatur aktiviert.",
+        "11-duzenleme.png": "Ein Eintrag wird bearbeitet. Der Schalter für den Schnellzugriff sitzt unten, seine Kosten stehen daneben erklärt.",
+        "08-yedekleme.png": "Backup und Wiederherstellung liegen in den Einstellungen nebeneinander.",
+        "06-aktarim.png": "Der Assistent zum Holen von Geheimnissen von einem Computer.",
+        "03-uzun-anahtar.png": "Ein 386 Zeichen langer SSH-Schlüssel, vollständig. Der Fingerabdruck darunter erlaubt die Überprüfung eines Werts, ohne ihn zu lesen.",
+        "09-gunluk.png": "Das Nutzungsprotokoll: was wohin und wann gegangen ist — aber nie der Wert selbst.",
+        "05-uretici.png": "Der Generator, mit der resultierenden Entropie in Bit angezeigt.",
     },
 }

@@ -594,7 +594,51 @@ L["id"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>brankas amanmu.</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id"]
+L["de"] = dict(
+    lang="de", dir="ltr", script="latin", path="de/", name="Deutsch",
+    title="Sekuvo — Dein sicherer Tresor",
+    desc="Sekuvo — dein sicherer Tresor. Ein vollständig offline arbeitender Passworttresor für Android: ohne Internetberechtigung, AES-256, quelloffen (GPLv3).",
+    nav=("Sicherheit", "Kanäle", "Herunterladen", "Datenschutz"),
+    eyebrow="Offline-Passworttresor für Android",
+    h1="Deine Geheimnisse<br>verlassen ihn <em>nie.</em>",
+    lede="Sekuvo ist dein sicherer Tresor: Passwörter, Karten und Notizen, auf deinem Telefon verschlüsselt mit einem Schlüssel, den nur dein Hauptpasswort ableiten kann. Kein Server, kein Konto, keine Synchronisierung — und keine Möglichkeit, jemanden zu informieren.",
+    btn_src="Quellcode auf GitHub", btn_priv="Datenschutzerklärung",
+    cta_note="Der Google-Play-Eintrag wird vorbereitet. Sekuvo ist kostenlos und unter GPLv3 lizenziert — der Code ist der Beweis.",
+    proof_cap="AndroidManifest.xml — alle Berechtigungen, die es besitzt",
+    proof_alt="Das App-Manifest fragt nach Kamera, Biometrie und Bluetooth, und eine Suche nach der Berechtigung INTERNET liefert kein Ergebnis.",
+    proof_no="(keine Treffer — diese Berechtigung existiert nicht)",
+    sec_eyebrow="Sicherheitsmodell",
+    sec_h2="Verschlüsselung, die du prüfen kannst, statt sie glauben zu müssen.",
+    sec_kicker="Jedes sensible Feld ist mit AES-256-GCM versiegelt. Der Schlüssel berührt nie einen Server, weil es keinen Server gibt; er wird auf deinem Telefon aus deinem Hauptpasswort abgeleitet, jedes Mal, wenn du entsperrst.",
+    chain=CHAIN_LATIN,
+    cells=[("Sperrt sich, wenn der Bildschirm ausgeht",
+            "Der Schlüssel wird in dem Moment aus dem Speicher gelöscht, in dem der Bildschirm dunkel wird — das Zusammenklappen eines faltbaren Telefons zählt auch. Ein einziges Entsperren bedient App, Tastatur und automatisches Ausfüllen gemeinsam."),
+           ("Backups, die das Telefon überdauern",
+            "Eine einzige verschlüsselte <span class=\"mono-note\">.vaultbak</span>-Datei, aufbewahrt, wo du willst. Datei plus Backup-Passwort stellen alles auf jedem Gerät wieder her — der Wiederherstellungsweg ist von Anfang bis Ende getestet."),
+           ("Keine Hintertür zur Wiederherstellung",
+            "Vergisst du das Hauptpasswort, sind die Daten weg. Das ist Absicht: Eine Tür, die nur du öffnen kannst, versteckt keinen Ersatzschlüssel unter der Fußmatte.")],
+    ch_eyebrow="Bewusst ohne Zwischenablage",
+    ch_h2="Drei Wege, alle einen Fingertipp entfernt.",
+    ch_kicker="Die Zwischenablage ist der Ort, an dem Geheimnisse gestohlen werden. Deshalb tippt Sekuvo Werte direkt in ihr Ziel.",
+    lanes=[("Automatisches Ausfüllen", "Der Autofill-Dienst von Android",
+            "Login- und Kartenformulare bieten deine Einträge direkt an. Ist der Tresor gesperrt, erhält das System nichts — erst entsperren, dann auswählen."),
+           ("Tastatur", "Die Sekuvo-Tastatur",
+            "Wechsle in jeder App dorthin und tippe ein gespeichertes Geheimnis direkt in das Feld — mit Suche, zuletzt verwendeten oben, ohne Kopierschritt."),
+           ("Bluetooth", "Tippt auf deinem Computer",
+            "Dein Telefon wird zu einer Bluetooth-Tastatur und tippt das Geheimnis an der Cursorposition des Computers ein. Auf dem Computer wird nichts installiert.")],
+    dl_eyebrow="Sekuvo herunterladen", dl_h2="Kostenlos, quelloffen, GPLv3.",
+    dl_app_h="Android-App",
+    dl_app_p="Der Google-Play-Eintrag wird vorbereitet. Bis dahin kannst du aus dem Quellcode bauen — die README des Repositorys erklärt es in zwei Befehlen.",
+    dl_tools_h="Werkzeuge für die Computerseite",
+    dl_tools_p="Das Werkzeug für die Computerseite ist eine einzelne HTML-Datei — <code>aktar.html</code> — und ist ein Download, keine Website: Es läuft vollständig auf deinem Rechner, und diese Website fragt dich niemals nach einem Geheimnis.",
+    dl_tools_note="github.com → Releases · den veröffentlichten SHA-256-Wert prüfen",
+    dl_app_link="Anleitung lesen →",
+    dl_tools_link="Wie man aktar.html erhält und verwendet →",
+    contact="Kontakt",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>dein sicherer Tresor.</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -1205,6 +1249,33 @@ P["id"] = dict(
          "<p>Jika kebijakan ini suatu saat berubah, versi baru akan dipublikasikan di alamat ini dengan tanggal berlaku yang diperbarui.</p>"),
         ("Kontak",
          '<p>Pertanyaan: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["de"] = dict(
+    title="Sekuvo — Datenschutzerklärung",
+    desc="Datenschutzerklärung von Sekuvo: keine Datenerfassung, keine Datenweitergabe, keine Internetberechtigung.",
+    h1="Datenschutzerklärung",
+    meta=f"App: <strong>Sekuvo</strong> (com.sekuvo.app) · Entwickler: Ahmet Govercile · Datum des Inkrafttretens: {EFFECTIVE}",
+    back="← Zurück zu sekuvo.com",
+    authoritative="Dieser Text ist eine Übersetzung des englischen Originals. Bei Abweichungen gilt die <a href=\"https://sekuvo.com/privacy/\">englische Fassung</a>.",
+    sections=[
+        ("Zusammenfassung",
+         "<p><strong>Sekuvo sammelt, überträgt oder teilt keinerlei Daten.</strong> Es ist ein Offline-Passworttresor. Die App fragt nicht nach der Internetberechtigung und ist daher technisch nicht in der Lage, deine Daten irgendwohin zu senden.</p>"),
+        ("Wo deine Daten gespeichert werden",
+         "<p>Alles, was du in Sekuvo speicherst (Titel, Benutzernamen, Passwörter, Notizen, Nutzungsverlauf), bleibt auf deinem Gerät, verschlüsselt mit einem aus deinem Hauptpasswort abgeleiteten Schlüssel. Nichts davon wird von der App auf einen Server hochgeladen, synchronisiert oder gesichert.</p>"),
+        ("Datenerfassung und -weitergabe",
+         "<ul><li>Es werden keine personenbezogenen Daten erfasst.</li><li>Es werden keine Daten an Dritte weitergegeben.</li><li>Es sind keine Analyse-, Werbe- oder Tracking-Bibliotheken enthalten.</li><li>Für die Nutzung der App ist kein Konto erforderlich.</li></ul>"),
+        ("Berechtigungen",
+         "<ul><li><strong>Kamera</strong> — wird nur zum Scannen von QR-Codes verwendet, die du selbst auswählst, um eigene Daten zu importieren. Die Bilder werden auf dem Gerät verarbeitet und verlassen es nie.</li><li><strong>Biometrie</strong> — wird nur verwendet, um den Tresor auf deinem Gerät über das biometrische System von Android zu entsperren. Sekuvo sieht oder speichert niemals deinen Fingerabdruck oder dein Gesicht.</li><li><strong>Bluetooth</strong> — wird nur verwendet, wenn du Sekuvo ausdrücklich bittest, ein Passwort an einem nahegelegenen Computer einzugeben, indem es als Bluetooth-Tastatur fungiert. Es werden nur die von dir gewählten Zeichen gesendet, direkt an das gekoppelte Gerät.</li></ul>"),
+        ("Backups und Übertragungen",
+         "<p>Diese finden nur statt, wenn du sie auslöst, erzeugen eine verschlüsselte Datei oder QR-Codes, die durch ein von dir festgelegtes Passwort geschützt sind, und werden nur dort gespeichert oder angezeigt, wohin du sie lenkst. Die App sendet sie niemals von sich aus irgendwohin.</p>"),
+        ("Kinder",
+         "<p>Sekuvo sammelt von niemandem Daten, auch nicht von Kindern.</p>"),
+        ("Änderungen",
+         "<p>Sollte sich diese Erklärung eines Tages ändern, wird die neue Fassung an dieser Adresse mit einem aktualisierten Datum des Inkrafttretens veröffentlicht.</p>"),
+        ("Kontakt",
+         '<p>Fragen: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
