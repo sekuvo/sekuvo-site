@@ -88,6 +88,9 @@ async function frames(envText) {
   const data = b64(bytes), parts = [];
   for (let i = 0; i < data.length; i += QR_CHUNK) parts.push(data.slice(i, i + QR_CHUNK));
   const n = parts.length || 1;
+  // Uygulama 512 kareden fazlasını reddeder (QrTransfer.MAX_FRAMES); meşru
+  // bir zarf oraya ulaşamaz (kayıt sınırı 256 KB ≈ en çok ~285 kare).
+  if (n > 512) return null;
   return parts.map((p, i) => "VLT1|" + (i + 1) + "/" + n + "|" + flag + "|" + p);
 }
 
@@ -119,11 +122,16 @@ function isEnvelope(s) {
 }
 
 $("go").addEventListener("click", async () => {
+  // Önceki çok-kareli döngü hata yolunda da dursun; yoksa temizlenen QR'ı
+  // eski kareyle yeniden çizer (denetim bulgusu).
+  if (loop) { clearInterval(loop); loop = null; }
   $("err").textContent = ""; $("qr").innerHTML = ""; $("info").textContent = "";
   const v = $("env").value.trim();
   if (!v) { $("err").textContent = T.err_empty; return; }
   if (!isEnvelope(v)) { $("err").textContent = T.err_invalid; return; }
-  show(await frames(v));
+  const fr = await frames(v);
+  if (!fr) { $("err").textContent = T.err_invalid; return; }
+  show(fr);
 });
 
 // GİZLİLİK: yazım denetimi alan içeriğini buluta gönderebilir — kapat.
