@@ -891,6 +891,85 @@ G["ur"] = dict(
     ],
 )
 
+G["id"] = dict(
+    nav_label="Panduan",
+    title="Sekuvo — Panduan",
+    desc="Cara menggunakan Sekuvo: menjalankan pertama kali, isi otomatis, keyboard, mengetik di komputer lewat Bluetooth, cadangan dan transfer.",
+    h1="Panduan",
+    lede="Semua yang dilakukan Sekuvo, dalam urutan yang kemungkinan besar kamu butuhkan. Tidak ada satu pun di sini yang memerlukan akun atau koneksi internet.",
+    back="← Kembali ke sekuvo.com",
+    sections=[
+        ("start", "Menjalankan pertama kali", [
+            "<p>Saat pertama kali dibuka, kamu mengatur <strong>kata sandi utama</strong>. Setiap rahasia yang kamu simpan dienkripsi dengan kunci yang diturunkan darinya, sehingga itu satu-satunya hal yang tidak bisa dibantu dipulihkan oleh Sekuvo — tulis di tempat yang aman sebelum melanjutkan.</p>",
+            "<p>Berpindah dari ponsel lain? Ketuk <strong>\"Saya punya cadangan — pulihkan\"</strong> di layar sambutan. Kamu tetap mengatur kata sandi utama untuk perangkat ini dulu, lalu pemilih file terbuka sendiri dan entrimu kembali.</p>",
+            "<p>Jika ponselmu memiliki sensor sidik jari atau wajah, Sekuvo menawarkan untuk menggunakannya tepat setelah penyiapan. Ini hanya lapisan kenyamanan: kata sandi utama selalu berfungsi, dan itu juga yang bertahan setelah reset pabrik.</p>",
+        ]),
+        ("entries", "Apa yang bisa kamu simpan", [
+            "<p>Empat jenis entri mencakup sebagian besar hal yang disimpan orang di sebuah brankas:</p>",
+            "<ul><li><strong>Akun / Kata sandi</strong> — nama pengguna, kata sandi, situs atau aplikasi.</li><li><strong>Sehari-hari</strong> — nama, telepon, email, alamat. Hal-hal yang terus diminta formulir.</li><li><strong>Kartu</strong> — nomor kartu, masa berlaku, CVV, IBAN.</li><li><strong>Catatan aman</strong> — teks bebas, dengan subjenis untuk skrip, kunci, kode pemulihan, dan file konfigurasi.</li></ul>",
+            "<p>Entri Akun dan Sehari-hari juga menerima <strong>kolom kustom</strong>: pasangan \"nama + nilai\" apa pun yang kamu inginkan. Kolom kustom dienkripsi persis seperti kolom bawaan dan muncul di setiap tempat kolom lain muncul.</p>",
+        ]),
+        ("channels", "Menggunakan rahasia tanpa papan klip", [
+            "<p>Papan klip bisa dibaca aplikasi lain, dan di situlah rahasia dicuri. Karena itu Sekuvo menawarkan tiga cara untuk mengirimkan nilai langsung ke tujuannya. Menyalin masih tersedia — papan klip dibersihkan otomatis setelah 45 detik — tapi tiga saluran di bawah ini adalah alasan aplikasi ini ada.</p>",
+        ]),
+        ("autofill", "Isi otomatis (di dalam ponsel)", [
+            "<p>Sekuvo bisa bertindak sebagai layanan isi otomatis Android, sehingga formulir masuk dan kartu menawarkan entrimu langsung.</p>",
+            "<p><strong>Cara mengaktifkan:</strong> Sekuvo → Pengaturan → <em>Aktifkan isi otomatis</em> → pilih Sekuvo dari daftar sistem. Daftar ini punya nama berbeda tergantung perangkat: di Samsung dan Android 14+ ini adalah <em>Kata sandi, kunci sandi &amp; isi otomatis → Layanan pilihan</em>; di Android murni <em>Layanan isi otomatis</em>.</p>",
+            "<p>Setelah itu, menyentuh kolom nama pengguna, kata sandi, atau kartu di aplikasi mana pun menampilkan entri yang cocok di atas keyboard. Jika brankas terkunci, langkah buka kunci muncul dulu — selama terkunci, sistem sama sekali tidak menerima apa pun.</p>",
+        ]),
+        ("keyboard", "Keyboard Sekuvo (di dalam ponsel)", [
+            "<p>Tambahan keyboard mengetik nilai tersimpan ke kolom mana pun, di aplikasi mana pun, tanpa langkah menyalin.</p>",
+            "<p><strong>Cara mengaktifkan:</strong> Sekuvo → Pengaturan → <em>Aktifkan keyboard</em> → aktifkan di daftar sistem, lalu pilih \"Keyboard Sekuvo\" dari pemilih keyboard kapan pun dibutuhkan.</p>",
+            "<p>Entri yang baru digunakan tetap di atas, dan 🔍 mencari di judul, nama pengguna, dan alamat. Saat brankas terkunci, keyboard hanya menampilkan entri yang ditandai untuk akses cepat — lihat di bawah.</p>",
+        ]),
+        ("bluetooth", "Mengetik di komputer lewat Bluetooth", [
+            "<p>Ponselmu bisa bertindak sebagai keyboard Bluetooth dan mengetik rahasia di posisi kursor komputermu. Tidak ada yang diinstal di komputer, berfungsi di Windows, macOS, dan Linux, dan nilainya tidak pernah menyentuh papan klip atau jaringan. Memerlukan Android 9 atau lebih baru.</p>",
+            "<h3>Langkah demi langkah</h3>",
+            "<ol><li>Di Sekuvo, buka entri dan ketuk ikon 💻 di samping kolom yang ingin diketik. <strong>Jaga layar ini tetap terbuka</strong> — ponsel hanya mengumumkan dirinya sebagai keyboard selagi layar ini terbuka.</li><li>Di komputer, tambahkan ponsel sebagai <em>perangkat Bluetooth baru</em>: di Windows <em>Pengaturan → Bluetooth &amp; perangkat → Tambah perangkat → Bluetooth</em>, di macOS <em>Pengaturan Sistem → Bluetooth</em>.</li><li>Konfirmasi kode pemasangan di kedua sisi.</li><li>Kembali ke ponsel, pilih komputermu dari daftar dan tunggu hingga muncul \"Terhubung\".</li><li>Pilih tata letak keyboard <strong>KOMPUTER</strong>, bukan ponsel. Komputer yang menafsirkan kode tombol, dan tata letak yang salah mengubah karakter seperti @ \" ? menjadi karakter lain tanpa disadari.</li><li>Klik di kolom pada komputer tempat nilai harus masuk.</li><li>Ketuk <strong>Ketik</strong> di ponsel. Setelah hitung mundur tiga detik — yang ada agar kamu sempat mengklik kolom itu — nilai diketik satu tombol demi satu tombol.</li></ol>",
+            "<h3>Terhubung, tapi tidak ada yang diketik</h3>",
+            "<p>Hampir selalu penyebabnya sama: komputer pernah memasangkan ponselmu <em>sebagai ponsel biasa</em> di suatu waktu sebelumnya, sehingga tidak pernah mengaktifkan layanan keyboard (HID) untuknya. Koneksi berhasil dan ketukan tombol tidak sampai ke mana pun.</p>",
+            "<ol><li>Hapus pemasangan di komputer (<em>Hapus perangkat</em>).</li><li>Hapus juga di ponsel (<em>Lupakan</em> di pengaturan Bluetooth). Kedua sisi penting.</li><li>Buka layar 💻 di Sekuvo dan biarkan terbuka.</li><li>Pasangkan lagi, <strong>mulai dari komputer</strong>.</li><li>Untuk memastikan di Windows: <em>Device Manager → Human Interface Devices</em> seharusnya sekarang menampilkan perangkat Bluetooth HID.</li></ol>",
+            "<p>Di macOS, koneksi pertama bisa membuka <strong>Keyboard Setup Assistant</strong>, yang meminta kamu menekan tombol di samping tombol shift. Sampai jendela itu ditutup, macOS tidak memproses apa pun — inilah penyebab umum \"terhubung tapi diam\" di Mac.</p>",
+            "<h3>Kecepatan, dan cara memeriksanya</h3>",
+            "<p>Tombol dikirim satu per satu, sehingga rahasia yang panjang benar-benar butuh waktu — dialog menampilkan perkiraan. Tiga kecepatan ditawarkan, dan kecepatan aman menjadi bawaan secara sengaja. Sebelum menaikkannya, gunakan <strong>⏱ Tes kecepatan</strong>: mengetik sepuluh blok identik yang dipisahkan spasi dan melaporkan karakter per detik yang terukur. Jika bahkan satu blok saja berbeda, kecepatan ini tidak aman di komputer ini — turunkan satu tingkat.</p>",
+            "<p>Tes kecepatan juga berfungsi sebagai diagnosis: tidak ada yang diketik berarti masalah pemasangan, karakter yang kacau berarti tata letak, pengetikan yang terputus berarti kecepatan.</p>",
+            "<p>Selama mengetik kamu melihat bilah kemajuan dan tombol <strong>Berhenti</strong>. Jika antrean pengiriman macet, Sekuvo mencoba lagi dengan jeda yang meningkat, dan jika tetap gagal, <em>berhenti dan memberitahumu</em> di karakter mana — tidak pernah ada rahasia yang diam-diam diketik setengah.</p>",
+        ]),
+        ("lock", "Cara kerja kunci", [
+            "<p>Brankas terkunci begitu layar tempatnya terbuka mati — menutup ponsel lipat juga termasuk. Saat itu kunci dihapus dari memori; judul entri mungkin masih terlihat di daftar, tapi tidak ada yang bisa didekripsi.</p>",
+            "<p>Keluar dari aplikasi dengan layar tetap menyala <em>tidak</em> menguncinya. Ini disengaja: aplikasi, keyboard, dan isi otomatis berbagi satu sesi, jika tidak, beralih ke browser untuk menempel kata sandi akan membuatmu terkunci di luar di tengah pekerjaan.</p>",
+        ]),
+        ("quick", "Akses cepat — sebuah kompromi yang disengaja", [
+            "<p>Entri yang secara eksplisit kamu tandai sebagai \"gunakan di keyboard tanpa kata sandi\" disimpan kedua kalinya, dienkripsi dengan kunci perangkat yang terpisah, agar keyboard bisa membacanya <em>saat brankas terkunci</em>.</p>",
+            "<p>Kompromi ini dinyatakan dengan jelas: entri semacam itu dilindungi oleh kunci layar ponselmu, bukan oleh kata sandi utamamu. Jangan simpan kata sandi di dalamnya. Tanda ini nonaktif secara bawaan; satu-satunya pengecualian adalah entri <strong>Sehari-hari</strong> baru, yang mulai ditandai karena nama dan nomor telepon memang yang ingin kamu miliki dalam jangkauan — kamu bisa menonaktifkan salah satunya.</p>",
+        ]),
+        ("backup", "Cadangan dan pemulihan", [
+            "<p>Pencadangan sistem (cadangan Google, transfer perangkat) sengaja dinonaktifkan, sehingga hanya ada satu cara brankasmu keluar dari ponsel, dan itu adalah cara yang kamu pilih: <strong>Pengaturan → Buat cadangan terenkripsi</strong>.</p>",
+            "<p>Kamu memilih <em>kata sandi cadangan</em> — buat berbeda dari kata sandi utamamu, karena kata sandi cadangan pada akhirnya diketik di komputer. Hasilnya adalah satu file <code>.vaultbak</code> yang kamu simpan di mana saja: Drive, kartu SD, flash disk.</p>",
+            "<p>File ini independen dari perangkat: salt dan parameter penurunan kuncinya sendiri berada di headernya. File plus kata sandi cadangan memulihkan semuanya di ponsel mana pun, bahkan setelah reset pabrik. Pulihkan lewat <strong>Pengaturan → Pulihkan dari cadangan</strong>, atau dari layar sambutan pada instalasi baru.</p>",
+            "<p>Pemulihan menawarkan <em>tambahkan ke yang sudah ada</em> atau <em>ganti semua</em>. Keduanya diverifikasi sebelum ada yang ditulis — kata sandi yang salah gagal pada tahap autentikasi, dan tidak ada yang dihapus sampai data baru dikonfirmasi.</p>",
+        ]),
+        ("transfer", "Membawa rahasia dari komputer", [
+            "<p>Mengetik kunci panjang secara manual di ponsel adalah tempat kesalahan terjadi. Sekuvo mengangkutnya sebagai amplop terenkripsi, dengan dua cara: teks yang kamu tempel, atau kode QR yang kamu pindai.</p>",
+            "<p><strong>Di ponsel:</strong> tombol ➕ menawarkan <em>Impor lewat QR</em> dan <em>Impor dari teks</em>. Impor QR membuka kamera; bingkai didekode di perangkat, dan transfer multi-bingkai menampilkan kemajuan saat dikumpulkan.</p>",
+            "<h3>Alat sisi komputer</h3>",
+            "<p>Alat yang membuat amplop-amplop ini adalah satu file HTML, dan ini sengaja <strong>berupa unduhan, bukan situs web</strong>. sekuvo.com tidak pernah meminta rahasia darimu; halaman yang melakukan itu akan terlihat persis seperti situs phishing.</p>",
+            "<ol><li>Buka proyek di GitHub dan buka <strong>Releases</strong>.</li><li>Unduh <code>aktar.html</code> dari rilis terbaru.</li><li>Periksa SHA-256-nya dengan nilai yang dipublikasikan di sampingnya: <code>shasum -a 256 aktar.html</code> di macOS atau Linux, <code>certutil -hashfile aktar.html SHA256</code> di Windows.</li><li>Buka file dengan klik dua kali. Ini berjalan dari diskmu — bilah alamat menampilkan <code>file://</code>, bukan situs.</li><li>Tempel teksmu, atur kata sandi transfer, dan alat ini menghasilkan amplop sebagai teks atau kode QR.</li><li>Di ponsel, pindai atau tempel, masukkan kata sandi yang sama, dan pilih tambahkan atau ganti.</li></ol>",
+            "<p>Semua enkripsi terjadi di dalam browsermu, di mesinmu. Ada juga <code>vault-clip.py</code> untuk baris perintah, yang melakukan hal yang sama dari papan klip atau file dan bisa menggambar kode QR di terminal.</p>",
+            "<h3>Jika kamu lebih suka tidak menggunakan alat ini</h3>",
+            "<p>Amplop adalah format terbuka, bukan sesuatu yang hanya bisa dibuat Sekuvo: PBKDF2-HMAC-SHA256 dengan 310.000 putaran, AES-256-GCM, dibungkus dalam objek JSON kecil. Kamu bisa membangunnya sendiri dengan sekitar tiga puluh baris yang sudah kamu baca, lalu tempel hasilnya ke <em>Impor dari teks</em> — aplikasi tidak punya cara mengetahui alat mana yang membuatnya, dan tidak peduli.</p>",
+            "<p>Resepnya ada di repositori: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (ditulis dalam bahasa Turki).</p>",
+        ]),
+        ("log", "Log penggunaan", [
+            "<p>Sekuvo mencatat kolom mana dari entri mana yang pergi ke mana dan kapan: ke papan klip, ke komputer lewat Bluetooth (dengan nama perangkat tujuan), atau diketik ke aplikasi lewat keyboard. Saat komputer diretas, ini menjawab \"apa yang sampai di sana, apa yang perlu saya ubah\".</p>",
+            "<p>Log ini dienkripsi dengan kunci yang sama seperti entrimu, dan <strong>nilainya tidak pernah ditulis di dalamnya</strong> — hanya jenis peristiwa, nama kolom, dan tujuan. Menghapus entri menghapus lognya, dan kamu bisa membersihkan semuanya dari Pengaturan.</p>",
+        ]),
+        ("generator", "Pembuat kata sandi", [
+            "<p>Bisa diakses dari ikon 🎲 di layar utama, atau di samping kolom kata sandi saat mengedit entri. Menggunakan sumber keacakan kriptografis, menghasilkan 8 hingga 64 karakter, memungkinkan memilih kelas karakter, bisa menghapus karakter yang mirip satu sama lain, dan menampilkan entropi yang dihasilkan dalam bit.</p>",
+        ]),
+    ],
+)
+
 SHOTS = {
     "start":     ["01-karsilama.png"],
     "entries":   ["02-liste.png", "10-ekleme-menusu.png", "03-uzun-anahtar.png"],
@@ -1046,5 +1125,18 @@ CAPTIONS = {
         "03-uzun-anahtar.png": "386 حروف کی ایک SSH کلید، مکمل۔ نیچے دیا فنگر پرنٹ قدر کو پڑھے بغیر تصدیق کی اجازت دیتا ہے۔",
         "09-gunluk.png": "استعمال کا لاگ: کیا کہاں اور کب گیا — لیکن قدر خود کبھی نہیں۔",
         "05-uretici.png": "جنریٹر، نتیجے میں ملنے والی اینٹروپی بٹس میں دکھائی گئی۔",
+    },
+    "id": {
+        "01-karsilama.png": "Layar sambutan: atur kata sandi utama, atau pulihkan cadangan yang sudah kamu punya.",
+        "02-liste.png": "Daftar entri, dengan pencarian dan filter jenis.",
+        "10-ekleme-menusu.png": "Saat menambahkan: empat jenis entri, plus dua jalur impor.",
+        "04-detay.png": "Sebuah entri. Kata sandi tetap tersembunyi; ikon di samping setiap kolom menyalin atau mengetiknya di komputer.",
+        "07-ayarlar.png": "Pengaturan — di sinilah isi otomatis dan keyboard diaktifkan.",
+        "11-duzenleme.png": "Mengedit entri. Sakelar akses cepat ada di bawah, dengan biayanya dijelaskan di sampingnya.",
+        "08-yedekleme.png": "Cadangan dan pemulihan hidup berdampingan di Pengaturan.",
+        "06-aktarim.png": "Wizard untuk membawa rahasia dari komputer.",
+        "03-uzun-anahtar.png": "Kunci SSH 386 karakter, utuh. Sidik jari di bawahnya memungkinkan verifikasi nilai tanpa membacanya.",
+        "09-gunluk.png": "Log penggunaan: apa yang pergi ke mana dan kapan — tapi tidak pernah nilainya sendiri.",
+        "05-uretici.png": "Generator, dengan entropi yang dihasilkan ditampilkan dalam bit.",
     },
 }

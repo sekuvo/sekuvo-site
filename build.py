@@ -550,7 +550,51 @@ L["ur"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>آپ کا محفوظ والٹ۔</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur"]
+L["id"] = dict(
+    lang="id", dir="ltr", script="latin", path="id/", name="Bahasa Indonesia",
+    title="Sekuvo — Brankas amanmu",
+    desc="Sekuvo — brankas amanmu. Aplikasi kata sandi sepenuhnya offline untuk Android: tanpa izin internet, AES-256, sumber terbuka (GPLv3).",
+    nav=("Keamanan", "Saluran", "Unduh", "Privasi"),
+    eyebrow="Brankas kata sandi offline untuk Android",
+    h1="Rahasiamu<br>tidak pernah <em>keluar.</em>",
+    lede="Sekuvo adalah brankas amanmu: kata sandi, kartu, dan catatan, dienkripsi di ponselmu dengan kunci yang hanya bisa diturunkan oleh kata sandi utamamu. Tanpa server, tanpa akun, tanpa sinkronisasi — dan tidak ada cara untuk memberi tahu siapa pun.",
+    btn_src="Kode sumber di GitHub", btn_priv="Kebijakan privasi",
+    cta_note="Halaman Google Play sedang disiapkan. Sekuvo gratis dan berlisensi GPLv3 — kodenya adalah buktinya.",
+    proof_cap="AndroidManifest.xml — semua izin yang dimilikinya",
+    proof_alt="Manifes aplikasi meminta kamera, biometrik, dan Bluetooth, dan pencarian izin INTERNET tidak menghasilkan apa pun.",
+    proof_no="(tidak ada hasil — izin ini tidak ada)",
+    sec_eyebrow="Model keamanan",
+    sec_h2="Enkripsi yang bisa kamu periksa, bukan percayai begitu saja.",
+    sec_kicker="Setiap kolom sensitif disegel dengan AES-256-GCM. Kunci tidak pernah menyentuh server karena tidak ada server; kunci diturunkan di ponselmu, dari kata sandi utamamu, setiap kali kamu membuka kunci.",
+    chain=CHAIN_LATIN,
+    cells=[("Terkunci saat layar mati",
+            "Kunci dihapus dari memori saat layar mati — menutup ponsel lipat juga termasuk. Satu kali buka kunci melayani aplikasi, keyboard, dan isi otomatis sekaligus."),
+           ("Cadangan yang bertahan lebih lama dari ponsel",
+            "Satu file <span class=\"mono-note\">.vaultbak</span> terenkripsi, disimpan di mana pun kamu pilih. File plus kata sandi cadangan memulihkan semuanya di perangkat mana pun — jalur pemulihan sudah diuji dari awal sampai akhir."),
+           ("Tidak ada pintu belakang pemulihan",
+            "Lupakan kata sandi utama, dan datanya hilang. Ini memang disengaja: pintu yang hanya bisa kamu buka tidak menyembunyikan kunci cadangan di bawah keset.")],
+    ch_eyebrow="Tanpa papan klip sesuai desain",
+    ch_h2="Tiga jalur, semuanya ada di ujung jarimu.",
+    ch_kicker="Papan klip adalah tempat rahasia dicuri. Karena itu Sekuvo mengetik nilai langsung ke tujuannya.",
+    lanes=[("Isi otomatis", "Layanan isi otomatis Android",
+            "Formulir masuk dan kartu menawarkan entrimu langsung. Saat terkunci, sistem tidak mendapat apa pun — buka kunci dulu, baru pilih."),
+           ("Keyboard", "Keyboard Sekuvo",
+            "Beralih ke sana di aplikasi mana pun dan ketik rahasia tersimpan langsung ke kolom — dengan pencarian, terbaru di atas, tanpa langkah menyalin."),
+           ("Bluetooth", "Mengetik di komputermu",
+            "Ponselmu menjadi keyboard Bluetooth dan mengetik rahasia di posisi kursor komputer. Tidak ada yang diinstal di komputer.")],
+    dl_eyebrow="Dapatkan Sekuvo", dl_h2="Gratis, sumber terbuka, GPLv3.",
+    dl_app_h="Aplikasi Android",
+    dl_app_p="Halaman Google Play sedang disiapkan. Sementara itu kamu bisa membangun dari kode sumber — README repositori menjelaskannya dalam dua perintah.",
+    dl_tools_h="Alat sisi komputer",
+    dl_tools_p="Alat sisi komputer adalah satu file HTML — <code>aktar.html</code> — dan ini adalah unduhan, bukan situs web: berjalan sepenuhnya di mesinmu, dan situs ini tidak pernah meminta rahasia darimu.",
+    dl_tools_note="github.com → Releases · periksa SHA-256 yang dipublikasikan",
+    dl_app_link="Baca panduan →",
+    dl_tools_link="Cara mendapatkan dan menggunakan aktar.html →",
+    contact="Kontak",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>brankas amanmu.</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -1134,6 +1178,33 @@ P["ur"] = dict(
          "<p>اگر یہ پالیسی کبھی تبدیل ہوتی ہے، تو نیا ورژن اپ ڈیٹ شدہ نفاذ کی تاریخ کے ساتھ اسی پتے پر شائع کیا جائے گا۔</p>"),
         ("رابطہ",
          '<p>سوالات: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["id"] = dict(
+    title="Sekuvo — Kebijakan Privasi",
+    desc="Kebijakan privasi Sekuvo: tidak ada data yang dikumpulkan, tidak ada data yang dibagikan, tanpa izin internet.",
+    h1="Kebijakan Privasi",
+    meta=f"Aplikasi: <strong>Sekuvo</strong> (com.sekuvo.app) · Pengembang: Ahmet Govercile · Tanggal berlaku: {EFFECTIVE}",
+    back="← Kembali ke sekuvo.com",
+    authoritative="Teks ini adalah terjemahan dari bahasa Inggris aslinya. Jika terjadi perbedaan, <a href=\"https://sekuvo.com/privacy/\">versi bahasa Inggris</a> yang berlaku.",
+    sections=[
+        ("Ringkasan",
+         "<p><strong>Sekuvo tidak mengumpulkan, mengirim, atau membagikan data apa pun.</strong> Ini adalah brankas kata sandi offline. Aplikasi tidak meminta izin Internet, sehingga secara teknis tidak bisa mengirim datamu ke mana pun.</p>"),
+        ("Penyimpanan data",
+         "<p>Semua yang kamu simpan di Sekuvo (judul, nama pengguna, kata sandi, catatan, riwayat penggunaan) tetap ada di perangkatmu, dienkripsi dengan kunci yang diturunkan dari kata sandi utamamu. Tidak ada yang diunggah, disinkronkan, atau dicadangkan ke server mana pun oleh aplikasi.</p>"),
+        ("Pengumpulan dan berbagi data",
+         "<ul><li>Tidak ada data pribadi yang dikumpulkan.</li><li>Tidak ada data yang dibagikan dengan pihak lain.</li><li>Tidak ada pustaka analitik, iklan, atau pelacakan yang disertakan.</li><li>Tidak perlu akun untuk menggunakan aplikasi.</li></ul>"),
+        ("Izin",
+         "<ul><li><strong>Kamera</strong> — hanya digunakan untuk memindai kode QR yang kamu pilih untuk dipindai, guna mengimpor datamu sendiri. Gambar diproses di perangkat dan tidak pernah meninggalkannya.</li><li><strong>Biometrik</strong> — hanya digunakan untuk membuka brankas di perangkatmu, melalui sistem biometrik Android. Sekuvo tidak pernah melihat atau menyimpan sidik jari atau data wajahmu.</li><li><strong>Bluetooth</strong> — hanya digunakan saat kamu secara eksplisit meminta Sekuvo mengetik kata sandi di komputer terdekat, bertindak sebagai keyboard Bluetooth. Hanya karakter yang kamu pilih untuk dikirim, langsung ke perangkat yang dipasangkan.</li></ul>"),
+        ("Cadangan dan transfer",
+         "<p>Ini hanya terjadi saat kamu memulainya, menghasilkan file terenkripsi atau kode QR yang dilindungi kata sandi yang kamu tentukan, dan hanya disimpan atau ditampilkan sesuai arahanmu. Aplikasi tidak pernah mengirimnya ke mana pun atas inisiatifnya sendiri.</p>"),
+        ("Anak-anak",
+         "<p>Sekuvo tidak mengumpulkan data dari siapa pun, termasuk anak-anak.</p>"),
+        ("Perubahan",
+         "<p>Jika kebijakan ini suatu saat berubah, versi baru akan dipublikasikan di alamat ini dengan tanggal berlaku yang diperbarui.</p>"),
+        ("Kontak",
+         '<p>Pertanyaan: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
