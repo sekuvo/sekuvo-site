@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="ja" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Sekuvoの使い方: 初回起動、自動入力、キーボード、Bluetoothでのコンピューターへの入力、バックアップと転送。">
+<title>Sekuvo — ガイド</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/guide/">
+<link rel="alternate" hreflang="fr" href="https://sekuvo.com/fr/guide/">
+<link rel="alternate" hreflang="bn" href="https://sekuvo.com/bn/guide/">
+<link rel="alternate" hreflang="pt" href="https://sekuvo.com/pt/guide/">
+<link rel="alternate" hreflang="ru" href="https://sekuvo.com/ru/guide/">
+<link rel="alternate" hreflang="ur" href="https://sekuvo.com/ur/guide/">
+<link rel="alternate" hreflang="id" href="https://sekuvo.com/id/guide/">
+<link rel="alternate" hreflang="de" href="https://sekuvo.com/de/guide/">
+<link rel="alternate" hreflang="ja" href="https://sekuvo.com/ja/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "Noto Sans JP", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Noto Sans JP", system-ui, sans-serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Noto Sans JP", system-ui, sans-serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  .shots { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }
+  .shots figure { margin: 0; flex: 0 1 15rem; }
+  .shots img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }
+  .shots figcaption { font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } .shots figure { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/ja/privacy/">プライバシー</a> <a href="https://sekuvo.com/ja/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a> ·
+    <a href="https://sekuvo.com/zh/guide/" lang="zh">简体中文</a> ·
+    <a href="https://sekuvo.com/fr/guide/" lang="fr">Français</a> ·
+    <a href="https://sekuvo.com/bn/guide/" lang="bn">বাংলা</a> ·
+    <a href="https://sekuvo.com/pt/guide/" lang="pt">Português</a> ·
+    <a href="https://sekuvo.com/ru/guide/" lang="ru">Русский</a> ·
+    <a href="https://sekuvo.com/ur/guide/" lang="ur">اردو</a> ·
+    <a href="https://sekuvo.com/id/guide/" lang="id">Bahasa Indonesia</a> ·
+    <a href="https://sekuvo.com/de/guide/" lang="de">Deutsch</a> ·
+    <a class="here" href="https://sekuvo.com/ja/guide/" lang="ja">日本語</a></div>
+
+  <div class="prose">
+    <h1>ガイド</h1>
+    <p class="lede-big">Sekuvoができることすべてを、おそらく必要になる順番で説明します。ここに書かれていることは、アカウントもインターネット接続も必要としません。</p>
+    <nav class="toc"><ol><li><a href="#start">初回起動</a></li><li><a href="#entries">保存できるもの</a></li><li><a href="#channels">クリップボードを使わずに秘密情報を使う</a></li><li><a href="#autofill">自動入力（端末内）</a></li><li><a href="#keyboard">Sekuvoキーボード（端末内）</a></li><li><a href="#bluetooth">Bluetoothでコンピューターに入力</a></li><li><a href="#lock">ロックの仕組み</a></li><li><a href="#quick">クイックアクセス — 意図的なトレードオフ</a></li><li><a href="#backup">バックアップと復元</a></li><li><a href="#transfer">コンピューターから秘密情報を持ち込む</a></li><li><a href="#log">使用履歴</a></li><li><a href="#generator">パスワード生成ツール</a></li></ol></nav>
+    <h2 id="start">初回起動</h2><p>初めて開くとき、<strong>マスターパスワード</strong>を設定します。保存するすべての秘密情報はこのパスワードから導出された鍵で暗号化されるため、唯一Sekuvoが復元を手伝えないものです — 続ける前に安全な場所に書き留めてください。</p><p>他の端末からの移行ですか？ ようこそ画面で<strong>「バックアップがあります — 復元する」</strong>をタップしてください。それでも先にこの端末のマスターパスワードを設定し、その後ファイル選択画面が自動的に開き、あなたのアイテムが戻ってきます。</p><p>あなたの端末に指紋または顔認証センサーがある場合、Sekuvoはセットアップ直後にその使用を提案します。これは利便性のための一層に過ぎません: マスターパスワードは常に機能し、工場出荷時リセットを乗り越えるのもこのパスワードです。</p><div class="shots"><figure><img src="https://sekuvo.com/img/01-karsilama.png" alt="ようこそ画面: マスターパスワードを設定するか、既存のバックアップを復元します。" loading="lazy" width="405" height="900"><figcaption>ようこそ画面: マスターパスワードを設定するか、既存のバックアップを復元します。</figcaption></figure></div><h2 id="entries">保存できるもの</h2><p>4種類のアイテムが、人々が保管庫に保存するもののほとんどをカバーします:</p><ul><li><strong>アカウント / パスワード</strong> — ユーザー名、パスワード、サイトまたはアプリ。</li><li><strong>日常</strong> — 氏名、電話番号、メール、住所。フォームが常に求めるもの。</li><li><strong>カード</strong> — カード番号、有効期限、CVV、IBAN。</li><li><strong>セキュアメモ</strong> — 自由なテキスト、スクリプト、鍵、復旧コード、設定ファイル用のサブタイプ付き。</li></ul><p>アカウントと日常のアイテムは<strong>カスタムフィールド</strong>も受け付けます: 好きな「名前 + 値」のペアです。カスタムフィールドは組み込みのフィールドとまったく同様に暗号化され、他のフィールドが表示されるすべての場所に表示されます。</p><div class="shots"><figure><img src="https://sekuvo.com/img/02-liste.png" alt="アイテムのリスト、検索と種類フィルター付き。" loading="lazy" width="405" height="900"><figcaption>アイテムのリスト、検索と種類フィルター付き。</figcaption></figure><figure><img src="https://sekuvo.com/img/10-ekleme-menusu.png" alt="追加時: 4種類のアイテムと、2つのインポート方法。" loading="lazy" width="405" height="900"><figcaption>追加時: 4種類のアイテムと、2つのインポート方法。</figcaption></figure><figure><img src="https://sekuvo.com/img/03-uzun-anahtar.png" alt="386文字のSSH鍵、全文表示。下のフィンガープリントで、値を読まずに検証できます。" loading="lazy" width="405" height="900"><figcaption>386文字のSSH鍵、全文表示。下のフィンガープリントで、値を読まずに検証できます。</figcaption></figure></div><h2 id="channels">クリップボードを使わずに秘密情報を使う</h2><p>クリップボードは他のアプリから読み取られる可能性があり、まさにそこで秘密情報が盗まれます。だからこそSekuvoは、値を目的地に直接届ける3つの方法を提供します。コピーすることも引き続き可能です — クリップボードは45秒後に自動的に消去されます — ですが、以下の3つのチャネルこそがこのアプリの存在理由です。</p><div class="shots"><figure><img src="https://sekuvo.com/img/04-detay.png" alt="1つのアイテム。パスワードは非表示のままで、各フィールドの横のアイコンでコピーまたはコンピューターへの入力ができます。" loading="lazy" width="405" height="900"><figcaption>1つのアイテム。パスワードは非表示のままで、各フィールドの横のアイコンでコピーまたはコンピューターへの入力ができます。</figcaption></figure></div><h2 id="autofill">自動入力（端末内）</h2><p>SekuvoはAndroidの自動入力サービスとして機能できるため、ログインフォームやカードフォームがあなたのアイテムを直接提示します。</p><p><strong>有効にするには:</strong> Sekuvo → 設定 → <em>自動入力を有効にする</em> → システムのリストからSekuvoを選択してください。このリストの名前は端末によって異なり、SamsungとAndroid 14以降では<em>パスワード、パスキー、自動入力 → 優先サービス</em>、素のAndroidでは<em>自動入力サービス</em>となります。</p><p>その後、どのアプリでもユーザー名、パスワード、カードのフィールドに触れると、対応するアイテムがキーボードの上に表示されます。保管庫がロックされている場合、先にロック解除の手順が表示されます — ロックされている間、システムには一切何も渡されません。</p><div class="shots"><figure><img src="https://sekuvo.com/img/07-ayarlar.png" alt="設定 — ここで自動入力とキーボードが有効化されます。" loading="lazy" width="405" height="900"><figcaption>設定 — ここで自動入力とキーボードが有効化されます。</figcaption></figure></div><h2 id="keyboard">Sekuvoキーボード（端末内）</h2><p>キーボード拡張機能は、どのアプリのどのフィールドにも、コピーの手順なしで保存された値を入力します。</p><p><strong>有効にするには:</strong> Sekuvo → 設定 → <em>キーボードを有効にする</em> → システムのリストで有効化し、必要なときにキーボード切り替えから「Sekuvoキーボード」を選択してください。</p><p>最近使用したアイテムが上部に表示され、🔍はタイトル、ユーザー名、住所を検索します。保管庫がロックされている間、キーボードにはクイックアクセスに設定されたアイテムのみ表示されます — 下記を参照してください。</p><h2 id="bluetooth">Bluetoothでコンピューターに入力</h2><p>あなたの端末はBluetoothキーボードとして機能し、コンピューターのカーソル位置に秘密情報を入力できます。コンピューターには何もインストールされず、Windows、macOS、Linuxで動作し、値がクリップボードやネットワークに触れることは決してありません。Android 9以降が必要です。</p><h3>手順</h3><ol><li>Sekuvoでアイテムを開き、入力したいフィールドの横にある💻アイコンをタップします。<strong>この画面を開いたままにしてください</strong> — 端末はこの画面が開いている間だけキーボードとして認識されます。</li><li>コンピューターで端末を<em>新しいBluetooth機器</em>として追加します: Windowsでは<em>設定 → Bluetoothとデバイス → デバイスを追加 → Bluetooth</em>、macOSでは<em>システム設定 → Bluetooth</em>。</li><li>両側でペアリングコードを確認します。</li><li>端末に戻り、リストからコンピューターを選択し、「接続済み」と表示されるのを待ちます。</li><li><strong>コンピューター側</strong>のキーボードレイアウトを選択してください — 端末側ではありません。キーコードを解釈するのはコンピューターなので、レイアウトを間違えると@ " ? のような文字が気づかないうちに別の文字に変わってしまいます。</li><li>値を入力したいコンピューター側のフィールドをクリックします。</li><li>端末で<strong>入力</strong>をタップします。3秒のカウントダウンの後 — これはあなたがそのフィールドをクリックする時間を確保するためのものです — 値が1キーずつ入力されます。</li></ol><h3>接続されているのに何も入力されない</h3><p>ほとんどの場合、原因は同じです: コンピューターが以前にあなたの端末を<em>普通の電話として</em>ペアリングしていたため、キーボードサービス（HID）を有効にしたことがない、というものです。接続自体は成功しますが、キー入力がどこにも届きません。</p><ol><li>コンピューター側でペアリングを解除します（<em>デバイスを削除</em>）。</li><li>端末側でも解除します（Bluetooth設定で<em>ペア解除</em>）。両側とも重要です。</li><li>Sekuvoで💻画面を開き、開いたままにします。</li><li><strong>コンピューター側から</strong>始めて再度ペアリングします。</li><li>Windowsで確認するには: <em>デバイスマネージャー → ヒューマンインターフェースデバイス</em>に、今度はBluetooth HID機器が表示されるはずです。</li></ol><p>macOSでは、最初の接続時に<strong>キーボード設定アシスタント</strong>が開くことがあり、shiftキーの隣のキーを押すよう求められます。そのウィンドウが閉じられるまで、macOSは何も処理しません — これがMacで「接続済みだが無反応」になる一般的な原因です。</p><h3>速度と、その確認方法</h3><p>キー入力は1つずつ送信されるため、長い秘密情報には実際に時間がかかります — ダイアログには見積もりが表示されます。3段階の速度が用意されており、「安全」がデフォルトになっているのは意図的です。速度を上げる前に<strong>⏱ 速度テスト</strong>を使ってください: 10個の同一のブロックをスペースで区切って入力し、測定された1秒あたりの文字数を報告します。1つでもブロックが異なる場合、その速度はこのコンピューターでは安全ではありません — 1段階下げてください。</p><p>速度テストは診断としても使えます: 何も入力されない場合はペアリングの問題、文字が乱れる場合はレイアウトの問題、入力が途中で止まる場合は速度の問題です。</p><p>入力中は進行状況バーと<strong>停止</strong>ボタンが表示されます。送信キューが詰まった場合、Sekuvoは待機時間を増やしながら再試行し、それでも失敗する場合は<em>停止して、どの文字で止まったかを知らせます</em> — 秘密情報が黙って途中まで入力されたままになることはありません。</p><h2 id="lock">ロックの仕組み</h2><p>保管庫が開かれている画面が消えた瞬間にロックされます — 折りたたみ式端末を閉じることも含まれます。その瞬間に鍵はメモリから消去されます。アイテムのタイトルはリストに表示され続けることがありますが、何も復号できません。</p><p>画面が点いたままアプリを終了しても<em>ロックされません</em>。これは意図的です: アプリ、キーボード、自動入力は1つのセッションを共有しており、そうでなければパスワードを貼り付けるためにブラウザに切り替えるだけで、作業の途中で締め出されてしまいます。</p><h2 id="quick">クイックアクセス — 意図的なトレードオフ</h2><p>明示的に「パスワードなしでキーボードから使う」と設定したアイテムは、別のデバイス鍵で暗号化されて2回目の保存が行われ、キーボードが<em>保管庫のロック中でも</em>それらを読み取れるようにします。</p><p>このトレードオフは明確に示されています: そのようなアイテムは、マスターパスワードではなく、あなたの端末の画面ロックによって保護されます。パスワードはそこに置かないでください。この設定はデフォルトで無効です。唯一の例外は新規の<strong>日常</strong>アイテムで、氏名や電話番号はまさに手元にすぐ用意しておきたいものであるため、最初から有効になっています — どちらも個別に無効化できます。</p><div class="shots"><figure><img src="https://sekuvo.com/img/11-duzenleme.png" alt="アイテムを編集中。クイックアクセスのスイッチは下部にあり、そのコストが横に説明されています。" loading="lazy" width="405" height="900"><figcaption>アイテムを編集中。クイックアクセスのスイッチは下部にあり、そのコストが横に説明されています。</figcaption></figure></div><h2 id="backup">バックアップと復元</h2><p>システムバックアップ（Googleバックアップ、端末移行）は意図的に無効化されているため、保管庫が端末から出る方法は、あなたが選ぶ1つだけです: <strong>設定 → 暗号化されたバックアップを作成</strong>。</p><p><em>バックアップパスワード</em>を選択します — マスターパスワードとは異なるものにしてください。バックアップパスワードは最終的にコンピューターに入力されるものだからです。結果として1つの<code>.vaultbak</code>ファイルが生成され、Drive、SDカード、USBメモリなど好きな場所に保存できます。</p><p>このファイルは端末に依存しません: 独自のソルトと鍵導出パラメータがヘッダーに含まれています。ファイルとバックアップパスワードがあれば、工場出荷時リセット後でも、どの端末でもすべて復元できます。<strong>設定 → バックアップから復元</strong>、または新規インストール時のようこそ画面から復元してください。</p><p>復元では<em>既存のものに追加</em>または<em>すべて置き換え</em>を選べます。どちらも何かが書き込まれる前に検証されます — 間違ったパスワードは認証の段階で失敗し、新しいデータが確認されるまで何も削除されません。</p><div class="shots"><figure><img src="https://sekuvo.com/img/08-yedekleme.png" alt="バックアップと復元は設定内で隣り合っています。" loading="lazy" width="405" height="900"><figcaption>バックアップと復元は設定内で隣り合っています。</figcaption></figure></div><h2 id="transfer">コンピューターから秘密情報を持ち込む</h2><p>長い鍵を端末に手で入力するのは、ミスが起きやすい場面です。Sekuvoはそれらを暗号化された封筒として、2つの方法で転送します: あなたが貼り付けるテキスト、またはあなたがスキャンするQRコードです。</p><p><strong>端末上で:</strong> ➕ボタンは<em>QRでインポート</em>と<em>テキストからインポート</em>を提供します。QRインポートはカメラを開きます。画像は端末上でデコードされ、複数画像にわたる転送は収集中の進行状況を表示します。</p><h3>コンピューター側のツール</h3><p>これらの封筒を作成するツールは1つのHTMLファイルであり、意図的に<strong>ウェブサイトではなくダウンロードファイル</strong>です。sekuvo.comがあなたに秘密情報を尋ねることは決してありません。もしそうするページがあれば、それはフィッシングサイトとまったく同じに見えるはずです。</p><ol><li>GitHubでプロジェクトを開き、<strong>Releases</strong>に移動します。</li><li>最新リリースから<code>aktar.html</code>をダウンロードします。</li><li>横に公開されている値でSHA-256を確認します: macOSまたはLinuxでは<code>shasum -a 256 aktar.html</code>、Windowsでは<code>certutil -hashfile aktar.html SHA256</code>。</li><li>ファイルをダブルクリックして開きます。ディスクから実行されます — アドレスバーにはウェブサイトではなく<code>file://</code>が表示されます。</li><li>テキストを貼り付け、転送パスワードを設定すると、テキストまたはQRコードとして封筒が生成されます。</li><li>端末でスキャンまたは貼り付けを行い、同じパスワードを入力して、追加または置き換えを選択します。</li></ol><p>すべての暗号化はあなたのブラウザ内、あなたのマシン上で行われます。コマンドライン用の<code>vault-clip.py</code>もあり、クリップボードまたはファイルから同じことを行い、ターミナルにQRコードを描画することもできます。</p><h3>ツールを使いたくない場合</h3><p>この封筒はオープンなフォーマットであり、Sekuvoでしか作れないものではありません: PBKDF2-HMAC-SHA256（310,000回）、AES-256-GCM、それらが小さなJSONオブジェクトにラップされています。すでに読んだ約30行のコードで自分で作成し、結果を<em>テキストからインポート</em>に貼り付けることができます — アプリはどのツールがそれを作成したか知る術がなく、気にもしません。</p><p>作り方はリポジトリにあります: <a href="https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md">docs/kendi-zarfini-uret.md</a>（トルコ語で書かれています）。</p><div class="shots"><figure><img src="https://sekuvo.com/img/06-aktarim.png" alt="コンピューターから秘密情報を持ち込むウィザード。" loading="lazy" width="405" height="900"><figcaption>コンピューターから秘密情報を持ち込むウィザード。</figcaption></figure></div><h2 id="log">使用履歴</h2><p>Sekuvoは、どのアイテムのどのフィールドが、いつ、どこへ送られたかを記録します: クリップボードへ、Bluetooth経由でコンピューターへ（送信先の端末名付き）、またはキーボードからアプリに入力された場合。コンピューターが侵害されたとき、これは「何がそこに渡ったか、何を変更する必要があるか」に答えます。</p><p>この履歴はあなたのアイテムと同じ鍵で暗号化されており、<strong>値そのものが記録されることは決してありません</strong> — イベントの種類、フィールド名、送信先のみです。アイテムを削除すると、その履歴も削除され、設定からすべてを消去できます。</p><div class="shots"><figure><img src="https://sekuvo.com/img/09-gunluk.png" alt="使用履歴: 何が、どこへ、いつ送られたか — ただし値そのものは決して記録されません。" loading="lazy" width="405" height="900"><figcaption>使用履歴: 何が、どこへ、いつ送られたか — ただし値そのものは決して記録されません。</figcaption></figure></div><h2 id="generator">パスワード生成ツール</h2><p>ホーム画面の🎲アイコン、またはアイテム編集中のパスワードフィールドの横からアクセスできます。暗号学的な乱数源を使用し、8～64文字を生成し、文字クラスの選択が可能で、互いに紛らわしい文字を除外でき、結果のエントロピーをビット単位で表示します。</p><div class="shots"><figure><img src="https://sekuvo.com/img/05-uretici.png" alt="生成ツール、結果のエントロピーがビット単位で表示されています。" loading="lazy" width="405" height="900"><figcaption>生成ツール、結果のエントロピーがビット単位で表示されています。</figcaption></figure></div>
+    <a class="back" href="https://sekuvo.com/ja/">← sekuvo.comに戻る</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>

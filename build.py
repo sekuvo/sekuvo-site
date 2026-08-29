@@ -51,6 +51,12 @@ FONTS = {
              "&family=IBM+Plex+Mono:wght@400;500&display=swap",
              '"Noto Nastaliq Urdu", system-ui, sans-serif',
              '"Noto Nastaliq Urdu", system-ui, sans-serif'),
+    # Separate from "cjk-sc": Japanese kanji forms and kana are not covered
+    # correctly by a Simplified-Chinese-tuned face.
+    "cjk-jp": ("https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700"
+               "&family=IBM+Plex+Mono:wght@400;500&display=swap",
+               '"Noto Sans JP", system-ui, sans-serif',
+               '"Noto Sans JP", system-ui, sans-serif'),
 }
 
 CHAIN_LATIN = ('Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ '
@@ -638,7 +644,52 @@ L["de"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>dein sicherer Tresor.</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de"]
+L["ja"] = dict(
+    lang="ja", dir="ltr", script="cjk-jp", path="ja/", name="日本語",
+    title="Sekuvo — あなたの安全な保管庫",
+    desc="Sekuvo — あなたの安全な保管庫。完全にオフラインで動作するAndroid用パスワード保管庫: インターネット権限なし、AES-256暗号化、オープンソース（GPLv3）。",
+    nav=("セキュリティ", "チャネル", "ダウンロード", "プライバシー"),
+    eyebrow="Androidのためのオフラインパスワード保管庫",
+    h1="あなたの秘密は<br><em>外に出ません。</em>",
+    lede="Sekuvoはあなたの安全な保管庫です: パスワード、カード、メモを、あなたのマスターパスワードからしか導出できない鍵で端末上に暗号化します。サーバーなし、アカウントなし、同期なし — そして誰かに知らせる手段もありません。",
+    btn_src="GitHubのソースコード", btn_priv="プライバシーポリシー",
+    cta_note="Google Playの掲載は準備中です。Sekuvoは無料でGPLv3ライセンスです — コードがその証拠です。",
+    proof_cap="AndroidManifest.xml — このアプリが持つすべての権限",
+    proof_alt="アプリのマニフェストはカメラ、生体認証、Bluetoothを要求しており、INTERNET権限の検索は何もヒットしません。",
+    proof_no="（該当なし — この権限は存在しません）",
+    sec_eyebrow="セキュリティモデル",
+    sec_h2="信じるのではなく、検証できる暗号化。",
+    sec_kicker="機密性の高いすべてのフィールドはAES-256-GCMで封印されます。サーバーが存在しないため、鍵がサーバーに触れることはありません。鍵はロック解除のたびに、あなたの端末上でマスターパスワードから導出されます。",
+    chain=('マスターパスワード ─<b>PBKDF2 · 310,000回</b>─▶ KEK ─<b>AES-GCMラップ</b>─▶ '
+           'dataKey ─▶ 各アイテムに<b>AES-256-GCM</b>'),
+    cells=[("画面が消えるとロック",
+            "画面が暗くなった瞬間に鍵はメモリから消去されます — 折りたたみ式端末を閉じることも含まれます。1回のロック解除で、アプリ、キーボード、自動入力のすべてが機能します。"),
+           ("端末より長く残るバックアップ",
+            "1つの暗号化された<span class=\"mono-note\">.vaultbak</span>ファイルを、好きな場所に保存できます。ファイルとバックアップパスワードがあれば、どの端末でもすべて復元できます — 復元の流れは最初から最後まで検証済みです。"),
+           ("復旧用の裏口はありません",
+            "マスターパスワードを忘れると、データは失われます。これは意図的な設計です: あなただけが開けるドアには、玄関マットの下に予備の鍵は隠されていません。")],
+    ch_eyebrow="設計上、クリップボードを使わない",
+    ch_h2="3つの経路、すべて指先ひとつで。",
+    ch_kicker="クリップボードは秘密情報が盗まれる場所です。だからこそSekuvoは値を直接、目的の場所に入力します。",
+    lanes=[("自動入力", "Androidの自動入力サービス",
+            "ログインフォームやカードフォームがあなたのアイテムを直接提示します。ロック中はシステムに何も渡りません — まずロックを解除してから選択します。"),
+           ("キーボード", "Sekuvoキーボード",
+            "どのアプリでも切り替えて、保存された秘密情報を直接フィールドに入力できます — 検索機能付き、最近使ったものが上部に、コピーの手順なしで。"),
+           ("Bluetooth", "あなたのコンピューターに入力",
+            "あなたの端末がBluetoothキーボードになり、コンピューターのカーソル位置に秘密情報を入力します。コンピューターには何もインストールされません。")],
+    dl_eyebrow="Sekuvoを入手", dl_h2="無料、オープンソース、GPLv3。",
+    dl_app_h="Androidアプリ",
+    dl_app_p="Google Playの掲載は準備中です。それまではソースコードからビルドできます — リポジトリのREADMEに2つのコマンドで説明されています。",
+    dl_tools_h="コンピューター側のツール",
+    dl_tools_p="コンピューター側のツールは1つのHTMLファイル — <code>aktar.html</code> — で、ウェブサイトではなくダウンロードファイルです: 完全にあなたのマシン上で動作し、このサイトがあなたに秘密情報を尋ねることは決してありません。",
+    dl_tools_note="github.com → Releases · 公開されたSHA-256を確認",
+    dl_app_link="ガイドを読む →",
+    dl_tools_link="aktar.htmlの入手方法と使い方 →",
+    contact="お問い合わせ",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>あなたの安全な保管庫。</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -1276,6 +1327,33 @@ P["de"] = dict(
          "<p>Sollte sich diese Erklärung eines Tages ändern, wird die neue Fassung an dieser Adresse mit einem aktualisierten Datum des Inkrafttretens veröffentlicht.</p>"),
         ("Kontakt",
          '<p>Fragen: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["ja"] = dict(
+    title="Sekuvo — プライバシーポリシー",
+    desc="Sekuvoのプライバシーポリシー: データ収集なし、データ共有なし、インターネット権限なし。",
+    h1="プライバシーポリシー",
+    meta=f"アプリ: <strong>Sekuvo</strong>（com.sekuvo.app）· 開発者: Ahmet Govercile · 発効日: {EFFECTIVE}",
+    back="← sekuvo.comに戻る",
+    authoritative="この文章は英語原文の翻訳です。相違がある場合は<a href=\"https://sekuvo.com/privacy/\">英語版</a>が優先されます。",
+    sections=[
+        ("概要",
+         "<p><strong>Sekuvoはいかなるデータも収集、送信、共有しません。</strong>これはオフラインのパスワード保管庫です。アプリはインターネット権限を要求しないため、技術的にあなたのデータをどこにも送信できません。</p>"),
+        ("データの保存場所",
+         "<p>Sekuvoに保存するもの（タイトル、ユーザー名、パスワード、メモ、使用履歴）はすべて、あなたのマスターパスワードから導出された鍵で暗号化され、この端末上に保存されます。アプリがこれらをサーバーにアップロード、同期、バックアップすることはありません。</p>"),
+        ("データの収集と共有",
+         "<ul><li>個人データは一切収集されません。</li><li>データが第三者と共有されることはありません。</li><li>分析、広告、トラッキングのライブラリは含まれていません。</li><li>アプリの利用にアカウントは不要です。</li></ul>"),
+        ("権限とその目的",
+         "<ul><li><strong>カメラ</strong> — あなたが選んでスキャンするQRコードの読み取りにのみ使用され、端末上で処理されます。</li><li><strong>生体認証</strong> — Androidの生体認証システムを通じて、あなたの端末上で保管庫のロックを解除するためにのみ使用されます。Sekuvoがあなたの指紋や顔を見たり保存したりすることはありません。</li><li><strong>Bluetooth</strong> — あなたが明示的にSekuvoへ近くのコンピューターにパスワードを入力するよう依頼し、Bluetoothキーボードとして機能する際にのみ使用されます。送信されるのはあなたが選んだ文字だけで、ペアリングした端末に直接送られます。</li></ul>"),
+        ("バックアップと転送",
+         "<p>これらはあなたが開始したときにのみ行われ、あなたが設定したパスワードで保護された暗号化ファイルまたはQRコードを生成し、あなたが指定した場所にのみ保存または表示されます。アプリが自発的にどこかへ送信することはありません。</p>"),
+        ("子供について",
+         "<p>Sekuvoは子供を含め、誰からもデータを収集しません。</p>"),
+        ("変更について",
+         "<p>このポリシーが変更される場合、更新された発効日とともに新しい版がこのアドレスで公開されます。</p>"),
+        ("お問い合わせ",
+         '<p>ご質問: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
