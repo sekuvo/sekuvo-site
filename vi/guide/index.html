@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="vi" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Cách sử dụng Sekuvo: lần chạy đầu tiên, tự động điền, bàn phím, nhập trên máy tính qua Bluetooth, sao lưu và chuyển giao.">
+<title>Sekuvo — Hướng dẫn</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+<link rel="alternate" hreflang="en" href="https://sekuvo.com/guide/">
+<link rel="alternate" hreflang="tr" href="https://sekuvo.com/tr/guide/">
+<link rel="alternate" hreflang="es" href="https://sekuvo.com/es/guide/">
+<link rel="alternate" hreflang="hi" href="https://sekuvo.com/hi/guide/">
+<link rel="alternate" hreflang="ar" href="https://sekuvo.com/ar/guide/">
+<link rel="alternate" hreflang="zh" href="https://sekuvo.com/zh/guide/">
+<link rel="alternate" hreflang="fr" href="https://sekuvo.com/fr/guide/">
+<link rel="alternate" hreflang="bn" href="https://sekuvo.com/bn/guide/">
+<link rel="alternate" hreflang="pt" href="https://sekuvo.com/pt/guide/">
+<link rel="alternate" hreflang="ru" href="https://sekuvo.com/ru/guide/">
+<link rel="alternate" hreflang="ur" href="https://sekuvo.com/ur/guide/">
+<link rel="alternate" hreflang="id" href="https://sekuvo.com/id/guide/">
+<link rel="alternate" hreflang="de" href="https://sekuvo.com/de/guide/">
+<link rel="alternate" hreflang="ja" href="https://sekuvo.com/ja/guide/">
+<link rel="alternate" hreflang="pcm" href="https://sekuvo.com/pcm/guide/">
+<link rel="alternate" hreflang="vi" href="https://sekuvo.com/vi/guide/">
+<link rel="alternate" hreflang="x-default" href="https://sekuvo.com/guide/">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  html { color-scheme: light dark; }
+  :root {
+    --ground: #16130f;
+    --surface: #201c16;
+    --line: #35302699;
+    --ink: #ede6da;
+    --muted: #9c927f;
+    --brass: #c9a34c;
+    --brass-ink: #16130f;
+    --ok: #7fa86b;
+  }
+  @media (prefers-color-scheme: light) {
+    :root:not([data-theme="dark"]) {
+      --ground: #f1eee8;
+      --surface: #faf8f4;
+      --line: #d8d2c455;
+      --ink: #221d15;
+      --muted: #6f6753;
+      --brass: #8a6d2a;
+      --brass-ink: #f8f4ec;
+      --ok: #4f7a3d;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--ground);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", "Segoe UI", system-ui, sans-serif;
+    font-size: 17px;
+    line-height: 1.65;
+  }
+  .wrap { max-width: 62rem; margin: 0 auto; padding: 0 1.5rem; }
+
+  h1, h2, h3 { font-family: "Bricolage Grotesque", Georgia, serif; line-height: 1.14; text-wrap: balance; margin: 0; }
+  .eyebrow {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: .78rem; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--brass);
+  }
+  a { color: var(--brass); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:focus-visible, .btn:focus-visible { outline: 2px solid var(--brass); outline-offset: 3px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; padding: 1.6rem 0 0; flex-wrap: wrap; }
+  .brand { font-family: "Bricolage Grotesque", Georgia, serif; font-weight: 700; font-size: 1.25rem; }
+  nav { display: flex; gap: 1.4rem; font-size: .92rem; flex-wrap: wrap; }
+  nav a { color: var(--muted); text-decoration: none; }
+  nav a:hover { color: var(--brass); }
+
+  .langs { display: flex; gap: .75rem; font-size: .82rem; flex-wrap: wrap; padding: .9rem 0 0; }
+  .langs a { color: var(--muted); text-decoration: none; }
+  .langs a:hover { color: var(--brass); }
+  .langs .here { color: var(--brass); font-weight: 600; }
+
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
+  .hero h1 em { font-style: normal; color: var(--brass); }
+  .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
+  .cta { display: flex; gap: .9rem; flex-wrap: wrap; }
+  .btn { display: inline-block; padding: .7rem 1.25rem; border-radius: 4px; font-weight: 600; font-size: .95rem; text-decoration: none; border: 1px solid var(--brass); }
+  .btn.solid { background: var(--brass); color: var(--brass-ink); }
+  .btn.ghost { color: var(--brass); }
+  .cta-note { font-size: .82rem; color: var(--muted); margin-top: .8rem; }
+
+  .proof {
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; line-height: 1.75;
+    padding: 1.3rem 1.4rem; overflow-x: auto;
+  }
+  .proof .cap { font-size: .72rem; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); display: block; margin-bottom: .8rem; }
+  .proof .p  { color: var(--ink); white-space: pre; }
+  .proof .c  { color: var(--muted); white-space: pre; }
+  .proof .no { color: var(--ok); white-space: pre; font-weight: 500; }
+
+  section { padding: 3.6rem 0; border-top: 1px solid var(--line); }
+  section h2 { font-size: 1.9rem; font-weight: 600; margin-bottom: .4rem; }
+  .kicker { color: var(--muted); max-width: 40rem; margin: 0 0 2.4rem; }
+
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2.2rem 2.6rem; margin-top: 2.4rem; }
+  .cell h3 { font-size: 1.06rem; font-weight: 600; margin-bottom: .45rem; }
+  .cell p { margin: 0; font-size: .93rem; color: var(--muted); }
+
+  .chain {
+    font-family: "IBM Plex Mono", monospace; font-size: .82rem; color: var(--muted);
+    background: var(--surface); border: 1px solid var(--line); border-radius: 6px;
+    padding: 1.1rem 1.4rem; overflow-x: auto; white-space: pre; line-height: 1.9;
+  }
+  .chain b { color: var(--brass); font-weight: 500; }
+
+  .lanes { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .lane { background: var(--surface); padding: 1.5rem 1.4rem; }
+  .lane .n { font-family: "IBM Plex Mono", monospace; font-size: .72rem; color: var(--brass); letter-spacing: .12em; text-transform: uppercase; }
+  .lane h3 { font-size: 1rem; margin: .5rem 0 .4rem; }
+  .lane p { margin: 0; font-size: .88rem; color: var(--muted); }
+
+  .dl { display: flex; gap: 2.6rem; align-items: flex-start; flex-wrap: wrap; margin-top: 1.6rem; }
+  .dl > div { flex: 1 1 18rem; }
+  .dl h3 { font-size: 1.05rem; margin-bottom: .4rem; }
+  .dl p { color: var(--muted); font-size: .93rem; margin: 0 0 .5rem; }
+  .mono-note { font-family: "IBM Plex Mono", monospace; font-size: .8rem; color: var(--muted); }
+
+  footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+  footer a { color: var(--muted); }
+  footer a:hover { color: var(--brass); }
+  footer em { font-style: normal; color: var(--brass); }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero > * { animation: rise .7s cubic-bezier(.2,.6,.2,1) both; }
+    .hero > *:nth-child(2) { animation-delay: .12s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+  }
+
+  @media (max-width: 780px) {
+    .hero { grid-template-columns: 1fr; padding-top: 3rem; gap: 2.4rem; }
+    .grid, .lanes { grid-template-columns: 1fr; }
+  }
+
+  .prose { max-width: 46rem; padding: 3rem 0 4rem; }
+  .prose h1 { font-size: clamp(2rem, 4vw, 2.6rem); font-weight: 640; }
+  .prose h2 { font-size: 1.35rem; font-weight: 600; margin: 3rem 0 .7rem; padding-top: 1.6rem; border-top: 1px solid var(--line); }
+  .prose h2:first-of-type { border-top: none; padding-top: 0; }
+  .prose h3 { font-size: 1.02rem; font-weight: 600; margin: 1.8rem 0 .5rem; color: var(--brass); }
+  .prose p, .prose li { color: var(--muted); }
+  .prose ul, .prose ol { padding-inline-start: 1.4rem; }
+  .prose li { margin-bottom: .55rem; }
+  .prose strong { color: var(--ink); }
+  .prose code { font-family: "IBM Plex Mono", monospace; font-size: .85em; background: var(--surface); border: 1px solid var(--line); border-radius: 3px; padding: .1em .35em; }
+  .lede-big { font-size: 1.05rem; color: var(--muted); margin: 1rem 0 2rem; }
+  .toc { background: var(--surface); border: 1px solid var(--line); border-radius: 6px; padding: 1.2rem 1.4rem; margin-bottom: 1rem; }
+  .toc ol { margin: 0; padding-inline-start: 1.2rem; columns: 2; column-gap: 2rem; }
+  .toc li { margin-bottom: .35rem; font-size: .92rem; }
+  .back { display: inline-block; margin-top: 2.6rem; font-size: .9rem; }
+  .shots { display: flex; gap: 1.4rem; flex-wrap: wrap; margin: 1.6rem 0 .4rem; }
+  .shots figure { margin: 0; flex: 0 1 15rem; }
+  .shots img {
+    width: 100%; height: auto; display: block;
+    border: 1px solid var(--line); border-radius: 10px;
+    background: var(--surface);
+  }
+  .shots figcaption { font-size: .82rem; color: var(--muted); margin-top: .6rem; line-height: 1.5; }
+  @media (max-width: 620px) { .toc ol { columns: 1; } .shots figure { flex: 1 1 100%; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <span class="brand">Sekuvo</span>
+    <nav><a href="https://sekuvo.com/vi/privacy/">Quyền riêng tư</a> <a href="https://sekuvo.com/vi/">sekuvo.com</a></nav>
+  </header>
+  <div class="langs"><a href="https://sekuvo.com/guide/" lang="en">English</a> ·
+    <a href="https://sekuvo.com/tr/guide/" lang="tr">Türkçe</a> ·
+    <a href="https://sekuvo.com/es/guide/" lang="es">Español</a> ·
+    <a href="https://sekuvo.com/hi/guide/" lang="hi">हिन्दी</a> ·
+    <a href="https://sekuvo.com/ar/guide/" lang="ar">العربية</a> ·
+    <a href="https://sekuvo.com/zh/guide/" lang="zh">简体中文</a> ·
+    <a href="https://sekuvo.com/fr/guide/" lang="fr">Français</a> ·
+    <a href="https://sekuvo.com/bn/guide/" lang="bn">বাংলা</a> ·
+    <a href="https://sekuvo.com/pt/guide/" lang="pt">Português</a> ·
+    <a href="https://sekuvo.com/ru/guide/" lang="ru">Русский</a> ·
+    <a href="https://sekuvo.com/ur/guide/" lang="ur">اردو</a> ·
+    <a href="https://sekuvo.com/id/guide/" lang="id">Bahasa Indonesia</a> ·
+    <a href="https://sekuvo.com/de/guide/" lang="de">Deutsch</a> ·
+    <a href="https://sekuvo.com/ja/guide/" lang="ja">日本語</a> ·
+    <a href="https://sekuvo.com/pcm/guide/" lang="pcm">Naija</a> ·
+    <a class="here" href="https://sekuvo.com/vi/guide/" lang="vi">Tiếng Việt</a></div>
+
+  <div class="prose">
+    <h1>Hướng dẫn</h1>
+    <p class="lede-big">Mọi thứ Sekuvo làm được, theo thứ tự mà bạn có khả năng cần đến nhất. Không có điều gì ở đây đòi hỏi tài khoản hay kết nối internet.</p>
+    <nav class="toc"><ol><li><a href="#start">Lần chạy đầu tiên</a></li><li><a href="#entries">Những gì bạn có thể lưu</a></li><li><a href="#channels">Sử dụng một bí mật mà không cần bộ nhớ tạm</a></li><li><a href="#autofill">Tự động điền (bên trong điện thoại)</a></li><li><a href="#keyboard">Bàn phím Sekuvo (bên trong điện thoại)</a></li><li><a href="#bluetooth">Nhập trên máy tính qua Bluetooth</a></li><li><a href="#lock">Cách khóa hoạt động</a></li><li><a href="#quick">Truy cập nhanh — một sự đánh đổi có chủ đích</a></li><li><a href="#backup">Sao lưu và khôi phục</a></li><li><a href="#transfer">Mang bí mật từ máy tính về</a></li><li><a href="#log">Nhật ký sử dụng</a></li><li><a href="#generator">Trình tạo mật khẩu</a></li></ol></nav>
+    <h2 id="start">Lần chạy đầu tiên</h2><p>Khi mở lần đầu, bạn thiết lập một <strong>mật khẩu chính</strong>. Mỗi bí mật bạn lưu được mã hóa bằng khóa dẫn xuất từ nó, vì vậy đây là thứ duy nhất mà Sekuvo không thể giúp bạn khôi phục — hãy ghi lại nó ở nơi an toàn trước khi tiếp tục.</p><p>Bạn đang chuyển từ điện thoại khác? Chạm vào <strong>"Tôi có bản sao lưu — khôi phục nó"</strong> trên màn hình chào mừng. Bạn vẫn sẽ thiết lập mật khẩu chính cho thiết bị này trước, sau đó bộ chọn tệp sẽ tự động mở ra và các mục của bạn sẽ quay trở lại.</p><p>Nếu điện thoại của bạn có cảm biến vân tay hoặc khuôn mặt, Sekuvo sẽ đề nghị sử dụng nó ngay sau khi thiết lập. Đây chỉ là một lớp tiện lợi: mật khẩu chính luôn hoạt động, và nó cũng là thứ tồn tại qua cả việc đặt lại về cài đặt gốc.</p><div class="shots"><figure><img src="https://sekuvo.com/img/01-karsilama.png" alt="Màn hình chào mừng: thiết lập mật khẩu chính, hoặc khôi phục một bản sao lưu mà bạn đã có." loading="lazy" width="405" height="900"><figcaption>Màn hình chào mừng: thiết lập mật khẩu chính, hoặc khôi phục một bản sao lưu mà bạn đã có.</figcaption></figure></div><h2 id="entries">Những gì bạn có thể lưu</h2><p>Bốn loại mục bao quát phần lớn những gì mọi người lưu trong một kho lưu trữ:</p><ul><li><strong>Tài khoản / Mật khẩu</strong> — tên đăng nhập, mật khẩu, trang web hoặc ứng dụng.</li><li><strong>Hằng ngày</strong> — tên, điện thoại, email, địa chỉ. Những thứ mà các biểu mẫu luôn yêu cầu.</li><li><strong>Thẻ</strong> — số thẻ, ngày hết hạn, CVV, IBAN.</li><li><strong>Ghi chú bảo mật</strong> — văn bản tự do, với các loại phụ dành cho tập lệnh, khóa, mã khôi phục, và tệp cấu hình.</li></ul><p>Các mục Tài khoản và Hằng ngày cũng chấp nhận <strong>các trường tùy chỉnh</strong>: bất kỳ cặp "tên + giá trị" nào bạn thích. Các trường tùy chỉnh được mã hóa hoàn toàn giống như các trường tích hợp sẵn và xuất hiện ở mọi nơi mà những trường khác xuất hiện.</p><div class="shots"><figure><img src="https://sekuvo.com/img/02-liste.png" alt="Danh sách các mục, với tính năng tìm kiếm và bộ lọc theo loại." loading="lazy" width="405" height="900"><figcaption>Danh sách các mục, với tính năng tìm kiếm và bộ lọc theo loại.</figcaption></figure><figure><img src="https://sekuvo.com/img/10-ekleme-menusu.png" alt="Khi thêm: bốn loại mục, cùng hai con đường nhập." loading="lazy" width="405" height="900"><figcaption>Khi thêm: bốn loại mục, cùng hai con đường nhập.</figcaption></figure><figure><img src="https://sekuvo.com/img/03-uzun-anahtar.png" alt="Một khóa SSH 386 ký tự, đầy đủ. Vân tay bên dưới cho phép kiểm chứng một giá trị mà không cần đọc nó." loading="lazy" width="405" height="900"><figcaption>Một khóa SSH 386 ký tự, đầy đủ. Vân tay bên dưới cho phép kiểm chứng một giá trị mà không cần đọc nó.</figcaption></figure></div><h2 id="channels">Sử dụng một bí mật mà không cần bộ nhớ tạm</h2><p>Bộ nhớ tạm có thể bị các ứng dụng khác đọc được, và chính đó là nơi các bí mật bị đánh cắp. Vì vậy, Sekuvo cung cấp ba cách để đưa một giá trị trực tiếp đến đích của nó. Bạn vẫn có thể sao chép — bộ nhớ tạm tự động xóa sau 45 giây — nhưng ba kênh dưới đây chính là lý do khiến ứng dụng này tồn tại.</p><div class="shots"><figure><img src="https://sekuvo.com/img/04-detay.png" alt="Một mục. Mật khẩu vẫn được ẩn; các biểu tượng cạnh mỗi trường sẽ sao chép nó hoặc gõ nó trên máy tính." loading="lazy" width="405" height="900"><figcaption>Một mục. Mật khẩu vẫn được ẩn; các biểu tượng cạnh mỗi trường sẽ sao chép nó hoặc gõ nó trên máy tính.</figcaption></figure></div><h2 id="autofill">Tự động điền (bên trong điện thoại)</h2><p>Sekuvo có thể hoạt động như dịch vụ tự động điền của Android, nên các biểu mẫu đăng nhập và thẻ sẽ gợi ý trực tiếp các mục của bạn.</p><p><strong>Để bật:</strong> Sekuvo → Cài đặt → <em>Bật tự động điền</em> → chọn Sekuvo từ danh sách hệ thống. Danh sách này có tên khác nhau tùy theo thiết bị: trên Samsung và Android 14+ là <em>Mật khẩu, khóa truy cập &amp; tự động điền → Dịch vụ ưu tiên</em>; trên Android thuần túy là <em>Dịch vụ tự động điền</em>.</p><p>Sau đó, chạm vào một trường tên đăng nhập, mật khẩu, hoặc thẻ trong bất kỳ ứng dụng nào sẽ hiển thị các mục khớp của bạn phía trên bàn phím. Nếu kho lưu trữ đang khóa, bước mở khóa sẽ hiện trước — trong khi nó đang khóa, hệ thống hoàn toàn không nhận được bất cứ điều gì.</p><div class="shots"><figure><img src="https://sekuvo.com/img/07-ayarlar.png" alt="Cài đặt — nơi tự động điền và bàn phím được bật." loading="lazy" width="405" height="900"><figcaption>Cài đặt — nơi tự động điền và bàn phím được bật.</figcaption></figure></div><h2 id="keyboard">Bàn phím Sekuvo (bên trong điện thoại)</h2><p>Tiện ích bàn phím gõ các giá trị đã lưu trực tiếp vào bất kỳ trường nào, trong bất kỳ ứng dụng nào, không cần bước sao chép.</p><p><strong>Để bật:</strong> Sekuvo → Cài đặt → <em>Bật bàn phím</em> → bật nó trong danh sách hệ thống, sau đó chọn "Bàn phím Sekuvo" từ bộ chuyển đổi bàn phím bất cứ khi nào bạn cần.</p><p>Các mục sử dụng gần đây nằm trên cùng, và 🔍 tìm kiếm trong tiêu đề, tên đăng nhập, và địa chỉ. Trong khi kho lưu trữ đang khóa, bàn phím chỉ hiện các mục được đánh dấu để truy cập nhanh — xem bên dưới.</p><h2 id="bluetooth">Nhập trên máy tính qua Bluetooth</h2><p>Điện thoại của bạn có thể hoạt động như một bàn phím Bluetooth và gõ một bí mật vào vị trí con trỏ trên máy tính của bạn. Không có gì được cài đặt trên máy tính, nó hoạt động trên Windows, macOS, và Linux, và giá trị không bao giờ chạm vào bộ nhớ tạm hay mạng. Yêu cầu Android 9 trở lên.</p><h3>Từng bước</h3><ol><li>Trong Sekuvo, mở mục và chạm vào biểu tượng 💻 cạnh trường bạn muốn gõ. <strong>Giữ màn hình này mở</strong> — điện thoại chỉ tự công bố mình là bàn phím khi màn hình này còn mở.</li><li>Trên máy tính, thêm điện thoại như <em>một thiết bị Bluetooth mới</em>: trên Windows là <em>Cài đặt → Bluetooth &amp; thiết bị → Thêm thiết bị → Bluetooth</em>, trên macOS là <em>Cài đặt Hệ thống → Bluetooth</em>.</li><li>Xác nhận mã ghép nối trên cả hai phía.</li><li>Quay lại điện thoại, chọn máy tính của bạn từ danh sách và chờ chữ "Đã kết nối" xuất hiện.</li><li>Chọn bố cục bàn phím của <strong>máy tính</strong> — không phải của điện thoại. Máy tính là bên diễn giải mã phím, nên bố cục sai sẽ âm thầm biến các ký tự như @ " ? thành ký tự khác.</li><li>Nhấp vào trường trên máy tính nơi giá trị cần đến.</li><li>Chạm <strong>Nhập</strong> trên điện thoại. Sau khi đếm ngược ba giây — được thêm vào để bạn kịp nhấp vào trường đó — giá trị sẽ được gõ từng phím một.</li></ol><h3>Đã kết nối nhưng không có gì được nhập</h3><p>Hầu như luôn cùng một nguyên nhân: máy tính đã từng ghép nối điện thoại của bạn <em>như một điện thoại thông thường</em> vào một thời điểm trước đó, nên chưa bao giờ bật dịch vụ bàn phím (HID) cho nó. Kết nối vẫn thành công nhưng các lần nhấn phím không đi đến đâu cả.</p><ol><li>Gỡ ghép nối trên máy tính (<em>Xóa thiết bị</em>).</li><li>Gỡ nó trên điện thoại nữa (<em>Bỏ ghép nối</em> trong cài đặt Bluetooth). Cả hai phía đều quan trọng.</li><li>Mở màn hình 💻 trong Sekuvo và để nó mở.</li><li>Ghép nối lại, bắt đầu <strong>từ máy tính</strong>.</li><li>Để xác nhận trên Windows: <em>Trình quản lý Thiết bị → Thiết bị Giao diện Người dùng</em> giờ đây phải liệt kê một thiết bị Bluetooth HID.</li></ol><p>Trên macOS, kết nối đầu tiên có thể mở <strong>Trình hỗ trợ Thiết lập Bàn phím</strong>, yêu cầu bạn nhấn một phím cạnh phím shift. Cho đến khi cửa sổ đó được đóng lại, macOS không xử lý gì cả — đây là nguyên nhân thường gặp của tình trạng "đã kết nối nhưng im lặng" trên máy Mac.</p><h3>Tốc độ, và cách kiểm tra nó</h3><p>Các lần nhấn phím được gửi từng cái một, nên một bí mật dài thực sự sẽ mất thời gian — hộp thoại hiển thị một ước tính. Có ba tốc độ được cung cấp, và việc An toàn là mặc định là có chủ đích. Trước khi tăng tốc độ, hãy dùng <strong>⏱ Thử nghiệm tốc độ</strong>: nó gõ mười khối giống hệt nhau được phân tách bằng dấu cách và báo cáo số ký tự mỗi giây đo được. Nếu dù chỉ một khối khác biệt, tốc độ đó không an toàn trên máy tính này — hãy giảm xuống một bậc.</p><p>Thử nghiệm tốc độ cũng đóng vai trò chẩn đoán: không có gì được nhập nghĩa là vấn đề ghép nối, ký tự bị lộn xộn nghĩa là vấn đề bố cục, việc nhập bị gián đoạn giữa chừng nghĩa là vấn đề tốc độ.</p><p>Trong khi nhập, bạn sẽ thấy một thanh tiến trình và một nút <strong>Dừng</strong>. Nếu hàng đợi gửi bị treo, Sekuvo sẽ thử lại với thời gian chờ tăng dần, và nếu vẫn không thành công, nó sẽ <em>dừng lại và cho bạn biết</em> nó dừng ở ký tự nào — không có bí mật nào bị gõ dở dang trong im lặng.</p><h2 id="lock">Cách khóa hoạt động</h2><p>Kho lưu trữ khóa lại ngay khoảnh khắc màn hình mà nó đang mở tắt đi — gập điện thoại có thể gập lại cũng được tính. Ngay lúc đó, khóa bị xóa khỏi bộ nhớ; tiêu đề của các mục có thể vẫn còn hiển thị trong danh sách, nhưng không có gì có thể được giải mã.</p><p>Rời khỏi ứng dụng trong khi màn hình vẫn bật <em>không</em> khóa nó lại. Đây là điều có chủ đích: ứng dụng, bàn phím, và tự động điền chia sẻ chung một phiên làm việc, nếu không thì việc chuyển sang trình duyệt để dán mật khẩu sẽ khiến bạn bị khóa ngoài giữa chừng công việc.</p><h2 id="quick">Truy cập nhanh — một sự đánh đổi có chủ đích</h2><p>Các mục mà bạn đánh dấu rõ ràng là "dùng trên bàn phím không cần mật khẩu" được lưu lại lần thứ hai, được mã hóa bằng một khóa thiết bị riêng biệt, để bàn phím có thể đọc chúng <em>ngay cả khi kho lưu trữ đang khóa</em>.</p><p>Sự đánh đổi này được nêu rõ: các mục như vậy được bảo vệ bởi khóa màn hình điện thoại của bạn, chứ không phải mật khẩu chính của bạn. Đừng đặt mật khẩu vào đó. Dấu này tắt theo mặc định; ngoại lệ duy nhất là các mục <strong>Hằng ngày</strong> mới, mặc định được đánh dấu vì tên và số điện thoại chính là những gì bạn muốn có sẵn trong tầm tay — bạn có thể tắt bất kỳ mục nào trong số đó.</p><div class="shots"><figure><img src="https://sekuvo.com/img/11-duzenleme.png" alt="Đang chỉnh sửa một mục. Công tắc truy cập nhanh nằm bên dưới, chi phí của nó được giải thích ngay cạnh." loading="lazy" width="405" height="900"><figcaption>Đang chỉnh sửa một mục. Công tắc truy cập nhanh nằm bên dưới, chi phí của nó được giải thích ngay cạnh.</figcaption></figure></div><h2 id="backup">Sao lưu và khôi phục</h2><p>Sao lưu hệ thống (sao lưu Google, chuyển thiết bị) bị tắt có chủ đích, vì vậy chỉ có đúng một cách để kho lưu trữ của bạn rời khỏi điện thoại, và đó là cách bạn chọn: <strong>Cài đặt → Tạo bản sao lưu mã hóa</strong>.</p><p>Bạn chọn một <em>mật khẩu sao lưu</em> — hãy đặt nó khác với mật khẩu chính của bạn, vì mật khẩu sao lưu cuối cùng sẽ được gõ trên các máy tính. Kết quả là một tệp <code>.vaultbak</code> duy nhất mà bạn lưu ở bất cứ đâu bạn muốn: Drive, thẻ SD, ổ USB.</p><p>Tệp này độc lập với thiết bị: muối riêng và các tham số dẫn xuất khóa của nó nằm trong phần đầu tệp. Tệp cùng với mật khẩu sao lưu khôi phục mọi thứ trên bất kỳ điện thoại nào, ngay cả sau khi đặt lại về cài đặt gốc. Hãy khôi phục qua <strong>Cài đặt → Khôi phục từ bản sao lưu</strong>, hoặc từ màn hình chào mừng trên một lần cài đặt mới.</p><p>Khôi phục cung cấp <em>thêm vào các mục hiện có</em> hoặc <em>thay thế tất cả</em>. Cả hai đều được xác minh trước khi bất cứ điều gì được ghi — mật khẩu sai sẽ thất bại ngay ở bước xác thực, và không có gì bị xóa cho đến khi dữ liệu mới được xác nhận.</p><div class="shots"><figure><img src="https://sekuvo.com/img/08-yedekleme.png" alt="Sao lưu và khôi phục nằm cạnh nhau trong Cài đặt." loading="lazy" width="405" height="900"><figcaption>Sao lưu và khôi phục nằm cạnh nhau trong Cài đặt.</figcaption></figure></div><h2 id="transfer">Mang bí mật từ máy tính về</h2><p>Gõ tay một khóa dài trên điện thoại là nơi các lỗi xảy ra. Sekuvo vận chuyển chúng dưới dạng một phong bì mã hóa, theo hai cách: văn bản mà bạn dán, hoặc mã QR mà bạn quét.</p><p><strong>Trên điện thoại:</strong> nút ➕ cung cấp <em>Nhập qua QR</em> và <em>Nhập từ văn bản</em>. Nhập qua QR sẽ mở camera; các khung hình được giải mã trên thiết bị, và các lần chuyển giao gồm nhiều khung hình sẽ hiển thị tiến trình khi chúng được thu thập.</p><h3>Công cụ phía máy tính</h3><p>Công cụ tạo ra các phong bì này là một tệp HTML duy nhất, và nó có chủ đích là <strong>một tệp tải xuống, không phải một trang web</strong>. sekuvo.com sẽ không bao giờ hỏi bạn về một bí mật; một trang làm điều đó sẽ trông y hệt như một trang web lừa đảo.</p><ol><li>Mở dự án trên GitHub và vào <strong>Releases</strong>.</li><li>Tải <code>aktar.html</code> từ phiên bản mới nhất.</li><li>Kiểm tra mã SHA-256 của nó với giá trị được công bố kế bên: <code>shasum -a 256 aktar.html</code> trên macOS hoặc Linux, <code>certutil -hashfile aktar.html SHA256</code> trên Windows.</li><li>Mở tệp bằng cách nhấp đúp. Nó chạy từ ổ đĩa của bạn — thanh địa chỉ hiển thị <code>file://</code>, không phải một trang web.</li><li>Dán văn bản của bạn, đặt một mật khẩu chuyển giao, và nó sẽ tạo ra phong bì dưới dạng văn bản hoặc mã QR.</li><li>Trên điện thoại, quét hoặc dán, nhập cùng mật khẩu đó, và chọn thêm hoặc thay thế.</li></ol><p>Toàn bộ quá trình mã hóa diễn ra bên trong trình duyệt của bạn, trên máy của bạn. Cũng có <code>vault-clip.py</code> cho dòng lệnh, thực hiện điều tương tự từ bộ nhớ tạm hoặc từ một tệp và có thể vẽ mã QR trong terminal.</p><h3>Nếu bạn không muốn dùng công cụ này</h3><p>Phong bì là một định dạng mở, không phải thứ chỉ Sekuvo mới tạo được: PBKDF2-HMAC-SHA256 với 310.000 vòng lặp, AES-256-GCM, được bọc trong một đối tượng JSON nhỏ. Bạn có thể tự xây dựng nó với khoảng ba mươi dòng mã mà bạn đã đọc, rồi dán kết quả vào <em>Nhập từ văn bản</em> — ứng dụng không có cách nào biết công cụ nào đã tạo ra nó, và nó cũng không quan tâm.</p><p>Công thức nằm trong kho lưu trữ: <a href="https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md">docs/kendi-zarfini-uret.md</a> (được viết bằng tiếng Thổ Nhĩ Kỳ).</p><div class="shots"><figure><img src="https://sekuvo.com/img/06-aktarim.png" alt="Trình hướng dẫn mang bí mật từ máy tính về." loading="lazy" width="405" height="900"><figcaption>Trình hướng dẫn mang bí mật từ máy tính về.</figcaption></figure></div><h2 id="log">Nhật ký sử dụng</h2><p>Sekuvo ghi lại trường nào của mục nào đã đi đâu và khi nào: đến bộ nhớ tạm, đến máy tính qua Bluetooth (kèm tên thiết bị đích), hoặc được gõ vào một ứng dụng từ bàn phím. Khi một máy tính bị xâm phạm, điều này trả lời câu hỏi "cái gì đã đến đó, tôi cần thay đổi cái gì".</p><p>Nhật ký được mã hóa bằng cùng khóa với các mục của bạn, và <strong>các giá trị không bao giờ được ghi vào đó</strong> — chỉ có loại sự kiện, tên trường, và đích đến. Xóa một mục cũng xóa nhật ký của nó, và bạn có thể xóa toàn bộ từ Cài đặt.</p><div class="shots"><figure><img src="https://sekuvo.com/img/09-gunluk.png" alt="Nhật ký sử dụng: cái gì đã đi đâu và khi nào — nhưng không bao giờ là bản thân giá trị." loading="lazy" width="405" height="900"><figcaption>Nhật ký sử dụng: cái gì đã đi đâu và khi nào — nhưng không bao giờ là bản thân giá trị.</figcaption></figure></div><h2 id="generator">Trình tạo mật khẩu</h2><p>Có thể truy cập từ biểu tượng 🎲 trên màn hình chính, hoặc cạnh trường mật khẩu khi chỉnh sửa một mục. Nó dùng một nguồn ngẫu nhiên mật mã học, tạo ra từ 8 đến 64 ký tự, cho phép chọn các lớp ký tự, có thể loại bỏ các ký tự giống nhau, và hiển thị độ hỗn loạn (entropy) kết quả tính bằng bit.</p><div class="shots"><figure><img src="https://sekuvo.com/img/05-uretici.png" alt="Trình tạo, với độ hỗn loạn kết quả được hiển thị tính bằng bit." loading="lazy" width="405" height="900"><figcaption>Trình tạo, với độ hỗn loạn kết quả được hiển thị tính bằng bit.</figcaption></figure></div>
+    <a class="back" href="https://sekuvo.com/vi/">← Quay lại sekuvo.com</a>
+  </div>
+
+  <footer>
+    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
+  </footer>
+</div>
+</body>
+</html>

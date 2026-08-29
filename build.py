@@ -733,7 +733,51 @@ L["pcm"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>your safe vault.</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja", "pcm"]
+L["vi"] = dict(
+    lang="vi", dir="ltr", script="latin", path="vi/", name="Tiếng Việt",
+    title="Sekuvo — Kho lưu trữ an toàn của bạn",
+    desc="Sekuvo — kho lưu trữ an toàn của bạn. Một trình quản lý mật khẩu hoàn toàn ngoại tuyến cho Android: không quyền internet, mã hóa AES-256, mã nguồn mở (GPLv3).",
+    nav=("Bảo mật", "Kênh", "Tải xuống", "Quyền riêng tư"),
+    eyebrow="Kho lưu trữ mật khẩu ngoại tuyến cho Android",
+    h1="Bí mật của bạn<br>không bao giờ <em>rời đi.</em>",
+    lede="Sekuvo là kho lưu trữ an toàn của bạn: mật khẩu, thẻ, và ghi chú, được mã hóa trên điện thoại của bạn bằng một khóa mà chỉ mật khẩu chính của bạn mới có thể dẫn xuất. Không máy chủ, không tài khoản, không đồng bộ hóa — và không có cách nào để báo cho ai biết.",
+    btn_src="Mã nguồn trên GitHub", btn_priv="Chính sách quyền riêng tư",
+    cta_note="Trang niêm yết trên Google Play đang được chuẩn bị. Sekuvo miễn phí và theo giấy phép GPLv3 — mã nguồn chính là bằng chứng.",
+    proof_cap="AndroidManifest.xml — tất cả các quyền mà nó có",
+    proof_alt="Tệp kê khai của ứng dụng yêu cầu camera, sinh trắc học, và Bluetooth, và việc tìm kiếm quyền INTERNET không cho ra kết quả nào.",
+    proof_no="(không có kết quả nào — quyền này không tồn tại)",
+    sec_eyebrow="Mô hình bảo mật",
+    sec_h2="Mã hóa mà bạn có thể kiểm chứng, chứ không phải tin tưởng suông.",
+    sec_kicker="Mỗi trường nhạy cảm đều được niêm phong bằng AES-256-GCM. Khóa không bao giờ chạm vào máy chủ vì không hề có máy chủ; nó được dẫn xuất trên điện thoại của bạn, từ mật khẩu chính của bạn, mỗi khi bạn mở khóa.",
+    chain=CHAIN_LATIN,
+    cells=[("Khóa lại khi màn hình tắt",
+            "Khóa bị xóa khỏi bộ nhớ ngay khoảnh khắc màn hình tối đi — gập điện thoại có thể gập lại cũng được tính. Một lần mở khóa phục vụ cả ứng dụng, bàn phím, và tự động điền cùng lúc."),
+           ("Các bản sao lưu tồn tại lâu hơn cả điện thoại",
+            "Một tệp <span class=\"mono-note\">.vaultbak</span> đã mã hóa duy nhất, được lưu ở bất cứ đâu bạn chọn. Tệp cùng với mật khẩu sao lưu khôi phục mọi thứ trên bất kỳ thiết bị nào — con đường khôi phục đã được kiểm chứng từ đầu đến cuối."),
+           ("Không có cửa hậu để khôi phục",
+            "Quên mật khẩu chính, dữ liệu sẽ mất. Đây là điều có chủ đích: một cánh cửa mà chỉ bạn mới mở được sẽ không giấu chìa khóa dự phòng dưới tấm thảm cửa.")],
+    ch_eyebrow="Không dùng bộ nhớ tạm theo thiết kế",
+    ch_h2="Ba con đường, tất cả đều trong tầm tay bạn.",
+    ch_kicker="Bộ nhớ tạm là nơi bí mật bị đánh cắp. Đó là lý do Sekuvo gõ giá trị trực tiếp vào đích đến của chúng.",
+    lanes=[("Tự động điền", "Dịch vụ tự động điền của Android",
+            "Các biểu mẫu đăng nhập và thẻ gợi ý trực tiếp các mục của bạn. Khi đang khóa, hệ thống không nhận được gì cả — hãy mở khóa trước, rồi mới chọn."),
+           ("Bàn phím", "Bàn phím Sekuvo",
+            "Chuyển sang đó trong bất kỳ ứng dụng nào và gõ một bí mật đã lưu trực tiếp vào trường — với chức năng tìm kiếm, các mục gần đây ở trên cùng, không cần bước sao chép."),
+           ("Bluetooth", "Nhập trên máy tính của bạn",
+            "Điện thoại của bạn trở thành một bàn phím Bluetooth và gõ bí mật vào vị trí con trỏ trên máy tính. Không có gì được cài đặt trên máy tính.")],
+    dl_eyebrow="Tải Sekuvo", dl_h2="Miễn phí, mã nguồn mở, GPLv3.",
+    dl_app_h="Ứng dụng Android",
+    dl_app_p="Trang niêm yết trên Google Play đang được chuẩn bị. Trong lúc chờ đợi, bạn có thể tự biên dịch từ mã nguồn — tệp README của kho lưu trữ giải thích điều này chỉ trong hai lệnh.",
+    dl_tools_h="Công cụ phía máy tính",
+    dl_tools_p="Công cụ phía máy tính là một tệp HTML duy nhất — <code>aktar.html</code> — và nó là một tệp tải xuống, không phải một trang web: nó chạy hoàn toàn trên máy của bạn, và trang này sẽ không bao giờ hỏi bạn về một bí mật.",
+    dl_tools_note="github.com → Releases · kiểm tra mã SHA-256 đã công bố",
+    dl_app_link="Đọc hướng dẫn →",
+    dl_tools_link="Cách lấy và sử dụng aktar.html →",
+    contact="Liên hệ",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>kho lưu trữ an toàn của bạn.</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja", "pcm", "vi"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -1425,6 +1469,33 @@ P["pcm"] = dict(
          "<p>If dis policy ever change, the new version go publish for dis address with updated effective date.</p>"),
         ("Contact",
          '<p>Questions: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["vi"] = dict(
+    title="Sekuvo — Chính sách quyền riêng tư",
+    desc="Chính sách quyền riêng tư của Sekuvo: không thu thập dữ liệu, không chia sẻ dữ liệu, không quyền internet.",
+    h1="Chính sách quyền riêng tư",
+    meta=f"Ứng dụng: <strong>Sekuvo</strong> (com.sekuvo.app) · Nhà phát triển: Ahmet Govercile · Ngày có hiệu lực: {EFFECTIVE}",
+    back="← Quay lại sekuvo.com",
+    authoritative="Văn bản này là bản dịch từ bản gốc tiếng Anh. Nếu có sự khác biệt, <a href=\"https://sekuvo.com/privacy/\">phiên bản tiếng Anh</a> sẽ được ưu tiên.",
+    sections=[
+        ("Tóm tắt",
+         "<p><strong>Sekuvo không thu thập, truyền tải, hay chia sẻ bất kỳ dữ liệu nào.</strong> Đây là một kho lưu trữ mật khẩu ngoại tuyến. Ứng dụng không yêu cầu quyền Internet, nên về mặt kỹ thuật không thể gửi dữ liệu của bạn đi bất cứ đâu.</p>"),
+        ("Dữ liệu của bạn được lưu ở đâu",
+         "<p>Mọi thứ bạn lưu trong Sekuvo (tiêu đề, tên đăng nhập, mật khẩu, ghi chú, lịch sử sử dụng) vẫn ở trên thiết bị của bạn, được mã hóa bằng khóa dẫn xuất từ mật khẩu chính của bạn. Không có gì trong số này được ứng dụng tải lên, đồng bộ hóa, hoặc sao lưu lên bất kỳ máy chủ nào.</p>"),
+        ("Thu thập và chia sẻ dữ liệu",
+         "<ul><li>Không có dữ liệu cá nhân nào được thu thập.</li><li>Không có dữ liệu nào được chia sẻ với bên thứ ba.</li><li>Không có thư viện phân tích, quảng cáo, hay theo dõi nào được đưa vào.</li><li>Không cần tài khoản để sử dụng ứng dụng.</li></ul>"),
+        ("Các quyền và lý do tồn tại",
+         "<ul><li><strong>Camera</strong> — chỉ dùng để quét các mã QR mà bạn chọn để quét, nhằm nhập dữ liệu của chính bạn. Hình ảnh được xử lý trên thiết bị và không bao giờ rời khỏi nó.</li><li><strong>Sinh trắc học</strong> — chỉ dùng để mở khóa kho lưu trữ trên thiết bị của bạn, thông qua hệ thống sinh trắc học của Android. Sekuvo không bao giờ thấy hoặc lưu trữ vân tay hay khuôn mặt của bạn.</li><li><strong>Bluetooth</strong> — chỉ dùng khi bạn yêu cầu rõ ràng Sekuvo nhập mật khẩu trên máy tính gần đó, đóng vai trò một bàn phím Bluetooth. Chỉ những ký tự mà bạn chọn mới được gửi, trực tiếp đến thiết bị đã ghép nối.</li></ul>"),
+        ("Sao lưu và chuyển giao",
+         "<p>Những việc này chỉ diễn ra khi bạn khởi động chúng, tạo ra một tệp mã hóa hoặc mã QR được bảo vệ bằng mật khẩu do bạn đặt, và chỉ được lưu hoặc hiển thị ở nơi bạn chỉ định. Ứng dụng không bao giờ tự gửi chúng đi bất cứ đâu.</p>"),
+        ("Trẻ em",
+         "<p>Sekuvo không thu thập dữ liệu từ bất kỳ ai, kể cả trẻ em.</p>"),
+        ("Thay đổi",
+         "<p>Nếu chính sách này thay đổi trong tương lai, phiên bản mới sẽ được công bố tại địa chỉ này với ngày có hiệu lực được cập nhật.</p>"),
+        ("Liên hệ",
+         '<p>Câu hỏi: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
