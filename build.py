@@ -106,7 +106,7 @@ L["en"] = dict(
     dl_app_link="Read the guide →",
     dl_tools_link="How to get aktar.html and use it →",
     contact="Contact",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>your secure vault.</em>",
+    footer="© 2026 Sekuvo — <em>your secure vault.</em>",
 )
 
 L["tr"] = dict(
@@ -151,7 +151,7 @@ L["tr"] = dict(
     dl_app_link="Kılavuzu oku →",
     dl_tools_link="aktar.html'i nasıl alır, nasıl kullanırsın →",
     contact="İletişim",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>güvenli kasan.</em>",
+    footer="© 2026 Sekuvo — <em>güvenli kasan.</em>",
 )
 
 L["es"] = dict(
@@ -196,7 +196,7 @@ L["es"] = dict(
     dl_app_link="Lee la guía →",
     dl_tools_link="Cómo conseguir aktar.html y usarlo →",
     contact="Contacto",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>tu bóveda segura.</em>",
+    footer="© 2026 Sekuvo — <em>tu bóveda segura.</em>",
 )
 
 L["hi"] = dict(
@@ -241,7 +241,7 @@ L["hi"] = dict(
     dl_app_link="गाइड पढ़ें →",
     dl_tools_link="aktar.html कैसे लें और कैसे इस्तेमाल करें →",
     contact="संपर्क",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>आपकी सुरक्षित तिजोरी।</em>",
+    footer="© 2026 Sekuvo — <em>आपकी सुरक्षित तिजोरी।</em>",
 )
 
 L["ar"] = dict(
@@ -285,7 +285,7 @@ L["ar"] = dict(
     dl_app_link="اقرأ الدليل ←",
     dl_tools_link="كيف تحصل على aktar.html وكيف تستخدمه ←",
     contact="اتصل بنا",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>خزنتك الآمنة.</em>",
+    footer="© 2026 Sekuvo — <em>خزنتك الآمنة.</em>",
 )
 
 L["zh"] = dict(
@@ -330,7 +330,7 @@ L["zh"] = dict(
     dl_app_link="阅读指南 →",
     dl_tools_link="如何获取并使用 aktar.html →",
     contact="联系方式",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>你的安全密码库。</em>",
+    footer="© 2026 Sekuvo — <em>你的安全密码库。</em>",
 )
 
 L["fr"] = dict(
@@ -375,7 +375,7 @@ L["fr"] = dict(
     dl_app_link="Lire le guide →",
     dl_tools_link="Comment obtenir et utiliser aktar.html →",
     contact="Contact",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>ton coffre sécurisé.</em>",
+    footer="© 2026 Sekuvo — <em>ton coffre sécurisé.</em>",
 )
 
 L["bn"] = dict(
@@ -420,7 +420,7 @@ L["bn"] = dict(
     dl_app_link="গাইড পড়ুন →",
     dl_tools_link="aktar.html কীভাবে পাবেন এবং ব্যবহার করবেন →",
     contact="যোগাযোগ",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>আপনার নিরাপদ ভল্ট।</em>",
+    footer="© 2026 Sekuvo — <em>আপনার নিরাপদ ভল্ট।</em>",
 )
 
 L["pt"] = dict(
@@ -465,7 +465,7 @@ L["pt"] = dict(
     dl_app_link="Leia o guia →",
     dl_tools_link="Como obter e usar o aktar.html →",
     contact="Contato",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>seu cofre seguro.</em>",
+    footer="© 2026 Sekuvo — <em>seu cofre seguro.</em>",
 )
 
 L["ru"] = dict(
@@ -510,7 +510,7 @@ L["ru"] = dict(
     dl_app_link="Читать руководство →",
     dl_tools_link="Как получить и использовать aktar.html →",
     contact="Контакты",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>ваше защищённое хранилище.</em>",
+    footer="© 2026 Sekuvo — <em>ваше защищённое хранилище.</em>",
 )
 
 L["ur"] = dict(
@@ -554,7 +554,7 @@ L["ur"] = dict(
     dl_app_link="رہنما پڑھیں ←",
     dl_tools_link="aktar.html کیسے حاصل کریں اور استعمال کریں ←",
     contact="رابطہ",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>آپ کا محفوظ والٹ۔</em>",
+    footer="© 2026 Sekuvo — <em>آپ کا محفوظ والٹ۔</em>",
 )
 
 L["id"] = dict(
@@ -598,7 +598,7 @@ L["id"] = dict(
     dl_app_link="Baca panduan →",
     dl_tools_link="Cara mendapatkan dan menggunakan aktar.html →",
     contact="Kontak",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>brankas amanmu.</em>",
+    footer="© 2026 Sekuvo — <em>brankas amanmu.</em>",
 )
 
 L["de"] = dict(
@@ -642,7 +642,7 @@ L["de"] = dict(
     dl_app_link="Anleitung lesen →",
     dl_tools_link="Wie man aktar.html erhält und verwendet →",
     contact="Kontakt",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>dein sicherer Tresor.</em>",
+    footer="© 2026 Sekuvo — <em>dein sicherer Tresor.</em>",
 )
 
 L["ja"] = dict(
@@ -687,7 +687,7 @@ L["ja"] = dict(
     dl_app_link="ガイドを読む →",
     dl_tools_link="aktar.htmlの入手方法と使い方 →",
     contact="お問い合わせ",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>あなたの安全な保管庫。</em>",
+    footer="© 2026 Sekuvo — <em>あなたの安全な保管庫。</em>",
 )
 
 L["pcm"] = dict(
@@ -731,7 +731,7 @@ L["pcm"] = dict(
     dl_app_link="Read the guide →",
     dl_tools_link="How to get and use aktar.html →",
     contact="Contact",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>your safe vault.</em>",
+    footer="© 2026 Sekuvo — <em>your safe vault.</em>",
 )
 
 L["vi"] = dict(
@@ -775,7 +775,7 @@ L["vi"] = dict(
     dl_app_link="Đọc hướng dẫn →",
     dl_tools_link="Cách lấy và sử dụng aktar.html →",
     contact="Liên hệ",
-    footer="© 2026 Ahmet Govercile · Sekuvo — <em>kho lưu trữ an toàn của bạn.</em>",
+    footer="© 2026 Sekuvo — <em>kho lưu trữ an toàn của bạn.</em>",
 )
 
 ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja", "pcm", "vi"]
@@ -846,6 +846,14 @@ STYLE = """
   .lang .menu a { display: block; padding: .34rem 1.1rem; color: var(--muted); text-decoration: none; }
   .lang .menu a:hover { background: var(--line); color: var(--ink); }
   .lang .menu .here { color: var(--brass); font-weight: 600; }
+  /* Dar ekranda başlık sarılınca tetikleyici sol kenara düşebiliyor ve
+     kenara çapalı menü ekran dışına taşıyordu (mobil bulgu). Menü artık
+     görünüm alanına sabitlenir: nerede açılırsa açılsın tümü görünür. */
+  @media (max-width: 780px) {
+    .lang .menu { position: fixed; inset-inline: 1rem; top: 4.2rem;
+      max-height: calc(100vh - 6rem); columns: 2; column-gap: 0; padding: .6rem 0; }
+    .lang .menu a { break-inside: avoid; }
+  }
 
   .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
@@ -1604,7 +1612,7 @@ POLICY_PAGE = """<!DOCTYPE html>
   </div>
 
   <footer>
-    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span>© 2026 Sekuvo</span>
     <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
   </footer>
 </div>
@@ -1703,7 +1711,7 @@ GUIDE_PAGE = """<!DOCTYPE html>
   </div>
 
   <footer>
-    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span>© 2026 Sekuvo</span>
     <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
   </footer>
 </div>
@@ -1819,7 +1827,7 @@ AKTAR_PAGE = """<!DOCTYPE html>
   </div>
 
   <footer>
-    <span>© 2026 Ahmet Govercile · Sekuvo</span>
+    <span>© 2026 Sekuvo</span>
     <span dir="ltr"><a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></span>
   </footer>
 </div>

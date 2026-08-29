@@ -92,6 +92,14 @@
   .lang .menu a { display: block; padding: .34rem 1.1rem; color: var(--muted); text-decoration: none; }
   .lang .menu a:hover { background: var(--line); color: var(--ink); }
   .lang .menu .here { color: var(--brass); font-weight: 600; }
+  /* Dar ekranda başlık sarılınca tetikleyici sol kenara düşebiliyor ve
+     kenara çapalı menü ekran dışına taşıyordu (mobil bulgu). Menü artık
+     görünüm alanına sabitlenir: nerede açılırsa açılsın tümü görünür. */
+  @media (max-width: 780px) {
+    .lang .menu { position: fixed; inset-inline: 1rem; top: 4.2rem;
+      max-height: calc(100vh - 6rem); columns: 2; column-gap: 0; padding: .6rem 0; }
+    .lang .menu a { break-inside: avoid; }
+  }
 
   .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
@@ -257,7 +265,7 @@ certutil -hashfile aktar.html SHA256</div>
   </section>
 
   <footer>
-    <span>© 2026 Ahmet Govercile · Sekuvo — <em>kho lưu trữ an toàn của bạn.</em></span>
+    <span>© 2026 Sekuvo — <em>kho lưu trữ an toàn của bạn.</em></span>
     <span dir="ltr">
       <a href="https://github.com/afgover/Vault">GitHub</a> ·
       <a href="mailto:contact@sekuvo.com">Liên hệ</a> ·
