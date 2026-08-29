@@ -689,7 +689,51 @@ L["ja"] = dict(
     footer="© 2026 Ahmet Govercile · Sekuvo — <em>あなたの安全な保管庫。</em>",
 )
 
-ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja"]
+L["pcm"] = dict(
+    lang="pcm", dir="ltr", script="latin", path="pcm/", name="Naija",
+    title="Sekuvo — Your safe vault",
+    desc="Sekuvo — your safe vault. Password vault wey dey fully offline for Android: no internet permission, AES-256, open source (GPLv3).",
+    nav=("Security", "Channels", "Download", "Privacy"),
+    eyebrow="Offline password vault for Android",
+    h1="Your secrets<br>no dey <em>comot.</em>",
+    lede="Sekuvo na your safe vault: passwords, cards, and notes, wey dey encrypt for your phone with key wey only your master password fit derive. No server, no account, no sync — and no way to tell anybody.",
+    btn_src="Source code for GitHub", btn_priv="Privacy policy",
+    cta_note="Google Play listing dey on the way. Sekuvo free and e dey under GPLv3 — the code na the proof.",
+    proof_cap="AndroidManifest.xml — all the permissions wey e get",
+    proof_alt="The app manifest dey ask for camera, biometric, and Bluetooth, and if you search for INTERNET permission, nothing no go show.",
+    proof_no="(nothing show — dis permission no exist at all)",
+    sec_eyebrow="Security model",
+    sec_h2="Encryption wey you fit check, no be one wey you go just believe.",
+    sec_kicker="Every sensitive field dem seal with AES-256-GCM. The key no dey ever touch server because no server dey; e dey derive for your phone, from your master password, every time you unlock am.",
+    chain=CHAIN_LATIN,
+    cells=[("E dey lock once screen off",
+            "The key dey wipe from memory the moment the screen off — closing foldable phone dey count too. One unlock dey serve the app, the keyboard, and autofill together."),
+           ("Backups wey go dey last pass the phone",
+            "One encrypted <span class=\"mono-note\">.vaultbak</span> file, wey you go save anywhere you like. The file plus the backup password go restore everything for any device — the restore path don test from start to finish."),
+           ("No backdoor for recovery",
+            "If you forget the master password, the data don go. Na so we design am on purpose: door wey only you fit open no dey hide spare key under mat.")],
+    ch_eyebrow="No clipboard by design",
+    ch_h2="Three ways, all dem dey your finger tip.",
+    ch_kicker="Clipboard na where dem dey steal secrets. Na why Sekuvo dey type values straight go their destination.",
+    lanes=[("Autofill", "Android autofill service",
+            "Login and card forms go offer your entries direct. While e dey lock, the system no dey get anything — unlock first, then choose."),
+           ("Keyboard", "Sekuvo Keyboard",
+            "Switch to am for any app and type saved secret straight inside the field — with search, recent ones on top, no copy step."),
+           ("Bluetooth", "E dey type for your computer",
+            "Your phone go become Bluetooth keyboard and e go type the secret for where your computer cursor dey. Nothing no dey install for the computer.")],
+    dl_eyebrow="Get Sekuvo", dl_h2="Free, open source, GPLv3.",
+    dl_app_h="Android app",
+    dl_app_p="Google Play listing dey on the way. Till then, you fit build am from source — the repository README dey explain am for two commands.",
+    dl_tools_h="Computer-side tools",
+    dl_tools_p="The computer-side tool na one HTML file — <code>aktar.html</code> — and na download, e no be website: e dey run fully for your machine, and dis site no go ever ask you for secret.",
+    dl_tools_note="github.com → Releases · check the SHA-256 wey dem publish",
+    dl_app_link="Read the guide →",
+    dl_tools_link="How to get and use aktar.html →",
+    contact="Contact",
+    footer="© 2026 Ahmet Govercile · Sekuvo — <em>your safe vault.</em>",
+)
+
+ORDER = ["en", "tr", "es", "hi", "ar", "zh", "fr", "bn", "pt", "ru", "ur", "id", "de", "ja", "pcm"]
 
 STYLE = """
   html { color-scheme: light dark; }
@@ -1354,6 +1398,33 @@ P["ja"] = dict(
          "<p>このポリシーが変更される場合、更新された発効日とともに新しい版がこのアドレスで公開されます。</p>"),
         ("お問い合わせ",
          '<p>ご質問: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
+    ],
+)
+
+P["pcm"] = dict(
+    title="Sekuvo — Privacy Policy",
+    desc="Sekuvo privacy policy: no data collection, no data sharing, no internet permission.",
+    h1="Privacy Policy",
+    meta=f"App: <strong>Sekuvo</strong> (com.sekuvo.app) · Developer: Ahmet Govercile · Effective date: {EFFECTIVE}",
+    back="← Go back to sekuvo.com",
+    authoritative="Dis text na translation from the original English one. If any difference dey, the <a href=\"https://sekuvo.com/privacy/\">English version</a> go take priority.",
+    sections=[
+        ("Summary",
+         "<p><strong>Sekuvo no dey collect, transmit, or share any data.</strong> E be offline password vault. The app no dey ask for Internet permission, so technically e no fit send your data go anywhere.</p>"),
+        ("Where your data dey live",
+         "<p>Everything wey you save for Sekuvo (titles, usernames, passwords, notes, usage history) dey stay for your device, encrypted with key wey dem derive from your master password. The app no dey upload, sync, or backup anything to any server.</p>"),
+        ("Data collection and sharing",
+         "<ul><li>No personal data dey collected.</li><li>No data dey shared with any third party.</li><li>No analytics, advertising, or tracking library dey included.</li><li>No account need for you to use the app.</li></ul>"),
+        ("Permissions and why dem dey there",
+         "<ul><li><strong>Camera</strong> — na only for scanning QR codes wey you choose to scan, to import your own data. The images dey process for the device and dem no dey ever leave am.</li><li><strong>Biometric</strong> — na only to unlock the vault for your device, through Android biometric system. Sekuvo no dey ever see or store your fingerprint or face.</li><li><strong>Bluetooth</strong> — na only used when you explicitly ask Sekuvo to type password for computer wey near you, acting as Bluetooth keyboard. Na only the characters wey you choose go send, direct to the device wey pair with am.</li></ul>"),
+        ("Backups and transfers",
+         "<p>Dis dem happen only when you start am, e go produce encrypted file or QR codes wey password wey you set dey protect, and e go save or show only where you direct am. The app no dey ever send am anywhere by itself.</p>"),
+        ("Children",
+         "<p>Sekuvo no dey collect data from anybody, including children.</p>"),
+        ("Changes",
+         "<p>If dis policy ever change, the new version go publish for dis address with updated effective date.</p>"),
+        ("Contact",
+         '<p>Questions: <a href="mailto:contact@sekuvo.com">contact@sekuvo.com</a></p>'),
     ],
 )
 
