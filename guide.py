@@ -28,7 +28,7 @@ G["en"] = dict(
             "<p>Account and Everyday entries also take <strong>custom fields</strong>: any “name + value” pair you like. Custom fields are encrypted exactly like the built-in ones and appear everywhere the others do.</p>",
         ]),
         ("channels", "Using a secret without the clipboard", [
-            "<p>The clipboard is readable by other apps and is where secrets get stolen. Sekuvo gives you three ways to deliver a value straight to its destination instead. You can still copy — the clipboard is cleared automatically after 45 seconds — but the three channels below are the reason the app exists.</p>",
+            "<p>The clipboard is readable by other apps and is where secrets get stolen. Sekuvo gives you three ways to deliver a value straight to its destination instead. You can still copy — the clipboard is cleared within 45 seconds, or at the latest when you return to the app; while you are away Android lets no app clear it — but the three channels below are the reason the app exists.</p>",
         ]),
         ("autofill", "Autofill (inside your phone)", [
             "<p>Sekuvo can act as Android's autofill service, so sign-in and card forms offer your entries directly.</p>",
@@ -108,7 +108,7 @@ G["tr"] = dict(
             "<p>Hesap ve Gündelik kayıtları ayrıca <strong>ek alan</strong> kabul eder: istediğin kadar “alan adı + değer” çifti. Ek alanlar da yerleşik alanlarla birebir aynı şekilde şifrelenir ve onların göründüğü her yerde görünür.</p>",
         ]),
         ("channels", "Sırrı panoya uğratmadan kullanmak", [
-            "<p>Pano başka uygulamalarca okunabilir ve sırların çalındığı yerdir. Sekuvo bunun yerine değeri doğrudan hedefine ulaştıran üç yol sunar. Kopyalamayı da kullanabilirsin — pano 45 saniye sonra otomatik temizlenir — ama uygulamanın var olma sebebi aşağıdaki üç kanaldır.</p>",
+            "<p>Pano başka uygulamalarca okunabilir ve sırların çalındığı yerdir. Sekuvo bunun yerine değeri doğrudan hedefine ulaştıran üç yol sunar. Kopyalamayı da kullanabilirsin — pano 45 saniye içinde, en geç uygulamaya döndüğünde temizlenir; uzaktayken Android hiçbir uygulamanın panoyu temizlemesine izin vermez — ama uygulamanın var olma sebebi aşağıdaki üç kanaldır.</p>",
         ]),
         ("autofill", "Otomatik doldurma (telefonun içinde)", [
             "<p>Sekuvo, Android'in otomatik doldurma servisi olarak çalışabilir; böylece giriş ve kart formları kayıtlarını doğrudan sunar.</p>",
@@ -188,7 +188,7 @@ G["es"] = dict(
             "<p>Las entradas de Cuenta y Cotidiano admiten además <strong>campos personalizados</strong>: cualquier par «nombre + valor». Se cifran igual que los campos integrados y aparecen en los mismos sitios.</p>",
         ]),
         ("channels", "Usar un secreto sin el portapapeles", [
-            "<p>El portapapeles puede leerlo otras aplicaciones y es donde se roban los secretos. Sekuvo te da tres formas de llevar el valor directamente a su destino. También puedes copiar — el portapapeles se limpia solo a los 45 segundos — pero los tres canales siguientes son la razón de ser de la aplicación.</p>",
+            "<p>El portapapeles puede leerlo otras aplicaciones y es donde se roban los secretos. Sekuvo te da tres formas de llevar el valor directamente a su destino. También puedes copiar — el portapapeles se limpia en 45 segundos o, como muy tarde, al volver a la aplicación; mientras estás fuera, Android no deja que ninguna app lo limpie — pero los tres canales siguientes son la razón de ser de la aplicación.</p>",
         ]),
         ("autofill", "Autocompletado (dentro del teléfono)", [
             "<p>Sekuvo puede actuar como servicio de autocompletado de Android, de modo que los formularios de inicio de sesión y de tarjeta ofrezcan tus entradas directamente.</p>",
@@ -268,7 +268,7 @@ G["hi"] = dict(
             "<p>खाता और रोज़मर्रा एंट्री में <strong>अपने बनाए फ़ील्ड</strong> भी जोड़े जा सकते हैं: जितने चाहें “नाम + मान” जोड़े। ये भी अंतर्निहित फ़ील्ड जितने ही एन्क्रिप्टेड होते हैं और वहीं दिखते हैं जहाँ बाक़ी।</p>",
         ]),
         ("channels", "क्लिपबोर्ड के बिना राज़ इस्तेमाल करना", [
-            "<p>क्लिपबोर्ड दूसरे ऐप पढ़ सकते हैं और वहीं राज़ चोरी होते हैं। Sekuvo इसके बजाय मान को सीधे उसकी मंज़िल तक पहुँचाने के तीन रास्ते देता है। कॉपी करना भी उपलब्ध है — क्लिपबोर्ड 45 सेकंड बाद अपने आप साफ़ हो जाता है — पर ऐप के होने की वजह नीचे दिए तीन रास्ते हैं।</p>",
+            "<p>क्लिपबोर्ड दूसरे ऐप पढ़ सकते हैं और वहीं राज़ चोरी होते हैं। Sekuvo इसके बजाय मान को सीधे उसकी मंज़िल तक पहुँचाने के तीन रास्ते देता है। कॉपी करना भी उपलब्ध है — क्लिपबोर्ड 45 सेकंड के भीतर, या देर से देर ऐप पर लौटने पर साफ़ हो जाता है; जब तक आप बाहर हैं, Android किसी भी ऐप को उसे साफ़ करने नहीं देता — पर ऐप के होने की वजह नीचे दिए तीन रास्ते हैं।</p>",
         ]),
         ("autofill", "ऑटोफ़िल (फ़ोन के भीतर)", [
             "<p>Sekuvo, Android की ऑटोफ़िल सेवा बन सकता है, ताकि साइन-इन और कार्ड फ़ॉर्म सीधे आपकी एंट्री दिखाएँ।</p>",
@@ -348,7 +348,7 @@ G["ar"] = dict(
             "<p>كما تقبل مدخلات «حساب» و«يوميّ» <strong>حقولًا مخصّصة</strong>: أي زوج «اسم + قيمة» تريده. وتُشفَّر تمامًا كالحقول المدمجة وتظهر في كل موضع تظهر فيه.</p>",
         ]),
         ("channels", "استخدام السرّ دون الحافظة", [
-            "<p>الحافظة يمكن أن تقرأها تطبيقات أخرى، وفيها تُسرق الأسرار. لذلك يمنحك Sekuvo ثلاث طرق لإيصال القيمة مباشرة إلى وجهتها. ويظل النسخ متاحًا — تُمحى الحافظة تلقائيًا بعد 45 ثانية — لكن القنوات الثلاث أدناه هي سبب وجود التطبيق.</p>",
+            "<p>الحافظة يمكن أن تقرأها تطبيقات أخرى، وفيها تُسرق الأسرار. لذلك يمنحك Sekuvo ثلاث طرق لإيصال القيمة مباشرة إلى وجهتها. ويظل النسخ متاحًا — تُمحى الحافظة خلال 45 ثانية، أو عند عودتك إلى التطبيق على أبعد تقدير؛ وما دمت خارجه فإن Android لا يسمح لأي تطبيق بمحوها — لكن القنوات الثلاث أدناه هي سبب وجود التطبيق.</p>",
         ]),
         ("autofill", "الملء التلقائي (داخل هاتفك)", [
             "<p>يستطيع Sekuvo العمل كخدمة الملء التلقائي في أندرويد، فتعرض نماذج تسجيل الدخول والبطاقات مدخلاتك مباشرة.</p>",
@@ -427,7 +427,7 @@ G["zh"] = dict(
             "<p>账号和日常信息条目还支持<strong>自定义字段</strong>：任意“名称 + 值”组合。自定义字段的加密方式与内置字段完全相同，并出现在所有相同的位置。</p>",
         ]),
         ("channels", "不经过剪贴板使用密文", [
-            "<p>剪贴板可以被其他应用读取，是密文最容易被窃取的地方。因此 Sekuvo 提供三种方式，把值直接送达目的地。你仍然可以选择复制 — 剪贴板会在 45 秒后自动清空 — 但下面这三条通道才是这款应用存在的意义。</p>",
+            "<p>剪贴板可以被其他应用读取，是密文最容易被窃取的地方。因此 Sekuvo 提供三种方式，把值直接送达目的地。你仍然可以选择复制 — 剪贴板会在 45 秒内清空，最迟在你返回应用时清空；你离开期间，Android 不允许任何应用清空它 — 但下面这三条通道才是这款应用存在的意义。</p>",
         ]),
         ("autofill", "自动填充（手机内）", [
             "<p>Sekuvo 可以作为 Android 的自动填充服务，让登录和银行卡表单直接提供你的条目。</p>",
@@ -515,7 +515,7 @@ G["fr"] = dict(
             "<p>Les entrées Compte et Quotidien acceptent aussi des <strong>champs personnalisés</strong> : n'importe quelle paire « nom + valeur ». Les champs personnalisés sont chiffrés exactement comme les champs intégrés et apparaissent partout où les autres apparaissent.</p>",
         ]),
         ("channels", "Utiliser un secret sans le presse-papiers", [
-            "<p>Le presse-papiers est lisible par d'autres applications et c'est là que les secrets se font voler. Sekuvo t'offre trois façons d'acheminer une valeur directement à sa destination. Tu peux toujours copier — le presse-papiers est effacé automatiquement après 45 secondes — mais les trois canaux ci-dessous sont la raison d'être de l'application.</p>",
+            "<p>Le presse-papiers est lisible par d'autres applications et c'est là que les secrets se font voler. Sekuvo t'offre trois façons d'acheminer une valeur directement à sa destination. Tu peux toujours copier — le presse-papiers est effacé sous 45 secondes, ou au plus tard à ton retour dans l'application ; pendant ton absence, Android n'autorise aucune app à l'effacer — mais les trois canaux ci-dessous sont la raison d'être de l'application.</p>",
         ]),
         ("autofill", "Saisie automatique (dans ton téléphone)", [
             "<p>Sekuvo peut agir comme service de saisie automatique d'Android, afin que les formulaires de connexion et de carte proposent directement tes entrées.</p>",
@@ -594,7 +594,7 @@ G["bn"] = dict(
             "<p>অ্যাকাউন্ট ও দৈনন্দিন এন্ট্রি <strong>কাস্টম ফিল্ড</strong>ও নেয়: আপনার ইচ্ছেমতো যেকোনো “নাম + মান” জোড়া। কাস্টম ফিল্ডগুলো বিল্ট-ইন ফিল্ডের মতোই এনক্রিপ্ট করা হয় এবং একই সব জায়গায় দেখা যায়।</p>",
         ]),
         ("channels", "ক্লিপবোর্ড ছাড়াই গোপন তথ্য ব্যবহার", [
-            "<p>ক্লিপবোর্ড অন্য অ্যাপগুলো পড়তে পারে এবং এখান থেকেই গোপন তথ্য চুরি হয়। তাই Sekuvo একটি মান সরাসরি তার গন্তব্যে পৌঁছে দেওয়ার তিনটি উপায় দেয়। আপনি তবু কপি করতে পারেন — ৪৫ সেকেন্ড পর ক্লিপবোর্ড নিজে থেকেই মুছে যায় — তবে নিচের তিনটি চ্যানেলই এই অ্যাপের থাকার মূল কারণ।</p>",
+            "<p>ক্লিপবোর্ড অন্য অ্যাপগুলো পড়তে পারে এবং এখান থেকেই গোপন তথ্য চুরি হয়। তাই Sekuvo একটি মান সরাসরি তার গন্তব্যে পৌঁছে দেওয়ার তিনটি উপায় দেয়। আপনি তবু কপি করতে পারেন — ক্লিপবোর্ড ৪৫ সেকেন্ডের মধ্যে, বা দেরিতে হলেও অ্যাপে ফিরে আসার সময় মুছে যায়; আপনি বাইরে থাকাকালীন Android কোনো অ্যাপকেই তা মুছতে দেয় না — তবে নিচের তিনটি চ্যানেলই এই অ্যাপের থাকার মূল কারণ।</p>",
         ]),
         ("autofill", "অটোফিল (ফোনের ভেতরে)", [
             "<p>Sekuvo Android-এর অটোফিল সার্ভিস হিসেবে কাজ করতে পারে, ফলে সাইন-ইন ও কার্ড ফর্মে সরাসরি আপনার এন্ট্রি দেখা যায়।</p>",
@@ -673,7 +673,7 @@ G["pt"] = dict(
             "<p>Itens de Conta e Dia a dia também aceitam <strong>campos personalizados</strong>: qualquer par “nome + valor” que você quiser. Campos personalizados são criptografados exatamente como os integrados e aparecem em todos os lugares em que os outros aparecem.</p>",
         ]),
         ("channels", "Usando um segredo sem a área de transferência", [
-            "<p>A área de transferência pode ser lida por outros aplicativos e é onde segredos são roubados. Por isso o Sekuvo oferece três formas de entregar um valor direto ao destino. Você ainda pode copiar — a área de transferência é limpa automaticamente após 45 segundos — mas os três canais abaixo são o motivo de o aplicativo existir.</p>",
+            "<p>A área de transferência pode ser lida por outros aplicativos e é onde segredos são roubados. Por isso o Sekuvo oferece três formas de entregar um valor direto ao destino. Você ainda pode copiar — a área de transferência é limpa em 45 segundos ou, no mais tardar, quando você volta ao aplicativo; enquanto você está fora, o Android não deixa nenhum app limpá-la — mas os três canais abaixo são o motivo de o aplicativo existir.</p>",
         ]),
         ("autofill", "Preenchimento automático (dentro do telefone)", [
             "<p>O Sekuvo pode atuar como o serviço de preenchimento automático do Android, então formulários de login e de cartão oferecem seus itens diretamente.</p>",
@@ -752,7 +752,7 @@ G["ru"] = dict(
             "<p>Записи типа «Аккаунт» и «Повседневное» также принимают <strong>пользовательские поля</strong>: любую пару «название + значение», какую захотите. Пользовательские поля шифруются точно так же, как встроенные, и появляются везде, где появляются остальные.</p>",
         ]),
         ("channels", "Использование секрета без буфера обмена", [
-            "<p>Буфер обмена могут читать другие приложения, и именно там крадут секреты. Поэтому Sekuvo предлагает три способа доставить значение прямо в место назначения. Копировать по-прежнему можно — буфер обмена автоматически очищается через 45 секунд, — но три канала ниже — вот причина существования приложения.</p>",
+            "<p>Буфер обмена могут читать другие приложения, и именно там крадут секреты. Поэтому Sekuvo предлагает три способа доставить значение прямо в место назначения. Копировать по-прежнему можно — буфер обмена очищается в течение 45 секунд или, самое позднее, когда вы возвращаетесь в приложение; пока вас нет, Android не разрешает очистить его ни одному приложению, — но три канала ниже — вот причина существования приложения.</p>",
         ]),
         ("autofill", "Автозаполнение (внутри телефона)", [
             "<p>Sekuvo может выступать службой автозаполнения Android, поэтому формы входа и карты сами предлагают ваши записи.</p>",
@@ -831,7 +831,7 @@ G["ur"] = dict(
             "<p>اکاؤنٹ اور روزمرہ اندراجات <strong>اپنی مرضی کی فیلڈز</strong> بھی قبول کرتے ہیں: کوئی بھی «نام + قدر» جوڑا جو آپ چاہیں۔ اپنی مرضی کی فیلڈز بالکل اسی طرح مرمز ہوتی ہیں جیسے بلٹ ان فیلڈز، اور ہر اس جگہ ظاہر ہوتی ہیں جہاں باقی فیلڈز ظاہر ہوتی ہیں۔</p>",
         ]),
         ("channels", "کلپ بورڈ کے بغیر راز استعمال کرنا", [
-            "<p>کلپ بورڈ کو دوسری ایپس پڑھ سکتی ہیں، اور یہی وہ جگہ ہے جہاں راز چوری ہوتے ہیں۔ اسی لیے Sekuvo قدر کو براہ راست منزل تک پہنچانے کے تین طریقے پیش کرتا ہے۔ کاپی کرنا اب بھی ممکن ہے — کلپ بورڈ 45 سیکنڈ بعد خودکار طور پر صاف ہو جاتا ہے — لیکن نیچے دیے گئے تین چینلز ہی اس ایپ کے وجود کی وجہ ہیں۔</p>",
+            "<p>کلپ بورڈ کو دوسری ایپس پڑھ سکتی ہیں، اور یہی وہ جگہ ہے جہاں راز چوری ہوتے ہیں۔ اسی لیے Sekuvo قدر کو براہ راست منزل تک پہنچانے کے تین طریقے پیش کرتا ہے۔ کاپی کرنا اب بھی ممکن ہے — کلپ بورڈ 45 سیکنڈ کے اندر، یا زیادہ سے زیادہ ایپ پر واپس آنے پر صاف ہو جاتا ہے؛ آپ کے باہر ہوتے ہوئے Android کسی بھی ایپ کو اسے صاف کرنے نہیں دیتا — لیکن نیچے دیے گئے تین چینلز ہی اس ایپ کے وجود کی وجہ ہیں۔</p>",
         ]),
         ("autofill", "آٹو فل (فون کے اندر)", [
             "<p>Sekuvo اینڈرائیڈ کی آٹو فل سروس کے طور پر کام کر سکتا ہے، اس لیے لاگ ان اور کارڈ فارمز آپ کے اندراجات براہ راست پیش کرتے ہیں۔</p>",
@@ -910,7 +910,7 @@ G["id"] = dict(
             "<p>Entri Akun dan Sehari-hari juga menerima <strong>kolom kustom</strong>: pasangan \"nama + nilai\" apa pun yang kamu inginkan. Kolom kustom dienkripsi persis seperti kolom bawaan dan muncul di setiap tempat kolom lain muncul.</p>",
         ]),
         ("channels", "Menggunakan rahasia tanpa papan klip", [
-            "<p>Papan klip bisa dibaca aplikasi lain, dan di situlah rahasia dicuri. Karena itu Sekuvo menawarkan tiga cara untuk mengirimkan nilai langsung ke tujuannya. Menyalin masih tersedia — papan klip dibersihkan otomatis setelah 45 detik — tapi tiga saluran di bawah ini adalah alasan aplikasi ini ada.</p>",
+            "<p>Papan klip bisa dibaca aplikasi lain, dan di situlah rahasia dicuri. Karena itu Sekuvo menawarkan tiga cara untuk mengirimkan nilai langsung ke tujuannya. Menyalin masih tersedia — papan klip dibersihkan dalam 45 detik, atau paling lambat saat kamu kembali ke aplikasi; selama kamu di luar, Android tidak mengizinkan aplikasi mana pun membersihkannya — tapi tiga saluran di bawah ini adalah alasan aplikasi ini ada.</p>",
         ]),
         ("autofill", "Isi otomatis (di dalam ponsel)", [
             "<p>Sekuvo bisa bertindak sebagai layanan isi otomatis Android, sehingga formulir masuk dan kartu menawarkan entrimu langsung.</p>",
@@ -989,7 +989,7 @@ G["de"] = dict(
             "<p>Konto- und Alltag-Einträge akzeptieren auch <strong>benutzerdefinierte Felder</strong>: jedes „Name + Wert“-Paar, das du möchtest. Benutzerdefinierte Felder werden genau wie die integrierten verschlüsselt und erscheinen überall dort, wo auch die anderen erscheinen.</p>",
         ]),
         ("channels", "Ein Geheimnis ohne Zwischenablage verwenden", [
-            "<p>Die Zwischenablage kann von anderen Apps gelesen werden, und genau dort werden Geheimnisse gestohlen. Deshalb bietet Sekuvo drei Wege, einen Wert direkt an sein Ziel zu übermitteln. Kopieren ist weiterhin möglich — die Zwischenablage wird automatisch nach 45 Sekunden geleert —, aber die drei folgenden Kanäle sind der Grund, warum es diese App gibt.</p>",
+            "<p>Die Zwischenablage kann von anderen Apps gelesen werden, und genau dort werden Geheimnisse gestohlen. Deshalb bietet Sekuvo drei Wege, einen Wert direkt an sein Ziel zu übermitteln. Kopieren ist weiterhin möglich — die Zwischenablage wird innerhalb von 45 Sekunden geleert, spätestens bei der Rückkehr zur App; während du weg bist, lässt Android keine App sie leeren —, aber die drei folgenden Kanäle sind der Grund, warum es diese App gibt.</p>",
         ]),
         ("autofill", "Automatisches Ausfüllen (innerhalb des Telefons)", [
             "<p>Sekuvo kann als Autofill-Dienst von Android fungieren, sodass Login- und Kartenformulare deine Einträge direkt anbieten.</p>",
@@ -1068,7 +1068,7 @@ G["ja"] = dict(
             "<p>アカウントと日常のアイテムは<strong>カスタムフィールド</strong>も受け付けます: 好きな「名前 + 値」のペアです。カスタムフィールドは組み込みのフィールドとまったく同様に暗号化され、他のフィールドが表示されるすべての場所に表示されます。</p>",
         ]),
         ("channels", "クリップボードを使わずに秘密情報を使う", [
-            "<p>クリップボードは他のアプリから読み取られる可能性があり、まさにそこで秘密情報が盗まれます。だからこそSekuvoは、値を目的地に直接届ける3つの方法を提供します。コピーすることも引き続き可能です — クリップボードは45秒後に自動的に消去されます — ですが、以下の3つのチャネルこそがこのアプリの存在理由です。</p>",
+            "<p>クリップボードは他のアプリから読み取られる可能性があり、まさにそこで秘密情報が盗まれます。だからこそSekuvoは、値を目的地に直接届ける3つの方法を提供します。コピーすることも引き続き可能です — クリップボードは45秒以内に、遅くともアプリに戻ったときに消去されます。離れている間、Android はどのアプリにも消去を許しません — ですが、以下の3つのチャネルこそがこのアプリの存在理由です。</p>",
         ]),
         ("autofill", "自動入力（端末内）", [
             "<p>SekuvoはAndroidの自動入力サービスとして機能できるため、ログインフォームやカードフォームがあなたのアイテムを直接提示します。</p>",
@@ -1147,7 +1147,7 @@ G["pcm"] = dict(
             "<p>Account and Everyday entries fit also take <strong>custom fields</strong>: any \"name + value\" pair wey you like. Custom fields dey encrypt exactly like the built-in ones and dem dey show everywhere the others show.</p>",
         ]),
         ("channels", "Using secret without clipboard", [
-            "<p>Other apps fit read clipboard, and na exactly where dem dey steal secrets. Na why Sekuvo dey offer three ways to send value straight to where e suppose go. You fit still copy — the clipboard dey clear automatic after 45 seconds — but the three channels below na the reason why dis app exist.</p>",
+            "<p>Other apps fit read clipboard, and na exactly where dem dey steal secrets. Na why Sekuvo dey offer three ways to send value straight to where e suppose go. You fit still copy — the clipboard dey clear within 45 seconds, or at least when you come back to di app; while you dey outside, Android no dey allow any app clear am — but the three channels below na the reason why dis app exist.</p>",
         ]),
         ("autofill", "Autofill (inside the phone)", [
             "<p>Sekuvo fit act as Android autofill service, so login and card forms go offer your entries direct.</p>",
@@ -1226,7 +1226,7 @@ G["vi"] = dict(
             "<p>Các mục Tài khoản và Hằng ngày cũng chấp nhận <strong>các trường tùy chỉnh</strong>: bất kỳ cặp \"tên + giá trị\" nào bạn thích. Các trường tùy chỉnh được mã hóa hoàn toàn giống như các trường tích hợp sẵn và xuất hiện ở mọi nơi mà những trường khác xuất hiện.</p>",
         ]),
         ("channels", "Sử dụng một bí mật mà không cần bộ nhớ tạm", [
-            "<p>Bộ nhớ tạm có thể bị các ứng dụng khác đọc được, và chính đó là nơi các bí mật bị đánh cắp. Vì vậy, Sekuvo cung cấp ba cách để đưa một giá trị trực tiếp đến đích của nó. Bạn vẫn có thể sao chép — bộ nhớ tạm tự động xóa sau 45 giây — nhưng ba kênh dưới đây chính là lý do khiến ứng dụng này tồn tại.</p>",
+            "<p>Bộ nhớ tạm có thể bị các ứng dụng khác đọc được, và chính đó là nơi các bí mật bị đánh cắp. Vì vậy, Sekuvo cung cấp ba cách để đưa một giá trị trực tiếp đến đích của nó. Bạn vẫn có thể sao chép — bộ nhớ tạm được xóa trong vòng 45 giây, hoặc muộn nhất là khi bạn quay lại ứng dụng; trong lúc bạn ở ngoài, Android không cho ứng dụng nào xóa nó — nhưng ba kênh dưới đây chính là lý do khiến ứng dụng này tồn tại.</p>",
         ]),
         ("autofill", "Tự động điền (bên trong điện thoại)", [
             "<p>Sekuvo có thể hoạt động như dịch vụ tự động điền của Android, nên các biểu mẫu đăng nhập và thẻ sẽ gợi ý trực tiếp các mục của bạn.</p>",
