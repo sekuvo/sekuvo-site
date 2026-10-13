@@ -11,10 +11,10 @@ Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 import pathlib
 
 from guide import G, SHOTS, CAPTIONS
+from kaynak import GITHUB
 from aktar import AK, A, AKTAR_JS, PY_SCRIPT, CMD_UNIX, CMD_WIN, VERIFY_CMDS
 
 SITE = "https://sekuvo.com"
-GITHUB = "https://github.com/afgover/Vault"
 
 # Scripts that Bricolage Grotesque does not cover get an IBM Plex face that
 # does; the mono face stays the same everywhere because it only ever renders
@@ -1021,7 +1021,7 @@ PAGE = """<!DOCTYPE html>
         <ol class="steps">{ak_steps}</ol>
         <div>
           <div class="cmd" dir="ltr">{verify_cmds}</div>
-          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="{github}/releases">github.com/afgover/Vault/releases</a></p>
+          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="{github}/releases">{github_ad}/releases</a></p>
         </div>
       </div>
       <p class="akembed">{ak_embed_p} <a href="{aktar_url}">{ak_embed_link} →</a></p>
@@ -1095,7 +1095,7 @@ def build():
             lang=t["lang"], dir=t["dir"], desc=t["desc"], title=t["title"],
             alternates=alternates, font_url=font_url, style=style,
             langmenu=lang_menu(code),
-            site=SITE, github=GITHUB,
+            site=SITE, github=GITHUB, github_ad=GITHUB.removeprefix("https://"),
             home_url=f"{SITE}/{t['path']}",
             privacy_url=f"{SITE}/{t['path']}privacy/",
             guide_url=f"{SITE}/{t['path']}guide/",

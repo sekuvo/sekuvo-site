@@ -6,6 +6,8 @@ whenever the app's flows change, and mixing it into the page machinery would
 make both harder to read. build.py imports G and renders it.
 """
 
+from kaynak import GITHUB
+
 G = {}
 
 # ─────────────────────────────── English ────────────────────────────────────
@@ -76,7 +78,7 @@ G["en"] = dict(
             "<p>All of the encryption happens inside your browser, on your machine. There is also <code>vault-clip.py</code> for the command line, which does the same from the clipboard or a file and can render the QR codes in a terminal.</p>",
             "<h3>If you would rather not use the tool</h3>",
             "<p>The envelope is an open format, not something only Sekuvo can make: PBKDF2-HMAC-SHA256 over 310,000 rounds, AES-256-GCM, wrapped in a small JSON object. You can build it yourself from about thirty lines you have read, and paste the result into <em>Import from text</em> \u2014 the app has no way to tell which tool produced it, and does not care.</p>",
-            "<p>The recipe is in the repository: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (written in Turkish).</p>",
+            "<p>The recipe is in the repository: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (written in Turkish).</p>",
         ]),
         ("log", "Usage log", [
             "<p>Sekuvo records which field of which entry went where and when: to the clipboard, to a computer over Bluetooth (with the target device's name), or typed into an app from the keyboard. When a computer is compromised, this answers “what went there, what do I need to change”.</p>",
@@ -156,7 +158,7 @@ G["tr"] = dict(
             "<p>Şifrelemenin tamamı kendi makinende, tarayıcının içinde olur. Komut satırı için ayrıca <code>vault-clip.py</code> vardır; aynı işi panodan ya da bir dosyadan yapar ve QR kodlarını terminalde çizebilir.</p>",
             "<h3>Aracı hiç kullanmak istemiyorsan</h3>",
             "<p>Zarf, yalnız Sekuvo'nun üretebildiği bir şey değil, açık bir biçimdir: 310.000 turluk PBKDF2-HMAC-SHA256, AES-256-GCM, küçük bir JSON'un içinde. Onu kendi okuduğun otuz satırla da üretebilir, sonucu <em>Metinden içe aktar</em>'a yapıştırabilirsin \u2014 uygulamanın hangi araçla üretildiğini anlamasının yolu yok, umursamıyor da.</p>",
-            "<p>Tarifi depoda: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>.</p>",
+            "<p>Tarifi depoda: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>.</p>",
         ]),
         ("log", "Kullanım günlüğü", [
             "<p>Sekuvo, hangi kaydın hangi alanının ne zaman nereye gittiğini tutar: panoya, Bluetooth ile bilgisayara (hedef cihazın adıyla) ya da klavyeden hangi uygulamaya. Bir bilgisayar ele geçtiğinde “oraya ne gitti, neyi değiştirmem gerek” sorusunun cevabı budur.</p>",
@@ -236,7 +238,7 @@ G["es"] = dict(
             "<p>Todo el cifrado ocurre dentro de tu navegador, en tu máquina. También existe <code>vault-clip.py</code> para la línea de comandos, que hace lo mismo desde el portapapeles o un archivo y puede dibujar los QR en la terminal.</p>",
             "<h3>Si prefieres no usar la herramienta</h3>",
             "<p>El sobre es un formato abierto, no algo que solo Sekuvo pueda crear: PBKDF2-HMAC-SHA256 con 310.000 rondas, AES-256-GCM, envuelto en un pequeño objeto JSON. Puedes construirlo tú mismo con unas treinta líneas que hayas leído y pegar el resultado en <em>Importar desde texto</em> \u2014 la aplicación no tiene forma de saber qué herramienta lo produjo, ni le importa.</p>",
-            "<p>La receta está en el repositorio: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (escrita en turco).</p>",
+            "<p>La receta está en el repositorio: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (escrita en turco).</p>",
         ]),
         ("log", "Registro de uso", [
             "<p>Sekuvo anota qué campo de qué entrada fue a dónde y cuándo: al portapapeles, a un ordenador por Bluetooth (con el nombre del dispositivo) o escrito en una aplicación desde el teclado. Cuando un ordenador se ve comprometido, esto responde a «qué llegó allí y qué tengo que cambiar».</p>",
@@ -316,7 +318,7 @@ G["hi"] = dict(
             "<p>सारा एन्क्रिप्शन आपकी मशीन पर, ब्राउज़र के भीतर होता है। कमांड लाइन के लिए <code>vault-clip.py</code> भी है, जो यही काम क्लिपबोर्ड या फ़ाइल से करता है और QR कोड टर्मिनल में बना सकता है।</p>",
             "<h3>अगर आप टूल इस्तेमाल नहीं करना चाहते</h3>",
             "<p>लिफ़ाफ़ा एक खुला प्रारूप है, ऐसा कुछ नहीं जो सिर्फ़ Sekuvo बना सके: 310,000 राउंड का PBKDF2-HMAC-SHA256, AES-256-GCM, एक छोटे JSON में लिपटा हुआ। आप इसे अपनी पढ़ी हुई लगभग तीस पंक्तियों से खुद बना सकते हैं और परिणाम <em>पाठ से आयात करें</em> में चिपका सकते हैं \u2014 ऐप यह जान ही नहीं सकता कि उसे किस टूल ने बनाया, और उसे फ़र्क़ भी नहीं पड़ता।</p>",
-            "<p>तरीक़ा रिपॉज़िटरी में है: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (तुर्की में लिखा हुआ)।</p>",
+            "<p>तरीक़ा रिपॉज़िटरी में है: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (तुर्की में लिखा हुआ)।</p>",
         ]),
         ("log", "उपयोग लॉग", [
             "<p>Sekuvo दर्ज करता है कि किस एंट्री का कौन-सा फ़ील्ड कब कहाँ गया: क्लिपबोर्ड पर, ब्लूटूथ से कंप्यूटर पर (लक्ष्य डिवाइस के नाम के साथ), या कीबोर्ड से किसी ऐप में। कोई कंप्यूटर हाथ से निकल जाए, तो “वहाँ क्या गया था, क्या बदलना है” का जवाब यही है।</p>",
@@ -396,7 +398,7 @@ G["ar"] = dict(
             "<p>ويجري التشفير كله داخل متصفحك على جهازك. وهناك أيضًا <code>vault-clip.py</code> لسطر الأوامر، يؤدي المهمة نفسها من الحافظة أو من ملف، ويستطيع رسم رموز QR في الطرفية.</p>",
             "<h3>إن كنت تفضّل ألّا تستخدم الأداة</h3>",
             "<p>المظروف صيغة مفتوحة، لا شيء لا يصنعه إلا Sekuvo: خوارزمية PBKDF2-HMAC-SHA256 بـ310٬000 دورة، وAES-256-GCM، ملفوفة في كائن JSON صغير. يمكنك بناؤه بنفسك من نحو ثلاثين سطرًا قرأتها، ثم لصق النتيجة في <em>استيراد من نص</em> \u2014 فالتطبيق لا سبيل له إلى معرفة الأداة التي أنتجته، ولا يعنيه ذلك.</p>",
-            "<p>الوصفة في المستودع: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (مكتوبة بالتركية).</p>",
+            "<p>الوصفة في المستودع: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (مكتوبة بالتركية).</p>",
         ]),
         ("log", "سجل الاستخدام", [
             "<p>يسجّل Sekuvo أي حقل من أي مدخلة ذهب إلى أين ومتى: إلى الحافظة، أو إلى حاسوب عبر البلوتوث (باسم الجهاز الهدف)، أو كُتب في تطبيق من لوحة المفاتيح. وحين يُخترق حاسوب، يجيب هذا عن سؤال «ما الذي ذهب إليه وما الذي عليّ تغييره».</p>",
@@ -475,7 +477,7 @@ G["zh"] = dict(
             "<p>全部加密过程都在你的浏览器里、在你自己的电脑上完成。命令行下还有 <code>vault-clip.py</code>，可以对剪贴板或文件做同样的事，并能在终端里绘制二维码。</p>",
             "<h3>如果你不想使用这个工具</h3>",
             "<p>这个信封是一种开放格式，不是只有 Sekuvo 才能生成的东西：PBKDF2-HMAC-SHA256（310,000 轮）、AES-256-GCM，包裹在一个小型 JSON 对象里。你完全可以用你读过的大约三十行代码自己实现它，然后把结果粘贴到<em>从文本导入</em>中 — 应用无从得知也不关心这个信封是用哪个工具生成的。</p>",
-            "<p>具体做法在仓库中：<a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>（以土耳其语撰写）。</p>",
+            "<p>具体做法在仓库中：<a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>（以土耳其语撰写）。</p>",
         ]),
         ("log", "使用记录", [
             "<p>Sekuvo 会记录哪个条目的哪个字段在何时发送到了哪里：剪贴板、通过蓝牙发送到某台电脑（含目标设备名称），或从键盘输入到某个应用。当一台电脑被攻破时，这可以回答“泄露了什么、我需要修改什么”这个问题。</p>",
@@ -563,7 +565,7 @@ G["fr"] = dict(
             "<p>Tout le chiffrement se produit dans ton navigateur, sur ta machine. Il existe aussi <code>vault-clip.py</code> pour la ligne de commande, qui fait la même chose depuis le presse-papiers ou un fichier et peut afficher les codes QR dans un terminal.</p>",
             "<h3>Si tu préfères ne pas utiliser l'outil</h3>",
             "<p>L'enveloppe est un format ouvert, pas quelque chose que seul Sekuvo peut créer : PBKDF2-HMAC-SHA256 sur 310 000 tours, AES-256-GCM, enveloppé dans un petit objet JSON. Tu peux le construire toi-même à partir d'une trentaine de lignes que tu as lues, puis coller le résultat dans <em>Importer depuis du texte</em> — l'application n'a aucun moyen de savoir quel outil l'a produit, et cela lui est égal.</p>",
-            "<p>La recette est dans le dépôt : <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (rédigée en turc).</p>",
+            "<p>La recette est dans le dépôt : <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (rédigée en turc).</p>",
         ]),
         ("log", "Journal d'utilisation", [
             "<p>Sekuvo enregistre quel champ de quelle entrée est allé où et quand : vers le presse-papiers, vers un ordinateur par Bluetooth (avec le nom de l'appareil cible), ou saisi dans une application depuis le clavier. Quand un ordinateur est compromis, cela répond à « qu'est-ce qui y est allé, que dois-je changer ».</p>",
@@ -642,7 +644,7 @@ G["bn"] = dict(
             "<p>সব এনক্রিপশন আপনার ব্রাউজারের ভেতরে, আপনার নিজের মেশিনে ঘটে। কমান্ড লাইনের জন্য <code>vault-clip.py</code>ও আছে, যা ক্লিপবোর্ড বা একটি ফাইল থেকে একই কাজ করে এবং টার্মিনালে QR কোড দেখাতে পারে।</p>",
             "<h3>যদি টুলটি ব্যবহার করতে না চান</h3>",
             "<p>এনভেলপটি একটি খোলা ফরম্যাট, শুধু Sekuvo-ই তৈরি করতে পারে এমন কিছু নয়: PBKDF2-HMAC-SHA256 ৩,১০,০০০ রাউন্ডে, AES-256-GCM, একটি ছোট JSON অবজেক্টে মোড়া। আপনি পড়া প্রায় ত্রিশ লাইন কোড দিয়ে নিজেই এটি তৈরি করতে পারেন এবং ফলাফলটি <em>টেক্সট থেকে ইম্পোর্ট করুন</em>-এ পেস্ট করতে পারেন — অ্যাপটি জানার কোনো উপায় নেই কোন টুল দিয়ে এটি তৈরি হয়েছে, এবং এতে কিছু যায়ও আসে না।</p>",
-            "<p>রেসিপিটি রিপোজিটরিতে আছে: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (তুর্কি ভাষায় লেখা)।</p>",
+            "<p>রেসিপিটি রিপোজিটরিতে আছে: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (তুর্কি ভাষায় লেখা)।</p>",
         ]),
         ("log", "ব্যবহারের লগ", [
             "<p>Sekuvo রেকর্ড করে কোন এন্ট্রির কোন ফিল্ড কখন কোথায় গেছে: ক্লিপবোর্ডে, ব্লুটুথ দিয়ে কোনো কম্পিউটারে (লক্ষ্য ডিভাইসের নামসহ), অথবা কীবোর্ড থেকে কোনো অ্যাপে টাইপ হয়েছে। কোনো কম্পিউটার আপোস হলে, এটি উত্তর দেয় “সেখানে কী গেছে, আমার কী পরিবর্তন করা দরকার”।</p>",
@@ -721,7 +723,7 @@ G["pt"] = dict(
             "<p>Toda a criptografia acontece dentro do seu navegador, na sua máquina. Também existe o <code>vault-clip.py</code> para a linha de comando, que faz o mesmo a partir da área de transferência ou de um arquivo e pode desenhar os códigos QR em um terminal.</p>",
             "<h3>Se você preferir não usar a ferramenta</h3>",
             "<p>O envelope é um formato aberto, não algo que só o Sekuvo pode criar: PBKDF2-HMAC-SHA256 com 310.000 rodadas, AES-256-GCM, embrulhado em um pequeno objeto JSON. Você pode construí-lo você mesmo com cerca de trinta linhas que já leu, e colar o resultado em <em>Importar de texto</em> — o aplicativo não tem como saber qual ferramenta o produziu, e não se importa.</p>",
-            "<p>A receita está no repositório: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (escrita em turco).</p>",
+            "<p>A receita está no repositório: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (escrita em turco).</p>",
         ]),
         ("log", "Registro de uso", [
             "<p>O Sekuvo registra qual campo de qual item foi para onde e quando: para a área de transferência, para um computador via Bluetooth (com o nome do dispositivo de destino), ou digitado em um aplicativo pelo teclado. Quando um computador é comprometido, isso responde “o que foi parar lá, o que preciso mudar”.</p>",
@@ -800,7 +802,7 @@ G["ru"] = dict(
             "<p>Всё шифрование происходит внутри вашего браузера, на вашей машине. Также есть <code>vault-clip.py</code> для командной строки, который делает то же самое из буфера обмена или файла и может рисовать QR-коды прямо в терминале.</p>",
             "<h3>Если вы предпочитаете не использовать инструмент</h3>",
             "<p>Конверт — открытый формат, а не что-то, что может создать только Sekuvo: PBKDF2-HMAC-SHA256 с 310 000 раундами, AES-256-GCM, обёрнутый в небольшой объект JSON. Вы можете собрать его сами примерно тридцатью строками, которые уже прочитали, и вставить результат в «Импорт из текста» — приложение не может определить, какой инструмент его создал, и ему это неважно.</p>",
-            "<p>Рецепт находится в репозитории: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (написан на турецком языке).</p>",
+            "<p>Рецепт находится в репозитории: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (написан на турецком языке).</p>",
         ]),
         ("log", "Журнал использования", [
             "<p>Sekuvo записывает, какое поле какой записи, куда и когда было отправлено: в буфер обмена, на компьютер по Bluetooth (с именем целевого устройства) или введено в приложение через клавиатуру. Когда компьютер скомпрометирован, это отвечает на вопрос «что туда попало, что нужно поменять».</p>",
@@ -879,7 +881,7 @@ G["ur"] = dict(
             "<p>تمام خفیہ کاری آپ کے براؤزر کے اندر، آپ کی مشین پر ہوتی ہے۔ کمانڈ لائن کے لیے <code>vault-clip.py</code> بھی موجود ہے، جو کلپ بورڈ یا فائل سے وہی کام کرتا ہے اور ٹرمینل میں QR کوڈز بنا سکتا ہے۔</p>",
             "<h3>اگر آپ ٹول استعمال نہیں کرنا چاہتے</h3>",
             "<p>لفافہ ایک کھلا فارمیٹ ہے، ایسی چیز نہیں جسے صرف Sekuvo بنا سکتا ہے: PBKDF2-HMAC-SHA256 310,000 راؤنڈز کے ساتھ، AES-256-GCM، ایک چھوٹے JSON آبجیکٹ میں لپٹا ہوا۔ آپ اسے خود تقریباً تیس لائنوں میں بنا سکتے ہیں جو آپ پہلے ہی پڑھ چکے ہیں، اور نتیجہ <em>متن سے درآمد کریں</em> میں پیسٹ کر سکتے ہیں — ایپ کو معلوم نہیں ہو سکتا کہ اسے کس ٹول نے بنایا، اور اسے اس کی پرواہ بھی نہیں۔</p>",
-            "<p>ترکیب ریپوزٹری میں ہے: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (ترکی زبان میں لکھی گئی)۔</p>",
+            "<p>ترکیب ریپوزٹری میں ہے: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (ترکی زبان میں لکھی گئی)۔</p>",
         ]),
         ("log", "استعمال کا لاگ", [
             "<p>Sekuvo ریکارڈ کرتا ہے کہ کس اندراج کی کون سی فیلڈ، کہاں اور کب گئی: کلپ بورڈ میں، بلوٹوتھ کے ذریعے کمپیوٹر میں (منزل ڈیوائس کے نام کے ساتھ)، یا کی بورڈ کے ذریعے کسی ایپ میں ٹائپ کی گئی۔ جب کوئی کمپیوٹر خراب ہو جائے، تو یہ اس سوال کا جواب دیتا ہے «وہاں کیا گیا، مجھے کیا تبدیل کرنے کی ضرورت ہے»۔</p>",
@@ -958,7 +960,7 @@ G["id"] = dict(
             "<p>Semua enkripsi terjadi di dalam browsermu, di mesinmu. Ada juga <code>vault-clip.py</code> untuk baris perintah, yang melakukan hal yang sama dari papan klip atau file dan bisa menggambar kode QR di terminal.</p>",
             "<h3>Jika kamu lebih suka tidak menggunakan alat ini</h3>",
             "<p>Amplop adalah format terbuka, bukan sesuatu yang hanya bisa dibuat Sekuvo: PBKDF2-HMAC-SHA256 dengan 310.000 putaran, AES-256-GCM, dibungkus dalam objek JSON kecil. Kamu bisa membangunnya sendiri dengan sekitar tiga puluh baris yang sudah kamu baca, lalu tempel hasilnya ke <em>Impor dari teks</em> — aplikasi tidak punya cara mengetahui alat mana yang membuatnya, dan tidak peduli.</p>",
-            "<p>Resepnya ada di repositori: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (ditulis dalam bahasa Turki).</p>",
+            "<p>Resepnya ada di repositori: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (ditulis dalam bahasa Turki).</p>",
         ]),
         ("log", "Log penggunaan", [
             "<p>Sekuvo mencatat kolom mana dari entri mana yang pergi ke mana dan kapan: ke papan klip, ke komputer lewat Bluetooth (dengan nama perangkat tujuan), atau diketik ke aplikasi lewat keyboard. Saat komputer diretas, ini menjawab \"apa yang sampai di sana, apa yang perlu saya ubah\".</p>",
@@ -1037,7 +1039,7 @@ G["de"] = dict(
             "<p>Die gesamte Verschlüsselung findet in deinem Browser statt, auf deinem Rechner. Es gibt außerdem <code>vault-clip.py</code> für die Kommandozeile, das dasselbe aus der Zwischenablage oder einer Datei erledigt und QR-Codes im Terminal zeichnen kann.</p>",
             "<h3>Wenn du das Werkzeug lieber nicht verwenden möchtest</h3>",
             "<p>Der Umschlag ist ein offenes Format, nichts, das nur Sekuvo erzeugen kann: PBKDF2-HMAC-SHA256 mit 310.000 Runden, AES-256-GCM, verpackt in ein kleines JSON-Objekt. Du kannst ihn selbst mit rund dreißig Zeilen bauen, die du bereits gelesen hast, und das Ergebnis in <em>Aus Text importieren</em> einfügen — die App hat keine Möglichkeit zu wissen, welches Werkzeug ihn erzeugt hat, und es ist ihr egal.</p>",
-            "<p>Das Rezept steht im Repository: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (auf Türkisch verfasst).</p>",
+            "<p>Das Rezept steht im Repository: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (auf Türkisch verfasst).</p>",
         ]),
         ("log", "Nutzungsprotokoll", [
             "<p>Sekuvo protokolliert, welches Feld welches Eintrags wohin und wann gegangen ist: in die Zwischenablage, an einen Computer per Bluetooth (mit dem Namen des Zielgeräts) oder in eine App über die Tastatur eingegeben. Wird ein Computer kompromittiert, beantwortet das die Frage „Was ist dorthin gelangt, was muss ich ändern“.</p>",
@@ -1116,7 +1118,7 @@ G["ja"] = dict(
             "<p>すべての暗号化はあなたのブラウザ内、あなたのマシン上で行われます。コマンドライン用の<code>vault-clip.py</code>もあり、クリップボードまたはファイルから同じことを行い、ターミナルにQRコードを描画することもできます。</p>",
             "<h3>ツールを使いたくない場合</h3>",
             "<p>この封筒はオープンなフォーマットであり、Sekuvoでしか作れないものではありません: PBKDF2-HMAC-SHA256（310,000回）、AES-256-GCM、それらが小さなJSONオブジェクトにラップされています。すでに読んだ約30行のコードで自分で作成し、結果を<em>テキストからインポート</em>に貼り付けることができます — アプリはどのツールがそれを作成したか知る術がなく、気にもしません。</p>",
-            "<p>作り方はリポジトリにあります: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>（トルコ語で書かれています）。</p>",
+            "<p>作り方はリポジトリにあります: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a>（トルコ語で書かれています）。</p>",
         ]),
         ("log", "使用履歴", [
             "<p>Sekuvoは、どのアイテムのどのフィールドが、いつ、どこへ送られたかを記録します: クリップボードへ、Bluetooth経由でコンピューターへ（送信先の端末名付き）、またはキーボードからアプリに入力された場合。コンピューターが侵害されたとき、これは「何がそこに渡ったか、何を変更する必要があるか」に答えます。</p>",
@@ -1195,7 +1197,7 @@ G["pcm"] = dict(
             "<p>All the encryption dey happen inside your browser, for your machine. <code>vault-clip.py</code> dey too for command line, wey do the same thing from clipboard or from file and e fit draw QR codes for terminal.</p>",
             "<h3>If you no wan use the tool</h3>",
             "<p>The envelope na open format, e no be something wey only Sekuvo fit create: PBKDF2-HMAC-SHA256 with 310,000 rounds, AES-256-GCM, wrap inside small JSON object. You fit build am yourself with about thirty lines wey you don already read, and paste the result inside <em>Import from text</em> — the app no get way to know which tool produce am, and e no even care.</p>",
-            "<p>The recipe dey inside the repository: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (dem write am for Turkish).</p>",
+            "<p>The recipe dey inside the repository: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (dem write am for Turkish).</p>",
         ]),
         ("log", "Usage log", [
             "<p>Sekuvo dey record which field of which entry go where and when: to clipboard, to computer through Bluetooth (with the target device name), or dem type am inside app from the keyboard. When computer don compromise, dis one go answer \"wetin land there, wetin I need change\".</p>",
@@ -1274,7 +1276,7 @@ G["vi"] = dict(
             "<p>Toàn bộ quá trình mã hóa diễn ra bên trong trình duyệt của bạn, trên máy của bạn. Cũng có <code>vault-clip.py</code> cho dòng lệnh, thực hiện điều tương tự từ bộ nhớ tạm hoặc từ một tệp và có thể vẽ mã QR trong terminal.</p>",
             "<h3>Nếu bạn không muốn dùng công cụ này</h3>",
             "<p>Phong bì là một định dạng mở, không phải thứ chỉ Sekuvo mới tạo được: PBKDF2-HMAC-SHA256 với 310.000 vòng lặp, AES-256-GCM, được bọc trong một đối tượng JSON nhỏ. Bạn có thể tự xây dựng nó với khoảng ba mươi dòng mã mà bạn đã đọc, rồi dán kết quả vào <em>Nhập từ văn bản</em> — ứng dụng không có cách nào biết công cụ nào đã tạo ra nó, và nó cũng không quan tâm.</p>",
-            "<p>Công thức nằm trong kho lưu trữ: <a href=\"https://github.com/afgover/Vault/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (được viết bằng tiếng Thổ Nhĩ Kỳ).</p>",
+            "<p>Công thức nằm trong kho lưu trữ: <a href=\"" + GITHUB + "/blob/HEAD/docs/kendi-zarfini-uret.md\">docs/kendi-zarfini-uret.md</a> (được viết bằng tiếng Thổ Nhĩ Kỳ).</p>",
         ]),
         ("log", "Nhật ký sử dụng", [
             "<p>Sekuvo ghi lại trường nào của mục nào đã đi đâu và khi nào: đến bộ nhớ tạm, đến máy tính qua Bluetooth (kèm tên thiết bị đích), hoặc được gõ vào một ứng dụng từ bàn phím. Khi một máy tính bị xâm phạm, điều này trả lời câu hỏi \"cái gì đã đến đó, tôi cần thay đổi cái gì\".</p>",
