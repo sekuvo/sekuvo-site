@@ -52,6 +52,11 @@ def android_text(raw):
         c = s[i]
         if c == "\\" and i + 1 < len(s):
             n = s[i + 1]
+            # \uXXXX: Arapça ve Urduca'daki yön yalıtıcıları (U+2068/2069) böyle yazılı.
+            if n == "u" and re.fullmatch(r"[0-9a-fA-F]{4}", s[i + 2:i + 6]):
+                out.append(chr(int(s[i + 2:i + 6], 16)))
+                i += 6
+                continue
             out.append({"n": "\n", "t": "\t"}.get(n, n))
             i += 2
             continue
