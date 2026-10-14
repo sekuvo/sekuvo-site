@@ -26,6 +26,7 @@
 <link rel="alternate" hreflang="vi" href="https://sekuvo.com/vi/">
 <link rel="alternate" hreflang="x-default" href="https://sekuvo.com/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Roboto+Mono:wght@400&display=swap">
 <style>
   html { color-scheme: light dark; }
   :root {
@@ -101,7 +102,7 @@
     .lang .menu a { break-inside: avoid; }
   }
 
-  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
   .hero h1 em { font-style: normal; color: var(--brass); }
   .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
@@ -160,6 +161,54 @@
   .akembed { margin-top: 1.8rem; color: var(--muted); font-size: .93rem; max-width: 44rem; }
   @media (max-width: 780px) { .aksplit { grid-template-columns: 1fr; } }
 
+  /* Telefon maketi (js/telefon.js): gerçek ölçülü, sağda. Seçici renkleri sitenin
+     kendi değişkenlerinden alır; JS yoksa eski ekran görüntüsü yerinde durur. */
+  sekuvo-telefon, sekuvo-dizustu { --d-pirinc: var(--brass); --d-soluk: var(--muted);
+    --d-cizgi: var(--line); --d-pirinc-ink: var(--brass-ink); }
+  .tel-yer { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+  .tel-yedek { display: block; width: 68mm; height: auto; border-radius: 9mm; border: 2.4mm solid #1d1f24; }
+  .tel-not { margin: 0; max-width: 18.5rem; text-align: center; font-size: .74rem; line-height: 1.5; color: var(--muted); }
+  .proof-yer { margin: 0 0 2.4rem; max-width: 40rem; }
+
+  /* Aktarım kartı */
+  .akt-kart { margin-top: 2.2rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 2rem 2.2rem; display: grid; grid-template-columns: minmax(0, 1fr) 31rem; gap: 2.6rem; align-items: center; }
+  .akt-adim { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; counter-reset: adim; }
+  .akt-adim li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); column-gap: .85rem; }
+  .akt-adim li::before { counter-increment: adim; content: counter(adim); grid-row: span 2; width: 2.1rem; height: 2.1rem;
+    border-radius: 50%; border: 1px solid var(--brass); color: var(--brass); display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; }
+  .akt-adim h3 { font-size: 1rem; font-weight: 600; margin: .25rem 0 .2rem; }
+  .akt-adim p { margin: 0; font-size: .88rem; color: var(--muted); }
+  .akt-sahne { position: relative; width: 31rem; height: 30rem; }
+  .akt-sahne sekuvo-dizustu { position: absolute; left: 0; top: 4.2rem; }
+  .akt-sahne sekuvo-telefon { position: absolute; right: 0; bottom: 0; }
+  .indir { margin-top: 1.7rem; border-top: 1px dashed var(--line); padding-top: 1.5rem; }
+  .btn.buyuk { display: inline-flex; align-items: center; gap: .55rem; font-size: 1rem; padding: .85rem 1.35rem; }
+  .btn.buyuk svg { width: 1.2em; height: 1.2em; fill: currentColor; }
+  .indir .meta { margin: .65rem 0 0; font-size: .8rem; color: var(--muted); }
+  .ozet { margin-top: 1rem; font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .06em; color: var(--muted); }
+  .ozet code { display: block; margin-top: .35rem; letter-spacing: 0; font-size: .74rem; line-height: 1.6; color: var(--ink);
+    background: var(--ground); border: 1px solid var(--line); border-radius: 6px; padding: .55rem .75rem;
+    word-break: break-all; cursor: text; -webkit-user-select: all; user-select: all; }
+  .indir details { margin-top: .9rem; font-size: .86rem; color: var(--muted); }
+  .indir summary { cursor: pointer; color: var(--brass); }
+  .indir details p { margin: .6rem 0; }
+  .indir .uyar { margin: 1rem 0 0; font-size: .8rem; color: var(--muted); }
+  .akt-daha { display: inline-block; margin-top: 1.5rem; font-weight: 600; }
+  /* Görsel 31rem genişliğinde tasarlandı; dar ekranda kartın içine sığsın diye
+     küçülür (zoom yerleşimi de küçültür, transform küçültmez). */
+  @media (max-width: 1000px) {
+    .akt-kart { grid-template-columns: 1fr; }
+    .akt-sahne { margin: 0 auto; }
+  }
+  @media (max-width: 640px) { .akt-sahne { zoom: .75; } }
+  @media (max-width: 560px) {
+    .akt-kart { padding: 1.4rem 1.2rem; }
+    .akt-sahne { zoom: .54; }
+  }
+  @media (max-width: 350px) { .akt-sahne { zoom: .46; } }
+
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
   footer a:hover { color: var(--brass); }
@@ -184,6 +233,7 @@
     <nav>
       <a href="#security">Güvenlik</a>
       <a href="#channels">Kanallar</a>
+      <a href="https://sekuvo.com/tr/transfer/">Aktarım</a>
       <a href="#download">İndir</a>
       <a href="https://sekuvo.com/tr/guide/">Kılavuz</a>
       <a href="https://sekuvo.com/tr/privacy/">Gizlilik</a>
@@ -203,7 +253,17 @@
       <p class="cta-note">Google Play kaydı hazırlanıyor. Sekuvo ücretsiz ve GPLv3 — kanıt kodun kendisi.</p>
     </div>
 
-    <div class="proof" dir="ltr" role="img" aria-label="Uygulama manifesti kamera, biyometri ve Bluetooth istiyor; INTERNET izni araması hiçbir sonuç vermiyor.">
+    <div class="tel-yer">
+      <sekuvo-telefon model="galaxy-s26" demo="tur" secici aria-label="Sekuvo bir telefonda: kayıt listesi, kayıt ayrıntısı ve bir şifrenin Bluetooth ile bilgisayara yazılması. Gösterilen bütün değerler bu sayfada rastgele üretilir."><img class="tel-yedek" src="/img/02-liste.png" alt="Sekuvo bir telefonda: kayıt listesi, kayıt ayrıntısı ve bir şifrenin Bluetooth ile bilgisayara yazılması. Gösterilen bütün değerler bu sayfada rastgele üretilir." width="405" height="900"></sekuvo-telefon>
+      <p class="tel-not">Bu ekrandaki her parola, anahtar ve kart numarası bu sayfada rastgele üretilir — hiçbiri gerçek değil ve hiçbiri tarayıcından çıkmaz.</p>
+    </div>
+  </div>
+
+  <section id="security">
+    <span class="eyebrow">Güvenlik modeli</span>
+    <h2>İnanılacak değil, denetlenecek şifreleme.</h2>
+    <p class="kicker">Her hassas alan AES-256-GCM ile mühürlenir. Anahtar hiçbir sunucuya uğramaz, çünkü sunucu yoktur; her kilit açışında telefonunda, ana parolandan türetilir.</p>
+    <div class="proof proof-yer" dir="ltr" role="img" aria-label="Uygulama manifesti kamera, biyometri ve Bluetooth istiyor; INTERNET izni araması hiçbir sonuç vermiyor.">
       <span class="cap">AndroidManifest.xml — sahip olduğu bütün izinler</span>
 <span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
 &lt;uses-permission android:name="…CAMERA" /&gt;
@@ -213,12 +273,6 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(eşleşme yok — böyle bir izin hiç yok)</span>
     </div>
-  </div>
-
-  <section id="security">
-    <span class="eyebrow">Güvenlik modeli</span>
-    <h2>İnanılacak değil, denetlenecek şifreleme.</h2>
-    <p class="kicker">Her hassas alan AES-256-GCM ile mühürlenir. Anahtar hiçbir sunucuya uğramaz, çünkü sunucu yoktur; her kilit açışında telefonunda, ana parolandan türetilir.</p>
     <div class="chain" dir="ltr">Ana parola ─<b>PBKDF2 · 310.000 tur</b>─▶ KEK ─<b>AES-GCM sarma</b>─▶ dataKey ─▶ her kayıtta <b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>Ekran uyuyunca kilitlenir</h3><p>Ekran karardığı anda anahtar bellekten silinir — katlanabilir cihazı katlamak da sayılır. Tek kilit açma; uygulama, klavye ve otomatik doldurma için birlikte geçerlidir.</p></div><div class="cell"><h3>Telefondan uzun ömürlü yedek</h3><p>İstediğin yere koyduğun tek bir şifreli <span class="mono-note">.vaultbak</span> dosyası. Dosya artı yedek parolası her cihazda her şeyi geri getirir — kurtarma yolu uçtan uca sınandı.</p></div><div class="cell"><h3>Kurtarma arka kapısı yok</h3><p>Ana parolanı unutursan veri gider. Tasarım bu: yalnız senin açabildiğin bir kapının paspas altında yedek anahtarı olmaz.</p></div></div>
   </section>
@@ -228,6 +282,27 @@
     <h2>Üç çıkış yolu, üçü de parmağının altında.</h2>
     <p class="kicker">Pano, sırların çalınmaya gittiği yerdir. Sekuvo değerleri onun yerine doğrudan hedefine yazar.</p>
     <div class="lanes"><div class="lane"><div class="n">Otomatik doldurma</div><h3>Android otomatik doldurma servisi</h3><p>Giriş ve kart formları kayıtlarını doğrudan sunar. Kilitliyken sisteme hiçbir şey gitmez — önce kilidi aç, sonra seç.</p></div><div class="lane"><div class="n">Klavye</div><h3>Sekuvo Klavyesi</h3><p>Herhangi bir uygulamada klavyeye geç, kayıtlı sırrı doğrudan alana yaz — aranabilir, son kullanılanlar üstte, kopyalama adımı yok.</p></div><div class="lane"><div class="n">Bluetooth</div><h3>Bilgisayarına yazar</h3><p>Telefonun Bluetooth klavyeye dönüşür ve sırrı bilgisayardaki imlecin olduğu yere yazar. Bilgisayara hiçbir şey kurulmaz.</p></div></div>
+  </section>
+
+  <section id="aktar">
+    <span class="eyebrow">Bilgisayardan telefona</span>
+    <h2>Uzun sırlar elle yazılmaz.<br>QR ile aktar.</h2>
+    <p class="kicker">SSH anahtarı, .env dosyası, kurtarma kodları… Bilgisayarındaki sırrı aktar.html şifreler, Sekuvo kamerayla okur. Arada sunucu, hesap ya da pano yok; yalnız ekrandan kameraya giden ışık var.</p>
+    <div class="akt-kart">
+      <div>
+        <ol class="akt-adim"><li><h3>İndir ve doğrula</h3><p>aktar.html tek bir HTML dosyasıdır. İndir, SHA-256 özetini aşağıdaki değerle karşılaştır ve kendi diskinden aç.</p></li><li><h3>Bilgisayarda şifrele</h3><p>Sırrını yapıştır, bir aktarım parolası belirle. Şifreleme tarayıcının içinde, senin makinende yapılır; zarf ekrana QR olarak çizilir.</p></li><li><h3>Telefonla oku</h3><p>Sekuvo'da ➕ → QR ile içe aktar. Kareleri okut, aynı parolayı gir; kayıt kasana eklenir.</p></li></ol>
+        <div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>aktar.html'i indir</a><p class="meta">v1.0.0 · 53 KB · tek dosya, kendi diskinden çalışır</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>Nasıl doğrularım?</summary><p>Sistemine uygun komutu terminalde çalıştır; çıkan değer yukarıdakiyle birebir aynı olmalı. Aynı değer GitHub sürüm notunda da yayımlanır. İstersen Sekuvo'da Araç çıpası olarak sakla (ana ekrandaki parmak izi düğmesi); bir sonraki indirmede telefonundaki değerle karşılaştırırsın.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+shasum -a 256 aktar.html
+
+<span class="c"># Windows (PowerShell / cmd)</span>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Bu bir web sayfası değil, indirilen bir dosya: adres çubuğunda file:// görünür. sekuvo.com senden asla bir sır istemez.</p></div>
+      </div>
+      <div class="akt-sahne" role="img" aria-label="Dizüstü bilgisayarda aktar.html şifreli zarfı dönen QR kareleri olarak gösteriyor; telefondaki Sekuvo kareleri okuyor, aktarım parolasını istiyor ve kaydı ekliyor.">
+        <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
+        <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
+      </div>
+    </div>
+    <a class="akt-daha" href="https://sekuvo.com/tr/transfer/">Aktarımın bütün yolları ve ayrıntılar →</a>
   </section>
 
   <section id="download">
@@ -243,24 +318,8 @@
         <h3>Bilgisayar tarafı araçlar</h3>
         <p>Bilgisayar tarafındaki araç tek bir HTML dosyasıdır — <code>aktar.html</code> — ve web sayfası değil, indirilen bir dosyadır: tamamen kendi makinende çalışır ve bu site senden asla bir sır istemez.</p>
         <p class="mono-note" dir="ltr">github.com → Releases · yayınlanan SHA-256'yı doğrula</p>
-        <p><a href="https://sekuvo.com/tr/guide/#transfer">aktar.html'i nasıl alır, nasıl kullanırsın →</a></p>
+        <p><a href="#aktar">aktar.html'i nasıl alır, nasıl kullanırsın →</a></p>
       </div>
-    </div>
-
-    <div class="aktar" id="aktar">
-      <h3>aktar.html: indir, doğrula, kullan</h3>
-      <div class="aksplit">
-        <ol class="steps"><li>Projenin Releases sayfasını aç ve aktar.html'i indir.</li><li>SHA-256'sını yanında yayımlanan değerle karşılaştır — buradaki komutlar onu yazdırır.</li><li>Dosyayı kendi diskinden aç: adres çubuğunda bir site değil file:// görünür.</li><li>İçeriğini yapıştır, bir aktarım parolası belirle ve şifrele — zarf QR kod ya da metin olarak çıkar.</li><li>Telefonda: Sekuvo → + → QR ile aktar, tara ve aynı parolayı gir.</li></ol>
-        <div>
-          <div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
-shasum -a 256 aktar.html
-
-<span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div>
-          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="https://github.com/sekuvo/sekuvo/releases">github.com/sekuvo/sekuvo/releases</a></p>
-        </div>
-      </div>
-      <p class="akembed">Tarayıcıda hiç şifreleme çalıştırmak istemiyor musun? Sırrı kendi terminalinde şifrele ve gömülü QR sayfasını kullan — o sayfa yalnız şifreli zarfı kabul eder, asla çıplak bir sır istemez. <a href="https://sekuvo.com/tr/aktar/">Zarf → QR sayfasını aç →</a></p>
     </div>
   </section>
 
@@ -274,5 +333,7 @@ certutil -hashfile aktar.html SHA256</div>
     </span>
   </footer>
 </div>
+<script type="application/json" id="telefon-veri">{"lang":"tr","dir":"ltr","app":{"bt_close":"Kapat","bt_connected":"✓ %1$s bağlı","bt_connecting":"%1$s cihazına bağlanılıyor…","bt_done_summary":"✓ %1$d karakter yazıldı — %2$s, %3$d karakter/sn. Bilgisayarda karakter sayısını doğrula.","bt_duration_seconds":"%1$d sn","bt_layout_tr":"Türkçe Q","bt_layout_us":"US (İngilizce)","bt_title":"Bilgisayara yaz: %1$s","bt_typing_progress":"Yazılıyor… %1$d / %2$d karakter","detail_dates":"Eklendi: %1$s · Güncellendi: %2$s","detail_fingerprint_len":"SHA-256 parmak izi · %1$d karakter","detail_quick_off":"Yalnızca kasa kilidi açıkken kullanılabilir.","detail_quick_on":"Kasa kilitliyken de Sekuvo Klavyesi'nde çıkar; koruması telefonun ekran kilidi kadardır.","detail_quick_title":"Klavyede parolasız kullan","detail_show_fingerprint":"SHA-256 parmak izini göster","detail_usage_empty":"Henüz kullanım yok.","detail_usage_title":"Son kullanımlar","field_address":"Adres","field_card_number":"Kart no","field_cardholder":"Kart sahibi","field_cvv":"CVV","field_email":"E-posta","field_expiry":"Son kul. tarihi","field_full_name":"Ad Soyad","field_iban":"IBAN","field_notes":"Not","field_password":"Şifre","field_phone":"Telefon","field_url":"Site / Uygulama","field_username":"Kullanıcı adı","home_import_qr":"QR ile aktar","home_import_text":"Metinden içe aktar","home_search_hint":"Kayıtlarda ara","note_kind_config":"Yapılandırma (.env, json)","note_kind_fingerprint":"Parmak izi / çıpa","note_kind_general":"Genel not","note_kind_key":"Anahtar / sertifika (.pem)","note_kind_recovery":"Kurtarma kodları","note_kind_script":"Betik / komut (.sh)","paste_btn_cancel":"Vazgeç","paste_btn_import":"İçe aktar","paste_btn_importing":"Aktarılıyor…","paste_label_backup_password":"Yedek parolası","paste_qr_ready":"✓ QR okundu · %1$d karakterlik şifreli zarf alındı.\nŞimdi yalnız **yedek parolasını** gir.","paste_title_qr":"QR ile aktar","qr_camera_analysis":"Kamera analizi: %1$s · kareyi ekranın yarısını kaplayacak kadar yakın tut","qr_cancel":"Vazgeç","qr_status_aim":"QR'ı çerçeveye al","qr_status_done":"Tamam","qr_status_received":"%1$d/%2$d alındı","type_card":"Kart","type_everyday":"Gündelik","type_login":"Hesap / Şifre","type_note":"Güvenli Not","vm_import_added":{"one":"%1$d kayıt eklendi · pano temizlendi","other":"%1$d kayıt eklendi · pano temizlendi"}},"demo":{"adlar":["Deniz Yılmaz","Ece Demir","Can Aydın","Elif Kaya","Mert Çelik","Zeynep Şahin"],"etiket_finans":"finans","etiket_kisisel":"kişisel","etiket_is":"iş","baslik_aws":"AWS · CLI anahtarı","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy anahtarı (ed25519)","baslik_wifi":"Ev Wi-Fi","baslik_google":"Google hesabı","baslik_kimlik":"Kimlik ve adres","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API anahtarları","baslik_visa":"Visa · günlük","baslik_kodlar":"Yedek kodlar · Google","alan_erisim":"Erişim anahtarı (Access key ID)","alan_gizli":"Gizli anahtar (Secret access key)","alan_parmak":"parmak izi","alan_ssid":"Ağ adı (SSID)","ssid":"EvAgi_5G","banka_uygulama":"Northwind mobil","adres":"Demo Sok. No: %1$d, Kadıköy / İstanbul","bt_cihaz":"MacBook Pro","yeni_baslik":"Sunucu SSH (staging)"},"site":{"secici_etiket":"Telefon modeli","olcu":"1:1 ölçek · %1$s × %2$s mm"},"arac":{"btnQr":"Şifrele ve QR göster","h1":"Sekuvo Aktarım","kareCok":"Kare %1$d/%2$d · tur başına ~%3$d sn — telefonu tut, kareler dönüyor; okuyucu sırasız toplar.","lblBaslik":"Başlık","lblNoteKind":"Not türü","lblParola":"Yedek parolası (ASCII, en az 8)","lblTur":"Tür","lblYol":"Aktarım yolu","nkAnahtar":"Anahtar / sertifika (.pem)","turNot":"Güvenli Not","uyariQr":"Bu QR <b>zarfın kendisini<\/b> taşır — internete hiçbir şey gitmedi. Telefonda: <b>Sekuvo → + → \"QR ile aktar\"<\/b>","yolQr":"QR (ağ yok — telefon kamerayla okur)"}}</script>
+<script src="/js/telefon.js" defer></script>
 </body>
 </html>

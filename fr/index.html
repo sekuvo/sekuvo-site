@@ -26,6 +26,7 @@
 <link rel="alternate" hreflang="vi" href="https://sekuvo.com/vi/">
 <link rel="alternate" hreflang="x-default" href="https://sekuvo.com/">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,300..800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600&family=Roboto+Mono:wght@400&display=swap">
 <style>
   html { color-scheme: light dark; }
   :root {
@@ -101,7 +102,7 @@
     .lang .menu a { break-inside: avoid; }
   }
 
-  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
   .hero h1 em { font-style: normal; color: var(--brass); }
   .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
@@ -160,6 +161,54 @@
   .akembed { margin-top: 1.8rem; color: var(--muted); font-size: .93rem; max-width: 44rem; }
   @media (max-width: 780px) { .aksplit { grid-template-columns: 1fr; } }
 
+  /* Telefon maketi (js/telefon.js): gerçek ölçülü, sağda. Seçici renkleri sitenin
+     kendi değişkenlerinden alır; JS yoksa eski ekran görüntüsü yerinde durur. */
+  sekuvo-telefon, sekuvo-dizustu { --d-pirinc: var(--brass); --d-soluk: var(--muted);
+    --d-cizgi: var(--line); --d-pirinc-ink: var(--brass-ink); }
+  .tel-yer { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+  .tel-yedek { display: block; width: 68mm; height: auto; border-radius: 9mm; border: 2.4mm solid #1d1f24; }
+  .tel-not { margin: 0; max-width: 18.5rem; text-align: center; font-size: .74rem; line-height: 1.5; color: var(--muted); }
+  .proof-yer { margin: 0 0 2.4rem; max-width: 40rem; }
+
+  /* Aktarım kartı */
+  .akt-kart { margin-top: 2.2rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 2rem 2.2rem; display: grid; grid-template-columns: minmax(0, 1fr) 31rem; gap: 2.6rem; align-items: center; }
+  .akt-adim { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; counter-reset: adim; }
+  .akt-adim li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); column-gap: .85rem; }
+  .akt-adim li::before { counter-increment: adim; content: counter(adim); grid-row: span 2; width: 2.1rem; height: 2.1rem;
+    border-radius: 50%; border: 1px solid var(--brass); color: var(--brass); display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; }
+  .akt-adim h3 { font-size: 1rem; font-weight: 600; margin: .25rem 0 .2rem; }
+  .akt-adim p { margin: 0; font-size: .88rem; color: var(--muted); }
+  .akt-sahne { position: relative; width: 31rem; height: 30rem; }
+  .akt-sahne sekuvo-dizustu { position: absolute; left: 0; top: 4.2rem; }
+  .akt-sahne sekuvo-telefon { position: absolute; right: 0; bottom: 0; }
+  .indir { margin-top: 1.7rem; border-top: 1px dashed var(--line); padding-top: 1.5rem; }
+  .btn.buyuk { display: inline-flex; align-items: center; gap: .55rem; font-size: 1rem; padding: .85rem 1.35rem; }
+  .btn.buyuk svg { width: 1.2em; height: 1.2em; fill: currentColor; }
+  .indir .meta { margin: .65rem 0 0; font-size: .8rem; color: var(--muted); }
+  .ozet { margin-top: 1rem; font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .06em; color: var(--muted); }
+  .ozet code { display: block; margin-top: .35rem; letter-spacing: 0; font-size: .74rem; line-height: 1.6; color: var(--ink);
+    background: var(--ground); border: 1px solid var(--line); border-radius: 6px; padding: .55rem .75rem;
+    word-break: break-all; cursor: text; -webkit-user-select: all; user-select: all; }
+  .indir details { margin-top: .9rem; font-size: .86rem; color: var(--muted); }
+  .indir summary { cursor: pointer; color: var(--brass); }
+  .indir details p { margin: .6rem 0; }
+  .indir .uyar { margin: 1rem 0 0; font-size: .8rem; color: var(--muted); }
+  .akt-daha { display: inline-block; margin-top: 1.5rem; font-weight: 600; }
+  /* Görsel 31rem genişliğinde tasarlandı; dar ekranda kartın içine sığsın diye
+     küçülür (zoom yerleşimi de küçültür, transform küçültmez). */
+  @media (max-width: 1000px) {
+    .akt-kart { grid-template-columns: 1fr; }
+    .akt-sahne { margin: 0 auto; }
+  }
+  @media (max-width: 640px) { .akt-sahne { zoom: .75; } }
+  @media (max-width: 560px) {
+    .akt-kart { padding: 1.4rem 1.2rem; }
+    .akt-sahne { zoom: .54; }
+  }
+  @media (max-width: 350px) { .akt-sahne { zoom: .46; } }
+
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
   footer a:hover { color: var(--brass); }
@@ -184,6 +233,7 @@
     <nav>
       <a href="#security">Sécurité</a>
       <a href="#channels">Canaux</a>
+      <a href="https://sekuvo.com/fr/transfer/">Transfer</a>
       <a href="#download">Télécharger</a>
       <a href="https://sekuvo.com/fr/guide/">Guide</a>
       <a href="https://sekuvo.com/fr/privacy/">Confidentialité</a>
@@ -203,7 +253,17 @@
       <p class="cta-note">La fiche Google Play est en préparation. Sekuvo est gratuit et sous GPLv3 — le code en est la preuve.</p>
     </div>
 
-    <div class="proof" dir="ltr" role="img" aria-label="Le manifeste de l'application demande la caméra, la biométrie et le Bluetooth, et une recherche de la permission INTERNET ne renvoie aucun résultat.">
+    <div class="tel-yer">
+      <sekuvo-telefon model="galaxy-s26" demo="tur" secici aria-label="Sekuvo on a phone: the entry list, an entry's details and typing a password to a computer over Bluetooth. Every value shown is generated randomly in this page."><img class="tel-yedek" src="/img/02-liste.png" alt="Sekuvo on a phone: the entry list, an entry's details and typing a password to a computer over Bluetooth. Every value shown is generated randomly in this page." width="405" height="900"></sekuvo-telefon>
+      <p class="tel-not">Every password, key and card number on this screen is generated at random in this page — none of it is real, and none of it leaves your browser.</p>
+    </div>
+  </div>
+
+  <section id="security">
+    <span class="eyebrow">Modèle de sécurité</span>
+    <h2>Un chiffrement à auditer, pas à croire sur parole.</h2>
+    <p class="kicker">Chaque champ sensible est scellé avec AES-256-GCM. La clé ne touche jamais un serveur, car il n'y en a pas ; elle est dérivée sur ton téléphone, à partir de ton mot de passe principal, à chaque déverrouillage.</p>
+    <div class="proof proof-yer" dir="ltr" role="img" aria-label="Le manifeste de l'application demande la caméra, la biométrie et le Bluetooth, et une recherche de la permission INTERNET ne renvoie aucun résultat.">
       <span class="cap">AndroidManifest.xml — toutes les permissions qu'elle possède</span>
 <span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
 &lt;uses-permission android:name="…CAMERA" /&gt;
@@ -213,12 +273,6 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(aucun résultat — cette permission n'existe pas)</span>
     </div>
-  </div>
-
-  <section id="security">
-    <span class="eyebrow">Modèle de sécurité</span>
-    <h2>Un chiffrement à auditer, pas à croire sur parole.</h2>
-    <p class="kicker">Chaque champ sensible est scellé avec AES-256-GCM. La clé ne touche jamais un serveur, car il n'y en a pas ; elle est dérivée sur ton téléphone, à partir de ton mot de passe principal, à chaque déverrouillage.</p>
     <div class="chain" dir="ltr">Mot de passe principal ─<b>PBKDF2 · 310 000 tours</b>─▶ KEK ─<b>enveloppement AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> sur chaque entrée</div>
     <div class="grid"><div class="cell"><h3>Se verrouille quand l'écran s'éteint</h3><p>La clé est effacée de la mémoire dès que l'écran s'assombrit — replier un pliable compte aussi. Un seul déverrouillage sert à la fois l'application, le clavier et la saisie automatique.</p></div><div class="cell"><h3>Des sauvegardes qui survivent au téléphone</h3><p>Un unique fichier chiffré <span class="mono-note">.vaultbak</span>, stocké où tu veux. Le fichier plus le mot de passe de sauvegarde restaurent tout sur n'importe quel appareil — le chemin de récupération est testé de bout en bout.</p></div><div class="cell"><h3>Aucune porte dérobée de récupération</h3><p>Oublie le mot de passe principal et les données disparaissent. C'est le principe même : une porte que toi seul peux ouvrir n'a pas de double planqué sous le paillasson.</p></div></div>
   </section>
@@ -228,6 +282,27 @@
     <h2>Trois sorties, toutes sous ton doigt.</h2>
     <p class="kicker">Le presse-papiers est l'endroit où les secrets se font voler. Sekuvo écrit les valeurs directement à leur destination.</p>
     <div class="lanes"><div class="lane"><div class="n">Saisie automatique</div><h3>Service de saisie automatique Android</h3><p>Les formulaires de connexion et de carte proposent directement tes entrées. Verrouillé, le système ne reçoit rien — déverrouille d'abord, puis choisis.</p></div><div class="lane"><div class="n">Clavier</div><h3>Clavier Sekuvo</h3><p>Bascule dessus dans n'importe quelle application et saisis un secret enregistré dans le champ — avec recherche, éléments récents en haut, sans étape de copie.</p></div><div class="lane"><div class="n">Bluetooth</div><h3>Écrit sur ton ordinateur</h3><p>Ton téléphone devient un clavier Bluetooth et saisit le secret à l'emplacement du curseur de l'ordinateur. Rien n'est installé sur l'ordinateur.</p></div></div>
+  </section>
+
+  <section id="aktar">
+    <span class="eyebrow">From computer to phone</span>
+    <h2>Long secrets aren't typed by hand.<br>Move them by QR.</h2>
+    <p class="kicker">SSH keys, .env files, recovery codes… aktar.html encrypts the secret on your computer and Sekuvo reads it with the camera. No server, no account, no clipboard in between — only light travelling from a screen to a lens.</p>
+    <div class="akt-kart">
+      <div>
+        <ol class="akt-adim"><li><h3>Download and verify</h3><p>aktar.html is a single HTML file. Download it, compare its SHA-256 with the value below, and open it from your own disk.</p></li><li><h3>Encrypt on the computer</h3><p>Paste the secret and choose a transfer password. Encryption runs inside the browser, on your machine; the envelope is drawn on screen as QR codes.</p></li><li><h3>Scan with the phone</h3><p>In Sekuvo: ➕ → Import via QR. Scan the frames, enter the same password, and the entry lands in your vault.</p></li></ol>
+        <div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, runs from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How do I verify it?</summary><p>Run the command for your system in a terminal; the output must match the value above exactly. The same value is published in the GitHub release notes. You can also keep it in Sekuvo as a Tool anchor (the fingerprint button on the home screen) and compare against your phone the next time you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+shasum -a 256 aktar.html
+
+<span class="c"># Windows (PowerShell / cmd)</span>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, not a web page: the address bar shows file://. sekuvo.com never asks you for a secret. aktar.html currently speaks English and Turkish.</p></div>
+      </div>
+      <div class="akt-sahne" role="img" aria-label="aktar.html on a laptop shows the encrypted envelope as cycling QR frames; Sekuvo on the phone scans them, asks for the transfer password and adds the entry.">
+        <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
+        <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
+      </div>
+    </div>
+    <a class="akt-daha" href="https://sekuvo.com/fr/transfer/">Every way to transfer, in detail →</a>
   </section>
 
   <section id="download">
@@ -243,24 +318,8 @@
         <h3>Outils côté ordinateur</h3>
         <p>L'outil côté ordinateur est un simple fichier HTML — <code>aktar.html</code> — et c'est un téléchargement, pas une page web : il fonctionne entièrement sur ta machine, et ce site ne te demande jamais de secret.</p>
         <p class="mono-note" dir="ltr">github.com → Releases · vérifie le SHA-256 publié</p>
-        <p><a href="https://sekuvo.com/fr/guide/#transfer">Comment obtenir et utiliser aktar.html →</a></p>
+        <p><a href="#aktar">Comment obtenir et utiliser aktar.html →</a></p>
       </div>
-    </div>
-
-    <div class="aktar" id="aktar">
-      <h3>aktar.html : télécharge, vérifie, utilise</h3>
-      <div class="aksplit">
-        <ol class="steps"><li>Ouvre la page Releases du projet et télécharge aktar.html.</li><li>Compare son SHA-256 à la valeur publiée à côté — les commandes ci-contre l'affichent.</li><li>Ouvre le fichier depuis ton propre disque : la barre d'adresse montre file://, pas un site web.</li><li>Colle ton contenu, définis un mot de passe de transfert et chiffre — l'enveloppe sort en codes QR ou en texte.</li><li>Sur le téléphone : Sekuvo → + → Importer via QR, scanne et saisis le même mot de passe.</li></ol>
-        <div>
-          <div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
-shasum -a 256 aktar.html
-
-<span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div>
-          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="https://github.com/sekuvo/sekuvo/releases">github.com/sekuvo/sekuvo/releases</a></p>
-        </div>
-      </div>
-      <p class="akembed">Tu préfères ne lancer aucun chiffrement dans un navigateur ? Chiffre dans ton propre terminal et utilise la page QR intégrée — elle n'accepte que l'enveloppe chiffrée, jamais un secret en clair. <a href="https://sekuvo.com/fr/aktar/">Ouvrir la page enveloppe → QR →</a></p>
     </div>
   </section>
 
@@ -274,5 +333,7 @@ certutil -hashfile aktar.html SHA256</div>
     </span>
   </footer>
 </div>
+<script type="application/json" id="telefon-veri">{"lang":"fr","dir":"ltr","app":{"bt_close":"Fermer","bt_connected":"✓ %1$s connecté","bt_connecting":"Connexion à %1$s…","bt_done_summary":"✓ %1$d caractères saisis — %2$s, %3$d caractères/s. Vérifie le nombre de caractères sur l'ordinateur.","bt_duration_seconds":"%1$d s","bt_layout_tr":"Turc Q","bt_layout_us":"États-Unis (anglais)","bt_title":"Saisir sur l'ordinateur : %1$s","bt_typing_progress":"Saisie… %1$d / %2$d caractères","detail_dates":"Ajouté : %1$s · Mis à jour : %2$s","detail_fingerprint_len":"Empreinte SHA-256 · %1$d caractères","detail_quick_off":"Disponible uniquement quand le coffre est déverrouillé.","detail_quick_on":"Apparaît dans le Clavier Sekuvo même quand le coffre est verrouillé ; sa protection vaut alors celle du verrouillage d'écran de ton téléphone.","detail_quick_title":"Utiliser au clavier sans mot de passe","detail_show_fingerprint":"Afficher l'empreinte SHA-256","detail_usage_empty":"Aucune utilisation pour l'instant.","detail_usage_title":"Utilisations récentes","field_address":"Adresse","field_card_number":"Numéro de carte","field_cardholder":"Titulaire","field_cvv":"CVV","field_email":"E-mail","field_expiry":"Date d'expiration","field_full_name":"Nom complet","field_iban":"IBAN","field_notes":"Note","field_password":"Mot de passe","field_phone":"Téléphone","field_url":"Site / application","field_username":"Identifiant","home_import_qr":"Importer via QR","home_import_text":"Importer depuis du texte","home_search_hint":"Rechercher des entrées","note_kind_config":"Configuration (.env, json)","note_kind_fingerprint":"Empreinte / ancre de confiance","note_kind_general":"Note générale","note_kind_key":"Clé / certificat (.pem)","note_kind_recovery":"Codes de récupération","note_kind_script":"Script / commande (.sh)","paste_btn_cancel":"Annuler","paste_btn_import":"Importer","paste_btn_importing":"Importation…","paste_label_backup_password":"Mot de passe de sauvegarde","paste_qr_ready":"✓ QR scanné · enveloppe chiffrée de %1$d caractères reçue.\nSaisis maintenant uniquement le **mot de passe de sauvegarde**.","paste_title_qr":"Importer via QR","qr_camera_analysis":"Analyse de la caméra : %1$s · approche le code jusqu'à remplir la moitié de l'écran","qr_cancel":"Annuler","qr_status_aim":"Cadre le code QR dans le viseur","qr_status_done":"Terminé","qr_status_received":"%1$d/%2$d reçus","type_card":"Carte","type_everyday":"Quotidien","type_login":"Compte / Mot de passe","type_note":"Note sécurisée","vm_import_added":{"one":"%1$d entrée ajoutée · presse-papiers effacé","other":"%1$d entrées ajoutées · presse-papiers effacé"}},"demo":{"adlar":["Alex Morgan","Sam Taylor","Jordan Lee","Casey Brooks","Riley Chen"],"etiket_finans":"finance","etiket_kisisel":"personal","etiket_is":"work","baslik_aws":"AWS · CLI key","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy key (ed25519)","baslik_wifi":"Home Wi-Fi","baslik_google":"Google account","baslik_kimlik":"ID & address","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API keys","baslik_visa":"Visa · everyday","baslik_kodlar":"Backup codes · Google","alan_erisim":"Access key ID","alan_gizli":"Secret access key","alan_parmak":"fingerprint","alan_ssid":"Network name (SSID)","ssid":"HomeNet_5G","banka_uygulama":"Northwind mobile","adres":"%1$d Example Street, Springfield","bt_cihaz":"MacBook Pro","yeni_baslik":"Server SSH (staging)"},"site":{"secici_etiket":"Phone model","olcu":"1:1 scale · %1$s × %2$s mm"},"arac":{"btnQr":"Encrypt and show the QR","h1":"Sekuvo Transfer","kareCok":"Frame %1$d/%2$d · ~%3$d s per round — hold the phone still, the frames cycle; the reader collects them in any order.","lblBaslik":"Title","lblNoteKind":"Note type","lblParola":"Backup password (ASCII, 8 or more)","lblTur":"Type","lblYol":"Transfer route","nkAnahtar":"Key / certificate (.pem)","turNot":"Secure note","uyariQr":"This QR carries <b>the envelope itself<\/b> — nothing went to the internet. On the phone: <b>Sekuvo → + → \"Import via QR\"<\/b>","yolQr":"QR (no network — the phone reads it with the camera)"}}</script>
+<script src="/js/telefon.js" defer></script>
 </body>
 </html>

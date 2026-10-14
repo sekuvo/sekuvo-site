@@ -8,11 +8,15 @@ all five at once instead of drifting between hand-edited files. Run:
 
 Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 """
+import hashlib
+import json
 import pathlib
 
 from guide import G, SHOTS, CAPTIONS
 from kaynak import GITHUB
 from aktar import AK, A, AKTAR_JS, PY_SCRIPT, CMD_UNIX, CMD_WIN, VERIFY_CMDS
+import aktarim
+from telefon import veri as telefon_veri, FONT_URL as TELEFON_FONT
 
 SITE = "https://sekuvo.com"
 
@@ -855,7 +859,7 @@ STYLE = """
     .lang .menu a { break-inside: avoid; }
   }
 
-  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: 1.15fr .85fr; gap: 3.5rem; align-items: center; }
+  .hero { padding: 4.5rem 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 3.5rem; align-items: center; }
   .hero h1 { font-size: clamp(2.5rem, 5.8vw, 4.2rem); font-weight: 640; }
   .hero h1 em { font-style: normal; color: var(--brass); }
   .hero .lede { color: var(--muted); max-width: 34rem; margin: 1.4rem 0 2.2rem; }
@@ -914,6 +918,54 @@ STYLE = """
   .akembed { margin-top: 1.8rem; color: var(--muted); font-size: .93rem; max-width: 44rem; }
   @media (max-width: 780px) { .aksplit { grid-template-columns: 1fr; } }
 
+  /* Telefon maketi (js/telefon.js): gerçek ölçülü, sağda. Seçici renkleri sitenin
+     kendi değişkenlerinden alır; JS yoksa eski ekran görüntüsü yerinde durur. */
+  sekuvo-telefon, sekuvo-dizustu { --d-pirinc: var(--brass); --d-soluk: var(--muted);
+    --d-cizgi: var(--line); --d-pirinc-ink: var(--brass-ink); }
+  .tel-yer { display: flex; flex-direction: column; align-items: center; gap: .7rem; }
+  .tel-yedek { display: block; width: 68mm; height: auto; border-radius: 9mm; border: 2.4mm solid #1d1f24; }
+  .tel-not { margin: 0; max-width: 18.5rem; text-align: center; font-size: .74rem; line-height: 1.5; color: var(--muted); }
+  .proof-yer { margin: 0 0 2.4rem; max-width: 40rem; }
+
+  /* Aktarım kartı */
+  .akt-kart { margin-top: 2.2rem; background: var(--surface); border: 1px solid var(--line); border-radius: 10px;
+    padding: 2rem 2.2rem; display: grid; grid-template-columns: minmax(0, 1fr) 31rem; gap: 2.6rem; align-items: center; }
+  .akt-adim { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; counter-reset: adim; }
+  .akt-adim li { display: grid; grid-template-columns: 2.1rem minmax(0, 1fr); column-gap: .85rem; }
+  .akt-adim li::before { counter-increment: adim; content: counter(adim); grid-row: span 2; width: 2.1rem; height: 2.1rem;
+    border-radius: 50%; border: 1px solid var(--brass); color: var(--brass); display: grid; place-items: center;
+    font-family: "IBM Plex Mono", monospace; font-size: .8rem; }
+  .akt-adim h3 { font-size: 1rem; font-weight: 600; margin: .25rem 0 .2rem; }
+  .akt-adim p { margin: 0; font-size: .88rem; color: var(--muted); }
+  .akt-sahne { position: relative; width: 31rem; height: 30rem; }
+  .akt-sahne sekuvo-dizustu { position: absolute; left: 0; top: 4.2rem; }
+  .akt-sahne sekuvo-telefon { position: absolute; right: 0; bottom: 0; }
+  .indir { margin-top: 1.7rem; border-top: 1px dashed var(--line); padding-top: 1.5rem; }
+  .btn.buyuk { display: inline-flex; align-items: center; gap: .55rem; font-size: 1rem; padding: .85rem 1.35rem; }
+  .btn.buyuk svg { width: 1.2em; height: 1.2em; fill: currentColor; }
+  .indir .meta { margin: .65rem 0 0; font-size: .8rem; color: var(--muted); }
+  .ozet { margin-top: 1rem; font-family: "IBM Plex Mono", monospace; font-size: .72rem; letter-spacing: .06em; color: var(--muted); }
+  .ozet code { display: block; margin-top: .35rem; letter-spacing: 0; font-size: .74rem; line-height: 1.6; color: var(--ink);
+    background: var(--ground); border: 1px solid var(--line); border-radius: 6px; padding: .55rem .75rem;
+    word-break: break-all; cursor: text; -webkit-user-select: all; user-select: all; }
+  .indir details { margin-top: .9rem; font-size: .86rem; color: var(--muted); }
+  .indir summary { cursor: pointer; color: var(--brass); }
+  .indir details p { margin: .6rem 0; }
+  .indir .uyar { margin: 1rem 0 0; font-size: .8rem; color: var(--muted); }
+  .akt-daha { display: inline-block; margin-top: 1.5rem; font-weight: 600; }
+  /* Görsel 31rem genişliğinde tasarlandı; dar ekranda kartın içine sığsın diye
+     küçülür (zoom yerleşimi de küçültür, transform küçültmez). */
+  @media (max-width: 1000px) {
+    .akt-kart { grid-template-columns: 1fr; }
+    .akt-sahne { margin: 0 auto; }
+  }
+  @media (max-width: 640px) { .akt-sahne { zoom: .75; } }
+  @media (max-width: 560px) {
+    .akt-kart { padding: 1.4rem 1.2rem; }
+    .akt-sahne { zoom: .54; }
+  }
+  @media (max-width: 350px) { .akt-sahne { zoom: .46; } }
+
   footer { border-top: 1px solid var(--line); padding: 2.2rem 0 3rem; font-size: .85rem; color: var(--muted); display: flex; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
   footer a { color: var(--muted); }
   footer a:hover { color: var(--brass); }
@@ -943,6 +995,7 @@ PAGE = """<!DOCTYPE html>
 <link rel="apple-touch-icon" href="/img/icon-180.png">
 {alternates}
 <link rel="stylesheet" href="{font_url}">
+<link rel="stylesheet" href="{tel_font}">
 <style>{style}</style>
 </head>
 <body>
@@ -952,6 +1005,7 @@ PAGE = """<!DOCTYPE html>
     <nav>
       <a href="#security">{nav0}</a>
       <a href="#channels">{nav1}</a>
+      <a href="{transfer_url}">{nav_akt}</a>
       <a href="#download">{nav2}</a>
       <a href="{guide_url}">{guide_label}</a>
       <a href="{privacy_url}">{nav3}</a>
@@ -971,7 +1025,17 @@ PAGE = """<!DOCTYPE html>
       <p class="cta-note">{cta_note}</p>
     </div>
 
-    <div class="proof" dir="ltr" role="img" aria-label="{proof_alt}">
+    <div class="tel-yer">
+      <sekuvo-telefon model="galaxy-s26" demo="tur" secici aria-label="{tel_alt}"><img class="tel-yedek" src="/img/02-liste.png" alt="{tel_alt}" width="405" height="900"></sekuvo-telefon>
+      <p class="tel-not">{tel_not}</p>
+    </div>
+  </div>
+
+  <section id="security">
+    <span class="eyebrow">{sec_eyebrow}</span>
+    <h2>{sec_h2}</h2>
+    <p class="kicker">{sec_kicker}</p>
+    <div class="proof proof-yer" dir="ltr" role="img" aria-label="{proof_alt}">
       <span class="cap">{proof_cap}</span>
 <span class="p">&lt;uses-permission android:name="…USE_BIOMETRIC" /&gt;
 &lt;uses-permission android:name="…CAMERA" /&gt;
@@ -981,12 +1045,6 @@ PAGE = """<!DOCTYPE html>
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">{proof_no}</span>
     </div>
-  </div>
-
-  <section id="security">
-    <span class="eyebrow">{sec_eyebrow}</span>
-    <h2>{sec_h2}</h2>
-    <p class="kicker">{sec_kicker}</p>
     <div class="chain" dir="ltr">{chain}</div>
     <div class="grid">{cells}</div>
   </section>
@@ -996,6 +1054,23 @@ PAGE = """<!DOCTYPE html>
     <h2>{ch_h2}</h2>
     <p class="kicker">{ch_kicker}</p>
     <div class="lanes">{lanes}</div>
+  </section>
+
+  <section id="aktar">
+    <span class="eyebrow">{akt_eyebrow}</span>
+    <h2>{akt_h2}</h2>
+    <p class="kicker">{akt_kicker}</p>
+    <div class="akt-kart">
+      <div>
+        <ol class="akt-adim">{akt_steps}</ol>
+        {indir_kutusu}
+      </div>
+      <div class="akt-sahne" role="img" aria-label="{akt_sahne_alt}">
+        <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
+        <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
+      </div>
+    </div>
+    <a class="akt-daha" href="{transfer_url}">{akt_more} →</a>
   </section>
 
   <section id="download">
@@ -1011,20 +1086,8 @@ PAGE = """<!DOCTYPE html>
         <h3>{dl_tools_h}</h3>
         <p>{dl_tools_p}</p>
         <p class="mono-note" dir="ltr">{dl_tools_note}</p>
-        <p><a href="{guide_url}#transfer">{dl_tools_link}</a></p>
+        <p><a href="#aktar">{dl_tools_link}</a></p>
       </div>
-    </div>
-
-    <div class="aktar" id="aktar">
-      <h3>{ak_h}</h3>
-      <div class="aksplit">
-        <ol class="steps">{ak_steps}</ol>
-        <div>
-          <div class="cmd" dir="ltr">{verify_cmds}</div>
-          <p class="mono-note" dir="ltr" style="margin-top:.7rem"><a href="{github}/releases">{github_ad}/releases</a></p>
-        </div>
-      </div>
-      <p class="akembed">{ak_embed_p} <a href="{aktar_url}">{ak_embed_link} →</a></p>
     </div>
   </section>
 
@@ -1038,9 +1101,49 @@ PAGE = """<!DOCTYPE html>
     </span>
   </footer>
 </div>
+<script type="application/json" id="telefon-veri">{tel_veri}</script>
+<script src="/js/telefon.js" defer></script>
 </body>
 </html>
 """
+
+
+INDIR_IKON = ("M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z")  # Material "download", Apache-2.0
+
+
+def indir_kutusu(code):
+    """aktar.html indirme kutusu: düğme, özet, doğrulama. Anasayfa ve /transfer/ ortak."""
+    k = aktarim.t(code)
+    meta = k["dl_meta"].format(surum=aktarim.AKTAR_SURUM, boyut=aktarim.boyut_metni(code))
+    dil_notu = "" if code in ("tr", "en") else f" {k['arac_dili']}"
+    return (
+        '<div class="indir">'
+        f'<a class="btn solid buyuk" href="{aktarim.AKTAR_INDIR}" download>'
+        f'<svg viewBox="0 0 24 24" aria-hidden="true"><path d="{INDIR_IKON}"/></svg>{k["dl_btn"]}</a>'
+        f'<p class="meta">{meta}</p>'
+        f'<div class="ozet">{k["sha_label"]} · <a href="{aktarim.AKTAR_SURUM_SAYFASI}">{aktarim.AKTAR_SURUM}</a>'
+        f'<code dir="ltr">{aktarim.AKTAR_SHA256}</code></div>'
+        f'<details><summary>{k["verify_sum"]}</summary><p>{k["verify_p"]}</p>'
+        f'<div class="cmd" dir="ltr">{fmt_cmd(VERIFY_CMDS)}</div></details>'
+        f'<p class="uyar">{k["dl_note"]}{dil_notu}</p>'
+        '</div>'
+    )
+
+
+def aktar_ozetini_denetle(root):
+    """Sitede yazan SHA-256 ile uygulama deposundaki aktar.html aynı mı?
+
+    Depo yanında değilse sessiz geçer. Tutmazsa UYARIR: ya aktar.html yeni
+    bir sürümle değişti (aktarim.py'deki sürüm/özet güncellenmeli) ya da
+    yayımlanmamış bir değişiklik var.
+    """
+    yol = root.parent / "vault" / "tools" / "aktar.html"
+    if not yol.exists():
+        return
+    oz = hashlib.sha256(yol.read_bytes()).hexdigest()
+    if oz != aktarim.AKTAR_SHA256:
+        print(f"UYARI: ../vault/tools/aktar.html özeti {oz[:12]}…, sitede yazan {aktarim.AKTAR_SHA256[:12]}… "
+              f"— aktarim.py'yi yayımlanan sürümle eşitle")
 
 
 def esc(text):
@@ -1070,6 +1173,7 @@ def lang_menu(code, suffix=""):
 
 def build():
     root = pathlib.Path(__file__).parent
+    aktar_ozetini_denetle(root)
     for code in ORDER:
         t = L[code]
         font_url, display, body = FONTS[t["script"]]
@@ -1088,8 +1192,8 @@ def build():
             for n, h, p in t["lanes"]
         )
 
-        ak = AK[code]
-        ak_steps = "".join(f"<li>{s}</li>" for s in ak["ak_steps"])
+        k = aktarim.t(code)
+        akt_steps = "".join(f"<li><h3>{h}</h3><p>{p}</p></li>" for h, p in k["steps"])
 
         html = PAGE.format(
             lang=t["lang"], dir=t["dir"], desc=t["desc"], title=t["title"],
@@ -1114,9 +1218,13 @@ def build():
             dl_tools_h=t["dl_tools_h"], dl_tools_p=t["dl_tools_p"],
             dl_tools_note=t["dl_tools_note"],
             dl_app_link=t["dl_app_link"], dl_tools_link=t["dl_tools_link"],
-            ak_h=ak["ak_h"], ak_steps=ak_steps, verify_cmds=fmt_cmd(VERIFY_CMDS),
-            ak_embed_p=ak["ak_embed_p"], ak_embed_link=ak["ak_embed_link"],
             contact=t["contact"], footer=t["footer"],
+            tel_font=TELEFON_FONT, tel_alt=k["tel_alt"], tel_not=k["tel_not"],
+            tel_veri=telefon_veri(code, t["dir"]),
+            transfer_url=f"{SITE}/{t['path']}transfer/", nav_akt=k["nav"],
+            akt_eyebrow=k["eyebrow"], akt_h2=k["h2"], akt_kicker=k["kicker"],
+            akt_steps=akt_steps, indir_kutusu=indir_kutusu(code),
+            akt_sahne_alt=k["sahne_alt"], akt_more=k["more"],
         )
 
         out = root / t["path"] / "index.html" if t["path"] else root / "index.html"
@@ -1893,8 +2001,184 @@ def build_aktar():
         print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
 
 
+# ─────────────────────────────────────────────────────────────────────────────
+# /transfer/ — bilgisayardan telefona aktarımın bütün yolları (TASLAK, 2026-10-14).
+# Metinler aktarim.py'de; en ve tr dışındaki diller şimdilik İngilizceye düşer.
+# ─────────────────────────────────────────────────────────────────────────────
+
+TRANSFER_PAGE = """<!DOCTYPE html>
+<html lang="{lang}" dir="{dir}">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="{desc}">
+<title>{title}</title>
+<link rel="icon" href="/favicon.png" sizes="32x32">
+<link rel="icon" href="/img/icon-512.png" sizes="512x512">
+<link rel="apple-touch-icon" href="/img/icon-180.png">
+{alternates}
+<link rel="stylesheet" href="{font_url}">
+<link rel="stylesheet" href="{tel_font}">
+<style>{style}
+  .tp-hero {{ padding: 4rem 0 3.4rem; display: grid; grid-template-columns: minmax(0, 1fr) 24rem; gap: 3rem; align-items: center; }}
+  .tp-hero h1 {{ font-size: clamp(2.3rem, 5vw, 3.6rem); font-weight: 640; }}
+  .tp-hero h1 em {{ font-style: normal; color: var(--brass); }}
+  .tp-hero .lede {{ color: var(--muted); margin: 1.3rem 0 0; max-width: 36rem; }}
+  .tp-indir {{ background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 1.6rem 1.7rem; }}
+  .tp-indir .indir {{ margin: 0; border: 0; padding: 0; }}
+  .tp-adim {{ display: grid; grid-template-columns: minmax(0, 1fr) 31rem; gap: 2.6rem; align-items: center; margin-top: 2.2rem; }}
+  .lanes.dort {{ grid-template-columns: repeat(2, 1fr); margin-top: 2.2rem; }}
+  .lane a {{ display: inline-block; margin-top: .75rem; font-size: .86rem; }}
+  .sss {{ margin-top: 1.6rem; max-width: 48rem; }}
+  .sss details {{ border-bottom: 1px solid var(--line); padding: 1rem 0; }}
+  .sss summary {{ cursor: pointer; list-style: none; font-weight: 600; font-size: 1.02rem; display: flex; justify-content: space-between; gap: 1rem; }}
+  .sss summary::-webkit-details-marker {{ display: none; }}
+  .sss summary::after {{ content: "+"; color: var(--brass); font-family: "IBM Plex Mono", monospace; }}
+  .sss details[open] summary::after {{ content: "−"; }}
+  .sss p {{ color: var(--muted); margin: .6rem 0 0; }}
+  .back {{ display: inline-block; margin: 2.4rem 0 1rem; font-size: .9rem; }}
+  @media (max-width: 1000px) {{ .tp-hero, .tp-adim {{ grid-template-columns: 1fr; }} .lanes.dort {{ grid-template-columns: 1fr; }} }}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <a class="brand" href="{home_url}">Sekuvo</a>
+    <nav>
+      <a href="{home_url}#security">{nav0}</a>
+      <a href="{home_url}#channels">{nav1}</a>
+      <a href="{transfer_url}" aria-current="page">{nav_akt}</a>
+      <a href="{home_url}#download">{nav2}</a>
+      <a href="{guide_url}">{guide_label}</a>
+      <a href="{privacy_url}">{nav3}</a>
+    </nav>
+    {langmenu}
+  </header>
+
+  <div class="tp-hero">
+    <div>
+      <span class="eyebrow">{p_eyebrow}</span>
+      <h1>{p_h1}</h1>
+      <p class="lede">{p_lede}</p>
+    </div>
+    <div class="tp-indir">{indir_kutusu}</div>
+  </div>
+
+  <section id="neden">
+    <span class="eyebrow">{why_eyebrow}</span>
+    <h2>{why_h2}</h2>
+    <div class="grid">{why_cells}</div>
+  </section>
+
+  <section id="adimlar">
+    <span class="eyebrow">{how_eyebrow}</span>
+    <h2>{how_h2}</h2>
+    <div class="tp-adim">
+      <ol class="akt-adim">{how_steps}</ol>
+      <div class="akt-sahne" role="img" aria-label="{sahne_alt}">
+        <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
+        <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
+      </div>
+    </div>
+  </section>
+
+  <section id="sihirbaz">
+    <span class="eyebrow">{wiz_eyebrow}</span>
+    <h2>{wiz_h2}</h2>
+    <p class="kicker">{wiz_p}</p>
+  </section>
+
+  <section id="diger">
+    <span class="eyebrow">{other_eyebrow}</span>
+    <h2>{other_h2}</h2>
+    <div class="lanes dort">{other_lanes}</div>
+  </section>
+
+  <section id="zarf">
+    <span class="eyebrow">{env_eyebrow}</span>
+    <h2>{env_h2}</h2>
+    <p class="kicker">{env_p}</p>
+    <div class="chain" dir="ltr">{zarf_ornek}</div>
+  </section>
+
+  <section id="sss">
+    <span class="eyebrow">{faq_eyebrow}</span>
+    <h2>{faq_h2}</h2>
+    <div class="sss">{faq}</div>
+    <a class="back" href="{home_url}">{back}</a>
+  </section>
+
+  <footer>
+    <span>{footer}</span>
+    <span dir="ltr">
+      <a href="{github}">GitHub</a> ·
+      <a href="mailto:contact@sekuvo.com">{contact}</a> ·
+      <a href="{privacy_url}">{nav3}</a> ·
+      <a href="https://www.gnu.org/licenses/gpl-3.0.html">GPLv3</a>
+    </span>
+  </footer>
+</div>
+<script type="application/json" id="telefon-veri">{tel_veri}</script>
+<script src="/js/telefon.js" defer></script>
+</body>
+</html>
+"""
+
+
+def build_transfer():
+    root = pathlib.Path(__file__).parent
+    for code in ORDER:
+        t, k = L[code], aktarim.t(code)
+        font_url, display, body_face = FONTS[t["script"]]
+        style = STYLE.replace("__DISPLAY__", display).replace("__BODY__", body_face)
+        alternates = "\n".join(
+            f'<link rel="alternate" hreflang="{L[c]["lang"]}" href="{SITE}/{L[c]["path"]}transfer/">'
+            for c in ORDER
+        ) + f'\n<link rel="alternate" hreflang="x-default" href="{SITE}/transfer/">'
+        hedefler = {
+            "aktar": f"{SITE}/{t['path']}aktar/",
+            "clip": f"{GITHUB}/blob/main/tools/vault-clip.py",
+            "zarf": f"{GITHUB}/blob/main/docs/kendi-zarfini-uret.md",
+        }
+        other_lanes = "".join(
+            f'<div class="lane"><h3>{h}</h3><p>{p}</p>'
+            + (f'<a href="{hedefler[a]}">{k["other_link_" + a]} →</a>' if a else "")
+            + "</div>"
+            for h, p, a in k["other"]
+        )
+        html = TRANSFER_PAGE.format(
+            lang=t["lang"], dir=t["dir"], desc=k["p_desc"], title=k["p_title"],
+            alternates=alternates, font_url=font_url, tel_font=TELEFON_FONT, style=style,
+            langmenu=lang_menu(code, "transfer/"),
+            home_url=f"{SITE}/{t['path']}", transfer_url=f"{SITE}/{t['path']}transfer/",
+            guide_url=f"{SITE}/{t['path']}guide/", guide_label=G[code]["nav_label"],
+            privacy_url=f"{SITE}/{t['path']}privacy/",
+            nav0=t["nav"][0], nav1=t["nav"][1], nav2=t["nav"][2], nav3=t["nav"][3], nav_akt=k["nav"],
+            p_eyebrow=k["p_eyebrow"], p_h1=k["p_h1"], p_lede=k["p_lede"],
+            indir_kutusu=indir_kutusu(code),
+            why_eyebrow=k["why_eyebrow"], why_h2=k["why_h2"],
+            why_cells="".join(f'<div class="cell"><h3>{h}</h3><p>{p}</p></div>' for h, p in k["why"]),
+            how_eyebrow=k["how_eyebrow"], how_h2=k["how_h2"],
+            how_steps="".join(f"<li><h3>{h}</h3><p>{p}</p></li>" for h, p in k["how"]),
+            sahne_alt=k["sahne_alt"],
+            wiz_eyebrow=k["wiz_eyebrow"], wiz_h2=k["wiz_h2"], wiz_p=k["wiz_p"],
+            other_eyebrow=k["other_eyebrow"], other_h2=k["other_h2"], other_lanes=other_lanes,
+            env_eyebrow=k["env_eyebrow"], env_h2=k["env_h2"], env_p=k["env_p"],
+            zarf_ornek=esc(aktarim.ZARF_ORNEK),
+            faq_eyebrow=k["faq_eyebrow"], faq_h2=k["faq_h2"],
+            faq="".join(f"<details><summary>{q}</summary><p>{a}</p></details>" for q, a in k["faq"]),
+            back=k["back"], footer=t["footer"], contact=t["contact"], github=GITHUB,
+            tel_veri=telefon_veri(code, t["dir"]),
+        )
+        out = root / t["path"] / "transfer" / "index.html"
+        out.parent.mkdir(parents=True, exist_ok=True)
+        out.write_text(html, encoding="utf-8")
+        print(f"{out.relative_to(root)}  ({len(html):,} bytes)")
+
+
 if __name__ == "__main__":
     build()
     build_policies()
     build_guides()
     build_aktar()
+    build_transfer()
