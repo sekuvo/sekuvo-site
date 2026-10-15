@@ -1150,7 +1150,10 @@
   // Renkler ve metinler aracın kendisinden (aktar.html yalnız tr/en konuşur).
   // Kareler araçtaki gibi döner; telefon maketiyle yan yana kullanılır.
   const DIZ_CSS = `
-:host { display: inline-block; vertical-align: top; }
+:host { display: inline-block; vertical-align: top; direction: ltr; }
+/* Çizim yönsüz, ekrandaki araç tr/en (LTR). Sağdan sola sayfada 440 px'lik
+   gövde 352 px'lik kutunun SAĞINA yaslanıp sola taşıyordu (ar'da 60 px yatay
+   kaydırma); direction: ltr bunu kapatır. */
 .lap { position: relative; width: 440px; transform-origin: 0 0; }
 .kapak { position: relative; height: 282px; border-radius: 16px 16px 6px 6px; background: #0b0b0c; padding: 13px 12px 14px;
   box-shadow: 0 0 0 1.5px #3b3c40 inset, 0 0 0 1px rgba(255,255,255,.06); }

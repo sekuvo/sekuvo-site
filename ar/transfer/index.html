@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How to move SSH keys, .env files and recovery codes from a computer into Sekuvo without a network: aktar.html and QR, the encrypted envelope, import from text.">
-<title>Computer to phone transfer — Sekuvo</title>
+<meta name="description" content="كيف تنقل مفاتيح SSH وملفات ‎.env ورموز الاسترداد من الحاسوب إلى Sekuvo بلا شبكة: aktar.html ورمز QR، الظرف المشفَّر، الاستيراد من نص.">
+<title>النقل من الحاسوب إلى الهاتف — Sekuvo</title>
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="icon" href="/img/icon-512.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/img/icon-180.png">
@@ -252,7 +252,7 @@
     <nav>
       <a href="https://sekuvo.com/ar/#security">الأمان</a>
       <a href="https://sekuvo.com/ar/#channels">القنوات</a>
-      <a href="https://sekuvo.com/ar/transfer/" aria-current="page">Transfer</a>
+      <a href="https://sekuvo.com/ar/transfer/" aria-current="page">النقل</a>
       <a href="https://sekuvo.com/ar/#download">التنزيل</a>
       <a href="https://sekuvo.com/ar/guide/">الدليل</a>
       <a href="https://sekuvo.com/ar/privacy/">الخصوصية</a>
@@ -262,29 +262,29 @@
 
   <div class="tp-hero">
     <div>
-      <span class="eyebrow">Transfer</span>
-      <h1>From computer to phone,<br>with no network <em>in between.</em></h1>
-      <p class="lede">Sekuvo has no internet permission, so a secret reaches your phone only along a path you show it. This page walks through those paths: the easiest is aktar.html and QR, the most cautious is an envelope you build in your own terminal.</p>
+      <span class="eyebrow">النقل</span>
+      <h1>من الحاسوب إلى الهاتف،<br>بلا شبكة <em>في المنتصف.</em></h1>
+      <p class="lede">لا يملك Sekuvo إذن الإنترنت، لذا لا يصل السرّ إلى هاتفك إلا عبر طريق تُريه إياه. تستعرض هذه الصفحة تلك الطرق: أسهلها aktar.html ورمز QR، وأشدّها حذرًا ظرف تبنيه في طرفيتك أنت.</p>
     </div>
-    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, runs from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How do I verify it?</summary><p>Run the command for your system in a terminal; the output must match the value above exactly. The same value is published in the GitHub release notes. You can also keep it in Sekuvo as a Tool anchor (the fingerprint button on the home screen) and compare against your phone the next time you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>نزّل aktar.html</a><p class="meta">v1.0.0 · 53 ك.ب · ملف واحد، يعمل من قرصك أنت</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>كيف أتحقق منه؟</summary><p>شغّل الأمر الخاص بنظامك في الطرفية؛ يجب أن يطابق الناتج القيمة أعلاه تمامًا. القيمة نفسها منشورة في ملاحظات الإصدار على GitHub. يمكنك أيضًا حفظها في Sekuvo كـ«مرساة الأداة» (زر البصمة في الشاشة الرئيسية) ومقارنتها بهاتفك في التنزيل التالي.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
 shasum -a 256 aktar.html
 
 <span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, not a web page: the address bar shows file://. sekuvo.com never asks you for a secret. aktar.html currently speaks English and Turkish.</p></div></div>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">هذا ملف منزَّل لا صفحة ويب: يُظهر شريط العنوان ‎file://. لا يطلب منك sekuvo.com سرًّا أبدًا. يتحدث aktar.html حاليًا الإنجليزية والتركية فقط.</p></div></div>
   </div>
 
   <section id="neden">
-    <span class="eyebrow">Why QR</span>
-    <h2>Three doors stay shut.</h2>
-    <div class="grid"><div class="cell"><h3>Typing by hand breaks things</h3><p>One wrong character in a 64-character API key and the key is dead. Typing a long private key into a phone is, in practice, impossible.</p></div><div class="cell"><h3>The clipboard leaks</h3><p>Whatever you copy can be read by the app that is open at that moment, and cloud clipboards carry it to other devices. That is why Sekuvo never uses it as a path.</p></div><div class="cell"><h3>There is no network</h3><p>The app has no INTERNET permission, so file sync, e-mail or a server are not options. Light travelling from a screen to a camera crosses no network at all.</p></div></div>
+    <span class="eyebrow">لماذا QR</span>
+    <h2>ثلاثة أبواب تبقى مغلقة.</h2>
+    <div class="grid"><div class="cell"><h3>الكتابة باليد تُفسد</h3><p>حرف واحد خاطئ في مفتاح API من ٦٤ حرفًا، فيموت المفتاح. أما كتابة مفتاح خاص طويل في هاتف فمستحيلة عمليًا.</p></div><div class="cell"><h3>الحافظة تسرّب</h3><p>ما تنسخه يمكن أن يقرأه التطبيق المفتوح في تلك اللحظة، وتحمله الحافظات السحابية إلى أجهزة أخرى. لذلك لا يستخدمها Sekuvo طريقًا أبدًا.</p></div><div class="cell"><h3>لا توجد شبكة</h3><p>لا يملك التطبيق إذن INTERNET، فمزامنة الملفات أو البريد أو الخادم ليست خيارات. والضوء المنتقل من شاشة إلى كاميرا لا يعبر أي شبكة.</p></div></div>
   </section>
 
   <section id="adimlar">
-    <span class="eyebrow">Step by step</span>
-    <h2>With aktar.html</h2>
+    <span class="eyebrow">خطوة بخطوة</span>
+    <h2>باستخدام aktar.html</h2>
     <div class="tp-adim">
-      <ol class="akt-adim"><li><h3>Download</h3><p>Get aktar.html with the button above or from the release page. It is one file; nothing to install.</p></li><li><h3>Verify</h3><p>Compute its SHA-256 and compare it with the published value. If they differ, do not open the file.</p></li><li><h3>Open</h3><p>Double-click it. The address bar shows file://, not a website, and the page never connects to the internet.</p></li><li><h3>Fill in and encrypt</h3><p>Write a title, pick a type (Account, Everyday, Card or Secure note), paste the secret or pick a .pem / .env file. Choose a backup password and press Encrypt and show the QR.</p></li><li><h3>Scan on the phone</h3><p>Sekuvo → ➕ → Import via QR. Large envelopes are split into several frames that cycle on screen; the phone collects them in any order. Enter the same password and the entry is added.</p></li></ol>
-      <div class="akt-sahne" role="img" aria-label="aktar.html on a laptop shows the encrypted envelope as cycling QR frames; Sekuvo on the phone scans them, asks for the transfer password and adds the entry.">
+      <ol class="akt-adim"><li><h3>نزّل</h3><p>احصل على aktar.html من الزر أعلاه أو من صفحة الإصدار. إنه ملف واحد؛ لا شيء للتثبيت.</p></li><li><h3>تحقّق</h3><p>احسب قيمة SHA-256 الخاصة به وقارنها بالقيمة المنشورة. إن اختلفتا فلا تفتح الملف.</p></li><li><h3>افتح</h3><p>انقر عليه نقرًا مزدوجًا. يُظهر شريط العنوان ‎file:// لا موقع ويب، ولا تتصل الصفحة بالإنترنت أبدًا.</p></li><li><h3>املأ وشفّر</h3><p>اكتب عنوانًا، واختر نوعًا (حساب، يومي، بطاقة أو ملاحظة آمنة)، والصق السرّ أو اختر ملف ‎.pem / ‎.env. اختر كلمة مرور للنقل واضغط «شفّر وأظهر رمز QR».</p></li><li><h3>امسح على الهاتف</h3><p>Sekuvo ← ➕ ← استيراد عبر QR. تُقسَّم الظروف الكبيرة إلى عدة إطارات تتعاقب على الشاشة؛ ويجمعها الهاتف بأي ترتيب. أدخل كلمة المرور نفسها فيُضاف المدخل.</p></li></ol>
+      <div class="akt-sahne" role="img" aria-label="يعرض aktar.html على حاسوب محمول الظرف المشفَّر كإطارات QR متعاقبة؛ ويمسحها Sekuvo على الهاتف، ويطلب كلمة مرور النقل، ويضيف المدخل.">
         <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
         <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
       </div>
@@ -292,21 +292,21 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
   </section>
 
   <section id="sihirbaz">
-    <span class="eyebrow">Don't even type the password</span>
-    <h2>The transfer wizard</h2>
-    <p class="kicker">The ⇄ button on the home screen opens the transfer wizard. The phone generates a single-use password of letters and digits — immune to keyboard-layout differences — and, acting as a Bluetooth keyboard, types it into both password fields of aktar.html at once. Press Encrypt and show the QR on the computer and Scan QR in the wizard: the password is already on the phone, so you never type it.</p>
+    <span class="eyebrow">لا تكتب حتى كلمة المرور</span>
+    <h2>معالج النقل</h2>
+    <p class="kicker">يفتح الزر ⇄ في الشاشة الرئيسية معالج النقل. يولّد الهاتف كلمة مرور لمرة واحدة من حروف وأرقام — لا تتأثر باختلاف تخطيطات لوحة المفاتيح — ويكتبها، بوصفه لوحة مفاتيح بلوتوث، في حقلي كلمة المرور في aktar.html دفعة واحدة. اضغط «شفّر وأظهر رمز QR» على الحاسوب و«امسح رمز QR» في المعالج: كلمة المرور موجودة أصلًا على الهاتف، فلا تكتبها أبدًا.</p>
   </section>
 
   <section id="diger">
-    <span class="eyebrow">Other paths</span>
-    <h2>When you'd rather not use aktar.html</h2>
-    <div class="lanes dort"><div class="lane"><h3>Envelope → QR page</h3><p>Don't want the browser to encrypt anything? Build the envelope in your own terminal with a thirty-line script; this page only turns ciphertext into QR frames.</p><a href="https://sekuvo.com/ar/aktar/">Open the Envelope → QR page →</a></div><div class="lane"><h3>Import from text</h3><p>Any way you can carry the envelope as text works: ➕ → Import from text, paste, enter the password.</p></div><div class="lane"><h3>Command line: vault-clip.py</h3><p>Does the same from the clipboard or a file, and draws the QR right in the terminal.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">See the code on GitHub →</a></div><div class="lane"><h3>Build your own envelope</h3><p>The envelope is an open format, not something only Sekuvo can make. The recipe is in the repository.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">Read the recipe →</a></div></div>
+    <span class="eyebrow">طرق أخرى</span>
+    <h2>إن فضّلت عدم استخدام aktar.html</h2>
+    <div class="lanes dort"><div class="lane"><h3>ظرف ← صفحة QR</h3><p>لا تريد أن يشفّر المتصفح أي شيء؟ ابنِ الظرف في طرفيتك أنت بسكربت من ثلاثين سطرًا؛ ولا تفعل هذه الصفحة سوى تحويل النص المشفَّر إلى إطارات QR.</p><a href="https://sekuvo.com/ar/aktar/">افتح صفحة ظرف ← QR →</a></div><div class="lane"><h3>الاستيراد من نص</h3><p>أي طريقة تحمل بها الظرف كنصّ تنجح: ➕ ← استيراد من نص، الصق، أدخل كلمة المرور.</p></div><div class="lane"><h3>سطر الأوامر: vault-clip.py</h3><p>يفعل الشيء نفسه من الحافظة أو من ملف، ويرسم رمز QR في الطرفية مباشرة.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">اطّلع على الشفرة على GitHub →</a></div><div class="lane"><h3>ابنِ ظرفك بنفسك</h3><p>الظرف صيغة مفتوحة، لا شيئًا لا يصنعه إلا Sekuvo. الوصفة في المستودع.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">اقرأ الوصفة →</a></div></div>
   </section>
 
   <section id="zarf">
-    <span class="eyebrow">What the QR carries</span>
-    <h2>An envelope, never the secret.</h2>
-    <p class="kicker">Whoever photographs the QR gets only this. The transfer password becomes a key through 310,000 rounds of PBKDF2, which makes every guess slow; without the password the data field is noise.</p>
+    <span class="eyebrow">ماذا يحمل رمز QR</span>
+    <h2>ظرفًا، لا السرّ نفسه أبدًا.</h2>
+    <p class="kicker">من يصوّر رمز QR لا يحصل إلا على هذا. تتحول كلمة مرور النقل إلى مفتاح عبر ‎310٬000‎ جولة من PBKDF2، ما يجعل كل تخمين بطيئًا؛ وبلا كلمة المرور يكون حقل البيانات مجرد ضجيج.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
@@ -321,10 +321,10 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
   </section>
 
   <section id="sss">
-    <span class="eyebrow">Questions</span>
-    <h2>Frequently asked</h2>
-    <div class="sss"><details><summary>Does my secret go to the internet?</summary><p>No. aktar.html encrypts with the browser's WebCrypto on your machine and draws the QR on your screen. Sekuvo has no internet permission; the camera image is decoded inside the app.</p></details><details><summary>Why a downloaded file instead of a web page?</summary><p>A web page that asks for secrets looks exactly like a phishing page. And a page on a server can change on every visit; the digest of a file you downloaded is fixed and checkable.</p></details><details><summary>What about large files?</summary><p>The entry limit is 256 KB. Large envelopes are split into several QR frames that cycle; the phone collects them in any order and shows which frames are still missing.</p></details><details><summary>Which languages does aktar.html speak?</summary><p>English and Turkish for now.</p></details><details><summary>And from phone to computer?</summary><p>The other direction is Bluetooth: your phone types into the computer like a keyboard, with nothing installed on the computer.</p></details></div>
-    <a class="back" href="https://sekuvo.com/ar/">← Back to sekuvo.com</a>
+    <span class="eyebrow">أسئلة</span>
+    <h2>أسئلة شائعة</h2>
+    <div class="sss"><details><summary>هل يذهب سرّي إلى الإنترنت؟</summary><p>لا. يشفّر aktar.html باستخدام WebCrypto في المتصفح على جهازك ويرسم رمز QR على شاشتك. لا يملك Sekuvo إذن الإنترنت؛ وتُفكّ صورة الكاميرا داخل التطبيق.</p></details><details><summary>لماذا ملف منزَّل بدل صفحة ويب؟</summary><p>صفحة ويب تطلب الأسرار تبدو تمامًا كصفحة تصيّد. كما أن صفحة على خادم قد تتغير مع كل زيارة؛ أما بصمة ملف نزّلته فثابتة وقابلة للتحقق.</p></details><details><summary>ماذا عن الملفات الكبيرة؟</summary><p>حدّ المدخل الواحد ‎256‎ ك.ب. تُقسَّم الظروف الكبيرة إلى عدة إطارات QR تتعاقب؛ ويجمعها الهاتف بأي ترتيب ويُظهر الإطارات التي ما زالت ناقصة.</p></details><details><summary>ما اللغات التي يتحدثها aktar.html؟</summary><p>الإنجليزية والتركية حاليًا.</p></details><details><summary>ومن الهاتف إلى الحاسوب؟</summary><p>الاتجاه الآخر هو البلوتوث: يكتب هاتفك في الحاسوب كلوحة مفاتيح، دون تثبيت أي شيء على الحاسوب.</p></details></div>
+    <a class="back" href="https://sekuvo.com/ar/">→ العودة إلى sekuvo.com</a>
   </section>
 
   <footer>
@@ -337,7 +337,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
     </span>
   </footer>
 </div>
-<script type="application/json" id="telefon-veri">{"lang":"ar","dir":"rtl","app":{"bt_close":"إغلاق","bt_connected":"✓ %1$s متصل","bt_connecting":"جارٍ الاتصال بـ %1$s…","bt_done_summary":"✓ %1$d محرفًا كُتبت — %2$s، %3$d محرف/ث. تحقّق من عدد المحارف في الحاسوب.","bt_duration_seconds":"%1$d ث","bt_layout_tr":"تركي Q","bt_layout_us":"أمريكي (إنجليزي)","bt_title":"الكتابة في الحاسوب: %1$s","bt_typing_progress":"جارٍ الكتابة… %1$d / %2$d محرفًا","detail_dates":"أُضيفت: %1$s · عُدِّلت: %2$s","detail_fingerprint_len":"بصمة SHA-256 · %1$d محرفًا","detail_quick_off":"متاحة فقط مع فتح قفل الخزنة.","detail_quick_on":"تظهر في لوحة مفاتيح Sekuvo حتى مع قفل الخزنة؛ حمايتها بقوة قفل شاشة هاتفك فقط.","detail_quick_title":"استخدام في لوحة المفاتيح دون كلمة مرور","detail_show_fingerprint":"عرض بصمة SHA-256","detail_usage_empty":"لا استخدامات بعد.","detail_usage_title":"الاستخدامات الأخيرة","field_address":"العنوان","field_card_number":"رقم البطاقة","field_cardholder":"حامل البطاقة","field_cvv":"CVV","field_email":"البريد الإلكتروني","field_expiry":"تاريخ الانتهاء","field_full_name":"الاسم الكامل","field_iban":"IBAN","field_notes":"ملاحظة","field_password":"كلمة المرور","field_phone":"الهاتف","field_url":"الموقع / التطبيق","field_username":"اسم المستخدم","home_import_qr":"استيراد عبر QR","home_import_text":"استيراد من نص","home_search_hint":"البحث في المدخلات","note_kind_config":"إعداد (⁨.env, json⁩)","note_kind_fingerprint":"بصمة / مرساة ثقة","note_kind_general":"ملاحظة عامة","note_kind_key":"مفتاح / شهادة (⁨.pem⁩)","note_kind_recovery":"رموز الاستعادة","note_kind_script":"نص برمجي / أمر (⁨.sh⁩)","paste_btn_cancel":"إلغاء","paste_btn_import":"استيراد","paste_btn_importing":"جارٍ الاستيراد…","paste_label_backup_password":"كلمة مرور النسخة","paste_qr_ready":"✓ تم مسح QR · استُلم مظروف مشفَّر من %1$d محرفًا.\nأدخل الآن **كلمة مرور النسخة** فقط.","paste_title_qr":"استيراد عبر QR","qr_camera_analysis":"تحليل الكاميرا: %1$s · قرِّب الرمز حتى يملأ نصف الشاشة","qr_cancel":"إلغاء","qr_status_aim":"ضع رمز QR داخل إطار العرض","qr_status_done":"تم","qr_status_received":"استُلم %1$d/%2$d","type_card":"بطاقة","type_everyday":"يوميّ","type_login":"حساب / كلمة مرور","type_note":"ملاحظة آمنة","vm_import_added":{"one":"أُضيفت مدخلة واحدة · نُظِّفت الحافظة","other":"أُضيفت %1$d مدخلة · نُظِّفت الحافظة"}},"demo":{"adlar":["Alex Morgan","Sam Taylor","Jordan Lee","Casey Brooks","Riley Chen"],"etiket_finans":"finance","etiket_kisisel":"personal","etiket_is":"work","baslik_aws":"AWS · CLI key","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy key (ed25519)","baslik_wifi":"Home Wi-Fi","baslik_google":"Google account","baslik_kimlik":"ID & address","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API keys","baslik_visa":"Visa · everyday","baslik_kodlar":"Backup codes · Google","alan_erisim":"Access key ID","alan_gizli":"Secret access key","alan_parmak":"fingerprint","alan_ssid":"Network name (SSID)","ssid":"HomeNet_5G","banka_uygulama":"Northwind mobile","adres":"%1$d Example Street, Springfield","bt_cihaz":"MacBook Pro","yeni_baslik":"Server SSH (staging)"},"site":{"secici_etiket":"Phone model","olcu":"1:1 scale · %1$s × %2$s mm"},"arac":{"btnQr":"Encrypt and show the QR","h1":"Sekuvo Transfer","kareCok":"Frame %1$d/%2$d · ~%3$d s per round — hold the phone still, the frames cycle; the reader collects them in any order.","lblBaslik":"Title","lblNoteKind":"Note type","lblParola":"Backup password (ASCII, 8 or more)","lblTur":"Type","lblYol":"Transfer route","nkAnahtar":"Key / certificate (.pem)","turNot":"Secure note","uyariQr":"This QR carries <b>the envelope itself<\/b> — nothing went to the internet. On the phone: <b>Sekuvo → + → \"Import via QR\"<\/b>","yolQr":"QR (no network — the phone reads it with the camera)"}}</script>
+<script type="application/json" id="telefon-veri">{"lang":"ar","dir":"rtl","app":{"bt_close":"إغلاق","bt_connected":"✓ %1$s متصل","bt_connecting":"جارٍ الاتصال بـ %1$s…","bt_done_summary":"✓ %1$d محرفًا كُتبت — %2$s، %3$d محرف/ث. تحقّق من عدد المحارف في الحاسوب.","bt_duration_seconds":"%1$d ث","bt_layout_tr":"تركي Q","bt_layout_us":"أمريكي (إنجليزي)","bt_title":"الكتابة في الحاسوب: %1$s","bt_typing_progress":"جارٍ الكتابة… %1$d / %2$d محرفًا","detail_dates":"أُضيفت: %1$s · عُدِّلت: %2$s","detail_fingerprint_len":"بصمة SHA-256 · %1$d محرفًا","detail_quick_off":"متاحة فقط مع فتح قفل الخزنة.","detail_quick_on":"تظهر في لوحة مفاتيح Sekuvo حتى مع قفل الخزنة؛ حمايتها بقوة قفل شاشة هاتفك فقط.","detail_quick_title":"استخدام في لوحة المفاتيح دون كلمة مرور","detail_show_fingerprint":"عرض بصمة SHA-256","detail_usage_empty":"لا استخدامات بعد.","detail_usage_title":"الاستخدامات الأخيرة","field_address":"العنوان","field_card_number":"رقم البطاقة","field_cardholder":"حامل البطاقة","field_cvv":"CVV","field_email":"البريد الإلكتروني","field_expiry":"تاريخ الانتهاء","field_full_name":"الاسم الكامل","field_iban":"IBAN","field_notes":"ملاحظة","field_password":"كلمة المرور","field_phone":"الهاتف","field_url":"الموقع / التطبيق","field_username":"اسم المستخدم","home_import_qr":"استيراد عبر QR","home_import_text":"استيراد من نص","home_search_hint":"البحث في المدخلات","note_kind_config":"إعداد (⁨.env, json⁩)","note_kind_fingerprint":"بصمة / مرساة ثقة","note_kind_general":"ملاحظة عامة","note_kind_key":"مفتاح / شهادة (⁨.pem⁩)","note_kind_recovery":"رموز الاستعادة","note_kind_script":"نص برمجي / أمر (⁨.sh⁩)","paste_btn_cancel":"إلغاء","paste_btn_import":"استيراد","paste_btn_importing":"جارٍ الاستيراد…","paste_label_backup_password":"كلمة مرور النسخة","paste_qr_ready":"✓ تم مسح QR · استُلم مظروف مشفَّر من %1$d محرفًا.\nأدخل الآن **كلمة مرور النسخة** فقط.","paste_title_qr":"استيراد عبر QR","qr_camera_analysis":"تحليل الكاميرا: %1$s · قرِّب الرمز حتى يملأ نصف الشاشة","qr_cancel":"إلغاء","qr_status_aim":"ضع رمز QR داخل إطار العرض","qr_status_done":"تم","qr_status_received":"استُلم %1$d/%2$d","type_card":"بطاقة","type_everyday":"يوميّ","type_login":"حساب / كلمة مرور","type_note":"ملاحظة آمنة","vm_import_added":{"one":"أُضيفت مدخلة واحدة · نُظِّفت الحافظة","other":"أُضيفت %1$d مدخلة · نُظِّفت الحافظة"}},"demo":{"adlar":["Alex Morgan","Sam Taylor","Jordan Lee","Casey Brooks","Riley Chen"],"etiket_finans":"finance","etiket_kisisel":"personal","etiket_is":"work","baslik_aws":"AWS · CLI key","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy key (ed25519)","baslik_wifi":"Home Wi-Fi","baslik_google":"Google account","baslik_kimlik":"ID & address","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API keys","baslik_visa":"Visa · everyday","baslik_kodlar":"Backup codes · Google","alan_erisim":"Access key ID","alan_gizli":"Secret access key","alan_parmak":"fingerprint","alan_ssid":"Network name (SSID)","ssid":"HomeNet_5G","banka_uygulama":"Northwind mobile","adres":"%1$d Example Street, Springfield","bt_cihaz":"MacBook Pro","yeni_baslik":"Server SSH (staging)"},"site":{"secici_etiket":"طراز الهاتف","olcu":"مقياس ⁨‎1:1⁩ · ⁨%1$s × %2$s mm⁩"},"arac":{"btnQr":"Encrypt and show the QR","h1":"Sekuvo Transfer","kareCok":"Frame %1$d/%2$d · ~%3$d s per round — hold the phone still, the frames cycle; the reader collects them in any order.","lblBaslik":"Title","lblNoteKind":"Note type","lblParola":"Backup password (ASCII, 8 or more)","lblTur":"Type","lblYol":"Transfer route","nkAnahtar":"Key / certificate (.pem)","turNot":"Secure note","uyariQr":"This QR carries <b>the envelope itself<\/b> — nothing went to the internet. On the phone: <b>Sekuvo → + → \"Import via QR\"<\/b>","yolQr":"QR (no network — the phone reads it with the camera)"}}</script>
 <script src="/js/telefon.js" defer></script>
 </body>
 </html>

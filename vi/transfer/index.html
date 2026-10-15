@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How to move SSH keys, .env files and recovery codes from a computer into Sekuvo without a network: aktar.html and QR, the encrypted envelope, import from text.">
-<title>Computer to phone transfer — Sekuvo</title>
+<meta name="description" content="Cách đưa khóa SSH, tệp .env và mã khôi phục từ máy tính vào Sekuvo mà không cần mạng: aktar.html và QR, phong bì mã hóa, nhập từ văn bản.">
+<title>Chuyển từ máy tính sang điện thoại — Sekuvo</title>
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="icon" href="/img/icon-512.png" sizes="512x512">
 <link rel="apple-touch-icon" href="/img/icon-180.png">
@@ -252,7 +252,7 @@
     <nav>
       <a href="https://sekuvo.com/vi/#security">Bảo mật</a>
       <a href="https://sekuvo.com/vi/#channels">Kênh</a>
-      <a href="https://sekuvo.com/vi/transfer/" aria-current="page">Transfer</a>
+      <a href="https://sekuvo.com/vi/transfer/" aria-current="page">Chuyển</a>
       <a href="https://sekuvo.com/vi/#download">Tải xuống</a>
       <a href="https://sekuvo.com/vi/guide/">Hướng dẫn</a>
       <a href="https://sekuvo.com/vi/privacy/">Quyền riêng tư</a>
@@ -262,29 +262,29 @@
 
   <div class="tp-hero">
     <div>
-      <span class="eyebrow">Transfer</span>
-      <h1>From computer to phone,<br>with no network <em>in between.</em></h1>
-      <p class="lede">Sekuvo has no internet permission, so a secret reaches your phone only along a path you show it. This page walks through those paths: the easiest is aktar.html and QR, the most cautious is an envelope you build in your own terminal.</p>
+      <span class="eyebrow">Chuyển</span>
+      <h1>Từ máy tính sang điện thoại,<br>không có mạng <em>ở giữa.</em></h1>
+      <p class="lede">Sekuvo không có quyền internet, nên một bí mật chỉ đến điện thoại của bạn theo con đường bạn chỉ cho nó. Trang này đi qua những con đường đó: dễ nhất là aktar.html và QR, thận trọng nhất là một phong bì bạn tự dựng trong terminal của mình.</p>
     </div>
-    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, runs from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How do I verify it?</summary><p>Run the command for your system in a terminal; the output must match the value above exactly. The same value is published in the GitHub release notes. You can also keep it in Sekuvo as a Tool anchor (the fingerprint button on the home screen) and compare against your phone the next time you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Tải aktar.html</a><p class="meta">v1.0.0 · 53 KB · một tệp, chạy từ ổ đĩa của chính bạn</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>Làm sao để xác minh?</summary><p>Chạy lệnh dành cho hệ thống của bạn trong terminal; kết quả phải khớp chính xác với giá trị ở trên. Giá trị này cũng được công bố trong ghi chú phát hành trên GitHub. Bạn cũng có thể lưu nó trong Sekuvo dưới dạng Neo công cụ (nút vân tay ở màn hình chính) và so với điện thoại lần tải sau.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
 shasum -a 256 aktar.html
 
 <span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, not a web page: the address bar shows file://. sekuvo.com never asks you for a secret. aktar.html currently speaks English and Turkish.</p></div></div>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Một tệp tải về, không phải trang web: thanh địa chỉ hiển thị file://. sekuvo.com không bao giờ hỏi bí mật của bạn. aktar.html hiện chỉ có tiếng Anh và tiếng Thổ Nhĩ Kỳ.</p></div></div>
   </div>
 
   <section id="neden">
-    <span class="eyebrow">Why QR</span>
-    <h2>Three doors stay shut.</h2>
-    <div class="grid"><div class="cell"><h3>Typing by hand breaks things</h3><p>One wrong character in a 64-character API key and the key is dead. Typing a long private key into a phone is, in practice, impossible.</p></div><div class="cell"><h3>The clipboard leaks</h3><p>Whatever you copy can be read by the app that is open at that moment, and cloud clipboards carry it to other devices. That is why Sekuvo never uses it as a path.</p></div><div class="cell"><h3>There is no network</h3><p>The app has no INTERNET permission, so file sync, e-mail or a server are not options. Light travelling from a screen to a camera crosses no network at all.</p></div></div>
+    <span class="eyebrow">Vì sao QR</span>
+    <h2>Ba cánh cửa vẫn đóng.</h2>
+    <div class="grid"><div class="cell"><h3>Gõ tay làm hỏng</h3><p>Một ký tự sai trong khóa API 64 ký tự là khóa chết. Gõ một khóa riêng dài vào điện thoại gần như bất khả thi.</p></div><div class="cell"><h3>Bảng tạm rò rỉ</h3><p>Thứ bạn sao chép có thể bị ứng dụng đang mở lúc đó đọc, và bảng tạm đám mây mang nó sang thiết bị khác. Vì vậy Sekuvo không bao giờ dùng nó làm đường đi.</p></div><div class="cell"><h3>Không có mạng</h3><p>Ứng dụng không có quyền INTERNET, nên đồng bộ tệp, email hay máy chủ đều không phải lựa chọn. Ánh sáng đi từ màn hình đến camera không qua bất kỳ mạng nào.</p></div></div>
   </section>
 
   <section id="adimlar">
-    <span class="eyebrow">Step by step</span>
-    <h2>With aktar.html</h2>
+    <span class="eyebrow">Từng bước</span>
+    <h2>Với aktar.html</h2>
     <div class="tp-adim">
-      <ol class="akt-adim"><li><h3>Download</h3><p>Get aktar.html with the button above or from the release page. It is one file; nothing to install.</p></li><li><h3>Verify</h3><p>Compute its SHA-256 and compare it with the published value. If they differ, do not open the file.</p></li><li><h3>Open</h3><p>Double-click it. The address bar shows file://, not a website, and the page never connects to the internet.</p></li><li><h3>Fill in and encrypt</h3><p>Write a title, pick a type (Account, Everyday, Card or Secure note), paste the secret or pick a .pem / .env file. Choose a backup password and press Encrypt and show the QR.</p></li><li><h3>Scan on the phone</h3><p>Sekuvo → ➕ → Import via QR. Large envelopes are split into several frames that cycle on screen; the phone collects them in any order. Enter the same password and the entry is added.</p></li></ol>
-      <div class="akt-sahne" role="img" aria-label="aktar.html on a laptop shows the encrypted envelope as cycling QR frames; Sekuvo on the phone scans them, asks for the transfer password and adds the entry.">
+      <ol class="akt-adim"><li><h3>Tải về</h3><p>Lấy aktar.html bằng nút ở trên hoặc từ trang phát hành. Chỉ một tệp; không cần cài gì.</p></li><li><h3>Xác minh</h3><p>Tính SHA-256 của nó và so với giá trị đã công bố. Nếu khác, đừng mở tệp.</p></li><li><h3>Mở</h3><p>Nhấp đúp. Thanh địa chỉ hiển thị file://, không phải một website, và trang không bao giờ kết nối internet.</p></li><li><h3>Điền và mã hóa</h3><p>Viết tiêu đề, chọn loại (Tài khoản, Hằng ngày, Thẻ hoặc Ghi chú an toàn), dán bí mật hoặc chọn tệp .pem / .env. Chọn mật khẩu chuyển rồi nhấn Mã hóa và hiện QR.</p></li><li><h3>Quét trên điện thoại</h3><p>Sekuvo → ➕ → Nhập qua QR. Phong bì lớn được chia thành nhiều khung luân phiên trên màn hình; điện thoại gom chúng theo bất kỳ thứ tự nào. Nhập cùng mật khẩu và mục được thêm.</p></li></ol>
+      <div class="akt-sahne" role="img" aria-label="aktar.html trên laptop hiển thị phong bì đã mã hóa dưới dạng các khung QR luân phiên; Sekuvo trên điện thoại quét chúng, hỏi mật khẩu chuyển và thêm mục.">
         <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
         <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
       </div>
@@ -292,21 +292,21 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
   </section>
 
   <section id="sihirbaz">
-    <span class="eyebrow">Don't even type the password</span>
-    <h2>The transfer wizard</h2>
-    <p class="kicker">The ⇄ button on the home screen opens the transfer wizard. The phone generates a single-use password of letters and digits — immune to keyboard-layout differences — and, acting as a Bluetooth keyboard, types it into both password fields of aktar.html at once. Press Encrypt and show the QR on the computer and Scan QR in the wizard: the password is already on the phone, so you never type it.</p>
+    <span class="eyebrow">Không cần gõ cả mật khẩu</span>
+    <h2>Trình hướng dẫn chuyển</h2>
+    <p class="kicker">Nút ⇄ ở màn hình chính mở trình hướng dẫn chuyển. Điện thoại tạo một mật khẩu dùng một lần gồm chữ và số — không bị ảnh hưởng bởi khác biệt bố cục bàn phím — và, đóng vai bàn phím Bluetooth, gõ nó cùng lúc vào cả hai ô mật khẩu của aktar.html. Nhấn Mã hóa và hiện QR trên máy tính và Quét QR trong trình hướng dẫn: mật khẩu đã ở trên điện thoại, nên bạn không bao giờ phải gõ.</p>
   </section>
 
   <section id="diger">
-    <span class="eyebrow">Other paths</span>
-    <h2>When you'd rather not use aktar.html</h2>
-    <div class="lanes dort"><div class="lane"><h3>Envelope → QR page</h3><p>Don't want the browser to encrypt anything? Build the envelope in your own terminal with a thirty-line script; this page only turns ciphertext into QR frames.</p><a href="https://sekuvo.com/vi/aktar/">Open the Envelope → QR page →</a></div><div class="lane"><h3>Import from text</h3><p>Any way you can carry the envelope as text works: ➕ → Import from text, paste, enter the password.</p></div><div class="lane"><h3>Command line: vault-clip.py</h3><p>Does the same from the clipboard or a file, and draws the QR right in the terminal.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">See the code on GitHub →</a></div><div class="lane"><h3>Build your own envelope</h3><p>The envelope is an open format, not something only Sekuvo can make. The recipe is in the repository.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">Read the recipe →</a></div></div>
+    <span class="eyebrow">Đường khác</span>
+    <h2>Khi bạn không muốn dùng aktar.html</h2>
+    <div class="lanes dort"><div class="lane"><h3>Phong bì → trang QR</h3><p>Không muốn trình duyệt mã hóa gì cả? Dựng phong bì trong terminal của bạn bằng một kịch bản ba mươi dòng; trang này chỉ biến bản mã thành các khung QR.</p><a href="https://sekuvo.com/vi/aktar/">Mở trang Phong bì → QR →</a></div><div class="lane"><h3>Nhập từ văn bản</h3><p>Mọi cách mang phong bì dưới dạng văn bản đều được: ➕ → Nhập từ văn bản, dán, nhập mật khẩu.</p></div><div class="lane"><h3>Dòng lệnh: vault-clip.py</h3><p>Làm điều tương tự từ bảng tạm hoặc một tệp, và vẽ QR ngay trong terminal.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">Xem mã trên GitHub →</a></div><div class="lane"><h3>Tự dựng phong bì</h3><p>Phong bì là định dạng mở, không phải thứ chỉ Sekuvo mới tạo được. Công thức có trong kho mã.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">Đọc công thức →</a></div></div>
   </section>
 
   <section id="zarf">
-    <span class="eyebrow">What the QR carries</span>
-    <h2>An envelope, never the secret.</h2>
-    <p class="kicker">Whoever photographs the QR gets only this. The transfer password becomes a key through 310,000 rounds of PBKDF2, which makes every guess slow; without the password the data field is noise.</p>
+    <span class="eyebrow">QR mang gì</span>
+    <h2>Một phong bì, không bao giờ là bí mật.</h2>
+    <p class="kicker">Ai chụp ảnh QR chỉ nhận được thứ này. Mật khẩu chuyển trở thành khóa qua 310.000 vòng PBKDF2, khiến mỗi lần đoán đều chậm; không có mật khẩu, trường dữ liệu chỉ là nhiễu.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
@@ -321,10 +321,10 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
   </section>
 
   <section id="sss">
-    <span class="eyebrow">Questions</span>
-    <h2>Frequently asked</h2>
-    <div class="sss"><details><summary>Does my secret go to the internet?</summary><p>No. aktar.html encrypts with the browser's WebCrypto on your machine and draws the QR on your screen. Sekuvo has no internet permission; the camera image is decoded inside the app.</p></details><details><summary>Why a downloaded file instead of a web page?</summary><p>A web page that asks for secrets looks exactly like a phishing page. And a page on a server can change on every visit; the digest of a file you downloaded is fixed and checkable.</p></details><details><summary>What about large files?</summary><p>The entry limit is 256 KB. Large envelopes are split into several QR frames that cycle; the phone collects them in any order and shows which frames are still missing.</p></details><details><summary>Which languages does aktar.html speak?</summary><p>English and Turkish for now.</p></details><details><summary>And from phone to computer?</summary><p>The other direction is Bluetooth: your phone types into the computer like a keyboard, with nothing installed on the computer.</p></details></div>
-    <a class="back" href="https://sekuvo.com/vi/">← Back to sekuvo.com</a>
+    <span class="eyebrow">Câu hỏi</span>
+    <h2>Câu hỏi thường gặp</h2>
+    <div class="sss"><details><summary>Bí mật của tôi có lên internet không?</summary><p>Không. aktar.html mã hóa bằng WebCrypto của trình duyệt trên máy bạn và vẽ QR lên màn hình của bạn. Sekuvo không có quyền internet; ảnh camera được giải mã bên trong ứng dụng.</p></details><details><summary>Vì sao là tệp tải về thay vì trang web?</summary><p>Một trang web hỏi bí mật trông y hệt trang lừa đảo. Và trang trên máy chủ có thể đổi mỗi lần ghé; mã băm của tệp bạn đã tải là cố định và kiểm tra được.</p></details><details><summary>Tệp lớn thì sao?</summary><p>Giới hạn mỗi mục là 256 KB. Phong bì lớn được chia thành nhiều khung QR luân phiên; điện thoại gom chúng theo bất kỳ thứ tự nào và cho biết khung nào còn thiếu.</p></details><details><summary>aktar.html có những ngôn ngữ nào?</summary><p>Hiện tại là tiếng Anh và tiếng Thổ Nhĩ Kỳ.</p></details><details><summary>Còn từ điện thoại sang máy tính?</summary><p>Chiều ngược lại là Bluetooth: điện thoại của bạn gõ vào máy tính như một bàn phím, không cài gì trên máy tính.</p></details></div>
+    <a class="back" href="https://sekuvo.com/vi/">← Quay lại sekuvo.com</a>
   </section>
 
   <footer>
@@ -337,7 +337,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
     </span>
   </footer>
 </div>
-<script type="application/json" id="telefon-veri">{"lang":"vi","dir":"ltr","app":{"bt_close":"Đóng","bt_connected":"✓ Đã kết nối với %1$s","bt_connecting":"Đang kết nối đến %1$s…","bt_done_summary":"✓ %1$d ký tự đã nhập — %2$s, %3$d ký tự/giây. Hãy kiểm tra số ký tự trên máy tính.","bt_duration_seconds":"%1$d giây","bt_layout_tr":"Thổ Nhĩ Kỳ Q","bt_layout_us":"Mỹ (Tiếng Anh)","bt_title":"Nhập trên máy tính: %1$s","bt_typing_progress":"Đang nhập… %1$d / %2$d ký tự","detail_dates":"Đã thêm: %1$s · Đã thay đổi: %2$s","detail_fingerprint_len":"Vân tay SHA-256 · %1$d ký tự","detail_quick_off":"Chỉ khả dụng khi kho lưu trữ đã mở khóa.","detail_quick_on":"Xuất hiện trong Bàn phím Sekuvo ngay cả khi kho lưu trữ đang khóa; mức bảo vệ khi đó chỉ tương đương với khóa màn hình điện thoại của bạn.","detail_quick_title":"Dùng trên bàn phím không cần mật khẩu","detail_show_fingerprint":"Hiện vân tay SHA-256","detail_usage_empty":"Chưa có lượt sử dụng nào.","detail_usage_title":"Sử dụng gần đây","field_address":"Địa chỉ","field_card_number":"Số thẻ","field_cardholder":"Chủ thẻ","field_cvv":"CVV","field_email":"Email","field_expiry":"Ngày hết hạn","field_full_name":"Họ và tên","field_iban":"IBAN","field_notes":"Ghi chú","field_password":"Mật khẩu","field_phone":"Điện thoại","field_url":"Trang web / Ứng dụng","field_username":"Tên đăng nhập","home_import_qr":"Nhập qua QR","home_import_text":"Nhập từ văn bản","home_search_hint":"Tìm kiếm mục","note_kind_config":"Cấu hình (.env, json)","note_kind_fingerprint":"Vân tay / Điểm neo tin cậy","note_kind_general":"Ghi chú chung","note_kind_key":"Khóa / Chứng chỉ (.pem)","note_kind_recovery":"Mã khôi phục","note_kind_script":"Tập lệnh / Lệnh (.sh)","paste_btn_cancel":"Hủy","paste_btn_import":"Nhập","paste_btn_importing":"Đang nhập…","paste_label_backup_password":"Mật khẩu sao lưu","paste_qr_ready":"✓ Đã quét QR · đã nhận phong bì mã hóa gồm %1$d ký tự.\nBây giờ chỉ cần nhập **mật khẩu sao lưu**.","paste_title_qr":"Nhập qua QR","qr_camera_analysis":"Phân tích camera: %1$s · đưa mã lại gần cho đến khi nó lấp đầy ít nhất nửa màn hình","qr_cancel":"Hủy","qr_status_aim":"Đưa mã QR vào khung ngắm","qr_status_done":"Xong","qr_status_received":"Đã nhận %1$d/%2$d","type_card":"Thẻ","type_everyday":"Hằng ngày","type_login":"Tài khoản / Mật khẩu","type_note":"Ghi chú bảo mật","vm_import_added":{"other":"Đã thêm %1$d mục · đã xóa bộ nhớ tạm"}},"demo":{"adlar":["Alex Morgan","Sam Taylor","Jordan Lee","Casey Brooks","Riley Chen"],"etiket_finans":"finance","etiket_kisisel":"personal","etiket_is":"work","baslik_aws":"AWS · CLI key","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy key (ed25519)","baslik_wifi":"Home Wi-Fi","baslik_google":"Google account","baslik_kimlik":"ID & address","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API keys","baslik_visa":"Visa · everyday","baslik_kodlar":"Backup codes · Google","alan_erisim":"Access key ID","alan_gizli":"Secret access key","alan_parmak":"fingerprint","alan_ssid":"Network name (SSID)","ssid":"HomeNet_5G","banka_uygulama":"Northwind mobile","adres":"%1$d Example Street, Springfield","bt_cihaz":"MacBook Pro","yeni_baslik":"Server SSH (staging)"},"site":{"secici_etiket":"Phone model","olcu":"1:1 scale · %1$s × %2$s mm"},"arac":{"btnQr":"Encrypt and show the QR","h1":"Sekuvo Transfer","kareCok":"Frame %1$d/%2$d · ~%3$d s per round — hold the phone still, the frames cycle; the reader collects them in any order.","lblBaslik":"Title","lblNoteKind":"Note type","lblParola":"Backup password (ASCII, 8 or more)","lblTur":"Type","lblYol":"Transfer route","nkAnahtar":"Key / certificate (.pem)","turNot":"Secure note","uyariQr":"This QR carries <b>the envelope itself<\/b> — nothing went to the internet. On the phone: <b>Sekuvo → + → \"Import via QR\"<\/b>","yolQr":"QR (no network — the phone reads it with the camera)"}}</script>
+<script type="application/json" id="telefon-veri">{"lang":"vi","dir":"ltr","app":{"bt_close":"Đóng","bt_connected":"✓ Đã kết nối với %1$s","bt_connecting":"Đang kết nối đến %1$s…","bt_done_summary":"✓ %1$d ký tự đã nhập — %2$s, %3$d ký tự/giây. Hãy kiểm tra số ký tự trên máy tính.","bt_duration_seconds":"%1$d giây","bt_layout_tr":"Thổ Nhĩ Kỳ Q","bt_layout_us":"Mỹ (Tiếng Anh)","bt_title":"Nhập trên máy tính: %1$s","bt_typing_progress":"Đang nhập… %1$d / %2$d ký tự","detail_dates":"Đã thêm: %1$s · Đã thay đổi: %2$s","detail_fingerprint_len":"Vân tay SHA-256 · %1$d ký tự","detail_quick_off":"Chỉ khả dụng khi kho lưu trữ đã mở khóa.","detail_quick_on":"Xuất hiện trong Bàn phím Sekuvo ngay cả khi kho lưu trữ đang khóa; mức bảo vệ khi đó chỉ tương đương với khóa màn hình điện thoại của bạn.","detail_quick_title":"Dùng trên bàn phím không cần mật khẩu","detail_show_fingerprint":"Hiện vân tay SHA-256","detail_usage_empty":"Chưa có lượt sử dụng nào.","detail_usage_title":"Sử dụng gần đây","field_address":"Địa chỉ","field_card_number":"Số thẻ","field_cardholder":"Chủ thẻ","field_cvv":"CVV","field_email":"Email","field_expiry":"Ngày hết hạn","field_full_name":"Họ và tên","field_iban":"IBAN","field_notes":"Ghi chú","field_password":"Mật khẩu","field_phone":"Điện thoại","field_url":"Trang web / Ứng dụng","field_username":"Tên đăng nhập","home_import_qr":"Nhập qua QR","home_import_text":"Nhập từ văn bản","home_search_hint":"Tìm kiếm mục","note_kind_config":"Cấu hình (.env, json)","note_kind_fingerprint":"Vân tay / Điểm neo tin cậy","note_kind_general":"Ghi chú chung","note_kind_key":"Khóa / Chứng chỉ (.pem)","note_kind_recovery":"Mã khôi phục","note_kind_script":"Tập lệnh / Lệnh (.sh)","paste_btn_cancel":"Hủy","paste_btn_import":"Nhập","paste_btn_importing":"Đang nhập…","paste_label_backup_password":"Mật khẩu sao lưu","paste_qr_ready":"✓ Đã quét QR · đã nhận phong bì mã hóa gồm %1$d ký tự.\nBây giờ chỉ cần nhập **mật khẩu sao lưu**.","paste_title_qr":"Nhập qua QR","qr_camera_analysis":"Phân tích camera: %1$s · đưa mã lại gần cho đến khi nó lấp đầy ít nhất nửa màn hình","qr_cancel":"Hủy","qr_status_aim":"Đưa mã QR vào khung ngắm","qr_status_done":"Xong","qr_status_received":"Đã nhận %1$d/%2$d","type_card":"Thẻ","type_everyday":"Hằng ngày","type_login":"Tài khoản / Mật khẩu","type_note":"Ghi chú bảo mật","vm_import_added":{"other":"Đã thêm %1$d mục · đã xóa bộ nhớ tạm"}},"demo":{"adlar":["Alex Morgan","Sam Taylor","Jordan Lee","Casey Brooks","Riley Chen"],"etiket_finans":"finance","etiket_kisisel":"personal","etiket_is":"work","baslik_aws":"AWS · CLI key","baslik_banka":"Northwind Bank","baslik_deploy":"Deploy key (ed25519)","baslik_wifi":"Home Wi-Fi","baslik_google":"Google account","baslik_kimlik":"ID & address","baslik_mc":"Mastercard · online","baslik_env":"prod.env · API keys","baslik_visa":"Visa · everyday","baslik_kodlar":"Backup codes · Google","alan_erisim":"Access key ID","alan_gizli":"Secret access key","alan_parmak":"fingerprint","alan_ssid":"Network name (SSID)","ssid":"HomeNet_5G","banka_uygulama":"Northwind mobile","adres":"%1$d Example Street, Springfield","bt_cihaz":"MacBook Pro","yeni_baslik":"Server SSH (staging)"},"site":{"secici_etiket":"Mẫu điện thoại","olcu":"Tỉ lệ 1:1 · %1$s × %2$s mm"},"arac":{"btnQr":"Encrypt and show the QR","h1":"Sekuvo Transfer","kareCok":"Frame %1$d/%2$d · ~%3$d s per round — hold the phone still, the frames cycle; the reader collects them in any order.","lblBaslik":"Title","lblNoteKind":"Note type","lblParola":"Backup password (ASCII, 8 or more)","lblTur":"Type","lblYol":"Transfer route","nkAnahtar":"Key / certificate (.pem)","turNot":"Secure note","uyariQr":"This QR carries <b>the envelope itself<\/b> — nothing went to the internet. On the phone: <b>Sekuvo → + → \"Import via QR\"<\/b>","yolQr":"QR (no network — the phone reads it with the camera)"}}</script>
 <script src="/js/telefon.js" defer></script>
 </body>
 </html>

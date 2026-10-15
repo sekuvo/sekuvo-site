@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="How to move SSH keys, .env files and recovery codes from a computer into Sekuvo without a network: aktar.html and QR, the encrypted envelope, import from text.">
+<meta name="description" content="How to move SSH keys, .env files and recovery codes from computer enter Sekuvo without network: aktar.html and QR, di encrypted envelope, import from text.">
 <title>Computer to phone transfer — Sekuvo</title>
 <link rel="icon" href="/favicon.png" sizes="32x32">
 <link rel="icon" href="/img/icon-512.png" sizes="512x512">
@@ -263,28 +263,28 @@
   <div class="tp-hero">
     <div>
       <span class="eyebrow">Transfer</span>
-      <h1>From computer to phone,<br>with no network <em>in between.</em></h1>
-      <p class="lede">Sekuvo has no internet permission, so a secret reaches your phone only along a path you show it. This page walks through those paths: the easiest is aktar.html and QR, the most cautious is an envelope you build in your own terminal.</p>
+      <h1>From computer go phone,<br>with no network <em>for middle.</em></h1>
+      <p class="lede">Sekuvo no get internet permission, so secret fit only reach your phone through road wey you show am. Dis page dey explain those roads: di easiest one na aktar.html and QR, di most careful one na envelope wey you build for your own terminal.</p>
     </div>
-    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, runs from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How do I verify it?</summary><p>Run the command for your system in a terminal; the output must match the value above exactly. The same value is published in the GitHub release notes. You can also keep it in Sekuvo as a Tool anchor (the fingerprint button on the home screen) and compare against your phone the next time you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+    <div class="tp-indir"><div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, e dey run from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How I go verify am?</summary><p>Run di command for your system inside terminal; wetin e print must match di value for up exactly. Di same value dey for GitHub release notes. You fit also keep am for Sekuvo as Tool anchor (di fingerprint button for home screen) and compare am with your phone next time wey you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
 shasum -a 256 aktar.html
 
 <span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, not a web page: the address bar shows file://. sekuvo.com never asks you for a secret. aktar.html currently speaks English and Turkish.</p></div></div>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Na download, no be web page: di address bar go show file://. sekuvo.com no go ever ask you for secret. aktar.html dey speak only English and Turkish for now.</p></div></div>
   </div>
 
   <section id="neden">
     <span class="eyebrow">Why QR</span>
-    <h2>Three doors stay shut.</h2>
-    <div class="grid"><div class="cell"><h3>Typing by hand breaks things</h3><p>One wrong character in a 64-character API key and the key is dead. Typing a long private key into a phone is, in practice, impossible.</p></div><div class="cell"><h3>The clipboard leaks</h3><p>Whatever you copy can be read by the app that is open at that moment, and cloud clipboards carry it to other devices. That is why Sekuvo never uses it as a path.</p></div><div class="cell"><h3>There is no network</h3><p>The app has no INTERNET permission, so file sync, e-mail or a server are not options. Light travelling from a screen to a camera crosses no network at all.</p></div></div>
+    <h2>Three doors dey stay closed.</h2>
+    <div class="grid"><div class="cell"><h3>Typing with hand dey spoil things</h3><p>One wrong character inside 64-character API key and di key don die. To type long private key enter phone, for real life, no possible.</p></div><div class="cell"><h3>Clipboard dey leak</h3><p>Anything wey you copy, di app wey open dat time fit read am, and cloud clipboard go carry am go other devices. Na why Sekuvo no dey ever use am as road.</p></div><div class="cell"><h3>Network no dey</h3><p>Di app no get INTERNET permission, so file sync, e-mail or server no be option. Light wey dey travel from screen go camera no dey cross any network at all.</p></div></div>
   </section>
 
   <section id="adimlar">
     <span class="eyebrow">Step by step</span>
     <h2>With aktar.html</h2>
     <div class="tp-adim">
-      <ol class="akt-adim"><li><h3>Download</h3><p>Get aktar.html with the button above or from the release page. It is one file; nothing to install.</p></li><li><h3>Verify</h3><p>Compute its SHA-256 and compare it with the published value. If they differ, do not open the file.</p></li><li><h3>Open</h3><p>Double-click it. The address bar shows file://, not a website, and the page never connects to the internet.</p></li><li><h3>Fill in and encrypt</h3><p>Write a title, pick a type (Account, Everyday, Card or Secure note), paste the secret or pick a .pem / .env file. Choose a backup password and press Encrypt and show the QR.</p></li><li><h3>Scan on the phone</h3><p>Sekuvo → ➕ → Import via QR. Large envelopes are split into several frames that cycle on screen; the phone collects them in any order. Enter the same password and the entry is added.</p></li></ol>
-      <div class="akt-sahne" role="img" aria-label="aktar.html on a laptop shows the encrypted envelope as cycling QR frames; Sekuvo on the phone scans them, asks for the transfer password and adds the entry.">
+      <ol class="akt-adim"><li><h3>Download</h3><p>Get aktar.html with di button for up or from di release page. Na one file; nothing to install.</p></li><li><h3>Verify</h3><p>Compute im SHA-256 and compare am with di value wey dem publish. If dem no match, no open di file.</p></li><li><h3>Open</h3><p>Double-click am. Di address bar go show file://, no be website, and di page no go ever connect internet.</p></li><li><h3>Fill and encrypt</h3><p>Write title, pick type (Account, Everyday, Card or Secure note), paste di secret or pick .pem / .env file. Choose transfer password and press Encrypt and show the QR.</p></li><li><h3>Scan for phone</h3><p>Sekuvo → ➕ → Import via QR. Big envelope dey split into many frames wey dey change for screen; di phone go collect dem any order. Enter di same password and di entry go add.</p></li></ol>
+      <div class="akt-sahne" role="img" aria-label="aktar.html for laptop dey show di encrypted envelope as QR frames wey dey change; Sekuvo for phone dey scan dem, ask for transfer password and add di entry.">
         <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
         <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
       </div>
@@ -292,21 +292,21 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
   </section>
 
   <section id="sihirbaz">
-    <span class="eyebrow">Don't even type the password</span>
-    <h2>The transfer wizard</h2>
-    <p class="kicker">The ⇄ button on the home screen opens the transfer wizard. The phone generates a single-use password of letters and digits — immune to keyboard-layout differences — and, acting as a Bluetooth keyboard, types it into both password fields of aktar.html at once. Press Encrypt and show the QR on the computer and Scan QR in the wizard: the password is already on the phone, so you never type it.</p>
+    <span class="eyebrow">No even type di password</span>
+    <h2>Di transfer wizard</h2>
+    <p class="kicker">Di ⇄ button for home screen go open transfer wizard. Di phone go generate one-time password with letters and numbers — keyboard layout difference no fit affect am — and, as Bluetooth keyboard, e go type am enter both password fields of aktar.html one time. Press Encrypt and show the QR for computer and Scan QR for di wizard: di password don already dey for phone, so you no go ever type am.</p>
   </section>
 
   <section id="diger">
-    <span class="eyebrow">Other paths</span>
-    <h2>When you'd rather not use aktar.html</h2>
-    <div class="lanes dort"><div class="lane"><h3>Envelope → QR page</h3><p>Don't want the browser to encrypt anything? Build the envelope in your own terminal with a thirty-line script; this page only turns ciphertext into QR frames.</p><a href="https://sekuvo.com/pcm/aktar/">Open the Envelope → QR page →</a></div><div class="lane"><h3>Import from text</h3><p>Any way you can carry the envelope as text works: ➕ → Import from text, paste, enter the password.</p></div><div class="lane"><h3>Command line: vault-clip.py</h3><p>Does the same from the clipboard or a file, and draws the QR right in the terminal.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">See the code on GitHub →</a></div><div class="lane"><h3>Build your own envelope</h3><p>The envelope is an open format, not something only Sekuvo can make. The recipe is in the repository.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">Read the recipe →</a></div></div>
+    <span class="eyebrow">Other roads</span>
+    <h2>If you no wan use aktar.html</h2>
+    <div class="lanes dort"><div class="lane"><h3>Envelope → QR page</h3><p>You no want make browser encrypt anything? Build di envelope for your own terminal with thirty-line script; dis page go only turn ciphertext into QR frames.</p><a href="https://sekuvo.com/pcm/aktar/">Open di Envelope → QR page →</a></div><div class="lane"><h3>Import from text</h3><p>Any way wey you fit carry di envelope as text go work: ➕ → Import from text, paste, enter password.</p></div><div class="lane"><h3>Command line: vault-clip.py</h3><p>E dey do di same thing from clipboard or file, and e dey draw di QR straight inside terminal.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/tools/vault-clip.py">See di code for GitHub →</a></div><div class="lane"><h3>Build your own envelope</h3><p>Di envelope na open format, no be something wey only Sekuvo fit make. Di recipe dey for repository.</p><a href="https://github.com/sekuvo/sekuvo/blob/main/docs/kendi-zarfini-uret.md">Read di recipe →</a></div></div>
   </section>
 
   <section id="zarf">
-    <span class="eyebrow">What the QR carries</span>
-    <h2>An envelope, never the secret.</h2>
-    <p class="kicker">Whoever photographs the QR gets only this. The transfer password becomes a key through 310,000 rounds of PBKDF2, which makes every guess slow; without the password the data field is noise.</p>
+    <span class="eyebrow">Wetin di QR dey carry</span>
+    <h2>Envelope, never di secret.</h2>
+    <p class="kicker">Anybody wey snap di QR go get only dis one. Di transfer password dey turn key through 310,000 rounds of PBKDF2, wey make every guess slow; without di password, di data field na just noise.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
@@ -322,9 +322,9 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
 
   <section id="sss">
     <span class="eyebrow">Questions</span>
-    <h2>Frequently asked</h2>
-    <div class="sss"><details><summary>Does my secret go to the internet?</summary><p>No. aktar.html encrypts with the browser's WebCrypto on your machine and draws the QR on your screen. Sekuvo has no internet permission; the camera image is decoded inside the app.</p></details><details><summary>Why a downloaded file instead of a web page?</summary><p>A web page that asks for secrets looks exactly like a phishing page. And a page on a server can change on every visit; the digest of a file you downloaded is fixed and checkable.</p></details><details><summary>What about large files?</summary><p>The entry limit is 256 KB. Large envelopes are split into several QR frames that cycle; the phone collects them in any order and shows which frames are still missing.</p></details><details><summary>Which languages does aktar.html speak?</summary><p>English and Turkish for now.</p></details><details><summary>And from phone to computer?</summary><p>The other direction is Bluetooth: your phone types into the computer like a keyboard, with nothing installed on the computer.</p></details></div>
-    <a class="back" href="https://sekuvo.com/pcm/">← Back to sekuvo.com</a>
+    <h2>Questions wey people dey ask</h2>
+    <div class="sss"><details><summary>My secret dey go internet?</summary><p>No. aktar.html dey encrypt with browser WebCrypto for your machine and e dey draw di QR for your screen. Sekuvo no get internet permission; di camera image dey decode inside di app.</p></details><details><summary>Why downloaded file instead of web page?</summary><p>Web page wey dey ask for secret look exactly like phishing page. And page for server fit change every time you visit; di digest of file wey you download dey fixed and you fit check am.</p></details><details><summary>Wetin about big files?</summary><p>Di entry limit na 256 KB. Big envelope dey split into many QR frames wey dey change; di phone go collect dem any order and show which frames still dey miss.</p></details><details><summary>Which languages aktar.html dey speak?</summary><p>English and Turkish for now.</p></details><details><summary>And from phone go computer?</summary><p>Di other direction na Bluetooth: your phone dey type enter computer like keyboard, with nothing installed for di computer.</p></details></div>
+    <a class="back" href="https://sekuvo.com/pcm/">← Go back to sekuvo.com</a>
   </section>
 
   <footer>

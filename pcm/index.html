@@ -254,8 +254,8 @@
     </div>
 
     <div class="tel-yer">
-      <sekuvo-telefon model="galaxy-s26" demo="tur" secici aria-label="Sekuvo on a phone: the entry list, an entry's details and typing a password to a computer over Bluetooth. Every value shown is generated randomly in this page."><img class="tel-yedek" src="/img/02-liste.png" alt="Sekuvo on a phone: the entry list, an entry's details and typing a password to a computer over Bluetooth. Every value shown is generated randomly in this page." width="405" height="900"></sekuvo-telefon>
-      <p class="tel-not">Every password, key and card number on this screen is generated at random in this page — none of it is real, and none of it leaves your browser.</p>
+      <sekuvo-telefon model="galaxy-s26" demo="tur" secici aria-label="Sekuvo for phone: di list of entries, one entry details, and how e dey type password enter computer through Bluetooth. Every value wey you see na random one wey dis page generate."><img class="tel-yedek" src="/img/02-liste.png" alt="Sekuvo for phone: di list of entries, one entry details, and how e dey type password enter computer through Bluetooth. Every value wey you see na random one wey dis page generate." width="405" height="900"></sekuvo-telefon>
+      <p class="tel-not">Every password, key and card number for dis screen na random one wey dis page generate — none of am real, and none of am dey comot from your browser.</p>
     </div>
   </div>
 
@@ -285,24 +285,24 @@
   </section>
 
   <section id="aktar">
-    <span class="eyebrow">From computer to phone</span>
-    <h2>Long secrets aren't typed by hand.<br>Move them by QR.</h2>
-    <p class="kicker">SSH keys, .env files, recovery codes… aktar.html encrypts the secret on your computer and Sekuvo reads it with the camera. No server, no account, no clipboard in between — only light travelling from a screen to a lens.</p>
+    <span class="eyebrow">From computer go phone</span>
+    <h2>You no dey type long secret with hand.<br>Move am with QR.</h2>
+    <p class="kicker">SSH keys, .env files, recovery codes… aktar.html go encrypt di secret for your computer and Sekuvo go read am with camera. No server, no account, no clipboard for middle — na only light wey dey travel from screen go lens.</p>
     <div class="akt-kart">
       <div>
-        <ol class="akt-adim"><li><h3>Download and verify</h3><p>aktar.html is a single HTML file. Download it, compare its SHA-256 with the value below, and open it from your own disk.</p></li><li><h3>Encrypt on the computer</h3><p>Paste the secret and choose a transfer password. Encryption runs inside the browser, on your machine; the envelope is drawn on screen as QR codes.</p></li><li><h3>Scan with the phone</h3><p>In Sekuvo: ➕ → Import via QR. Scan the frames, enter the same password, and the entry lands in your vault.</p></li></ol>
-        <div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, runs from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How do I verify it?</summary><p>Run the command for your system in a terminal; the output must match the value above exactly. The same value is published in the GitHub release notes. You can also keep it in Sekuvo as a Tool anchor (the fingerprint button on the home screen) and compare against your phone the next time you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
+        <ol class="akt-adim"><li><h3>Download and verify</h3><p>aktar.html na one single HTML file. Download am, compare im SHA-256 with di value for down, then open am from your own disk.</p></li><li><h3>Encrypt for computer</h3><p>Paste di secret and choose transfer password. Di encryption dey run inside browser, for your own machine; di envelope go show for screen as QR codes.</p></li><li><h3>Scan with phone</h3><p>For Sekuvo: ➕ → Import via QR. Scan di frames, enter di same password, and di entry go land for your vault.</p></li></ol>
+        <div class="indir"><a class="btn solid buyuk" href="https://github.com/sekuvo/sekuvo/releases/download/v1.0.0/aktar.html" download><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download aktar.html</a><p class="meta">v1.0.0 · 53 KB · one file, e dey run from your own disk</p><div class="ozet">SHA-256 · <a href="https://github.com/sekuvo/sekuvo/releases/tag/v1.0.0">v1.0.0</a><code dir="ltr">85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d</code></div><details><summary>How I go verify am?</summary><p>Run di command for your system inside terminal; wetin e print must match di value for up exactly. Di same value dey for GitHub release notes. You fit also keep am for Sekuvo as Tool anchor (di fingerprint button for home screen) and compare am with your phone next time wey you download.</p><div class="cmd" dir="ltr"><span class="c"># macOS / Linux</span>
 shasum -a 256 aktar.html
 
 <span class="c"># Windows (PowerShell / cmd)</span>
-certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, not a web page: the address bar shows file://. sekuvo.com never asks you for a secret. aktar.html currently speaks English and Turkish.</p></div>
+certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Na download, no be web page: di address bar go show file://. sekuvo.com no go ever ask you for secret. aktar.html dey speak only English and Turkish for now.</p></div>
       </div>
-      <div class="akt-sahne" role="img" aria-label="aktar.html on a laptop shows the encrypted envelope as cycling QR frames; Sekuvo on the phone scans them, asks for the transfer password and adds the entry.">
+      <div class="akt-sahne" role="img" aria-label="aktar.html for laptop dey show di encrypted envelope as QR frames wey dey change; Sekuvo for phone dey scan dem, ask for transfer password and add di entry.">
         <sekuvo-dizustu olcek=".8" aria-hidden="true"></sekuvo-dizustu>
         <sekuvo-telefon model="galaxy-s26" demo="qr" olcek=".78" aria-hidden="true"></sekuvo-telefon>
       </div>
     </div>
-    <a class="akt-daha" href="https://sekuvo.com/pcm/transfer/">Every way to transfer, in detail →</a>
+    <a class="akt-daha" href="https://sekuvo.com/pcm/transfer/">Every way to transfer, with full detail →</a>
   </section>
 
   <section id="download">

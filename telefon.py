@@ -71,6 +71,22 @@ DEMO["tr"] = dict(
 SITE = {}
 SITE["en"] = dict(secici_etiket="Phone model", olcu="1:1 scale · %1$s × %2$s mm")
 SITE["tr"] = dict(secici_etiket="Telefon modeli", olcu="1:1 ölçek · %1$s × %2$s mm")
+SITE["de"] = dict(secici_etiket="Telefonmodell", olcu="Maßstab 1:1 · %1$s × %2$s mm")
+SITE["es"] = dict(secici_etiket="Modelo de teléfono", olcu="Escala 1:1 · %1$s × %2$s mm")
+SITE["fr"] = dict(secici_etiket="Modèle de téléphone", olcu="Échelle 1:1 · %1$s × %2$s mm")
+SITE["pt"] = dict(secici_etiket="Modelo do telefone", olcu="Escala 1:1 · %1$s × %2$s mm")
+SITE["ru"] = dict(secici_etiket="Модель телефона", olcu="Масштаб 1:1 · %1$s × %2$s мм")
+SITE["id"] = dict(secici_etiket="Model ponsel", olcu="Skala 1:1 · %1$s × %2$s mm")
+SITE["vi"] = dict(secici_etiket="Mẫu điện thoại", olcu="Tỉ lệ 1:1 · %1$s × %2$s mm")
+SITE["zh"] = dict(secici_etiket="手机型号", olcu="1:1 比例 · %1$s × %2$s mm")
+SITE["ja"] = dict(secici_etiket="機種", olcu="原寸 1:1 · %1$s × %2$s mm")
+SITE["pcm"] = dict(secici_etiket="Phone model", olcu="1:1 scale · %1$s × %2$s mm")
+SITE["hi"] = dict(secici_etiket="फ़ोन मॉडल", olcu="1:1 पैमाना · %1$s × %2$s mm")
+SITE["bn"] = dict(secici_etiket="ফোনের মডেল", olcu="১:১ মাপ · %1$s × %2$s mm")
+# Sağdan sola dillerde sayılar ve "mm" FSI…PDI (⁨ ⁩) ile yalıtılır: "149,6 × 71,7"
+# sırası ve "1:1" bozulmaz (uygulamanın ar/ur metinlerindeki kuralın aynısı).
+SITE["ar"] = dict(secici_etiket="طراز الهاتف", olcu="مقياس ⁨‎1:1⁩ · ⁨%1$s × %2$s mm⁩")
+SITE["ur"] = dict(secici_etiket="فون کا ماڈل", olcu="پیمانہ ⁨‎1:1⁩ · ⁨%1$s × %2$s mm⁩")
 
 # Roboto: Android'in sistem yazı tipi — maketteki uygulama onunla çizilir.
 FONT_URL = ("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600"
