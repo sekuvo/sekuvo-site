@@ -577,7 +577,12 @@
     attributeChangedCallback(ad, eski, yeni) {
       if (!this.hazir || eski === yeni) return;
       if (ad === "demo") { this.durdur(); this.baslatGerekirse(); return; }
+      // Model değişince betik de değişir (iPhone'da Bluetooth sahnesi yok):
+      // süren demo durur, arayüz yeniden kurulur, demo baştan başlar.
+      const yenidenBaslat = ad === "model" && this.oynuyor;
+      if (yenidenBaslat) this.durdur();
       this.kur();
+      if (yenidenBaslat) this.baslatGerekirse();
     }
 
     get model() { return MODELLER[this.getAttribute("model")] || MODELLER["galaxy-s26"]; }
@@ -699,7 +704,7 @@
                 ${this.rozet(k)}
                 <div class="bilgi"><div class="ad">${kac(k.baslik)}</div>
                   <div class="alt"><span>${kac(this.turEtiketi(k.tur))}</span>${this.noktalar(k)}</div></div>
-                ${k.hizli ? `<span class="simsek">⚡</span>` : ""}
+                ${k.hizli && this.model.sistem !== "ios" ? `<span class="simsek">⚡</span>` : ""}
                 ${k.oncelik ? `<span class="onc">${k.oncelik}</span>` : ""}
               </div>`).join("")}
           </div>
@@ -713,6 +718,9 @@
     }
 
     detayHTML(id) {
+      // iOS'ta olmayan özellikler çizilmez: Bluetooth klavye, Sekuvo Klavyesi
+      // (hızlı erişim) ve kullanım günlüğü — olmayan özellik gösterilmez.
+      const ios = this.model.sistem === "ios";
       const k = this.kasa.find((x) => x.id === id);
       if (!k) return this.listeHTML();
       const tarihB = (ms) => new Date(ms).toLocaleString(this.d.dil, { day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", hour12: false });
@@ -739,7 +747,7 @@
           <div class="ust-s"><span class="etiket">${etiketIkon}${kac(this.alanEtiketi(anahtar) + etiketEk)}</span>
             ${gizli ? `<span class="dg" data-hedef="alan:${ad}:goz">${ikon(acik ? "visibility_off" : "visibility")}</span>` : ""}
             <span class="dg" data-hedef="alan:${ad}:kopya">${ikon("content_copy")}</span>
-            <span class="dg" data-hedef="alan:${ad}:pc">${ikon("computer")}</span></div>
+            ${ios ? "" : `<span class="dg" data-hedef="alan:${ad}:pc">${ikon("computer")}</span>`}</div>
           <div class="deger mono${cok ? " cok" : ""}${gizli && !acik ? " gizli" : ""}">${kac(metin)}</div>
           ${altSatir}
         </div>`;
@@ -752,11 +760,11 @@
         <div class="govdeK" data-kaydir="detay">
           <div class="detay">
             ${etiketler}${alanlar}
-            <div class="kutu"><div style="flex:1"><div class="ba">${kac(this.t("detail_quick_title"))}</div>
+            ${ios ? "" : `<div class="kutu"><div style="flex:1"><div class="ba">${kac(this.t("detail_quick_title"))}</div>
               <div class="ac">${kac(this.t(k.hizli ? "detail_quick_on" : "detail_quick_off"))}</div></div>
-              <span class="anahtar-d" style="${k.hizli ? "background:var(--primary);border-color:var(--primary)" : ""}"></span></div>
+              <span class="anahtar-d" style="${k.hizli ? "background:var(--primary);border-color:var(--primary)" : ""}"></span></div>`}
             <div class="tarih">${kac(bicim(this.t("detail_dates"), tarihB(k.eklendi), tarihB(k.guncellendi)))}</div>
-            <div class="kullanim"><h4>${kac(this.t("detail_usage_title"))}</h4><p>${kac(this.t("detail_usage_empty"))}</p></div>
+            ${ios ? "" : `<div class="kullanim"><h4>${kac(this.t("detail_usage_title"))}</h4><p>${kac(this.t("detail_usage_empty"))}</p></div>`}
           </div>
         </div>`;
     }
@@ -881,6 +889,17 @@
         this.sahneler.lastElementChild.innerHTML = this.detayHTML(d.secili);
         const kay2 = this.sahneler.lastElementChild.querySelector("[data-kaydir=detay]");
         if (kay2) kay2.scrollTop = y;
+      } else if (tur === "alan" && b === "kopya") {
+        const k = this.kasa.find((x) => x.id === d.secili);
+        const alan = k && k.alanlar.find(([an], i) => (typeof an === "object" ? `o${i}` : an) === a);
+        if (!alan) return;
+        const sablon = this.model.sistem === "ios"
+          ? (this.s.ios_kopyalandi || "%1$s copied · this iPhone only, cleared in 45 s")
+          : (this.s.kopyalandi || "%1$s copied · clipboard clears in 45 s, or when you return to the app");
+        const no = (this.tostKosu = (this.tostKosu || 0) + 1);
+        d.tost = bicim(sablon, this.alanEtiketi(alan[0]));
+        this.katmanCiz();
+        setTimeout(() => { if (this.tostKosu === no) { d.tost = null; this.katmanCiz(); } }, 2600);
       } else if (tur === "alan" && b === "pc") {
         const k = this.kasa.find((x) => x.id === d.secili);
         const alan = k && k.alanlar.find(([an], i) => (typeof an === "object" ? `o${i}` : an) === a);
@@ -1018,11 +1037,15 @@
           ["parola", 18], ["bekle", 350], ["dokun", "diyalog:ice-aktar"], ["bekle", 4200], ["sifirla"],
         ];
       }
+      // iPhone'da Bluetooth klavye yok (iOS izin vermez): o sahnenin yerine
+      // panoya kopyalama (yalnız bu iPhone'da, 45 sn) gösterilir.
+      const cikis = this.model.sistem === "ios"
+        ? [["dokun", "alan:password:kopya"], ["bekle", 3000]]
+        : [["dokun", "alan:password:pc"], ["bekle", 4200], ["dokun", "diyalog:kapat"], ["bekle", 700]];
       return [
         ["bekle", 1700], ["dokun", "kayit:github"], ["bekle", 1400],
         ["dokun", "alan:password:goz"], ["bekle", 1500],
-        ["dokun", "alan:password:pc"], ["bekle", 4200],
-        ["dokun", "diyalog:kapat"], ["bekle", 700],
+        ...cikis,
         ["dokun", "geri"], ["bekle", 1000],
         ["kaydir", "liste", 360], ["bekle", 900],
         ["dokun", "kayit:visa"], ["bekle", 1300],
