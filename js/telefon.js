@@ -513,6 +513,43 @@
 .qr-panel .dugmeD { margin-top: 12px; }
 
 /* parmak */
+/* Bilgisayar ekranı: demonun girişinde cihazı kaplayan tarayıcı penceresi.
+   Telefona geçiş küçülerek solar; içerik her zaman soldan sağa (bilgisayar). */
+.pc { position: absolute; inset: 0; z-index: 80; border-radius: var(--kose); overflow: hidden; direction: ltr;
+  background: linear-gradient(160deg, #d7d3c8, #bfbab0); display: flex; align-items: center; justify-content: center;
+  opacity: 0; transform: scale(.94); pointer-events: none; transition: opacity .5s ease, transform .5s ease; }
+.pc.gor { opacity: 1; transform: none; }
+/* Bilgisayar sahnesinde telefonun yan düğmeleri ve çentiği görünmesin. */
+.cihaz.pcde .dugme, .cihaz.pcde .kesik { visibility: hidden; }
+.pencere { position: relative; width: 90%; max-height: 92%; background: #fff; border-radius: 9px; overflow: hidden;
+  box-shadow: 0 18px 44px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.08); color: #1f2328;
+  font: 12px/1.4 -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; }
+.pc .krom { height: 28px; background: #e8e8ea; display: flex; align-items: center; gap: 5px; padding: 0 9px; border-bottom: 1px solid #d4d4d8; }
+.pc .krom i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
+.pc .krom .adres { flex: 1; margin-left: 6px; height: 17px; border-radius: 9px; background: #fff; color: #555; padding: 0 9px;
+  font: 9.5px/17px "Roboto Mono", ui-monospace, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc .sayfa { padding: 22px 18px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.pc .logo { width: 36px; height: 36px; border-radius: 50%; background: #24292f; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 17px; }
+.pc h2 { margin: 0 0 4px; font-size: 17px; font-weight: 600; text-align: center; }
+.pc .form { width: 100%; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; }
+.pc label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; }
+.pc .alan { height: 30px; border: 1px solid #d0d7de; border-radius: 6px; background: #fff; padding: 0 9px; box-sizing: border-box;
+  display: flex; align-items: center; font-size: 12px; color: #1f2328; white-space: nowrap; overflow: hidden; transition: box-shadow .15s, border-color .15s; }
+.pc .alan.odak { border-color: #0969da; box-shadow: 0 0 0 3px rgba(9,105,218,.3); }
+.pc .alan .imlec { display: inline-block; width: 1px; height: 15px; background: #1f2328; margin-left: 1px; animation: yanip 1s steps(2) infinite; }
+.pc .alan .nokta { letter-spacing: 2px; font-size: 14px; }
+.pc .gir { height: 32px; border-radius: 6px; background: #1f883d; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 12px; }
+.pc .tik { color: #1a7f37; font-weight: 600; font-size: 12px; text-align: center; }
+.pc .ok { position: absolute; z-index: 5; width: 22px; height: 22px; left: 72%; top: 86%; transition: left .75s cubic-bezier(.3,0,.2,1), top .75s cubic-bezier(.3,0,.2,1), transform .12s; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+.pc .ok.bas { transform: scale(.82); }
+.pc .arac { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
+.pc .arac .ust { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
+.pc .arac .ust span { font-size: 9px; border: 1px solid #d0d7de; border-radius: 4px; padding: 1px 6px; }
+.pc .arac .btn { width: 100%; height: 26px; border-radius: 6px; background: #5d9c5b; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 11px; }
+.pc .arac .uyari { font-size: 9.5px; color: #7a5a00; text-align: center; line-height: 1.35; }
+.pc .arac canvas { width: 150px; height: 150px; image-rendering: pixelated; background: #fff; border: 1px solid #d0d7de; border-radius: 4px; padding: 4px; }
+.pc .arac .kare { font-size: 9px; color: #57606a; text-align: center; }
+@keyframes yanip { to { visibility: hidden; } }
 .parmak { position: absolute; z-index: 60; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.28) 55%, rgba(255,255,255,0) 72%);
   box-shadow: 0 0 0 2px rgba(0,0,0,.18), 0 4px 14px rgba(0,0,0,.25); opacity: 0;
@@ -558,6 +595,7 @@
       this.m = veri.app || {};                 // uygulamanın metinleri
       this.d = Object.assign({ dil: veri.lang || document.documentElement.lang || "en" }, veri.demo || {});
       this.s = veri.site || {};                // sitenin kendi metinleri (seçici, ölçü)
+      this.a = veri.arac || {};                // aktar.html'in kendi metinleri (bilgisayar ekranı)
       this.dir = veri.dir || document.documentElement.dir || "ltr";
       bicim.dil = this.d.dil;
       this.kasa = kasaUret(this.d);
@@ -643,10 +681,12 @@
               </div>
               ${kesik}
             </div>
+            <div class="pc" dir="ltr" aria-hidden="true"></div>
           </div>
           ${secici}
         </div>`;
       this.uyg = this.shadowRoot.querySelector(".uyg");
+      this.pc = this.shadowRoot.querySelector(".pc");
       this.sahneler = this.shadowRoot.querySelector(".sahneler");
       this.katman = this.shadowRoot.querySelector(".katman");
       this.parmak = this.shadowRoot.querySelector(".parmak");
@@ -1037,13 +1077,25 @@
           ["parola", 18], ["bekle", 350], ["dokun", "diyalog:ice-aktar"], ["bekle", 4200], ["sifirla"],
         ];
       }
-      // iPhone'da Bluetooth klavye yok (iOS izin vermez): o sahnenin yerine
-      // panoya kopyalama (yalnız bu iPhone'da, 45 sn) gösterilir.
-      const cikis = this.model.sistem === "ios"
+      // Tur önce bilgisayar ekranıyla açılır, sonra telefona geçer.
+      // Android: tarayıcıdaki giriş formunda parola alanına tıklanır; telefon
+      // parolayı Bluetooth ile yazar; sonunda formun dolduğu görülür.
+      // iPhone: Bluetooth klavye yok (iOS izin vermez). Bilgisayar aktar.html'in
+      // QR'ını gösterir, telefon onu okur (bilgisayardan telefona — iOS'ta olan
+      // yön); detayda parola panoya kopyalanır (yalnız bu iPhone'da, 45 sn).
+      const ios = this.model.sistem === "ios";
+      const giris = ios
+        ? [["pc", "qr"], ["bekle", 2600], ["pc", null], ["bekle", 700],
+           ["dokun", "fab"], ["bekle", 900], ["dokun", "menu:qr"], ["bekle", 4800],
+           ["parola", 18], ["bekle", 350], ["dokun", "diyalog:ice-aktar"], ["bekle", 3600]]
+        : [["pc", "giris"], ["bekle", 1400], ["pcTikla"], ["bekle", 900], ["pc", null], ["bekle", 800]];
+      const cikis = ios
         ? [["dokun", "alan:password:kopya"], ["bekle", 3000]]
-        : [["dokun", "alan:password:pc"], ["bekle", 4200], ["dokun", "diyalog:kapat"], ["bekle", 700]];
+        : [["dokun", "alan:password:pc"], ["bekle", 4200], ["dokun", "diyalog:kapat"], ["bekle", 400],
+           ["pc", "dolu"], ["bekle", 2300], ["pc", null], ["bekle", 600]];
       return [
-        ["bekle", 1700], ["dokun", "kayit:github"], ["bekle", 1400],
+        ...giris,
+        ["dokun", "kayit:github"], ["bekle", 1400],
         ["dokun", "alan:password:goz"], ["bekle", 1500],
         ...cikis,
         ["dokun", "geri"], ["bekle", 1000],
@@ -1071,6 +1123,8 @@
             else if (islem === "dokun") await this.dokun(x, bekle);
             else if (islem === "kaydir") this.kaydir(x, y);
             else if (islem === "parola") await this.parolaYaz(x);
+            else if (islem === "pc") x ? this.pcGoster(x) : this.pcGizle();
+            else if (islem === "pcTikla") await this.pcTikla(bekle);
             else if (islem === "sifirla") this.sifirla();
           }
         }
@@ -1123,8 +1177,83 @@
       this.btKosu = (this.btKosu || 0) + 1;
       this.qrKosu = (this.qrKosu || 0) + 1;
       this.parmak.classList.remove("gor");
+      this.pcGizle();
       this.ciz(null);
       this.katmanCiz();
+    }
+
+    // ── Bilgisayar ekranı (demonun girişi ve Android'de sonu) ──────────────
+    pcHTML(tur) {
+      const ok = `<svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 10-6 1 4 7-3 2-4-7-5 4z" fill="#111" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
+      const krom = (adres) => `<div class="krom"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="adres">${adres}</span></div>`;
+      if (tur === "qr") {
+        const a = this.a;
+        return `<div class="pencere">${krom("file:///Users/…/Downloads/aktar.html")}
+          <div class="sayfa"><div class="arac">
+            <div class="ust"><b>🔐 ${kac(a.h1 || "Sekuvo Transfer")}</b><span>${this.d.dil === "tr" ? "Türkçe" : "English"} ▾</span></div>
+            <div class="btn">${kac(a.btnQr || "Encrypt and show the QR")}</div>
+            <div class="uyari">${a.uyariQr || ""}</div>
+            <canvas></canvas>
+            <div class="kare"></div>
+          </div></div></div>`;
+      }
+      // Giriş formu: üçüncü taraf bir site, metinleri İngilizce (sayfa dilinden bağımsız).
+      const k = this.kasa.find((x) => x.id === "github");
+      const alan = (ad) => (k && (k.alanlar.find(([a]) => a === ad) || [])[1]) || "";
+      const dolu = tur === "dolu";
+      const parola = dolu
+        ? `<span class="nokta">${"•".repeat(Math.min(14, alan("password").length || 12))}</span>`
+        : `<span class="imlec" style="visibility:hidden"></span>`;
+      return `<div class="pencere">${krom("https://github.com/login")}
+        <div class="sayfa">
+          <div class="logo">G</div><h2>Sign in</h2>
+          <div class="form">
+            <div><label>Username or email address</label><div class="alan kullanici">${kac(alan("username"))}</div></div>
+            <div><label>Password</label><div class="alan parola${dolu ? " odak" : ""}">${parola}</div></div>
+            <div class="gir">Sign in</div>
+            ${dolu ? `<div class="tik">✓ Password typed by the phone</div>` : ""}
+          </div>
+        </div>${dolu ? "" : ok}</div>`;
+    }
+
+    pcGoster(tur) {
+      if (!this.pc) return;
+      this.pcGizle();
+      this.pc.innerHTML = this.pcHTML(tur);
+      // eslint-disable-next-line no-unused-expressions
+      this.pc.offsetWidth;
+      this.pc.classList.add("gor");
+      this.pc.parentElement.classList.add("pcde");
+      if (tur === "qr") {
+        const c = this.pc.querySelector("canvas"), y = this.pc.querySelector(".kare");
+        let kare = 0;
+        const ilerle = () => { kare = (kare % 3) + 1; qrDesen(c, 57); y.textContent = bicim(this.a.kareCok || "%1$d/%2$d", kare, 3, 2); };
+        ilerle();
+        this.pcSayac = setInterval(ilerle, 1000);
+      }
+    }
+
+    pcGizle() {
+      if (!this.pc) return;
+      clearInterval(this.pcSayac); this.pcSayac = null;
+      this.pc.classList.remove("gor");
+      this.pc.parentElement.classList.remove("pcde");
+    }
+
+    /** Fare imleci parola alanına gider ve tıklar; alan odak alır. */
+    async pcTikla(bekle) {
+      const ok = this.pc && this.pc.querySelector(".ok"), alan = this.pc && this.pc.querySelector(".alan.parola");
+      if (!ok || !alan) return;
+      const pr = this.pc.getBoundingClientRect(), r = alan.getBoundingClientRect();
+      ok.style.left = `${((r.left + r.width * 0.42 - pr.left) / pr.width) * 100}%`;
+      ok.style.top = `${((r.top + r.height * 0.55 - pr.top) / pr.height) * 100}%`;
+      await bekle(800);
+      ok.classList.add("bas");
+      await bekle(130);
+      ok.classList.remove("bas");
+      alan.classList.add("odak");
+      const imlec = alan.querySelector(".imlec");
+      if (imlec) imlec.style.visibility = "";
     }
 
     // ── Görünürlük, etkileşim, hareket tercihi ─────────────────────────────
@@ -1158,6 +1287,7 @@
       this.kosu++;
       this.oynuyor = false;
       this.parmak && this.parmak.classList.remove("gor");
+      this.pcGizle();
     }
 
     kullaniciDokundu() {
