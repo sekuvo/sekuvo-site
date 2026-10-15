@@ -513,42 +513,50 @@
 .qr-panel .dugmeD { margin-top: 12px; }
 
 /* parmak */
-/* Bilgisayar ekranı: demonun girişinde cihazı kaplayan tarayıcı penceresi.
-   Telefona geçiş küçülerek solar; içerik her zaman soldan sağa (bilgisayar). */
-.pc { position: absolute; inset: 0; z-index: 80; border-radius: var(--kose); overflow: hidden; direction: ltr;
-  background: linear-gradient(160deg, #d7d3c8, #bfbab0); display: flex; align-items: center; justify-content: center;
-  opacity: 0; transform: scale(.94); pointer-events: none; transition: opacity .5s ease, transform .5s ease; }
-.pc.gor { opacity: 1; transform: none; }
-/* Bilgisayar sahnesinde telefonun yan düğmeleri ve çentiği görünmesin. */
-.cihaz.pcde .dugme, .cihaz.pcde .kesik { visibility: hidden; }
-.pencere { position: relative; width: 90%; max-height: 92%; background: #fff; border-radius: 9px; overflow: hidden;
-  box-shadow: 0 18px 44px rgba(0,0,0,.28), 0 0 0 1px rgba(0,0,0,.08); color: #1f2328;
-  font: 12px/1.4 -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; }
-.pc .krom { height: 28px; background: #e8e8ea; display: flex; align-items: center; gap: 5px; padding: 0 9px; border-bottom: 1px solid #d4d4d8; }
-.pc .krom i { width: 9px; height: 9px; border-radius: 50%; flex: none; }
-.pc .krom .adres { flex: 1; margin-left: 6px; height: 17px; border-radius: 9px; background: #fff; color: #555; padding: 0 9px;
-  font: 9.5px/17px "Roboto Mono", ui-monospace, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.pc .sayfa { padding: 22px 18px 20px; display: flex; flex-direction: column; align-items: center; gap: 10px; }
-.pc .logo { width: 36px; height: 36px; border-radius: 50%; background: #24292f; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 17px; }
-.pc h2 { margin: 0 0 4px; font-size: 17px; font-weight: 600; text-align: center; }
-.pc .form { width: 100%; background: #f6f8fa; border: 1px solid #d0d7de; border-radius: 6px; padding: 14px; box-sizing: border-box; display: flex; flex-direction: column; gap: 10px; }
-.pc label { display: block; font-size: 11px; font-weight: 600; margin-bottom: 4px; }
-.pc .alan { height: 30px; border: 1px solid #d0d7de; border-radius: 6px; background: #fff; padding: 0 9px; box-sizing: border-box;
-  display: flex; align-items: center; font-size: 12px; color: #1f2328; white-space: nowrap; overflow: hidden; transition: box-shadow .15s, border-color .15s; }
-.pc .alan.odak { border-color: #0969da; box-shadow: 0 0 0 3px rgba(9,105,218,.3); }
-.pc .alan .imlec { display: inline-block; width: 1px; height: 15px; background: #1f2328; margin-left: 1px; animation: yanip 1s steps(2) infinite; }
-.pc .alan .nokta { letter-spacing: 2px; font-size: 14px; }
-.pc .gir { height: 32px; border-radius: 6px; background: #1f883d; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 12px; }
-.pc .tik { color: #1a7f37; font-weight: 600; font-size: 12px; text-align: center; }
-.pc .ok { position: absolute; z-index: 5; width: 22px; height: 22px; left: 72%; top: 86%; transition: left .75s cubic-bezier(.3,0,.2,1), top .75s cubic-bezier(.3,0,.2,1), transform .12s; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
+/* Bilgisayar: demonun girişinde (ve Android'de sonunda) telefonun YERİNE
+   çizilen dizüstü. Telefon soluyor, dizüstü cihaz kutusuna ortalanıp
+   büyüyor; içeriği her zaman soldan sağa. Genişliği kutudan taşar; taşma
+   payı pcGoster()'de ekrandaki boşluğa göre ölçeklenir (--pck). */
+.cihaz.pcde .govde, .cihaz.pcde .cam, .cihaz.pcde .ekran, .cihaz.pcde .dugme, .cihaz.pcde .kesik { opacity: 0; }
+.govde, .cam, .ekran, .dugme, .kesik { transition: opacity .4s ease; }
+.pc { position: absolute; left: 50%; top: 50%; width: 400px; z-index: 80; direction: ltr; pointer-events: none;
+  opacity: 0; transform: translate(-50%, -50%) scale(calc(var(--pck, 1) * .9)); transition: opacity .45s ease, transform .45s ease; }
+.pc.gor { opacity: 1; transform: translate(-50%, -50%) scale(var(--pck, 1)); }
+.pc-lap { position: relative; width: 352px; margin: 0 auto; }
+.pc-kapak { position: relative; height: 232px; border-radius: 13px 13px 5px 5px; background: #0b0b0c; padding: 10px 10px 11px; box-sizing: border-box;
+  box-shadow: 0 0 0 1.5px #3b3c40 inset, 0 0 0 1px rgba(255,255,255,.06), 0 24px 40px -18px rgba(0,0,0,.5); }
+.pc-kapak::before { content: ""; position: absolute; top: 4px; left: 50%; width: 4px; height: 4px; margin-left: -2px; border-radius: 50%; background: #1f2a38; }
+.pc-ekran { position: relative; height: 100%; border-radius: 3px; overflow: hidden; background: #f6f8fa; display: flex; flex-direction: column;
+  color: #1f2328; font: 11px/1.4 -apple-system, "Segoe UI", Roboto, system-ui, sans-serif; }
+.pc-taban { position: relative; width: 400px; margin-left: -24px; height: 12px; border-radius: 2px 2px 10px 10px;
+  background: linear-gradient(180deg, #dcdbd7 0%, #b3b2ae 55%, #8f8e8a 100%); box-shadow: 0 18px 30px -14px rgba(0,0,0,.6); }
+.pc-taban::before { content: ""; position: absolute; top: 0; left: 50%; width: 64px; height: 4px; margin-left: -32px; border-radius: 0 0 5px 5px; background: #a2a19d; }
+.pc .krom { height: 22px; flex: none; background: #e8e8ea; display: flex; align-items: center; gap: 4px; padding: 0 8px; border-bottom: 1px solid #d4d4d8; }
+.pc .krom i { width: 8px; height: 8px; border-radius: 50%; flex: none; }
+.pc .krom .adres { flex: 1; margin-left: 5px; height: 14px; border-radius: 7px; background: #fff; color: #555; padding: 0 8px;
+  font: 8.5px/14px "Roboto Mono", ui-monospace, monospace; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.pc .sayfa { flex: 1; padding: 12px 40px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 7px; }
+.pc .logo { width: 26px; height: 26px; border-radius: 50%; background: #24292f; display: grid; place-items: center; color: #fff; font-weight: 700; font-size: 13px; }
+.pc h2 { margin: 0; font-size: 14px; font-weight: 600; text-align: center; }
+.pc .form { width: 100%; background: #fff; border: 1px solid #d0d7de; border-radius: 6px; padding: 10px 12px; box-sizing: border-box; display: flex; flex-direction: column; gap: 7px; }
+.pc label { display: block; font-size: 9.5px; font-weight: 600; margin-bottom: 3px; }
+.pc .alan { height: 24px; border: 1px solid #d0d7de; border-radius: 5px; background: #fff; padding: 0 7px; box-sizing: border-box;
+  display: flex; align-items: center; font-size: 10.5px; color: #1f2328; white-space: nowrap; overflow: hidden; transition: box-shadow .15s, border-color .15s; }
+.pc .alan.odak { border-color: #0969da; box-shadow: 0 0 0 2.5px rgba(9,105,218,.3); }
+.pc .alan .imlec { display: inline-block; width: 1px; height: 13px; background: #1f2328; margin-left: 1px; animation: yanip 1s steps(2) infinite; }
+.pc .alan .nokta { letter-spacing: 1.5px; font-size: 12px; }
+.pc .gir { height: 26px; border-radius: 5px; background: #1f883d; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 11px; transition: background .2s; }
+.pc .gir.tamam { background: #116329; }
+.pc .tik { color: #1a7f37; font-weight: 600; font-size: 10.5px; text-align: center; min-height: 14px; }
+.pc .ok { position: absolute; z-index: 5; width: 18px; height: 18px; left: 78%; top: 84%; transition: left .75s cubic-bezier(.3,0,.2,1), top .75s cubic-bezier(.3,0,.2,1), transform .12s; filter: drop-shadow(0 1px 2px rgba(0,0,0,.35)); }
 .pc .ok.bas { transform: scale(.82); }
-.pc .arac { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 8px; }
-.pc .arac .ust { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 12px; }
-.pc .arac .ust span { font-size: 9px; border: 1px solid #d0d7de; border-radius: 4px; padding: 1px 6px; }
-.pc .arac .btn { width: 100%; height: 26px; border-radius: 6px; background: #5d9c5b; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 11px; }
-.pc .arac .uyari { font-size: 9.5px; color: #7a5a00; text-align: center; line-height: 1.35; }
-.pc .arac canvas { width: 150px; height: 150px; image-rendering: pixelated; background: #fff; border: 1px solid #d0d7de; border-radius: 4px; padding: 4px; }
-.pc .arac .kare { font-size: 9px; color: #57606a; text-align: center; }
+.pc .arac { width: 100%; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+.pc .arac .ust { width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 11px; }
+.pc .arac .ust span { font-size: 8.5px; border: 1px solid #d0d7de; border-radius: 4px; padding: 0 5px; background: #fff; }
+.pc .arac .btn { width: 100%; height: 22px; border-radius: 5px; background: #5d9c5b; color: #fff; display: grid; place-items: center; font-weight: 600; font-size: 10px; }
+.pc .arac .uyari { font-size: 8.5px; color: #7a5a00; text-align: center; line-height: 1.3; }
+.pc .arac canvas { width: 104px; height: 104px; image-rendering: pixelated; background: #fff; border: 1px solid #d0d7de; border-radius: 4px; padding: 3px; }
+.pc .arac .kare { font-size: 8px; color: #57606a; text-align: center; }
 @keyframes yanip { to { visibility: hidden; } }
 .parmak { position: absolute; z-index: 60; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%; pointer-events: none;
   background: radial-gradient(circle, rgba(255,255,255,.55) 0%, rgba(255,255,255,.28) 55%, rgba(255,255,255,0) 72%);
@@ -1092,7 +1100,7 @@
       const cikis = ios
         ? [["dokun", "alan:password:kopya"], ["bekle", 3000]]
         : [["dokun", "alan:password:pc"], ["bekle", 4200], ["dokun", "diyalog:kapat"], ["bekle", 400],
-           ["pc", "dolu"], ["bekle", 2300], ["pc", null], ["bekle", 600]];
+           ["pc", "yaz"], ["bekle", 900], ["pcYaz"], ["bekle", 1600], ["pc", null], ["bekle", 600]];
       return [
         ...giris,
         ["dokun", "kayit:github"], ["bekle", 1400],
@@ -1125,6 +1133,7 @@
             else if (islem === "parola") await this.parolaYaz(x);
             else if (islem === "pc") x ? this.pcGoster(x) : this.pcGizle();
             else if (islem === "pcTikla") await this.pcTikla(bekle);
+            else if (islem === "pcYaz") await this.pcYaz(bekle);
             else if (islem === "sifirla") this.sifirla();
           }
         }
@@ -1186,34 +1195,31 @@
     pcHTML(tur) {
       const ok = `<svg class="ok" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3l14 10-6 1 4 7-3 2-4-7-5 4z" fill="#111" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/></svg>`;
       const krom = (adres) => `<div class="krom"><i style="background:#ff5f57"></i><i style="background:#febc2e"></i><i style="background:#28c840"></i><span class="adres">${adres}</span></div>`;
+      const lap = (adres, icerik) => `<div class="pc-lap"><div class="pc-kapak"><div class="pc-ekran">${krom(adres)}<div class="sayfa">${icerik}</div></div></div><div class="pc-taban"></div></div>`;
       if (tur === "qr") {
         const a = this.a;
-        return `<div class="pencere">${krom("file:///Users/…/Downloads/aktar.html")}
-          <div class="sayfa"><div class="arac">
+        return lap("file:///Users/…/Downloads/aktar.html", `<div class="arac">
             <div class="ust"><b>🔐 ${kac(a.h1 || "Sekuvo Transfer")}</b><span>${this.d.dil === "tr" ? "Türkçe" : "English"} ▾</span></div>
             <div class="btn">${kac(a.btnQr || "Encrypt and show the QR")}</div>
             <div class="uyari">${a.uyariQr || ""}</div>
             <canvas></canvas>
             <div class="kare"></div>
-          </div></div></div>`;
+          </div>`);
       }
       // Giriş formu: üçüncü taraf bir site, metinleri İngilizce (sayfa dilinden bağımsız).
+      // "giris": alan boş, imleç tıklayacak. "yaz": alan odakta, parola telefon
+      // tarafından harf harf yazılacak (pcYaz).
       const k = this.kasa.find((x) => x.id === "github");
       const alan = (ad) => (k && (k.alanlar.find(([a]) => a === ad) || [])[1]) || "";
-      const dolu = tur === "dolu";
-      const parola = dolu
-        ? `<span class="nokta">${"•".repeat(Math.min(14, alan("password").length || 12))}</span>`
-        : `<span class="imlec" style="visibility:hidden"></span>`;
-      return `<div class="pencere">${krom("https://github.com/login")}
-        <div class="sayfa">
+      const yaz = tur === "yaz";
+      return lap("https://github.com/login", `
           <div class="logo">G</div><h2>Sign in</h2>
           <div class="form">
             <div><label>Username or email address</label><div class="alan kullanici">${kac(alan("username"))}</div></div>
-            <div><label>Password</label><div class="alan parola${dolu ? " odak" : ""}">${parola}</div></div>
+            <div><label>Password</label><div class="alan parola${yaz ? " odak" : ""}"><span class="nokta"></span><span class="imlec" style="${yaz ? "" : "visibility:hidden"}"></span></div></div>
             <div class="gir">Sign in</div>
-            ${dolu ? `<div class="tik">✓ Password typed by the phone</div>` : ""}
-          </div>
-        </div>${dolu ? "" : ok}</div>`;
+            <div class="tik"></div>
+          </div>`) + (yaz ? "" : ok);
     }
 
     pcGoster(tur) {
@@ -1222,6 +1228,12 @@
       this.pc.innerHTML = this.pcHTML(tur);
       // eslint-disable-next-line no-unused-expressions
       this.pc.offsetWidth;
+      // Dizüstü (400 px) cihaz kutusundan taşar; iki yandaki boşluk kadar
+      // izin verilir, yoksa küçültülür (mobilde ve dar sütunda).
+      const kutu = this.pc.parentElement.getBoundingClientRect();
+      const bos = Math.max(0, Math.min(kutu.left, document.documentElement.clientWidth - kutu.right) - 12);
+      const k = Math.min(1, (kutu.width + 2 * bos) / 400);
+      this.pc.style.setProperty("--pck", k.toFixed(3));
       this.pc.classList.add("gor");
       this.pc.parentElement.classList.add("pcde");
       if (tur === "qr") {
@@ -1238,6 +1250,23 @@
       clearInterval(this.pcSayac); this.pcSayac = null;
       this.pc.classList.remove("gor");
       this.pc.parentElement.classList.remove("pcde");
+    }
+
+    /** Bilgisayarda parola harf harf yazılır (telefon Bluetooth klavyedir), sonra onay. */
+    async pcYaz(bekle) {
+      const nokta = this.pc && this.pc.querySelector(".alan.parola .nokta");
+      if (!nokta) return;
+      const k = this.kasa.find((x) => x.id === "github");
+      const n = Math.min(20, ((k && (k.alanlar.find(([a]) => a === "password") || [])[1]) || "").length || 16);
+      for (let i = 1; i <= n; i++) {
+        nokta.textContent = "•".repeat(i);
+        await bekle(75);
+      }
+      await bekle(400);
+      const imlec = this.pc.querySelector(".alan.parola .imlec"), gir = this.pc.querySelector(".gir"), tik = this.pc.querySelector(".tik");
+      if (imlec) imlec.style.visibility = "hidden";
+      if (gir) gir.classList.add("tamam");
+      if (tik) tik.textContent = "✓ Password typed by the phone";
     }
 
     /** Fare imleci parola alanına gider ve tıklar; alan odak alır. */
