@@ -42,6 +42,8 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 title = sys.argv[1] if len(sys.argv) > 1 else "Transfer"
 secret = sys.stdin.read()
+# The app refuses entries above 256 KB; say so here instead of after the scan.
+assert len(secret.encode()) <= 256 * 1024, "secret is over 256 KB, the app will not import it"
 password = getpass.getpass("Envelope password (ASCII, generated): ")
 assert password.isascii() and len(password) >= 8, "ASCII and at least 8 characters"
 

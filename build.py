@@ -9,6 +9,8 @@ all five at once instead of drifting between hand-edited files. Run:
 Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 """
 import hashlib
+import os
+import sys
 import json
 import pathlib
 
@@ -1133,9 +1135,10 @@ def indir_kutusu(code):
 def aktar_ozetini_denetle(root):
     """Sitede yazan SHA-256 ile uygulama deposundaki aktar.html aynı mı?
 
-    Depo yanında değilse sessiz geçer. Tutmazsa UYARIR: ya aktar.html yeni
-    bir sürümle değişti (aktarim.py'deki sürüm/özet güncellenmeli) ya da
-    yayımlanmamış bir değişiklik var.
+    Depo yanında değilse sessiz geçer. Tutmazsa UYARIR ama durmaz: depodaki
+    aktar.html yayımlanan sürümden ileride olabilir (geliştirme), sitede yazan
+    özet ise kullanıcının indirdiği SÜRÜMÜN özeti olmalıdır. SEKUVO_YAYIN=1
+    ile (yayın derlemesi) tutmazlık hata sayılır ve derleme durur.
     """
     yol = root.parent / "vault" / "tools" / "aktar.html"
     if not yol.exists():
@@ -1143,7 +1146,9 @@ def aktar_ozetini_denetle(root):
     oz = hashlib.sha256(yol.read_bytes()).hexdigest()
     if oz != aktarim.AKTAR_SHA256:
         print(f"UYARI: ../vault/tools/aktar.html özeti {oz[:12]}…, sitede yazan {aktarim.AKTAR_SHA256[:12]}… "
-              f"— aktarim.py'yi yayımlanan sürümle eşitle")
+              f"— depodaki dosya yayımlanan sürümden farklı; yeni sürüm çıkınca aktarim.py'yi eşitle")
+        if os.environ.get("SEKUVO_YAYIN") == "1":
+            sys.exit("yayın derlemesi: aktar.html özeti tutmuyor, durduruldu")
 
 
 def esc(text):

@@ -6,8 +6,9 @@ TASLAK (2026-10-14): metinler kullanıcıyla birlikte gözden geçirilecek;
 
 aktar.html'in sürümü, boyutu ve SHA-256'sı TEK yerde: aşağıdaki sabitler.
 build.py, uygulama deposu yanındaysa (../vault/tools/aktar.html) özeti
-oradaki dosyayla karşılaştırır ve tutmazsa durur — sitede yazan değerle
-indirilen dosyanın ayrışması, tam da doğrulamanın yakalaması gereken şeydir.
+oradaki dosyayla karşılaştırır ve tutmazsa uyarır; SEKUVO_YAYIN=1 ile durur —
+sitede yazan değerle indirilen dosyanın ayrışması, tam da doğrulamanın
+yakalaması gereken şeydir.
 """
 from kaynak import GITHUB
 
