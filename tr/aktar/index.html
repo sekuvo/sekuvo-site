@@ -287,10 +287,14 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 
 title = sys.argv[1] if len(sys.argv) &gt; 1 else "Transfer"
 secret = sys.stdin.read()
-# The app refuses entries above 256 KB; say so here instead of after the scan.
-assert len(secret.encode()) &lt;= 256 * 1024, "secret is over 256 KB, the app will not import it"
+# The app refuses entries above 256 KB, measured on its own JSON of the entry,
+# which writes "/" as "\/". Measure the same way here instead of after the scan.
+body = json.dumps({"notes": secret, "title": title}, ensure_ascii=False)
+if len(body.encode()) + body.count("/") &gt; 256 * 1024:
+    sys.exit("the entry is over 256 KB as the app measures it; the app will not import it")
 password = getpass.getpass("Envelope password (ASCII, generated): ")
-assert password.isascii() and len(password) &gt;= 8, "ASCII and at least 8 characters"
+if not (password.isascii() and len(password) &gt;= 8):
+    sys.exit("the password must be ASCII and at least 8 characters")
 
 now = int(time.time() * 1000)
 payload = json.dumps({"entries": [{
