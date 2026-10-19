@@ -263,7 +263,7 @@
     <p class="lede-big">This page turns an already-encrypted Sekuvo envelope into QR frames your phone can scan. It performs no encryption and never asks for a secret: you produce the envelope on your own machine, and only ciphertext is pasted here.</p>
     <p class="note">The most conservative path is still the downloaded aktar.html, opened from your own disk. This page exists for the case where you encrypt in your own terminal and only need the QR display.</p>
     <h2>1 · Produce the envelope on your own machine</h2>
-    <p>The script below builds exactly the envelope the app opens (PBKDF2-HMAC-SHA256 · 310,000 rounds + AES-256-GCM). Save it as zarf-uret.py and read it before running it — it is about thirty lines. Generate the password instead of inventing one; the first command does that.</p>
+    <p>The script below builds exactly the envelope the app opens (PBKDF2-HMAC-SHA256 · 600,000 rounds + AES-256-GCM). Save it as zarf-uret.py and read it before running it — it is about thirty lines. Generate the password instead of inventing one; the first command does that.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

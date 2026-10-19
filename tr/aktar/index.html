@@ -263,7 +263,7 @@
     <p class="lede-big">Bu sayfa, zaten şifrelenmiş bir Sekuvo zarfını telefonun okuyabileceği QR karelerine çevirir. Şifreleme yapmaz ve asla bir sır istemez: zarfı kendi makinende üretirsin, buraya yalnız şifreli metin yapıştırılır.</p>
     <p class="note">En temkinli yol hâlâ indirilen ve kendi diskinden açılan aktar.html'dir. Bu sayfa, şifrelemeyi kendi terminalinde yapıp yalnız QR gösterimine ihtiyaç duyduğun durum için var.</p>
     <h2>1 · Zarfı kendi makinende üret</h2>
-    <p>Aşağıdaki betik, uygulamanın açtığı zarfın birebir aynısını kurar (PBKDF2-HMAC-SHA256 · 310.000 tur + AES-256-GCM). zarf-uret.py adıyla kaydet ve çalıştırmadan önce oku — otuz satır kadar. Parolayı uydurma, üret; ilk komut bunun için.</p>
+    <p>Aşağıdaki betik, uygulamanın açtığı zarfın birebir aynısını kurar (PBKDF2-HMAC-SHA256 · 600.000 tur + AES-256-GCM). zarf-uret.py adıyla kaydet ve çalıştırmadan önce oku — otuz satır kadar. Parolayı uydurma, üret; ilk komut bunun için.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

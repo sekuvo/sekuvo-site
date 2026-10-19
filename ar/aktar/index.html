@@ -263,7 +263,7 @@
     <p class="lede-big">تحوّل هذه الصفحة مظروف Sekuvo المشفَّر سلفًا إلى إطارات QR يستطيع هاتفك مسحها. لا تجري أي تشفير ولا تطلب سرًّا أبدًا: تنتج المظروف على جهازك الخاص، ولا يُلصق هنا إلا نص مشفَّر.</p>
     <p class="note">الطريق الأكثر تحفظًا يبقى aktar.html المنزَّل والمفتوح من قرصك الخاص. هذه الصفحة موجودة للحالة التي تشفّر فيها في طرفيتك ولا تحتاج إلا إلى عرض QR.</p>
     <h2>1 · أنتج المظروف على جهازك الخاص</h2>
-    <p>يبني السكربت أدناه المظروف نفسه الذي يفتحه التطبيق (PBKDF2-HMAC-SHA256 · 310٬000 دورة + AES-256-GCM). احفظه باسم zarf-uret.py واقرأه قبل تشغيله — نحو ثلاثين سطرًا. ولّد كلمة المرور بدل اختلاقها؛ الأمر الأول يفعل ذلك.</p>
+    <p>يبني السكربت أدناه المظروف نفسه الذي يفتحه التطبيق (PBKDF2-HMAC-SHA256 · 600٬000 دورة + AES-256-GCM). احفظه باسم zarf-uret.py واقرأه قبل تشغيله — نحو ثلاثين سطرًا. ولّد كلمة المرور بدل اختلاقها؛ الأمر الأول يفعل ذلك.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

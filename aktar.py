@@ -6,7 +6,7 @@ Gömülü sayfa BİLEREK şifreleme yapmaz: yalnız zaten şifrelenmiş bir zarf
 QR karelerine çevirir. Böylece "bu site senden asla bir sır istemez" sözü
 bozulmaz — düz metin sır hiçbir zaman bu siteye girmez. Zarfı kullanıcı
 kendi makinesinde, aşağıdaki betikle üretir (docs/kendi-zarfini-uret.md
-ile aynı biçim: PBKDF2-HMAC-SHA256 310k + AES-256-GCM).
+ile aynı biçim: PBKDF2-HMAC-SHA256 600k + AES-256-GCM).
 """
 
 # Komut blokları dilden bağımsızdır (kod evrenseldir); yorumlar İngilizce.
@@ -59,12 +59,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),
@@ -372,7 +372,7 @@ A["en"] = dict(
     lede="This page turns an already-encrypted Sekuvo envelope into QR frames your phone can scan. It performs no encryption and never asks for a secret: you produce the envelope on your own machine, and only ciphertext is pasted here.",
     warn="The most conservative path is still the downloaded aktar.html, opened from your own disk. This page exists for the case where you encrypt in your own terminal and only need the QR display.",
     make_h="1 · Produce the envelope on your own machine",
-    make_p="The script below builds exactly the envelope the app opens (PBKDF2-HMAC-SHA256 · 310,000 rounds + AES-256-GCM). Save it as zarf-uret.py and read it before running it — it is about thirty lines. Generate the password instead of inventing one; the first command does that.",
+    make_p="The script below builds exactly the envelope the app opens (PBKDF2-HMAC-SHA256 · 600,000 rounds + AES-256-GCM). Save it as zarf-uret.py and read it before running it — it is about thirty lines. Generate the password instead of inventing one; the first command does that.",
     make_note="Paste the secret into the script's input rather than typing it on the command line — that way it never lands in your shell history.",
     paste_h="2 · Paste the envelope",
     paste_label='Encrypted envelope — the JSON the script printed, starting with {"app": "vault"…',
@@ -392,7 +392,7 @@ A["tr"] = dict(
     lede="Bu sayfa, zaten şifrelenmiş bir Sekuvo zarfını telefonun okuyabileceği QR karelerine çevirir. Şifreleme yapmaz ve asla bir sır istemez: zarfı kendi makinende üretirsin, buraya yalnız şifreli metin yapıştırılır.",
     warn="En temkinli yol hâlâ indirilen ve kendi diskinden açılan aktar.html'dir. Bu sayfa, şifrelemeyi kendi terminalinde yapıp yalnız QR gösterimine ihtiyaç duyduğun durum için var.",
     make_h="1 · Zarfı kendi makinende üret",
-    make_p="Aşağıdaki betik, uygulamanın açtığı zarfın birebir aynısını kurar (PBKDF2-HMAC-SHA256 · 310.000 tur + AES-256-GCM). zarf-uret.py adıyla kaydet ve çalıştırmadan önce oku — otuz satır kadar. Parolayı uydurma, üret; ilk komut bunun için.",
+    make_p="Aşağıdaki betik, uygulamanın açtığı zarfın birebir aynısını kurar (PBKDF2-HMAC-SHA256 · 600.000 tur + AES-256-GCM). zarf-uret.py adıyla kaydet ve çalıştırmadan önce oku — otuz satır kadar. Parolayı uydurma, üret; ilk komut bunun için.",
     make_note="Sırrı komut satırına yazma, betiğin girdisine yapıştır — böylece kabuk geçmişine düşmez.",
     paste_h="2 · Zarfı yapıştır",
     paste_label='Şifreli zarf — betiğin yazdırdığı, {"app": "vault"… ile başlayan JSON',
@@ -412,7 +412,7 @@ A["es"] = dict(
     lede="Esta página convierte un sobre Sekuvo ya cifrado en cuadros QR que tu teléfono puede escanear. No realiza ningún cifrado y nunca pide un secreto: el sobre lo produces en tu propia máquina, y aquí solo se pega texto cifrado.",
     warn="El camino más conservador sigue siendo el aktar.html descargado y abierto desde tu propio disco. Esta página existe para el caso en que cifras en tu propia terminal y solo necesitas la visualización QR.",
     make_h="1 · Produce el sobre en tu propia máquina",
-    make_p="El script de abajo construye exactamente el sobre que la aplicación abre (PBKDF2-HMAC-SHA256 · 310.000 rondas + AES-256-GCM). Guárdalo como zarf-uret.py y léelo antes de ejecutarlo — son unas treinta líneas. Genera la contraseña en vez de inventarla; el primer comando lo hace.",
+    make_p="El script de abajo construye exactamente el sobre que la aplicación abre (PBKDF2-HMAC-SHA256 · 600.000 rondas + AES-256-GCM). Guárdalo como zarf-uret.py y léelo antes de ejecutarlo — son unas treinta líneas. Genera la contraseña en vez de inventarla; el primer comando lo hace.",
     make_note="Pega el secreto en la entrada del script en lugar de escribirlo en la línea de comandos — así nunca queda en el historial de tu shell.",
     paste_h="2 · Pega el sobre",
     paste_label='Sobre cifrado — el JSON que imprimió el script, que empieza con {"app": "vault"…',
@@ -432,7 +432,7 @@ A["hi"] = dict(
     lede="यह पेज पहले से एन्क्रिप्टेड Sekuvo लिफ़ाफ़े को ऐसे QR फ़्रेम में बदलता है जिन्हें आपका फ़ोन स्कैन कर सके। यह कोई एन्क्रिप्शन नहीं करता और कभी कोई रहस्य नहीं माँगता: लिफ़ाफ़ा आप अपनी ही मशीन पर बनाते हैं, और यहाँ केवल एन्क्रिप्टेड टेक्स्ट चिपकाया जाता है।",
     warn="सबसे सतर्क रास्ता अब भी डाउनलोड किया हुआ aktar.html है, जिसे अपनी ही डिस्क से खोला जाए। यह पेज उस स्थिति के लिए है जब आप अपने टर्मिनल में एन्क्रिप्ट करते हैं और आपको केवल QR प्रदर्शन चाहिए।",
     make_h="1 · लिफ़ाफ़ा अपनी ही मशीन पर बनाएँ",
-    make_p="नीचे दी स्क्रिप्ट ठीक वही लिफ़ाफ़ा बनाती है जिसे ऐप खोलता है (PBKDF2-HMAC-SHA256 · 310,000 राउंड + AES-256-GCM)। इसे zarf-uret.py नाम से सहेजें और चलाने से पहले पढ़ें — यह लगभग तीस पंक्तियाँ है। पासवर्ड गढ़ने के बजाय जनरेट करें; पहला कमांड यही करता है।",
+    make_p="नीचे दी स्क्रिप्ट ठीक वही लिफ़ाफ़ा बनाती है जिसे ऐप खोलता है (PBKDF2-HMAC-SHA256 · 600,000 राउंड + AES-256-GCM)। इसे zarf-uret.py नाम से सहेजें और चलाने से पहले पढ़ें — यह लगभग तीस पंक्तियाँ है। पासवर्ड गढ़ने के बजाय जनरेट करें; पहला कमांड यही करता है।",
     make_note="रहस्य को कमांड लाइन पर टाइप करने के बजाय स्क्रिप्ट के इनपुट में चिपकाएँ — इस तरह वह कभी आपके शेल इतिहास में नहीं जाता।",
     paste_h="2 · लिफ़ाफ़ा चिपकाएँ",
     paste_label='एन्क्रिप्टेड लिफ़ाफ़ा — स्क्रिप्ट द्वारा प्रिंट किया JSON, जो {"app": "vault"… से शुरू होता है',
@@ -452,7 +452,7 @@ A["ar"] = dict(
     lede="تحوّل هذه الصفحة مظروف Sekuvo المشفَّر سلفًا إلى إطارات QR يستطيع هاتفك مسحها. لا تجري أي تشفير ولا تطلب سرًّا أبدًا: تنتج المظروف على جهازك الخاص، ولا يُلصق هنا إلا نص مشفَّر.",
     warn="الطريق الأكثر تحفظًا يبقى aktar.html المنزَّل والمفتوح من قرصك الخاص. هذه الصفحة موجودة للحالة التي تشفّر فيها في طرفيتك ولا تحتاج إلا إلى عرض QR.",
     make_h="1 · أنتج المظروف على جهازك الخاص",
-    make_p="يبني السكربت أدناه المظروف نفسه الذي يفتحه التطبيق (PBKDF2-HMAC-SHA256 · 310٬000 دورة + AES-256-GCM). احفظه باسم zarf-uret.py واقرأه قبل تشغيله — نحو ثلاثين سطرًا. ولّد كلمة المرور بدل اختلاقها؛ الأمر الأول يفعل ذلك.",
+    make_p="يبني السكربت أدناه المظروف نفسه الذي يفتحه التطبيق (PBKDF2-HMAC-SHA256 · 600٬000 دورة + AES-256-GCM). احفظه باسم zarf-uret.py واقرأه قبل تشغيله — نحو ثلاثين سطرًا. ولّد كلمة المرور بدل اختلاقها؛ الأمر الأول يفعل ذلك.",
     make_note="الصق السرّ في مدخل السكربت بدل كتابته في سطر الأوامر — هكذا لا يستقر أبدًا في سجل الصدفة.",
     paste_h="2 · الصق المظروف",
     paste_label='المظروف المشفَّر — ملف JSON الذي طبعه السكربت، ويبدأ بـ {"app": "vault"…',
@@ -472,7 +472,7 @@ A["zh"] = dict(
     lede="本页把已加密的 Sekuvo 信封转换为手机可以扫描的二维码帧。它不做任何加密,也绝不索要秘密:信封在你自己的机器上生成,这里只粘贴密文。",
     warn="最稳妥的方式仍是下载 aktar.html 并从自己的磁盘打开。本页针对的情形是:你在自己的终端里完成加密,只需要二维码展示。",
     make_h="1 · 在你自己的机器上生成信封",
-    make_p="下面的脚本构建的信封与应用打开的完全一致(PBKDF2-HMAC-SHA256 · 310,000 轮 + AES-256-GCM)。将它保存为 zarf-uret.py,运行前先读一遍 —— 大约三十行。密码请生成而不要自己编;第一条命令就是做这件事的。",
+    make_p="下面的脚本构建的信封与应用打开的完全一致(PBKDF2-HMAC-SHA256 · 600,000 轮 + AES-256-GCM)。将它保存为 zarf-uret.py,运行前先读一遍 —— 大约三十行。密码请生成而不要自己编;第一条命令就是做这件事的。",
     make_note="把秘密粘贴到脚本的输入里,而不要写在命令行上 —— 这样它永远不会留在 shell 历史记录中。",
     paste_h="2 · 粘贴信封",
     paste_label='加密信封 —— 脚本打印的 JSON,以 {"app": "vault"… 开头',
@@ -492,7 +492,7 @@ A["fr"] = dict(
     lede="Cette page transforme une enveloppe Sekuvo déjà chiffrée en cadres QR que ton téléphone peut scanner. Elle n'effectue aucun chiffrement et ne demande jamais de secret : tu produis l'enveloppe sur ta propre machine, et seul du texte chiffré est collé ici.",
     warn="Le chemin le plus prudent reste l'aktar.html téléchargé, ouvert depuis ton propre disque. Cette page existe pour le cas où tu chiffres dans ton propre terminal et n'as besoin que de l'affichage QR.",
     make_h="1 · Produis l'enveloppe sur ta propre machine",
-    make_p="Le script ci-dessous construit exactement l'enveloppe que l'application ouvre (PBKDF2-HMAC-SHA256 · 310 000 tours + AES-256-GCM). Enregistre-le sous zarf-uret.py et lis-le avant de l'exécuter — une trentaine de lignes. Génère le mot de passe au lieu de l'inventer ; la première commande s'en charge.",
+    make_p="Le script ci-dessous construit exactement l'enveloppe que l'application ouvre (PBKDF2-HMAC-SHA256 · 600 000 tours + AES-256-GCM). Enregistre-le sous zarf-uret.py et lis-le avant de l'exécuter — une trentaine de lignes. Génère le mot de passe au lieu de l'inventer ; la première commande s'en charge.",
     make_note="Colle le secret dans l'entrée du script plutôt que de le taper sur la ligne de commande — il n'atterrira ainsi jamais dans l'historique de ton shell.",
     paste_h="2 · Colle l'enveloppe",
     paste_label='Enveloppe chiffrée — le JSON imprimé par le script, qui commence par {"app": "vault"…',
@@ -512,7 +512,7 @@ A["bn"] = dict(
     lede="এই পৃষ্ঠা আগে থেকে এনক্রিপ্ট করা একটি Sekuvo এনভেলপকে এমন QR ফ্রেমে রূপান্তর করে যা আপনার ফোন স্ক্যান করতে পারে। এটি কোনো এনক্রিপশন করে না এবং কখনো গোপন তথ্য চায় না: এনভেলপটি আপনি নিজের মেশিনে তৈরি করেন, এখানে কেবল এনক্রিপ্টেড টেক্সটই পেস্ট হয়।",
     warn="সবচেয়ে সাবধানী পথ এখনো ডাউনলোড করা aktar.html, যা নিজের ডিস্ক থেকে খোলা হয়। এই পৃষ্ঠাটি সেই পরিস্থিতির জন্য যখন আপনি নিজের টার্মিনালে এনক্রিপ্ট করেন এবং কেবল QR প্রদর্শন দরকার।",
     make_h="1 · এনভেলপটি নিজের মেশিনে তৈরি করুন",
-    make_p="নিচের স্ক্রিপ্টটি ঠিক সেই এনভেলপই বানায় যা অ্যাপ খোলে (PBKDF2-HMAC-SHA256 · ৩,১০,০০০ রাউন্ড + AES-256-GCM)। এটিকে zarf-uret.py নামে সংরক্ষণ করুন এবং চালানোর আগে পড়ুন — প্রায় ত্রিশ লাইন। পাসওয়ার্ড বানিয়ে না নিয়ে জেনারেট করুন; প্রথম কমান্ডটি সেটিই করে।",
+    make_p="নিচের স্ক্রিপ্টটি ঠিক সেই এনভেলপই বানায় যা অ্যাপ খোলে (PBKDF2-HMAC-SHA256 · ৬,০০,০০০ রাউন্ড + AES-256-GCM)। এটিকে zarf-uret.py নামে সংরক্ষণ করুন এবং চালানোর আগে পড়ুন — প্রায় ত্রিশ লাইন। পাসওয়ার্ড বানিয়ে না নিয়ে জেনারেট করুন; প্রথম কমান্ডটি সেটিই করে।",
     make_note="গোপন তথ্যটি কমান্ড লাইনে টাইপ না করে স্ক্রিপ্টের ইনপুটে পেস্ট করুন — তাহলে সেটি কখনো আপনার শেল ইতিহাসে থাকবে না।",
     paste_h="2 · এনভেলপ পেস্ট করুন",
     paste_label='এনক্রিপ্টেড এনভেলপ — স্ক্রিপ্টের প্রিন্ট করা JSON, যা {"app": "vault"… দিয়ে শুরু',
@@ -532,7 +532,7 @@ A["pt"] = dict(
     lede="Esta página converte um envelope Sekuvo já criptografado em quadros QR que seu telefone pode escanear. Ela não realiza nenhuma criptografia e nunca pede um segredo: você produz o envelope na sua própria máquina, e aqui só se cola texto criptografado.",
     warn="O caminho mais conservador continua sendo o aktar.html baixado, aberto do seu próprio disco. Esta página existe para o caso em que você criptografa no seu próprio terminal e só precisa da exibição QR.",
     make_h="1 · Produza o envelope na sua própria máquina",
-    make_p="O script abaixo constrói exatamente o envelope que o aplicativo abre (PBKDF2-HMAC-SHA256 · 310.000 rodadas + AES-256-GCM). Salve-o como zarf-uret.py e leia-o antes de executar — são cerca de trinta linhas. Gere a senha em vez de inventá-la; o primeiro comando faz isso.",
+    make_p="O script abaixo constrói exatamente o envelope que o aplicativo abre (PBKDF2-HMAC-SHA256 · 600.000 rodadas + AES-256-GCM). Salve-o como zarf-uret.py e leia-o antes de executar — são cerca de trinta linhas. Gere a senha em vez de inventá-la; o primeiro comando faz isso.",
     make_note="Cole o segredo na entrada do script em vez de digitá-lo na linha de comando — assim ele nunca fica no histórico do seu shell.",
     paste_h="2 · Cole o envelope",
     paste_label='Envelope criptografado — o JSON que o script imprimiu, começando com {"app": "vault"…',
@@ -552,7 +552,7 @@ A["ru"] = dict(
     lede="Эта страница превращает уже зашифрованный конверт Sekuvo в QR-кадры, которые может отсканировать телефон. Она не выполняет шифрование и никогда не просит секрет: конверт вы создаёте на собственной машине, сюда вставляется только шифротекст.",
     warn="Самый осторожный путь — по-прежнему скачанный aktar.html, открытый с собственного диска. Эта страница существует для случая, когда вы шифруете в своём терминале и вам нужен только показ QR.",
     make_h="1 · Создайте конверт на своей машине",
-    make_p="Скрипт ниже собирает ровно тот конверт, который открывает приложение (PBKDF2-HMAC-SHA256 · 310 000 раундов + AES-256-GCM). Сохраните его как zarf-uret.py и прочитайте перед запуском — около тридцати строк. Пароль сгенерируйте, а не придумывайте; это делает первая команда.",
+    make_p="Скрипт ниже собирает ровно тот конверт, который открывает приложение (PBKDF2-HMAC-SHA256 · 600 000 раундов + AES-256-GCM). Сохраните его как zarf-uret.py и прочитайте перед запуском — около тридцати строк. Пароль сгенерируйте, а не придумывайте; это делает первая команда.",
     make_note="Вставляйте секрет во ввод скрипта, а не печатайте его в командной строке — так он никогда не попадёт в историю shell.",
     paste_h="2 · Вставьте конверт",
     paste_label='Зашифрованный конверт — JSON, который вывел скрипт, начинается с {"app": "vault"…',
@@ -572,7 +572,7 @@ A["ur"] = dict(
     lede="یہ صفحہ پہلے سے مرمز شدہ Sekuvo لفافے کو ایسے QR فریمز میں بدلتا ہے جنہیں آپ کا فون اسکین کر سکے۔ یہ کوئی خفیہ کاری نہیں کرتا اور کبھی راز نہیں مانگتا: لفافہ آپ اپنی ہی مشین پر بناتے ہیں، اور یہاں صرف مرمز شدہ متن پیسٹ ہوتا ہے۔",
     warn="سب سے محتاط راستہ اب بھی ڈاؤن لوڈ کیا ہوا aktar.html ہے، جو اپنی ڈسک سے کھولا جائے۔ یہ صفحہ اس صورت کے لیے ہے جب آپ اپنے ٹرمینل میں مرمز کریں اور آپ کو صرف QR دکھانے کی ضرورت ہو۔",
     make_h="1 · لفافہ اپنی ہی مشین پر بنائیں",
-    make_p="نیچے دیا اسکرپٹ بالکل وہی لفافہ بناتا ہے جو ایپ کھولتی ہے (PBKDF2-HMAC-SHA256 · 310,000 راؤنڈز + AES-256-GCM)۔ اسے zarf-uret.py کے نام سے محفوظ کریں اور چلانے سے پہلے پڑھیں — تقریباً تیس سطریں۔ پاس ورڈ خود گھڑنے کے بجائے جنریٹ کریں؛ پہلا کمانڈ یہی کرتا ہے۔",
+    make_p="نیچے دیا اسکرپٹ بالکل وہی لفافہ بناتا ہے جو ایپ کھولتی ہے (PBKDF2-HMAC-SHA256 · 600,000 راؤنڈز + AES-256-GCM)۔ اسے zarf-uret.py کے نام سے محفوظ کریں اور چلانے سے پہلے پڑھیں — تقریباً تیس سطریں۔ پاس ورڈ خود گھڑنے کے بجائے جنریٹ کریں؛ پہلا کمانڈ یہی کرتا ہے۔",
     make_note="راز کو کمانڈ لائن پر ٹائپ کرنے کے بجائے اسکرپٹ کے ان پٹ میں پیسٹ کریں — یوں وہ کبھی آپ کی شیل ہسٹری میں نہیں جاتا۔",
     paste_h="2 · لفافہ پیسٹ کریں",
     paste_label='مرمز شدہ لفافہ — اسکرپٹ کا پرنٹ کردہ JSON، جو {"app": "vault"… سے شروع ہوتا ہے',
@@ -592,7 +592,7 @@ A["id"] = dict(
     lede="Halaman ini mengubah amplop Sekuvo yang sudah terenkripsi menjadi bingkai QR yang bisa dipindai ponselmu. Halaman ini tidak melakukan enkripsi dan tidak pernah meminta rahasia: amplop kamu buat di mesinmu sendiri, dan di sini hanya teks terenkripsi yang ditempel.",
     warn="Jalur paling hati-hati tetaplah aktar.html yang diunduh, dibuka dari diskmu sendiri. Halaman ini ada untuk kasus ketika kamu mengenkripsi di terminalmu sendiri dan hanya butuh tampilan QR.",
     make_h="1 · Buat amplop di mesinmu sendiri",
-    make_p="Skrip di bawah membangun persis amplop yang dibuka aplikasi (PBKDF2-HMAC-SHA256 · 310.000 putaran + AES-256-GCM). Simpan sebagai zarf-uret.py dan baca sebelum menjalankannya — sekitar tiga puluh baris. Buat kata sandi dengan generator, jangan dikarang; perintah pertama melakukannya.",
+    make_p="Skrip di bawah membangun persis amplop yang dibuka aplikasi (PBKDF2-HMAC-SHA256 · 600.000 putaran + AES-256-GCM). Simpan sebagai zarf-uret.py dan baca sebelum menjalankannya — sekitar tiga puluh baris. Buat kata sandi dengan generator, jangan dikarang; perintah pertama melakukannya.",
     make_note="Tempel rahasia ke input skrip alih-alih mengetiknya di baris perintah — dengan begitu ia tidak pernah masuk riwayat shell-mu.",
     paste_h="2 · Tempel amplop",
     paste_label='Amplop terenkripsi — JSON yang dicetak skrip, dimulai dengan {"app": "vault"…',
@@ -612,7 +612,7 @@ A["de"] = dict(
     lede="Diese Seite verwandelt einen bereits verschlüsselten Sekuvo-Umschlag in QR-Bilder, die dein Telefon scannen kann. Sie führt keine Verschlüsselung durch und fragt nie nach einem Geheimnis: Den Umschlag erzeugst du auf deinem eigenen Rechner, hier wird nur Chiffretext eingefügt.",
     warn="Der vorsichtigste Weg bleibt das heruntergeladene aktar.html, geöffnet von deiner eigenen Festplatte. Diese Seite existiert für den Fall, dass du in deinem eigenen Terminal verschlüsselst und nur die QR-Anzeige brauchst.",
     make_h="1 · Erzeuge den Umschlag auf deinem eigenen Rechner",
-    make_p="Das Skript unten baut genau den Umschlag, den die App öffnet (PBKDF2-HMAC-SHA256 · 310.000 Runden + AES-256-GCM). Speichere es als zarf-uret.py und lies es vor dem Ausführen — etwa dreißig Zeilen. Generiere das Passwort, statt es dir auszudenken; der erste Befehl erledigt das.",
+    make_p="Das Skript unten baut genau den Umschlag, den die App öffnet (PBKDF2-HMAC-SHA256 · 600.000 Runden + AES-256-GCM). Speichere es als zarf-uret.py und lies es vor dem Ausführen — etwa dreißig Zeilen. Generiere das Passwort, statt es dir auszudenken; der erste Befehl erledigt das.",
     make_note="Füge das Geheimnis in die Eingabe des Skripts ein, statt es auf der Kommandozeile zu tippen — so landet es nie in deinem Shell-Verlauf.",
     paste_h="2 · Füge den Umschlag ein",
     paste_label='Verschlüsselter Umschlag — das vom Skript ausgegebene JSON, beginnend mit {"app": "vault"…',
@@ -632,7 +632,7 @@ A["ja"] = dict(
     lede="このページは、すでに暗号化されたSekuvoの封筒を、端末でスキャンできるQRフレームに変換します。暗号化は一切行わず、秘密情報を求めることもありません:封筒は自分のマシンで作成し、ここには暗号文だけを貼り付けます。",
     warn="最も慎重な方法は、今でもダウンロードしたaktar.htmlを自分のディスクから開くことです。このページは、自分のターミナルで暗号化を済ませ、QR表示だけが必要な場合のためにあります。",
     make_h="1 · 封筒を自分のマシンで作成する",
-    make_p="下のスクリプトは、アプリが開く封筒とまったく同じもの(PBKDF2-HMAC-SHA256 · 310,000回 + AES-256-GCM)を作成します。zarf-uret.pyという名前で保存し、実行前に読んでください — 約30行です。パスワードは自分で考えず生成してください;最初のコマンドがそれを行います。",
+    make_p="下のスクリプトは、アプリが開く封筒とまったく同じもの(PBKDF2-HMAC-SHA256 · 600,000回 + AES-256-GCM)を作成します。zarf-uret.pyという名前で保存し、実行前に読んでください — 約30行です。パスワードは自分で考えず生成してください;最初のコマンドがそれを行います。",
     make_note="秘密情報はコマンドラインに打ち込まず、スクリプトの入力に貼り付けてください — そうすればシェル履歴に残ることはありません。",
     paste_h="2 · 封筒を貼り付ける",
     paste_label='暗号化された封筒 — スクリプトが出力したJSONで、{"app": "vault"…で始まります',
@@ -652,7 +652,7 @@ A["pcm"] = dict(
     lede="Dis page dey turn Sekuvo envelope wey don already encrypt into QR frames wey your phone fit scan. E no dey do any encryption and e no dey ever ask for secret: you go produce the envelope for your own machine, and na only ciphertext dey paste here.",
     warn="The most careful path still be the downloaded aktar.html, wey you open from your own disk. Dis page dey exist for when you encrypt for your own terminal and na only the QR display you need.",
     make_h="1 · Produce the envelope for your own machine",
-    make_p="The script below dey build exactly the envelope wey the app dey open (PBKDF2-HMAC-SHA256 · 310,000 rounds + AES-256-GCM). Save am as zarf-uret.py and read am before you run am — na like thirty lines. Generate the password, no invent am; the first command dey do dat.",
+    make_p="The script below dey build exactly the envelope wey the app dey open (PBKDF2-HMAC-SHA256 · 600,000 rounds + AES-256-GCM). Save am as zarf-uret.py and read am before you run am — na like thirty lines. Generate the password, no invent am; the first command dey do dat.",
     make_note="Paste the secret inside the script input instead of typing am for command line — dat way e no go ever land inside your shell history.",
     paste_h="2 · Paste the envelope",
     paste_label='Encrypted envelope — the JSON wey the script print, wey dey start with {"app": "vault"…',
@@ -672,7 +672,7 @@ A["vi"] = dict(
     lede="Trang này chuyển một phong bì Sekuvo đã mã hóa sẵn thành các khung QR mà điện thoại của bạn có thể quét. Nó không thực hiện mã hóa và không bao giờ hỏi bí mật: bạn tạo phong bì trên máy của chính mình, và ở đây chỉ dán văn bản đã mã hóa.",
     warn="Con đường thận trọng nhất vẫn là aktar.html được tải xuống, mở từ chính ổ đĩa của bạn. Trang này tồn tại cho trường hợp bạn mã hóa trong terminal của mình và chỉ cần phần hiển thị QR.",
     make_h="1 · Tạo phong bì trên máy của chính bạn",
-    make_p="Đoạn mã dưới đây tạo ra chính xác phong bì mà ứng dụng mở (PBKDF2-HMAC-SHA256 · 310.000 vòng + AES-256-GCM). Lưu nó thành zarf-uret.py và đọc trước khi chạy — khoảng ba mươi dòng. Hãy tạo mật khẩu bằng máy thay vì tự nghĩ; lệnh đầu tiên làm việc đó.",
+    make_p="Đoạn mã dưới đây tạo ra chính xác phong bì mà ứng dụng mở (PBKDF2-HMAC-SHA256 · 600.000 vòng + AES-256-GCM). Lưu nó thành zarf-uret.py và đọc trước khi chạy — khoảng ba mươi dòng. Hãy tạo mật khẩu bằng máy thay vì tự nghĩ; lệnh đầu tiên làm việc đó.",
     make_note="Dán bí mật vào đầu vào của đoạn mã thay vì gõ nó trên dòng lệnh — như vậy nó không bao giờ nằm lại trong lịch sử shell của bạn.",
     paste_h="2 · Dán phong bì",
     paste_label='Phong bì mã hóa — JSON mà đoạn mã in ra, bắt đầu bằng {"app": "vault"…',

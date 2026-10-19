@@ -263,7 +263,7 @@
     <p class="lede-big">Halaman ini mengubah amplop Sekuvo yang sudah terenkripsi menjadi bingkai QR yang bisa dipindai ponselmu. Halaman ini tidak melakukan enkripsi dan tidak pernah meminta rahasia: amplop kamu buat di mesinmu sendiri, dan di sini hanya teks terenkripsi yang ditempel.</p>
     <p class="note">Jalur paling hati-hati tetaplah aktar.html yang diunduh, dibuka dari diskmu sendiri. Halaman ini ada untuk kasus ketika kamu mengenkripsi di terminalmu sendiri dan hanya butuh tampilan QR.</p>
     <h2>1 · Buat amplop di mesinmu sendiri</h2>
-    <p>Skrip di bawah membangun persis amplop yang dibuka aplikasi (PBKDF2-HMAC-SHA256 · 310.000 putaran + AES-256-GCM). Simpan sebagai zarf-uret.py dan baca sebelum menjalankannya — sekitar tiga puluh baris. Buat kata sandi dengan generator, jangan dikarang; perintah pertama melakukannya.</p>
+    <p>Skrip di bawah membangun persis amplop yang dibuka aplikasi (PBKDF2-HMAC-SHA256 · 600.000 putaran + AES-256-GCM). Simpan sebagai zarf-uret.py dan baca sebelum menjalankannya — sekitar tiga puluh baris. Buat kata sandi dengan generator, jangan dikarang; perintah pertama melakukannya.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),
