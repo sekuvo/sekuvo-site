@@ -263,7 +263,7 @@
     <p class="lede-big">Dis page dey turn Sekuvo envelope wey don already encrypt into QR frames wey your phone fit scan. E no dey do any encryption and e no dey ever ask for secret: you go produce the envelope for your own machine, and na only ciphertext dey paste here.</p>
     <p class="note">The most careful path still be the downloaded aktar.html, wey you open from your own disk. Dis page dey exist for when you encrypt for your own terminal and na only the QR display you need.</p>
     <h2>1 · Produce the envelope for your own machine</h2>
-    <p>The script below dey build exactly the envelope wey the app dey open (PBKDF2-HMAC-SHA256 · 310,000 rounds + AES-256-GCM). Save am as zarf-uret.py and read am before you run am — na like thirty lines. Generate the password, no invent am; the first command dey do dat.</p>
+    <p>The script below dey build exactly the envelope wey the app dey open (PBKDF2-HMAC-SHA256 · 600,000 rounds + AES-256-GCM). Save am as zarf-uret.py and read am before you run am — na like thirty lines. Generate the password, no invent am; the first command dey do dat.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

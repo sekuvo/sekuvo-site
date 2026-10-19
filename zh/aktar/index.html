@@ -263,7 +263,7 @@
     <p class="lede-big">本页把已加密的 Sekuvo 信封转换为手机可以扫描的二维码帧。它不做任何加密,也绝不索要秘密:信封在你自己的机器上生成,这里只粘贴密文。</p>
     <p class="note">最稳妥的方式仍是下载 aktar.html 并从自己的磁盘打开。本页针对的情形是:你在自己的终端里完成加密,只需要二维码展示。</p>
     <h2>1 · 在你自己的机器上生成信封</h2>
-    <p>下面的脚本构建的信封与应用打开的完全一致(PBKDF2-HMAC-SHA256 · 310,000 轮 + AES-256-GCM)。将它保存为 zarf-uret.py,运行前先读一遍 —— 大约三十行。密码请生成而不要自己编;第一条命令就是做这件事的。</p>
+    <p>下面的脚本构建的信封与应用打开的完全一致(PBKDF2-HMAC-SHA256 · 600,000 轮 + AES-256-GCM)。将它保存为 zarf-uret.py,运行前先读一遍 —— 大约三十行。密码请生成而不要自己编;第一条命令就是做这件事的。</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

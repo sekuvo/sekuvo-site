@@ -263,7 +263,7 @@
     <p class="lede-big">یہ صفحہ پہلے سے مرمز شدہ Sekuvo لفافے کو ایسے QR فریمز میں بدلتا ہے جنہیں آپ کا فون اسکین کر سکے۔ یہ کوئی خفیہ کاری نہیں کرتا اور کبھی راز نہیں مانگتا: لفافہ آپ اپنی ہی مشین پر بناتے ہیں، اور یہاں صرف مرمز شدہ متن پیسٹ ہوتا ہے۔</p>
     <p class="note">سب سے محتاط راستہ اب بھی ڈاؤن لوڈ کیا ہوا aktar.html ہے، جو اپنی ڈسک سے کھولا جائے۔ یہ صفحہ اس صورت کے لیے ہے جب آپ اپنے ٹرمینل میں مرمز کریں اور آپ کو صرف QR دکھانے کی ضرورت ہو۔</p>
     <h2>1 · لفافہ اپنی ہی مشین پر بنائیں</h2>
-    <p>نیچے دیا اسکرپٹ بالکل وہی لفافہ بناتا ہے جو ایپ کھولتی ہے (PBKDF2-HMAC-SHA256 · 310,000 راؤنڈز + AES-256-GCM)۔ اسے zarf-uret.py کے نام سے محفوظ کریں اور چلانے سے پہلے پڑھیں — تقریباً تیس سطریں۔ پاس ورڈ خود گھڑنے کے بجائے جنریٹ کریں؛ پہلا کمانڈ یہی کرتا ہے۔</p>
+    <p>نیچے دیا اسکرپٹ بالکل وہی لفافہ بناتا ہے جو ایپ کھولتی ہے (PBKDF2-HMAC-SHA256 · 600,000 راؤنڈز + AES-256-GCM)۔ اسے zarf-uret.py کے نام سے محفوظ کریں اور چلانے سے پہلے پڑھیں — تقریباً تیس سطریں۔ پاس ورڈ خود گھڑنے کے بجائے جنریٹ کریں؛ پہلا کمانڈ یہی کرتا ہے۔</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

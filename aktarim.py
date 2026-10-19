@@ -11,9 +11,9 @@ yakalaması gereken şeydir.
 """
 from kaynak import GITHUB
 
-AKTAR_SURUM = "v1.0.0"
-AKTAR_SHA256 = "85ee1729fda96072b36303074f21a170d5361c0577a920ef631bd6884d5b653d"
-AKTAR_BOYUT = 53833  # bayt
+AKTAR_SURUM = "v1.1.0"
+AKTAR_SHA256 = "4354dc1c895afc236d924d12007d9dc53e2e9a9bb0ed01aee4ac86b7e2ecdfe4"
+AKTAR_BOYUT = 54774  # bayt
 AKTAR_INDIR = f"{GITHUB}/releases/download/{AKTAR_SURUM}/aktar.html"
 AKTAR_SURUM_SAYFASI = f"{GITHUB}/releases/tag/{AKTAR_SURUM}"
 

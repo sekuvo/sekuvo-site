@@ -263,7 +263,7 @@
     <p class="lede-big">このページは、すでに暗号化されたSekuvoの封筒を、端末でスキャンできるQRフレームに変換します。暗号化は一切行わず、秘密情報を求めることもありません:封筒は自分のマシンで作成し、ここには暗号文だけを貼り付けます。</p>
     <p class="note">最も慎重な方法は、今でもダウンロードしたaktar.htmlを自分のディスクから開くことです。このページは、自分のターミナルで暗号化を済ませ、QR表示だけが必要な場合のためにあります。</p>
     <h2>1 · 封筒を自分のマシンで作成する</h2>
-    <p>下のスクリプトは、アプリが開く封筒とまったく同じもの(PBKDF2-HMAC-SHA256 · 310,000回 + AES-256-GCM)を作成します。zarf-uret.pyという名前で保存し、実行前に読んでください — 約30行です。パスワードは自分で考えず生成してください;最初のコマンドがそれを行います。</p>
+    <p>下のスクリプトは、アプリが開く封筒とまったく同じもの(PBKDF2-HMAC-SHA256 · 600,000回 + AES-256-GCM)を作成します。zarf-uret.pyという名前で保存し、実行前に読んでください — 約30行です。パスワードは自分で考えず生成してください;最初のコマンドがそれを行います。</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

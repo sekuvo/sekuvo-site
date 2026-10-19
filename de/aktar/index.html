@@ -263,7 +263,7 @@
     <p class="lede-big">Diese Seite verwandelt einen bereits verschlüsselten Sekuvo-Umschlag in QR-Bilder, die dein Telefon scannen kann. Sie führt keine Verschlüsselung durch und fragt nie nach einem Geheimnis: Den Umschlag erzeugst du auf deinem eigenen Rechner, hier wird nur Chiffretext eingefügt.</p>
     <p class="note">Der vorsichtigste Weg bleibt das heruntergeladene aktar.html, geöffnet von deiner eigenen Festplatte. Diese Seite existiert für den Fall, dass du in deinem eigenen Terminal verschlüsselst und nur die QR-Anzeige brauchst.</p>
     <h2>1 · Erzeuge den Umschlag auf deinem eigenen Rechner</h2>
-    <p>Das Skript unten baut genau den Umschlag, den die App öffnet (PBKDF2-HMAC-SHA256 · 310.000 Runden + AES-256-GCM). Speichere es als zarf-uret.py und lies es vor dem Ausführen — etwa dreißig Zeilen. Generiere das Passwort, statt es dir auszudenken; der erste Befehl erledigt das.</p>
+    <p>Das Skript unten baut genau den Umschlag, den die App öffnet (PBKDF2-HMAC-SHA256 · 600.000 Runden + AES-256-GCM). Speichere es als zarf-uret.py und lies es vor dem Ausführen — etwa dreißig Zeilen. Generiere das Passwort, statt es dir auszudenken; der erste Befehl erledigt das.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

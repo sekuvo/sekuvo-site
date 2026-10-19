@@ -263,7 +263,7 @@
     <p class="lede-big">এই পৃষ্ঠা আগে থেকে এনক্রিপ্ট করা একটি Sekuvo এনভেলপকে এমন QR ফ্রেমে রূপান্তর করে যা আপনার ফোন স্ক্যান করতে পারে। এটি কোনো এনক্রিপশন করে না এবং কখনো গোপন তথ্য চায় না: এনভেলপটি আপনি নিজের মেশিনে তৈরি করেন, এখানে কেবল এনক্রিপ্টেড টেক্সটই পেস্ট হয়।</p>
     <p class="note">সবচেয়ে সাবধানী পথ এখনো ডাউনলোড করা aktar.html, যা নিজের ডিস্ক থেকে খোলা হয়। এই পৃষ্ঠাটি সেই পরিস্থিতির জন্য যখন আপনি নিজের টার্মিনালে এনক্রিপ্ট করেন এবং কেবল QR প্রদর্শন দরকার।</p>
     <h2>1 · এনভেলপটি নিজের মেশিনে তৈরি করুন</h2>
-    <p>নিচের স্ক্রিপ্টটি ঠিক সেই এনভেলপই বানায় যা অ্যাপ খোলে (PBKDF2-HMAC-SHA256 · ৩,১০,০০০ রাউন্ড + AES-256-GCM)। এটিকে zarf-uret.py নামে সংরক্ষণ করুন এবং চালানোর আগে পড়ুন — প্রায় ত্রিশ লাইন। পাসওয়ার্ড বানিয়ে না নিয়ে জেনারেট করুন; প্রথম কমান্ডটি সেটিই করে।</p>
+    <p>নিচের স্ক্রিপ্টটি ঠিক সেই এনভেলপই বানায় যা অ্যাপ খোলে (PBKDF2-HMAC-SHA256 · ৬,০০,০০০ রাউন্ড + AES-256-GCM)। এটিকে zarf-uret.py নামে সংরক্ষণ করুন এবং চালানোর আগে পড়ুন — প্রায় ত্রিশ লাইন। পাসওয়ার্ড বানিয়ে না নিয়ে জেনারেট করুন; প্রথম কমান্ডটি সেটিই করে।</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

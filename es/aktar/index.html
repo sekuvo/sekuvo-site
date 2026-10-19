@@ -263,7 +263,7 @@
     <p class="lede-big">Esta página convierte un sobre Sekuvo ya cifrado en cuadros QR que tu teléfono puede escanear. No realiza ningún cifrado y nunca pide un secreto: el sobre lo produces en tu propia máquina, y aquí solo se pega texto cifrado.</p>
     <p class="note">El camino más conservador sigue siendo el aktar.html descargado y abierto desde tu propio disco. Esta página existe para el caso en que cifras en tu propia terminal y solo necesitas la visualización QR.</p>
     <h2>1 · Produce el sobre en tu propia máquina</h2>
-    <p>El script de abajo construye exactamente el sobre que la aplicación abre (PBKDF2-HMAC-SHA256 · 310.000 rondas + AES-256-GCM). Guárdalo como zarf-uret.py y léelo antes de ejecutarlo — son unas treinta líneas. Genera la contraseña en vez de inventarla; el primer comando lo hace.</p>
+    <p>El script de abajo construye exactamente el sobre que la aplicación abre (PBKDF2-HMAC-SHA256 · 600.000 rondas + AES-256-GCM). Guárdalo como zarf-uret.py y léelo antes de ejecutarlo — son unas treinta líneas. Genera la contraseña en vez de inventarla; el primer comando lo hace.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),

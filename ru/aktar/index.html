@@ -263,7 +263,7 @@
     <p class="lede-big">Эта страница превращает уже зашифрованный конверт Sekuvo в QR-кадры, которые может отсканировать телефон. Она не выполняет шифрование и никогда не просит секрет: конверт вы создаёте на собственной машине, сюда вставляется только шифротекст.</p>
     <p class="note">Самый осторожный путь — по-прежнему скачанный aktar.html, открытый с собственного диска. Эта страница существует для случая, когда вы шифруете в своём терминале и вам нужен только показ QR.</p>
     <h2>1 · Создайте конверт на своей машине</h2>
-    <p>Скрипт ниже собирает ровно тот конверт, который открывает приложение (PBKDF2-HMAC-SHA256 · 310 000 раундов + AES-256-GCM). Сохраните его как zarf-uret.py и прочитайте перед запуском — около тридцати строк. Пароль сгенерируйте, а не придумывайте; это делает первая команда.</p>
+    <p>Скрипт ниже собирает ровно тот конверт, который открывает приложение (PBKDF2-HMAC-SHA256 · 600 000 раундов + AES-256-GCM). Сохраните его как zarf-uret.py и прочитайте перед запуском — около тридцати строк. Пароль сгенерируйте, а не придумывайте; это делает первая команда.</p>
     <pre class="code" dir="ltr"><span class="c"># macOS / Linux</span>
 <span class="c"># generate a password (letters+digits, ~119 bits):</span>
 python3 -c "import secrets,string; print(''.join(secrets.choice(string.ascii_letters+string.digits) for _ in range(20)))"
@@ -304,12 +304,12 @@ payload = json.dumps({"entries": [{
 }]}, ensure_ascii=False)
 
 salt = os.urandom(16)
-key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 310_000, 32)
+key = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, 600_000, 32)
 iv = os.urandom(12)
 blob = iv + AESGCM(key).encrypt(iv, payload.encode(), None)
 print(json.dumps({
     "app": "vault", "version": 1,
-    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 310_000,
+    "kdf": {"algo": "PBKDF2WithHmacSHA256", "iterations": 600_000,
             "salt": base64.b64encode(salt).decode()},
     "cipher": "AES-256-GCM",
     "data": base64.b64encode(blob).decode(),
