@@ -1266,7 +1266,7 @@
       const imlec = this.pc.querySelector(".alan.parola .imlec"), gir = this.pc.querySelector(".gir"), tik = this.pc.querySelector(".tik");
       if (imlec) imlec.style.visibility = "hidden";
       if (gir) gir.classList.add("tamam");
-      if (tik) tik.textContent = "✓ Password typed by the phone";
+      if (tik) tik.textContent = this.s.pc_yazildi || "✓ Password typed by the phone";
     }
 
     /** Fare imleci parola alanına gider ve tıklar; alan odak alır. */

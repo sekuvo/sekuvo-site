@@ -10,6 +10,7 @@ Output: index.html (en) and tr/, es/, hi/, ar/ index files.
 """
 import hashlib
 import os
+import subprocess
 import sys
 import json
 import pathlib
@@ -1133,22 +1134,37 @@ def indir_kutusu(code):
 
 
 def aktar_ozetini_denetle(root):
-    """Sitede yazan SHA-256 ile uygulama deposundaki aktar.html aynı mı?
+    """Sitede yazan SHA-256, kullanıcının indirdiği sürümün aktar.html'i mi?
 
-    Depo yanında değilse sessiz geçer. Tutmazsa UYARIR ama durmaz: depodaki
-    aktar.html yayımlanan sürümden ileride olabilir (geliştirme), sitede yazan
-    özet ise kullanıcının indirdiği SÜRÜMÜN özeti olmalıdır. SEKUVO_YAYIN=1
-    ile (yayın derlemesi) tutmazlık hata sayılır ve derleme durur.
+    Sitedeki özet yayımlanan SÜRÜMÜN özetidir: uygulama deposunda o sürümün
+    etiketindeki dosyayla (`git show <AKTAR_SURUM>:tools/aktar.html`)
+    karşılaştırılır. Eskiden çalışma ağacındaki dosyayla karşılaştırılıyordu;
+    depo yayından ileride olunca (geliştirme) site doğruyken yayın derlemesi
+    duruyordu. Depo yanında değilse sessiz geçer. Tutmazsa ya da etiket
+    bulunamazsa UYARIR; SEKUVO_YAYIN=1 ile (yayın derlemesi) derleme durur.
     """
-    yol = root.parent / "vault" / "tools" / "aktar.html"
-    if not yol.exists():
+    depo = root.parent / "vault"
+    if not (depo / "tools" / "aktar.html").exists():
         return
-    oz = hashlib.sha256(yol.read_bytes()).hexdigest()
+    yayin = os.environ.get("SEKUVO_YAYIN") == "1"
+    try:
+        yayinlanan = subprocess.run(
+            ["git", "-C", str(depo), "show", f"{aktarim.AKTAR_SURUM}:tools/aktar.html"],
+            capture_output=True, check=True).stdout
+    except (OSError, subprocess.CalledProcessError):
+        print(f"UYARI: ../vault'ta {aktarim.AKTAR_SURUM} etiketi yok; aktar.html özeti denetlenemedi")
+        if yayin:
+            sys.exit("yayın derlemesi: aktar.html özeti denetlenemedi, durduruldu")
+        return
+    oz = hashlib.sha256(yayinlanan).hexdigest()
     if oz != aktarim.AKTAR_SHA256:
-        print(f"UYARI: ../vault/tools/aktar.html özeti {oz[:12]}…, sitede yazan {aktarim.AKTAR_SHA256[:12]}… "
-              f"— depodaki dosya yayımlanan sürümden farklı; yeni sürüm çıkınca aktarim.py'yi eşitle")
-        if os.environ.get("SEKUVO_YAYIN") == "1":
+        print(f"UYARI: {aktarim.AKTAR_SURUM} aktar.html özeti {oz[:12]}…, sitede yazan {aktarim.AKTAR_SHA256[:12]}…")
+        if yayin:
             sys.exit("yayın derlemesi: aktar.html özeti tutmuyor, durduruldu")
+    calisan = hashlib.sha256((depo / "tools" / "aktar.html").read_bytes()).hexdigest()
+    if calisan != oz:
+        print(f"Bilgi: depodaki aktar.html {aktarim.AKTAR_SURUM}'dan ileride; "
+              "yeni sürüm çıkınca aktarim.py'yi eşitle")
 
 
 def esc(text):
