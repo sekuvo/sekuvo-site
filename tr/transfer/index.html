@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Bu bir web s
   <section id="zarf">
     <span class="eyebrow">QR ne taşır</span>
     <h2>Bir zarf; sırrın kendisi asla.</h2>
-    <p class="kicker">QR'ın fotoğrafını çeken yalnız bunu görür. Aktarım parolası 310.000 turluk PBKDF2 ile anahtara dönüşür, bu da her tahmini yavaşlatır; parola olmadan veri alanı yalnız gürültüdür.</p>
+    <p class="kicker">QR'ın fotoğrafını çeken yalnız bunu görür. Aktarım parolası 600.000 turluk PBKDF2 ile anahtara dönüşür, bu da her tahmini yavaşlatır; parola olmadan veri alanı yalnız gürültüdür.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

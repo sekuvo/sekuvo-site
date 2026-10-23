@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Một tệp 
   <section id="zarf">
     <span class="eyebrow">QR mang gì</span>
     <h2>Một phong bì, không bao giờ là bí mật.</h2>
-    <p class="kicker">Ai chụp ảnh QR chỉ nhận được thứ này. Mật khẩu chuyển trở thành khóa qua 310.000 vòng PBKDF2, khiến mỗi lần đoán đều chậm; không có mật khẩu, trường dữ liệu chỉ là nhiễu.</p>
+    <p class="kicker">Ai chụp ảnh QR chỉ nhận được thứ này. Mật khẩu chuyển trở thành khóa qua 600.000 vòng PBKDF2, khiến mỗi lần đoán đều chậm; không có mật khẩu, trường dữ liệu chỉ là nhiễu.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

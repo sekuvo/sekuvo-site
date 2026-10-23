@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">هذا مل�
   <section id="zarf">
     <span class="eyebrow">ماذا يحمل رمز QR</span>
     <h2>ظرفًا، لا السرّ نفسه أبدًا.</h2>
-    <p class="kicker">من يصوّر رمز QR لا يحصل إلا على هذا. تتحول كلمة مرور النقل إلى مفتاح عبر ‎310٬000‎ جولة من PBKDF2، ما يجعل كل تخمين بطيئًا؛ وبلا كلمة المرور يكون حقل البيانات مجرد ضجيج.</p>
+    <p class="kicker">من يصوّر رمز QR لا يحصل إلا على هذا. تتحول كلمة مرور النقل إلى مفتاح عبر ‎600٬000‎ جولة من PBKDF2، ما يجعل كل تخمين بطيئًا؛ وبلا كلمة المرور يكون حقل البيانات مجرد ضجيج.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",
