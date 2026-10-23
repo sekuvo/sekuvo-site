@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Sebuah unduh
   <section id="zarf">
     <span class="eyebrow">Apa yang dibawa QR</span>
     <h2>Sebuah amplop, bukan rahasianya.</h2>
-    <p class="kicker">Siapa pun yang memotret QR hanya mendapat ini. Kata sandi transfer menjadi kunci lewat 310.000 putaran PBKDF2, yang membuat setiap tebakan lambat; tanpa kata sandi, kolom data hanyalah derau.</p>
+    <p class="kicker">Siapa pun yang memotret QR hanya mendapat ini. Kata sandi transfer menjadi kunci lewat 600.000 putaran PBKDF2, yang membuat setiap tebakan lambat; tanpa kata sandi, kolom data hanyalah derau.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Un télécha
   <section id="zarf">
     <span class="eyebrow">Ce que porte le QR</span>
     <h2>Une enveloppe, jamais le secret.</h2>
-    <p class="kicker">Qui photographie le QR n'obtient que ceci. Le mot de passe de transfert devient une clé par 310 000 tours de PBKDF2, ce qui ralentit chaque essai ; sans le mot de passe, le champ de données n'est que du bruit.</p>
+    <p class="kicker">Qui photographie le QR n'obtient que ceci. Le mot de passe de transfert devient une clé par 600 000 tours de PBKDF2, ce qui ralentit chaque essai ; sans le mot de passe, le champ de données n'est que du bruit.</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

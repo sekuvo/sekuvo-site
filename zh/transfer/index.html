@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">这是一个
   <section id="zarf">
     <span class="eyebrow">二维码承载什么</span>
     <h2>一个信封，从来不是秘密本身。</h2>
-    <p class="kicker">拍下二维码的人只能得到这个。传输密码经过 310,000 轮 PBKDF2 变成密钥，这让每一次猜测都很慢；没有密码，数据字段只是噪声。</p>
+    <p class="kicker">拍下二维码的人只能得到这个。传输密码经过 600,000 轮 PBKDF2 变成密钥，这让每一次猜测都很慢；没有密码，数据字段只是噪声。</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

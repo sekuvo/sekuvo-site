@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">これは We
   <section id="zarf">
     <span class="eyebrow">QR が運ぶもの</span>
     <h2>封筒であって、秘密そのものではない。</h2>
-    <p class="kicker">QR を撮影した人が得るのはこれだけです。転送パスワードは 310,000 回の PBKDF2 で鍵になり、推測の一回一回が遅くなります。パスワードがなければ、データ欄はただのノイズです。</p>
+    <p class="kicker">QR を撮影した人が得るのはこれだけです。転送パスワードは 600,000 回の PBKDF2 で鍵になり、推測の一回一回が遅くなります。パスワードがなければ、データ欄はただのノイズです。</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",

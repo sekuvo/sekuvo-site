@@ -306,13 +306,13 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">यह ड�
   <section id="zarf">
     <span class="eyebrow">QR क्या ले जाता है</span>
     <h2>एक लिफ़ाफ़ा, रहस्य कभी नहीं।</h2>
-    <p class="kicker">QR की तस्वीर लेने वाले को केवल यही मिलता है। स्थानांतरण पासवर्ड PBKDF2 के 310,000 दौरों से कुंजी बनता है, जिससे हर अनुमान धीमा हो जाता है; पासवर्ड के बिना डेटा फ़ील्ड बस शोर है।</p>
+    <p class="kicker">QR की तस्वीर लेने वाले को केवल यही मिलता है। स्थानांतरण पासवर्ड PBKDF2 के 600,000 दौरों से कुंजी बनता है, जिससे हर अनुमान धीमा हो जाता है; पासवर्ड के बिना डेटा फ़ील्ड बस शोर है।</p>
     <div class="chain" dir="ltr">{
   "app": "vault",
   "version": 1,
   "kdf": {
     "algo": "PBKDF2WithHmacSHA256",
-    "iterations": 310000,
+    "iterations": 600000,
     "salt": "…16 bytes, base64…"
   },
   "cipher": "AES-256-GCM",
