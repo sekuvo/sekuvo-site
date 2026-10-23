@@ -247,10 +247,11 @@
       <h1>Your secrets<br>no dey <em>comot.</em></h1>
       <p class="lede">Sekuvo na your safe vault: passwords, cards, and notes, wey dey encrypt for your phone with key wey only your master password fit derive. No server, no account, no sync — and no way to tell anybody.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Source code for GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Source code for GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/pcm/privacy/">Privacy policy</a>
       </div>
-      <p class="cta-note">Google Play listing dey on the way. Sekuvo free and e dey under GPLv3 — the code na the proof.</p>
+      <p class="cta-note">E don land for Google Play. Sekuvo free and e dey under GPLv3 — the code na the proof.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(nothing show — dis permission no exist at all)</span>
     </div>
-    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 600,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
     <div class="grid"><div class="cell"><h3>E dey lock once screen off</h3><p>The key dey wipe from memory the moment the screen off — closing foldable phone dey count too. One unlock dey serve the app, the keyboard, and autofill together.</p></div><div class="cell"><h3>Backups wey go dey last pass the phone</h3><p>One encrypted <span class="mono-note">.vaultbak</span> file, wey you go save anywhere you like. The file plus the backup password go restore everything for any device — the restore path don test from start to finish.</p></div><div class="cell"><h3>No backdoor for recovery</h3><p>If you forget the master password, the data don go. Na so we design am on purpose: door wey only you fit open no dey hide spare key under mat.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Na download,
     <div class="dl">
       <div>
         <h3>Android app</h3>
-        <p>Google Play listing dey on the way. Till then, you fit build am from source — the repository README dey explain am for two commands.</p>
+        <p>Install am from <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. You fit still build am from source — the repository README dey explain am for two commands.</p>
         <p><a href="https://sekuvo.com/pcm/guide/#start">Read the guide →</a></p>
       </div>
       <div>

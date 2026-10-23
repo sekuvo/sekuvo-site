@@ -247,10 +247,11 @@
       <h1>آپ کے راز<br>کبھی <em>باہر نہیں جاتے۔</em></h1>
       <p class="lede">Sekuvo آپ کا محفوظ والٹ ہے: پاس ورڈز، کارڈز اور نوٹس، آپ کے فون پر ایک ایسی کلید سے مرمز جسے صرف آپ کا ماسٹر پاس ورڈ حاصل کر سکتا ہے۔ نہ سرور، نہ اکاؤنٹ، نہ سنک — اور کسی کو بتانے کا کوئی طریقہ نہیں۔</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHub پر سورس کوڈ</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHub پر سورس کوڈ</a>
         <a class="btn ghost" href="https://sekuvo.com/ur/privacy/">رازداری کی پالیسی</a>
       </div>
-      <p class="cta-note">Google Play کی فہرست تیار ہو رہی ہے۔ Sekuvo مفت اور GPLv3 کے تحت ہے — کوڈ ہی ثبوت ہے۔</p>
+      <p class="cta-note">اب Google Play پر دستیاب ہے۔ Sekuvo مفت اور GPLv3 کے تحت ہے — کوڈ ہی ثبوت ہے۔</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(کوئی نتیجہ نہیں — یہ اجازت موجود ہی نہیں)</span>
     </div>
-    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 600,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
     <div class="grid"><div class="cell"><h3>اسکرین بند ہوتے ہی لاک ہو جاتا ہے</h3><p>اسکرین بند ہوتے ہی کلید میموری سے مٹا دی جاتی ہے — فولڈ ایبل فون بند کرنا بھی اس میں شامل ہے۔ ایک ہی تالا کھلنا ایپ، کی بورڈ اور آٹو فل تینوں کو ایک ساتھ خدمت دیتا ہے۔</p></div><div class="cell"><h3>بیک اپس جو فون سے زیادہ عرصہ چلتے ہیں</h3><p>ایک مرمز <span class="mono-note">.vaultbak</span> فائل، جہاں آپ چاہیں محفوظ کریں۔ فائل اور بیک اپ پاس ورڈ مل کر کسی بھی ڈیوائس پر سب کچھ بحال کر دیتے ہیں — بحالی کا راستہ شروع سے آخر تک آزمایا ہوا ہے۔</p></div><div class="cell"><h3>بحالی کا کوئی پچھلا دروازہ نہیں</h3><p>ماسٹر پاس ورڈ بھول جائیں تو ڈیٹا ختم ہو جاتا ہے۔ یہ جان بوجھ کر ایسا ہے: ایک دروازہ جسے صرف آپ کھول سکتے ہیں اس کے نیچے کوئی چھپی ہوئی اضافی کلید نہیں ہوتی۔</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">یہ ایک 
     <div class="dl">
       <div>
         <h3>اینڈرائیڈ ایپ</h3>
-        <p>Google Play کی فہرست تیار ہو رہی ہے۔ تب تک آپ سورس سے بلڈ کر سکتے ہیں — ریپوزٹری کا README اسے دو کمانڈز میں بتاتا ہے۔</p>
+        <p>اسے <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a> سے انسٹال کریں۔ چاہیں تو آپ سورس سے بھی بلڈ کر سکتے ہیں — ریپوزٹری کا README اسے دو کمانڈز میں بتاتا ہے۔</p>
         <p><a href="https://sekuvo.com/ur/guide/#start">رہنما پڑھیں ←</a></p>
       </div>
       <div>

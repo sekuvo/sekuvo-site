@@ -247,10 +247,11 @@
       <h1>Bí mật của bạn<br>không bao giờ <em>rời đi.</em></h1>
       <p class="lede">Sekuvo là kho lưu trữ an toàn của bạn: mật khẩu, thẻ, và ghi chú, được mã hóa trên điện thoại của bạn bằng một khóa mà chỉ mật khẩu chính của bạn mới có thể dẫn xuất. Không máy chủ, không tài khoản, không đồng bộ hóa — và không có cách nào để báo cho ai biết.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Mã nguồn trên GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Mã nguồn trên GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/vi/privacy/">Chính sách quyền riêng tư</a>
       </div>
-      <p class="cta-note">Trang niêm yết trên Google Play đang được chuẩn bị. Sekuvo miễn phí và theo giấy phép GPLv3 — mã nguồn chính là bằng chứng.</p>
+      <p class="cta-note">Đã có trên Google Play. Sekuvo miễn phí và theo giấy phép GPLv3 — mã nguồn chính là bằng chứng.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(không có kết quả nào — quyền này không tồn tại)</span>
     </div>
-    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 600,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
     <div class="grid"><div class="cell"><h3>Khóa lại khi màn hình tắt</h3><p>Khóa bị xóa khỏi bộ nhớ ngay khoảnh khắc màn hình tối đi — gập điện thoại có thể gập lại cũng được tính. Một lần mở khóa phục vụ cả ứng dụng, bàn phím, và tự động điền cùng lúc.</p></div><div class="cell"><h3>Các bản sao lưu tồn tại lâu hơn cả điện thoại</h3><p>Một tệp <span class="mono-note">.vaultbak</span> đã mã hóa duy nhất, được lưu ở bất cứ đâu bạn chọn. Tệp cùng với mật khẩu sao lưu khôi phục mọi thứ trên bất kỳ thiết bị nào — con đường khôi phục đã được kiểm chứng từ đầu đến cuối.</p></div><div class="cell"><h3>Không có cửa hậu để khôi phục</h3><p>Quên mật khẩu chính, dữ liệu sẽ mất. Đây là điều có chủ đích: một cánh cửa mà chỉ bạn mới mở được sẽ không giấu chìa khóa dự phòng dưới tấm thảm cửa.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Một tệp 
     <div class="dl">
       <div>
         <h3>Ứng dụng Android</h3>
-        <p>Trang niêm yết trên Google Play đang được chuẩn bị. Trong lúc chờ đợi, bạn có thể tự biên dịch từ mã nguồn — tệp README của kho lưu trữ giải thích điều này chỉ trong hai lệnh.</p>
+        <p>Cài đặt từ <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. Bạn cũng có thể tự biên dịch từ mã nguồn — tệp README của kho lưu trữ giải thích điều này chỉ trong hai lệnh.</p>
         <p><a href="https://sekuvo.com/vi/guide/#start">Đọc hướng dẫn →</a></p>
       </div>
       <div>

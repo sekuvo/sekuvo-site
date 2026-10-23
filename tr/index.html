@@ -247,10 +247,11 @@
       <h1>Sırların<br>asla <em>çıkmaz.</em></h1>
       <p class="lede">Sekuvo senin güvenli kasan: parolalar, kartlar ve notlar, yalnız ana parolandan türeyen bir anahtarla telefonunda şifrelenir. Sunucusu yok, hesabı yok, eşitlemesi yok — ve eve haber verme yolu yok.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHub'da kaynak kodu</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHub'da kaynak kodu</a>
         <a class="btn ghost" href="https://sekuvo.com/tr/privacy/">Gizlilik politikası</a>
       </div>
-      <p class="cta-note">Google Play kaydı hazırlanıyor. Sekuvo ücretsiz ve GPLv3 — kanıt kodun kendisi.</p>
+      <p class="cta-note">Artık Google Play'de. Sekuvo ücretsiz ve GPLv3 — kanıt kodun kendisi.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(eşleşme yok — böyle bir izin hiç yok)</span>
     </div>
-    <div class="chain" dir="ltr">Ana parola ─<b>PBKDF2 · 310.000 tur</b>─▶ KEK ─<b>AES-GCM sarma</b>─▶ dataKey ─▶ her kayıtta <b>AES-256-GCM</b></div>
+    <div class="chain" dir="ltr">Ana parola ─<b>PBKDF2 · 600.000 tur</b>─▶ KEK ─<b>AES-GCM sarma</b>─▶ dataKey ─▶ her kayıtta <b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>Ekran uyuyunca kilitlenir</h3><p>Ekran karardığı anda anahtar bellekten silinir — katlanabilir cihazı katlamak da sayılır. Tek kilit açma; uygulama, klavye ve otomatik doldurma için birlikte geçerlidir.</p></div><div class="cell"><h3>Telefondan uzun ömürlü yedek</h3><p>İstediğin yere koyduğun tek bir şifreli <span class="mono-note">.vaultbak</span> dosyası. Dosya artı yedek parolası her cihazda her şeyi geri getirir — kurtarma yolu uçtan uca sınandı.</p></div><div class="cell"><h3>Kurtarma arka kapısı yok</h3><p>Ana parolanı unutursan veri gider. Tasarım bu: yalnız senin açabildiğin bir kapının paspas altında yedek anahtarı olmaz.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Bu bir web s
     <div class="dl">
       <div>
         <h3>Android uygulaması</h3>
-        <p>Google Play kaydı hazırlanıyor. O zamana kadar kaynaktan derleyebilirsin — depodaki README iki komutla anlatıyor.</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>'den kurabilirsin. İstersen kaynaktan da derleyebilirsin — depodaki README iki komutla anlatıyor.</p>
         <p><a href="https://sekuvo.com/tr/guide/#start">Kılavuzu oku →</a></p>
       </div>
       <div>

@@ -247,10 +247,11 @@
       <h1>आपके राज़<br>कभी <em>बाहर नहीं जाते।</em></h1>
       <p class="lede">Sekuvo आपकी सुरक्षित तिजोरी है: पासवर्ड, कार्ड और नोट्स — आपके फ़ोन पर उस कुंजी से एन्क्रिप्टेड जो सिर्फ़ आपका मास्टर पासवर्ड बना सकता है। कोई सर्वर नहीं, कोई खाता नहीं, कोई सिंक नहीं — और कहीं ख़बर भेजने का कोई रास्ता नहीं।</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHub पर सोर्स</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHub पर सोर्स</a>
         <a class="btn ghost" href="https://sekuvo.com/hi/privacy/">निजता नीति</a>
       </div>
-      <p class="cta-note">Google Play लिस्टिंग तैयार की जा रही है। Sekuvo मुफ़्त और GPLv3 है — कोड ही प्रमाण है।</p>
+      <p class="cta-note">अब Google Play पर उपलब्ध। Sekuvo मुफ़्त और GPLv3 है — कोड ही प्रमाण है।</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(कोई मिलान नहीं — यह अनुमति मौजूद ही नहीं है)</span>
     </div>
-    <div class="chain" dir="ltr">मास्टर पासवर्ड ─<b>PBKDF2 · 310,000 राउंड</b>─▶ KEK ─<b>AES-GCM रैप</b>─▶ dataKey ─▶ हर एंट्री पर <b>AES-256-GCM</b></div>
+    <div class="chain" dir="ltr">मास्टर पासवर्ड ─<b>PBKDF2 · 600,000 राउंड</b>─▶ KEK ─<b>AES-GCM रैप</b>─▶ dataKey ─▶ हर एंट्री पर <b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>स्क्रीन बुझते ही लॉक</h3><p>स्क्रीन बंद होते ही कुंजी मेमोरी से मिट जाती है — फ़ोल्डेबल को मोड़ना भी गिना जाता है। एक बार अनलॉक ऐप, कीबोर्ड और ऑटोफ़िल तीनों के लिए काम करता है।</p></div><div class="cell"><h3>फ़ोन से ज़्यादा टिकने वाला बैकअप</h3><p>एक एन्क्रिप्टेड <span class="mono-note">.vaultbak</span> फ़ाइल, जहाँ चाहें रखें। फ़ाइल और बैकअप पासवर्ड मिलकर किसी भी डिवाइस पर सब कुछ लौटा देते हैं — यह रास्ता पूरी तरह जाँचा जा चुका है।</p></div><div class="cell"><h3>कोई रिकवरी बैकडोर नहीं</h3><p>मास्टर पासवर्ड भूले तो डेटा गया। यही डिज़ाइन है: जिस दरवाज़े को सिर्फ़ आप खोलते हैं, उसकी दूसरी चाबी चौखट के नीचे नहीं रखी होती।</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">यह ड�
     <div class="dl">
       <div>
         <h3>Android ऐप</h3>
-        <p>Google Play लिस्टिंग तैयार की जा रही है। तब तक आप सोर्स से बना सकते हैं — रिपॉज़िटरी का README दो कमांड में बताता है।</p>
+        <p>इसे <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a> से इंस्टॉल करें। चाहें तो आप सोर्स से भी बना सकते हैं — रिपॉज़िटरी का README दो कमांड में बताता है।</p>
         <p><a href="https://sekuvo.com/hi/guide/#start">गाइड पढ़ें →</a></p>
       </div>
       <div>

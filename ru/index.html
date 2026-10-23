@@ -247,10 +247,11 @@
       <h1>Ваши секреты<br>никогда не <em>покидают телефон.</em></h1>
       <p class="lede">Sekuvo — ваше защищённое хранилище: пароли, карты и заметки, зашифрованные на телефоне ключом, который может получить только ваш основной пароль. Без сервера, без аккаунта, без синхронизации — и без способа кому-либо сообщить.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Исходный код на GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Исходный код на GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/ru/privacy/">Политика конфиденциальности</a>
       </div>
-      <p class="cta-note">Страница в Google Play готовится. Sekuvo бесплатен и распространяется под GPLv3 — код тому доказательство.</p>
+      <p class="cta-note">Уже в Google Play. Sekuvo бесплатен и распространяется под GPLv3 — код тому доказательство.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(нет результатов — этого разрешения не существует)</span>
     </div>
-    <div class="chain" dir="ltr">Основной пароль ─<b>PBKDF2 · 310 000 раундов</b>─▶ KEK ─<b>обёртка AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> для каждой записи</div>
+    <div class="chain" dir="ltr">Основной пароль ─<b>PBKDF2 · 600 000 раундов</b>─▶ KEK ─<b>обёртка AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> для каждой записи</div>
     <div class="grid"><div class="cell"><h3>Блокируется, когда гаснет экран</h3><p>Ключ стирается из памяти в момент, когда экран гаснет — складывание складного телефона тоже считается. Одна разблокировка обслуживает приложение, клавиатуру и автозаполнение одновременно.</p></div><div class="cell"><h3>Резервные копии переживают телефон</h3><p>Один зашифрованный файл <span class="mono-note">.vaultbak</span>, хранящийся там, где вы решите. Файл плюс пароль резервной копии восстанавливают всё на любом устройстве — путь восстановления протестирован от начала до конца.</p></div><div class="cell"><h3>Нет чёрного хода для восстановления</h3><p>Забудьте основной пароль — и данные исчезнут. Так и задумано: дверь, которую можете открыть только вы, не имеет запасного ключа под ковриком.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Это ск�
     <div class="dl">
       <div>
         <h3>Приложение для Android</h3>
-        <p>Страница в Google Play готовится. А пока можно собрать из исходного кода — README репозитория объясняет это в двух командах.</p>
+        <p>Установите из <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. Можно и собрать из исходного кода — README репозитория объясняет это в двух командах.</p>
         <p><a href="https://sekuvo.com/ru/guide/#start">Читать руководство →</a></p>
       </div>
       <div>
