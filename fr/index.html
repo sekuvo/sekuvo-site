@@ -247,10 +247,11 @@
       <h1>Tes secrets<br>ne <em>sortent</em> jamais.</h1>
       <p class="lede">Sekuvo est ton coffre sécurisé : mots de passe, cartes et notes, chiffrés sur ton téléphone avec une clé que seul ton mot de passe principal peut dériver. Pas de serveur, pas de compte, pas de synchronisation — et aucun moyen d'appeler la maison.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Code source sur GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Code source sur GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/fr/privacy/">Politique de confidentialité</a>
       </div>
-      <p class="cta-note">La fiche Google Play est en préparation. Sekuvo est gratuit et sous GPLv3 — le code en est la preuve.</p>
+      <p class="cta-note">Désormais sur Google Play. Sekuvo est gratuit et sous GPLv3 — le code en est la preuve.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(aucun résultat — cette permission n'existe pas)</span>
     </div>
-    <div class="chain" dir="ltr">Mot de passe principal ─<b>PBKDF2 · 310 000 tours</b>─▶ KEK ─<b>enveloppement AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> sur chaque entrée</div>
+    <div class="chain" dir="ltr">Mot de passe principal ─<b>PBKDF2 · 600 000 tours</b>─▶ KEK ─<b>enveloppement AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> sur chaque entrée</div>
     <div class="grid"><div class="cell"><h3>Se verrouille quand l'écran s'éteint</h3><p>La clé est effacée de la mémoire dès que l'écran s'assombrit — replier un pliable compte aussi. Un seul déverrouillage sert à la fois l'application, le clavier et la saisie automatique.</p></div><div class="cell"><h3>Des sauvegardes qui survivent au téléphone</h3><p>Un unique fichier chiffré <span class="mono-note">.vaultbak</span>, stocké où tu veux. Le fichier plus le mot de passe de sauvegarde restaurent tout sur n'importe quel appareil — le chemin de récupération est testé de bout en bout.</p></div><div class="cell"><h3>Aucune porte dérobée de récupération</h3><p>Oublie le mot de passe principal et les données disparaissent. C'est le principe même : une porte que toi seul peux ouvrir n'a pas de double planqué sous le paillasson.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Un télécha
     <div class="dl">
       <div>
         <h3>Application Android</h3>
-        <p>La fiche Google Play est en préparation. En attendant, tu peux compiler depuis les sources — le README du dépôt l'explique en deux commandes.</p>
+        <p>Installe-le depuis <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. Tu peux aussi compiler depuis les sources — le README du dépôt l'explique en deux commandes.</p>
         <p><a href="https://sekuvo.com/fr/guide/#start">Lire le guide →</a></p>
       </div>
       <div>

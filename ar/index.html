@@ -247,10 +247,11 @@
       <h1>أسرارك<br>لا <em>تغادر أبدًا.</em></h1>
       <p class="lede">Sekuvo هي خزنتك الآمنة: كلمات المرور والبطاقات والملاحظات، مشفَّرة على هاتفك بمفتاح لا تشتقّه إلا كلمة مرورك الرئيسية. لا خادم، ولا حساب، ولا مزامنة — ولا سبيل للاتصال بأي جهة.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">المصدر على GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">المصدر على GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/ar/privacy/">سياسة الخصوصية</a>
       </div>
-      <p class="cta-note">صفحة Google Play قيد الإعداد. Sekuvo مجاني وبرخصة GPLv3 — والشيفرة هي الدليل.</p>
+      <p class="cta-note">متوفر الآن على Google Play. Sekuvo مجاني وبرخصة GPLv3 — والشيفرة هي الدليل.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(لا نتائج — هذا الإذن غير موجود أصلًا)</span>
     </div>
-    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 600,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
     <div class="grid"><div class="cell"><h3>يُقفل عند انطفاء الشاشة</h3><p>يُمحى المفتاح من الذاكرة لحظة انطفاء الشاشة — وطيّ الهاتف القابل للطي يُحتسب كذلك. فتحة واحدة تخدم التطبيق ولوحة المفاتيح والملء التلقائي معًا.</p></div><div class="cell"><h3>نسخ احتياطية تبقى بعد الهاتف</h3><p>ملف <span class="mono-note">.vaultbak</span> مشفَّر واحد تحفظه حيث تشاء. الملف مع كلمة مرور النسخة يستعيدان كل شيء على أي جهاز — ومسار الاستعادة مُجرَّب من طرف إلى طرف.</p></div><div class="cell"><h3>لا باب خلفي للاستعادة</h3><p>إن نسيت كلمة المرور الرئيسية ضاعت البيانات. هذا هو التصميم: باب لا يفتحه سواك لا يخبّئ مفتاحًا احتياطيًا تحت السجادة.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">هذا مل�
     <div class="dl">
       <div>
         <h3>تطبيق أندرويد</h3>
-        <p>صفحة Google Play قيد الإعداد. وحتى ذلك الحين يمكنك البناء من المصدر — ملف README في المستودع يشرح ذلك بأمرين.</p>
+        <p>ثبّته من <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. ويمكنك أيضًا البناء من المصدر — ملف README في المستودع يشرح ذلك بأمرين.</p>
         <p><a href="https://sekuvo.com/ar/guide/#start">اقرأ الدليل ←</a></p>
       </div>
       <div>

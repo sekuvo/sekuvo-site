@@ -6,3 +6,7 @@ Depo taşınırsa yalnız bu satır değişir, sonra `python3 build.py`.
 """
 
 GITHUB = "https://github.com/sekuvo/sekuvo"
+
+# Google Play mağaza sayfası. Sayfalardaki bağlantılar buradan üretilir.
+PLAY = "https://play.google.com/store/apps/details?id=com.sekuvo.app"
+PLAY_A = f'<a href="{PLAY}">Google Play</a>'

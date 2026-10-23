@@ -247,10 +247,11 @@
       <h1>Your secrets<br>never <em>leave.</em></h1>
       <p class="lede">Sekuvo is your secure vault: passwords, cards and notes, encrypted on your phone with a key only your master password can derive. It has no server, no account, no sync — and no way to phone home.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Source on GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Source on GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/privacy/">Privacy policy</a>
       </div>
-      <p class="cta-note">Google Play listing is in preparation. Sekuvo is free and GPLv3 — the code is the proof.</p>
+      <p class="cta-note">Now on Google Play. Sekuvo is free and GPLv3 — the code is the proof.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(no matches — the permission does not exist)</span>
     </div>
-    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 310,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
+    <div class="chain" dir="ltr">Master password ─<b>PBKDF2 · 600,000 rounds</b>─▶ KEK ─<b>AES-GCM wrap</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> on every entry</div>
     <div class="grid"><div class="cell"><h3>Locks when the screen sleeps</h3><p>The key is wiped from memory the moment the screen goes dark — folding a foldable counts. One unlock serves the app, the keyboard and autofill together.</p></div><div class="cell"><h3>Backups that outlive the phone</h3><p>One encrypted <span class="mono-note">.vaultbak</span> file, stored wherever you choose. File + backup password restores everything on any device — the recovery path is tested end to end.</p></div><div class="cell"><h3>No recovery backdoor</h3><p>Forget the master password and the data is gone. That is the design: a door only you can open has no spare key under the mat.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">A download, 
     <div class="dl">
       <div>
         <h3>Android app</h3>
-        <p>The Google Play listing is in preparation. Until then you can build from source — the repository README covers it in two commands.</p>
+        <p>Install it from <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. You can also build from source — the repository README covers it in two commands.</p>
         <p><a href="https://sekuvo.com/guide/#start">Read the guide →</a></p>
       </div>
       <div>

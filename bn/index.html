@@ -247,10 +247,11 @@
       <h1>আপনার গোপন তথ্য<br>কখনো <em>বেরোয় না।</em></h1>
       <p class="lede">Sekuvo আপনার নিরাপদ ভল্ট: পাসওয়ার্ড, কার্ড ও নোট, আপনার ফোনে এমন একটি কী দিয়ে এনক্রিপ্ট করা যা শুধু আপনার মূল পাসওয়ার্ড থেকেই তৈরি করা যায়। কোনো সার্ভার নেই, অ্যাকাউন্ট নেই, সিঙ্ক নেই — এবং বাইরে কিছু পাঠানোর কোনো উপায় নেই।</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHub-এ সোর্স কোড</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHub-এ সোর্স কোড</a>
         <a class="btn ghost" href="https://sekuvo.com/bn/privacy/">গোপনীয়তা নীতি</a>
       </div>
-      <p class="cta-note">Google Play লিস্টিং প্রস্তুত হচ্ছে। Sekuvo বিনামূল্যে এবং GPLv3-এর অধীনে — কোডটাই তার প্রমাণ।</p>
+      <p class="cta-note">এখন Google Play-তে পাওয়া যাচ্ছে। Sekuvo বিনামূল্যে এবং GPLv3-এর অধীনে — কোডটাই তার প্রমাণ।</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(কোনো মিল নেই — এই অনুমতিটি আসলে নেই)</span>
     </div>
-    <div class="chain" dir="ltr">মূল পাসওয়ার্ড ─<b>PBKDF2 · ৩,১০,০০০ রাউন্ড</b>─▶ KEK ─<b>AES-GCM র‍্যাপ</b>─▶ dataKey ─▶ প্রতিটি এন্ট্রিতে <b>AES-256-GCM</b></div>
+    <div class="chain" dir="ltr">মূল পাসওয়ার্ড ─<b>PBKDF2 · ৬,০০,০০০ রাউন্ড</b>─▶ KEK ─<b>AES-GCM র‍্যাপ</b>─▶ dataKey ─▶ প্রতিটি এন্ট্রিতে <b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>স্ক্রিন বন্ধ হলেই লক</h3><p>স্ক্রিন অন্ধকার হওয়ার মুহূর্তেই কী মেমোরি থেকে মুছে যায় — ফোল্ডেবল ফোন ভাঁজ করাও এর মধ্যে পড়ে। একবার আনলক করলেই তা অ্যাপ, কীবোর্ড এবং অটোফিল একসাথে ব্যবহার করে।</p></div><div class="cell"><h3>ফোনের চেয়ে বেশিদিন টিকে থাকা ব্যাকআপ</h3><p>একটি এনক্রিপ্টেড <span class="mono-note">.vaultbak</span> ফাইল, আপনার পছন্দের যেকোনো জায়গায় রাখা যায়। ফাইল এবং ব্যাকআপ পাসওয়ার্ড দিয়ে যেকোনো ডিভাইসে সবকিছু ফিরে আসে — পুনরুদ্ধারের পথটি সম্পূর্ণভাবে পরীক্ষিত।</p></div><div class="cell"><h3>পুনরুদ্ধারের কোনো ব্যাকডোর নেই</h3><p>মূল পাসওয়ার্ড ভুলে গেলে তথ্য চিরতরে হারিয়ে যায়। এটাই নকশা: যে দরজা শুধু আপনিই খুলতে পারেন, তার নিচে কোনো বাড়তি চাবি লুকানো থাকে না।</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">এটি �
     <div class="dl">
       <div>
         <h3>Android অ্যাপ</h3>
-        <p>Google Play লিস্টিং প্রস্তুত হচ্ছে। ততক্ষণ আপনি সোর্স থেকে বিল্ড করতে পারেন — রিপোজিটরির README দুটি কমান্ডে তা ব্যাখ্যা করে।</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a> থেকে ইনস্টল করুন। চাইলে সোর্স থেকেও বিল্ড করতে পারেন — রিপোজিটরির README দুটি কমান্ডে তা ব্যাখ্যা করে।</p>
         <p><a href="https://sekuvo.com/bn/guide/#start">গাইড পড়ুন →</a></p>
       </div>
       <div>

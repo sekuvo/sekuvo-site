@@ -247,10 +247,11 @@
       <h1>你的秘密<br>从不<em>外泄。</em></h1>
       <p class="lede">Sekuvo 是你的安全密码库：密码、银行卡和笔记，在你的手机上用只有主密码才能派生的密钥加密。没有服务器，没有账户，没有同步 — 也没有向外发送数据的途径。</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHub 上的源代码</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHub 上的源代码</a>
         <a class="btn ghost" href="https://sekuvo.com/zh/privacy/">隐私政策</a>
       </div>
-      <p class="cta-note">Google Play 页面正在准备中。Sekuvo 免费且遵循 GPLv3 — 代码本身就是证明。</p>
+      <p class="cta-note">现已上架 Google Play。Sekuvo 免费且遵循 GPLv3 — 代码本身就是证明。</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">（没有匹配 — 这项权限根本不存在）</span>
     </div>
-    <div class="chain" dir="ltr">主密码 ─<b>PBKDF2 · 310,000 轮</b>─▶ KEK ─<b>AES-GCM 封装</b>─▶ dataKey ─▶ 每条记录 <b>AES-256-GCM</b></div>
+    <div class="chain" dir="ltr">主密码 ─<b>PBKDF2 · 600,000 轮</b>─▶ KEK ─<b>AES-GCM 封装</b>─▶ dataKey ─▶ 每条记录 <b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>屏幕熄灭即锁定</h3><p>屏幕一变暗，密钥就立即从内存中清除 — 折叠屏合上也算。一次解锁同时服务于应用、键盘和自动填充。</p></div><div class="cell"><h3>比手机寿命更长的备份</h3><p>一个加密的 <span class="mono-note">.vaultbak</span> 文件，存放在你选择的任何地方。文件加上备份密码可在任何设备上恢复一切 — 这条恢复路径经过端到端测试。</p></div><div class="cell"><h3>没有恢复后门</h3><p>忘记主密码，数据就永远消失。这正是设计初衷：只有你能打开的门，不会在门垫下面藏一把备用钥匙。</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">这是一个
     <div class="dl">
       <div>
         <h3>Android 应用</h3>
-        <p>Google Play 页面正在准备中。在此之前你可以从源码构建 — 仓库的 README 用两条命令说明了方法。</p>
+        <p>可从 <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a> 安装。你也可以从源码构建 — 仓库的 README 用两条命令说明了方法。</p>
         <p><a href="https://sekuvo.com/zh/guide/#start">阅读指南 →</a></p>
       </div>
       <div>
