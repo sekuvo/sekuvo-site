@@ -247,10 +247,11 @@
       <h1>あなたの秘密は<br><em>外に出ません。</em></h1>
       <p class="lede">Sekuvoはあなたの安全な保管庫です: パスワード、カード、メモを、あなたのマスターパスワードからしか導出できない鍵で端末上に暗号化します。サーバーなし、アカウントなし、同期なし — そして誰かに知らせる手段もありません。</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">GitHubのソースコード</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">GitHubのソースコード</a>
         <a class="btn ghost" href="https://sekuvo.com/ja/privacy/">プライバシーポリシー</a>
       </div>
-      <p class="cta-note">Google Playの掲載は準備中です。Sekuvoは無料でGPLv3ライセンスです — コードがその証拠です。</p>
+      <p class="cta-note">Google Playで公開中です。Sekuvoは無料でGPLv3ライセンスです — コードがその証拠です。</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">（該当なし — この権限は存在しません）</span>
     </div>
-    <div class="chain" dir="ltr">マスターパスワード ─<b>PBKDF2 · 310,000回</b>─▶ KEK ─<b>AES-GCMラップ</b>─▶ dataKey ─▶ 各アイテムに<b>AES-256-GCM</b></div>
+    <div class="chain" dir="ltr">マスターパスワード ─<b>PBKDF2 · 600,000回</b>─▶ KEK ─<b>AES-GCMラップ</b>─▶ dataKey ─▶ 各アイテムに<b>AES-256-GCM</b></div>
     <div class="grid"><div class="cell"><h3>画面が消えるとロック</h3><p>画面が暗くなった瞬間に鍵はメモリから消去されます — 折りたたみ式端末を閉じることも含まれます。1回のロック解除で、アプリ、キーボード、自動入力のすべてが機能します。</p></div><div class="cell"><h3>端末より長く残るバックアップ</h3><p>1つの暗号化された<span class="mono-note">.vaultbak</span>ファイルを、好きな場所に保存できます。ファイルとバックアップパスワードがあれば、どの端末でもすべて復元できます — 復元の流れは最初から最後まで検証済みです。</p></div><div class="cell"><h3>復旧用の裏口はありません</h3><p>マスターパスワードを忘れると、データは失われます。これは意図的な設計です: あなただけが開けるドアには、玄関マットの下に予備の鍵は隠されていません。</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">これは We
     <div class="dl">
       <div>
         <h3>Androidアプリ</h3>
-        <p>Google Playの掲載は準備中です。それまではソースコードからビルドできます — リポジトリのREADMEに2つのコマンドで説明されています。</p>
+        <p><a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>からインストールできます。ソースコードからビルドすることもできます — リポジトリのREADMEに2つのコマンドで説明されています。</p>
         <p><a href="https://sekuvo.com/ja/guide/#start">ガイドを読む →</a></p>
       </div>
       <div>

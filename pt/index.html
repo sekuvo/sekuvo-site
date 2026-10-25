@@ -247,10 +247,11 @@
       <h1>Seus segredos<br>nunca <em>saem.</em></h1>
       <p class="lede">O Sekuvo é o seu cofre seguro: senhas, cartões e notas, criptografados no seu telefone com uma chave que só a sua senha principal consegue derivar. Sem servidor, sem conta, sem sincronização — e nenhuma forma de avisar alguém.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Código-fonte no GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Código-fonte no GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/pt/privacy/">Política de privacidade</a>
       </div>
-      <p class="cta-note">A ficha da Google Play está em preparação. O Sekuvo é gratuito e GPLv3 — o código é a prova.</p>
+      <p class="cta-note">Já está na Google Play. O Sekuvo é gratuito e GPLv3 — o código é a prova.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(nenhum resultado — essa permissão não existe)</span>
     </div>
-    <div class="chain" dir="ltr">Senha principal ─<b>PBKDF2 · 310.000 rodadas</b>─▶ KEK ─<b>envelopamento AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> em cada item</div>
+    <div class="chain" dir="ltr">Senha principal ─<b>PBKDF2 · 600.000 rodadas</b>─▶ KEK ─<b>envelopamento AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> em cada item</div>
     <div class="grid"><div class="cell"><h3>Bloqueia quando a tela apaga</h3><p>A chave é apagada da memória no instante em que a tela escurece — fechar um dobrável também conta. Um único desbloqueio serve o aplicativo, o teclado e o preenchimento automático juntos.</p></div><div class="cell"><h3>Backups que sobrevivem ao telefone</h3><p>Um único arquivo criptografado <span class="mono-note">.vaultbak</span>, guardado onde você escolher. Arquivo mais senha de backup restauram tudo em qualquer dispositivo — o caminho de recuperação é testado de ponta a ponta.</p></div><div class="cell"><h3>Sem porta dos fundos de recuperação</h3><p>Esqueça a senha principal e os dados se vão. É assim por design: uma porta que só você pode abrir não tem uma chave reserva debaixo do tapete.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Um download,
     <div class="dl">
       <div>
         <h3>Aplicativo Android</h3>
-        <p>A ficha da Google Play está em preparação. Até lá, você pode compilar a partir do código-fonte — o README do repositório explica em dois comandos.</p>
+        <p>Instale pela <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. Você também pode compilar a partir do código-fonte — o README do repositório explica em dois comandos.</p>
         <p><a href="https://sekuvo.com/pt/guide/#start">Leia o guia →</a></p>
       </div>
       <div>

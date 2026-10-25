@@ -247,10 +247,11 @@
       <h1>Tus secretos<br>nunca <em>salen.</em></h1>
       <p class="lede">Sekuvo es tu bóveda segura: contraseñas, tarjetas y notas, cifradas en tu teléfono con una clave que solo tu contraseña maestra puede derivar. Sin servidor, sin cuenta, sin sincronización — y sin forma de llamar a casa.</p>
       <div class="cta">
-        <a class="btn solid" href="https://github.com/sekuvo/sekuvo">Código en GitHub</a>
+        <a class="btn solid" href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>
+        <a class="btn ghost" href="https://github.com/sekuvo/sekuvo">Código en GitHub</a>
         <a class="btn ghost" href="https://sekuvo.com/es/privacy/">Política de privacidad</a>
       </div>
-      <p class="cta-note">La ficha de Google Play está en preparación. Sekuvo es gratis y GPLv3 — el código es la prueba.</p>
+      <p class="cta-note">Ya disponible en Google Play. Sekuvo es gratis y GPLv3 — el código es la prueba.</p>
     </div>
 
     <div class="tel-yer">
@@ -273,7 +274,7 @@
 <span class="c">$ grep INTERNET AndroidManifest.xml</span>
 <span class="no">(sin coincidencias — ese permiso no existe)</span>
     </div>
-    <div class="chain" dir="ltr">Contraseña maestra ─<b>PBKDF2 · 310.000 rondas</b>─▶ KEK ─<b>envoltura AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> en cada entrada</div>
+    <div class="chain" dir="ltr">Contraseña maestra ─<b>PBKDF2 · 600.000 rondas</b>─▶ KEK ─<b>envoltura AES-GCM</b>─▶ dataKey ─▶ <b>AES-256-GCM</b> en cada entrada</div>
     <div class="grid"><div class="cell"><h3>Se bloquea cuando la pantalla se apaga</h3><p>La clave se borra de la memoria en cuanto la pantalla se apaga — plegar un plegable también cuenta. Un solo desbloqueo sirve para la app, el teclado y el autocompletado.</p></div><div class="cell"><h3>Copias que sobreviven al teléfono</h3><p>Un único archivo cifrado <span class="mono-note">.vaultbak</span> guardado donde tú elijas. El archivo más su contraseña restauran todo en cualquier dispositivo — la vía de recuperación está probada de extremo a extremo.</p></div><div class="cell"><h3>Sin puerta trasera de recuperación</h3><p>Si olvidas la contraseña maestra, los datos se pierden. Es el diseño: una puerta que solo tú abres no guarda una llave bajo el felpudo.</p></div></div>
   </section>
 
@@ -311,7 +312,7 @@ certutil -hashfile aktar.html SHA256</div></details><p class="uyar">Una descarga
     <div class="dl">
       <div>
         <h3>Aplicación Android</h3>
-        <p>La ficha de Google Play está en preparación. Hasta entonces puedes compilar desde el código — el README del repositorio lo explica en dos comandos.</p>
+        <p>Instálalo desde <a href="https://play.google.com/store/apps/details?id=com.sekuvo.app">Google Play</a>. También puedes compilar desde el código — el README del repositorio lo explica en dos comandos.</p>
         <p><a href="https://sekuvo.com/es/guide/#start">Lee la guía →</a></p>
       </div>
       <div>
